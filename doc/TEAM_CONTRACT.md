@@ -1,5 +1,5 @@
 # OOGA Team Contract
-### 9
+### Team 9
 * Andy Demma (abd35@duke.edu)
 * Michael Habib (mwh35@duke.edu)
 * Manith Luthria (mnl21@duke.edu)
