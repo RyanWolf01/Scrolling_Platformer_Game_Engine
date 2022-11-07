@@ -1,0 +1,41 @@
+{
+    "game":"mario",
+    "name": "Example Level",
+    "language":"english",
+    "background": "cloudyDay.png",
+    "style":"light",
+    "obstacles":[
+        {
+            "type":"wall",
+            "x":"0",
+            "y":"0",
+            "height":"50",
+            "width":"20"
+        },
+        {
+            "type":"gap",
+            "x":"10",
+            "y":"0",
+            "length":"20"
+        }
+    ],
+    "enemies": [
+        {
+            "type": "Goomba",
+            "x": 10,
+            "y": 20
+        }
+    ],
+    "coins": [
+        {
+            "type": "red",
+            "x": 10,
+            "y": 30
+        },
+        {
+            "type": "blue",
+            "x": 40,
+            "y": 30
+        }
+    ]
+}
