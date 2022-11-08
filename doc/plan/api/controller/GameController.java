@@ -31,6 +31,6 @@ public interface GameController {
    * back through the controller to the view to change the UI
    * @param levelData, package of level information, for which the location of the main character must be updated for the model to use
    */
-  public void updateCharacterLocation(LevelDataWrapper levelData)''
+  public void updateCharacterLocation(LevelDataWrapper levelData);
 
 }
