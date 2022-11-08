@@ -25,3 +25,22 @@ and the player can also lose by falling off the bottom edge of the platform.
 This is the same as the other two in that it has platforms, but it scrolls vertically. 
 It has the same kind of enemies as Mario, that die when they are jumped on but kill you if they are collided
 with in any other way.
+
+## Details of Games / Config Files Notes
+
+* Mario
+  * Config file defined:
+    * Location and size of platforms
+    * Location and height of walls
+    * Location and height of gaps
+    * Character/Enemies
+    * Moves up, left, right
+    * Lose/Gain life
+    * Die -> lose level
+    * Has abilities
+    * Can shoot fire (when powered up), Flies
+
+* Other games
+  * Doodle jump
+  * Geometry dash
+  * Sonic
