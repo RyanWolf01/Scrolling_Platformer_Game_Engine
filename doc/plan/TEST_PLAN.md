@@ -18,8 +18,8 @@ that implements Alive actually causes the lives counter to go to 0.
 * Make sure character Y_coordinate drops when not on platform
 * Try to enter out of bounds coordinates and make sure an error is thrown
 ### Arman
-Scenario 1
-Scenario 2
+* Test
+* 
 Scenario 3
 
 ### Ryan

@@ -31,6 +31,7 @@ public interface JSONTranslater {
    * outside of just the context of this project
    */
 
+
   /**
    * This will translate the JSON file chosen into a JSON object in case the user makes any changes to anything and would like to
    * save them as JSON, potentially for later use, the project will then contain the information
@@ -41,4 +42,21 @@ public interface JSONTranslater {
    * @throws FileNoteFoundException
    */
   public JSONObject initialJSONInformation(String JSONPath) throws FileNoteFoundException;
+
+
+  /**
+   * This method will cooperate with the view and the frontend to make the new level
+   * view, going through the JSON file and initializing all of the elements where they belong in the level, and then
+   * calling startLevel to render and show the level on the UI
+   */
+  public void makeLevelView(JSONObject LevelInfo);
+
+  /**
+   * This method can take the updated JSONObject and then perform the necessary steps that we plan to implement and
+   * tie in with the functionality of potentially another interface to save the JSON information at the time to the database.
+   * This saved state/game will be the updated JSON object file in the program that has been modified
+   */
+  public void saveCurrentLevelState();
+
+
 }
