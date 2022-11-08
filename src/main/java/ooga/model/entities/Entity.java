@@ -1,4 +1,4 @@
-package ooga.model;
+package ooga.model.entities;
 
 /**
  * Everything that can be represented in the game is an Entity of some type.
