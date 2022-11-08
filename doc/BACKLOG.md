@@ -28,7 +28,7 @@
 
 
 ### Arman Shekarriz
-* Ability to translate JSON files to UI and initial game screen
+* Ability to translate JSON files to UI and initial game screen and to the model
 * Ability to handle main character movement button clicks and send information to model to update position
 * Able to show custom errors to users from disallowed UI interactions
 * Send collision event changes or movement event changes to UI to update the view with respect to positioning or changes in state of entities
@@ -43,3 +43,4 @@
 * Implement API for physics calculations
 * Create methodology for determining the hierarchy of entities
 * Create powerups that can be utilized by characters
+

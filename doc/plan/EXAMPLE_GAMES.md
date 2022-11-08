@@ -44,3 +44,4 @@ with in any other way.
   * Doodle jump
   * Geometry dash
   * Sonic
+  * Google chrome Dino Game
