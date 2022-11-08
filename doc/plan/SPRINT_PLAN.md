@@ -43,10 +43,13 @@
 - Handle UI interactions to change languages or CSS styling of the game
 - Adding properties files to support all of this, languages and whatnot
 - Ensuring reflection used in controller effectively
-### Mike
+### Michael
 - Allow other entities to be alive, depending on type (e.g. enemy, etc.)
 - Allow other entities to move, also depending on type
 - Account for different mediums (e.g.. air, water, etc.)
+- Account for different games
+  - Make specific entities for Geometry Dash, Doodle Jump, etc.
+  - Expand abilities of specific entities
 ### Ryan
 - Work on defining collisions for enemy types
 - Work on implementing super powers and the physics for those powerups
@@ -61,3 +64,7 @@
 - Testing and refactoring
 ### Ryan
 - Save the high scores and level data to a database
+### Michael
+- Help in saving state of game in backend
+- Account for corner cases and fine-tuning of objects interacting with each other (e.g. having
+ character actually stand on top of platform realistically)
