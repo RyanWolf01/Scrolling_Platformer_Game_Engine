@@ -18,7 +18,11 @@
   I would like to
 
 * Ryan Wolfram
-  I would like to use the good design principles that we’ve learned in this course. Namely, I want to make sure that our code
+  I would like to use the good design principles that we’ve learned in this course. Namely, I want 
+to make sure that our code completely follows the open-close principle in regard to adding new 
+game entities and even types of games. I also want to be an active contributer during team
+meetings and uphold high standards for good design of our code (which ultimately makes our lives
+easier down the road).
 
 * Michael Habib
   *In terms of teamwork, I hope to be more understanding of and open to other teammates’ ideas. On the technical side, I hope to plan data protection and control using encapsulation, interfaces, and records early on. Additionally, I hope to use more abstraction and have more complex hierarchies, making lower-level classes more active.
@@ -71,7 +75,8 @@ Emphasis will be on mostly getting positive
     * Backend, Control -> Work on collision and entity physics, converting Model entities to View JavaFX objects
 
 
-* Team Member 5
+* Ryan Wolfram
+  * Backend -> Work on collision handling rules between entities. Work on the complex extension of writing game data to a database
 
 
 
