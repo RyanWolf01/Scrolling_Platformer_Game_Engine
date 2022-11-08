@@ -1,13 +1,12 @@
 package ooga.model;
 
-public abstract class Entity {
-    private EntityAttributes attributes;
+/**
+ * Everything that can be represented in the game is an Entity of some type.
+ * The one thing they all have in common is that they need to have some X and Y location.
+ * They might also all need to have some size.
+ */
+public interface Entity {
 
-    public int getXCoordinate(){
-        return attributes.XCoordinate();
-    }
-
-    public int getYCoordinate(){
-        return attributes.YCoordinate();
-    }
+    int getXCoordinate();
+    int getYCoordinate();
 }
