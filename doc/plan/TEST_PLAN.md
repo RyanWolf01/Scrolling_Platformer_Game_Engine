@@ -1,3 +1,7 @@
+1. One testing strategy we can use is to make mock classes for parameters that we need to pass 
+to the API. Then we can provide those mock classes with fixed values that can make testing 
+significantly easier.
+
 ### Michael
 * Test if ImmutableEntity actually restricts the data access of the EntityList from the view. For example,
 test the methods available to the Entity returned by EntityList using reflection.
@@ -17,7 +21,25 @@ that implements Alive actually causes the lives counter to go to 0.
 Scenario 1
 Scenario 2
 Scenario 3
+
 ### Ryan
 Scenario 1
+* Test: CollisionInformation detectCollision(Entity entityA, Entity entityB)
+Set the position of entityA and entityB to intersect each other such that they're colliding on
+each other's side. Call detectCollision(entityA, entityB) and check the collisionOccured property
+of the CollisionInformation object that's returned to make sure it's true. Also check to see
+if the CollisionInformation returns the string "SIDE".
+
 Scenario 2
+* Test: CollisionChart loadCollisionChart(String entityType)
+Load in a JSON object dynamically with hardcoded values. Then send the correct entityType string
+to the method. Step through all the values inside CollisionChart (which encapsulates a JSON
+object) and make sure that they match with the JSON object originally loaded.
+
 Scenario 3
+* Test: void handleCollision(CollisionInformation collisionInformation, Entity entityA, Entity entityB)
+Test to make sure that the state of entityA changes how it's supposed to after colliding with
+entityB, given that you know the rules for how entityA is supposed to react to collisions. For
+example, make sure that entityA moves by 10 pixels if an EntityCommand to move entityA by 10 
+pixels is executed on it. Also write a test such that no match occurs/no criteria exist with
+entityA to handle some sort of collision, and ensure that a NoCriteriaMatched exception is thrown.

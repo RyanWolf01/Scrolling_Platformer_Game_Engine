@@ -16,4 +16,11 @@ public interface Entity {
     public Collsion onLeftCollision();
     public Collision onRightCollision();
     public Collision onBottomCollision();
+
+    /**
+     * Returns information about what type of entity this Entity is (i.e. Mario, a goomba, a
+     * platform, etc.) along with what types of state information that these entities might hold
+     * (e.g. the powerup that Mario has)
+     */
+    StateInformation getStateInformation();
 }
