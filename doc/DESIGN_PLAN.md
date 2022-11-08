@@ -15,7 +15,10 @@
   I would like to learn more about encapsulation and wrapping data structures to promote cleaner code writing. I am learning to plan more before I begin to write code. I also hope to learn to use active methods more then getter/setter methods.
 
 * Arman Shekarriz
-  I would like to
+  I would like to learn more about how to best use reflection and other techniques to promote encapsulation and allow the model to the isolated from the view to 
+obey MVC. I also would like to learn more about how to test code in the controller area most effectively and become better at mocking examples to achieve better, 
+more robust testing that allows for more confidence in the code written. I also would like to work across all areas of the project and continue to try and become better
+and the design nuances that accompany many of the smaller tasks in projects that can have a major impact as a whole.
 
 * Ryan Wolfram
   I would like to use the good design principles that we’ve learned in this course. Namely, I want 
