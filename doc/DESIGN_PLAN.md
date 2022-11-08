@@ -1,5 +1,5 @@
 # OOGA Design Final
-### Names
+### Andy Demma, Manith Luthria, Arman Shekarriz, Ryan Wolfram, Michael Habib
 
 # OOGA Plan Discussion
 ### 9
@@ -79,22 +79,33 @@ Emphasis will be on mostly getting positive
   * Backend -> Work on collision handling rules between entities. Work on the complex extension of writing game data to a database
 
 
-
+## UML Diagram Link
+* https://lucid.app/lucidchart/30198d88-bff7-43fa-8147-71c6e324ba87/edit?viewport_loc=-2440%2C-61%2C2514%2C1581%2C0_0&invitationId=inv_a7780354-b652-4cce-90f0-edd1ef2f3944
 
 ## Design goals
 
 #### What Features are Easy to Add
-
+* New types of characters and enemies. New variations of enemies can be added via a JSON file without 
+adding any new classes or code.
+* New abilities for characters. Easy to add subclasses.
+* New types of movements that extend movement interface.
+* New mediums to move through (change gravity calculation)
 
 ## High-level Design
 
 #### Core Classes
-
+* Entity class -> models any object in backend, such as Mario, Platform, etc.
+* Movement interface -> allows objects to move
+* CollisionHandler interface -> determines how to handle collisions
+* Alive interface -> determines behavior if Entity is alive
+* StepController -> handles moving objects
 
 ## Assumptions that Affect the Design
-
+* Assuming the games cannot be multiplayer (there cannot be multiple Mario's, DoodleJumpers, etc.)
+* Assuming we will never run two games at the same time
 #### Features Affected by Assumptions
-
+* We are not creating a list of heroes (i.e. Marios) 
+* We are not accounting for reading in different files, etc. to start multiple games
 
 ## Significant differences from Original Plan
 
