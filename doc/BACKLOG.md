@@ -17,3 +17,6 @@
 
 6. Character Movement - Model
  - The arrow keys will increment and decrement the x and y velocity up to an upper limit that is defined in the program. There will be a function to determine if the character is onTheGround() and if not the y_velocity will decrement by a constant. When the character is on the floor the top_collision component of the floor will tell the character to set the y_velocity to 0.
+
+
+7. 
