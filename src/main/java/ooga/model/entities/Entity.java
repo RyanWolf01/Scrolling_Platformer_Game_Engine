@@ -9,6 +9,10 @@ public interface Entity {
     int getXCoordinate();
     int getYCoordinate();
 
+    int getLength();
+
+    int getWidth();
+
     /**
      * @return what type of entity the current entity is
      */
