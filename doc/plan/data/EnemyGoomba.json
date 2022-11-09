@@ -2,6 +2,7 @@
   "image": "Goomba.png",
   "width": 5,
   "height": 5,
+  "type": "BABY_ENEMY",
   "collisions": {
     "top": "die",
     "leftSide": "killPlayer",
