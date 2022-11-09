@@ -6,7 +6,11 @@ package ooga.model.entities;
  * They might also all need to have some size.
  */
 public interface Entity {
-
     int getXCoordinate();
     int getYCoordinate();
+
+    /**
+     * @return what type of entity the current entity is
+     */
+    EntityType getEntityType();
 }
