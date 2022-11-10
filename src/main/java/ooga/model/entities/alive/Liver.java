@@ -1,4 +1,4 @@
-package ooga.model.entities;
+package ooga.model.entities.alive;
 
 public interface Liver{
     /**

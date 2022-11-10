@@ -1,4 +1,4 @@
-package ooga.model.entities;
+package ooga.model.entities.movement;
 
 /**
  * This is an interface that can be used for anything that moves in the horizontal dimension

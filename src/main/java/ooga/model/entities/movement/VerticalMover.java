@@ -1,4 +1,4 @@
-package ooga.model.entities;
+package ooga.model.entities.movement;
 
 /**
  * Interface used for anything that moves in the Y direction

@@ -1,6 +1,11 @@
 package ooga.model.entities;
 
-public class MainCharacter extends Entity implements HorizontalMover, VerticalMover, Liver{
+import ooga.model.entities.alive.Liver;
+import ooga.model.entities.data.InitialAttributes;
+import ooga.model.entities.movement.HorizontalMover;
+import ooga.model.entities.movement.VerticalMover;
+
+public class MainCharacter extends Entity implements HorizontalMover, VerticalMover, Liver {
     private int xVelocity;
     private int yVelocity;
     private int lives;
