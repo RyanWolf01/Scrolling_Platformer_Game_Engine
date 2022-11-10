@@ -12,8 +12,8 @@ public class Mario extends MainCharacter implements HorizontalMover, VerticalMov
   private int xVelocity;
   private int yVelocity;
 
-  public Mario(InitialAttributes attributes) {
-    super(attributes);
+  public Mario(InitialAttributes attributes, int lives) {
+    super(attributes, lives);
   }
 
   @Override
@@ -40,8 +40,6 @@ public class Mario extends MainCharacter implements HorizontalMover, VerticalMov
 
   @Override
   public void decreaseLives(int lives) {
-    if(getLives() == 0) // check if try to decrease lives below 0
-      lives = 0;
     setLives(getLives() - lives);
   }
 

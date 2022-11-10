@@ -3,15 +3,13 @@ package ooga.model.entities.characters;
 import ooga.model.entities.Entity;
 import ooga.model.entities.alive.Alive;
 import ooga.model.entities.data.InitialAttributes;
-import ooga.model.entities.movement.Mover;
 
 public abstract class MainCharacter extends Entity implements Alive {
-    private int xVelocity;
-    private int yVelocity;
     private int lives;
 
-    public MainCharacter(InitialAttributes attributes) {
+    public MainCharacter(InitialAttributes attributes, int lives) {
         super(attributes);
+        this.lives = lives;
     }
 
 
@@ -27,11 +25,14 @@ public abstract class MainCharacter extends Entity implements Alive {
     }
 
     /**
-     * allow characters to set their lives
+     * allow characters to set their lives. Make sure lives cannot be negative
      * @param lives value to which lives will now be set
      */
     protected void setLives(int lives){
-        this.lives = lives;
+        if(lives <= 0)
+            this.lives = 0;
+        else
+            this.lives = lives;
     }
 
     /**
