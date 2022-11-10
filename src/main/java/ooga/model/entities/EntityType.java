@@ -5,11 +5,7 @@ package ooga.model.entities;
  * things will happen to different things.
  */
 public enum EntityType {
-    MAIN_CHARACTER(MainCharacter.class),
-    BOUNCY_PLATFORM,
-    BORING_PLATFORM,
-    BABY_ENEMY,
-    BIG_BOI_ENEMY;
+    MAIN_CHARACTER(MainCharacter.class);
 
     /**
      * This stuff will probably be helpful for reflection when doing collisions
