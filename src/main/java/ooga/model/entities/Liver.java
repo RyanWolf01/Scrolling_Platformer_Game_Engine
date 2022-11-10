@@ -1,6 +1,6 @@
 package ooga.model.entities;
 
-public interface Liver extends Entity{
+public interface Liver{
     /**
      * @return how many lives this thing has
      */
