@@ -2,10 +2,9 @@ package ooga.model.entities;
 
 import ooga.model.entities.alive.Alive;
 import ooga.model.entities.data.InitialAttributes;
-import ooga.model.entities.movement.HorizontalMover;
-import ooga.model.entities.movement.VerticalMover;
+import ooga.model.entities.movement.Mover;
 
-public class MainCharacter extends Entity implements HorizontalMover, VerticalMover, Alive {
+public class MainCharacter extends Entity implements Mover, Alive {
     private int xVelocity;
     private int yVelocity;
     private int lives;
@@ -14,15 +13,15 @@ public class MainCharacter extends Entity implements HorizontalMover, VerticalMo
         super(attributes);
     }
 
-    @Override
-    public void incrementXVelocity(int change) {
-        xVelocity = xVelocity+change;
-    }
-
-    @Override
-    public int getXVelocity() {
-        return xVelocity;
-    }
+//    @Override
+//    public void incrementXVelocity(int change) {
+//        xVelocity = xVelocity+change;
+//    }
+//
+//    @Override
+//    public int getXVelocity() {
+//        return xVelocity;
+//    }
 
     @Override
     public int getLives() {
@@ -45,13 +44,13 @@ public class MainCharacter extends Entity implements HorizontalMover, VerticalMo
         incrementYCoordinate(yVelocity);
     }
 
-    @Override
-    public void incrementYVelocity(int change) {
-        yVelocity += change;
-    }
-
-    @Override
-    public int getYVelocity() {
-        return yVelocity;
-    }
+//    @Override
+//    public void incrementYVelocity(int change) {
+//        yVelocity += change;
+//    }
+//
+//    @Override
+//    public int getYVelocity() {
+//        return yVelocity;
+//    }
 }
