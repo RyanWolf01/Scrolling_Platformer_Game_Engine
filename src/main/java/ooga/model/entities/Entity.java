@@ -26,14 +26,6 @@ public abstract class Entity {
         return yCoordinate;
     }
 
-    public void incrementXCoordinate(int velocity){
-        xCoordinate += velocity;
-    }
-
-    public void incrementYCoordinate(int velocity){
-        yCoordinate += velocity;
-    }
-
     public int getLength(){
         return attributes.length();
     }

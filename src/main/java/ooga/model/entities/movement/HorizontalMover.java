@@ -9,5 +9,4 @@ public interface HorizontalMover extends Mover {
      * @param change how much to change the velocity by
      */
     void incrementXVelocity(int change);
-    int getXVelocity();
 }

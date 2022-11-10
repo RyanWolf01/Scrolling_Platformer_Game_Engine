@@ -10,6 +10,6 @@ public interface LifeDecrementer extends Alive {
    * Subtracts the passed value from the current life count of the entity, essentially decreasing the number of lives
    * of the entity.
    */
-  public boolean decreaseLives(int lives);
+  public void decreaseLives(int lives);
 
 }

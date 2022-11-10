@@ -10,6 +10,6 @@ public interface LifeIncrementer extends Alive {
    * Adds the passed value to the current life count of the entity, essentially increasing the number of lives
    * of the entity.
    */
-  public boolean addLives(int lives);
+  public void increaseLives(int lives);
 
 }
