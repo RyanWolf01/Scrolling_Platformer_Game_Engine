@@ -4,5 +4,5 @@ import ooga.model.collisions.CollisionData;
 import ooga.model.entities.Entity;
 
 public interface CollisionHandler {
-  void handleCollision(CollisionData collisionData, Entity entityA, Entity entityB);
+  void handleCollision(Entity entityA, Entity entityB, CollisionData collisionData);
 }
