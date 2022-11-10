@@ -1,4 +1,4 @@
-package ooga.model.collisions;
+package ooga.model.collisions.data;
 
 /**
  * Defines all possible types of collisions

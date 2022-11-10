@@ -1,5 +1,8 @@
 package ooga.model.entities;
 
+import ooga.model.entities.data.EntityType;
+import ooga.model.entities.data.InitialAttributes;
+
 /**
  * Everything that can be represented in the game is an Entity of some type.
  * The one thing they all have in common is that they need to have some X and Y location.

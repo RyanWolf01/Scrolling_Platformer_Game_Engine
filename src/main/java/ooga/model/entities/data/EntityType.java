@@ -1,4 +1,6 @@
-package ooga.model.entities;
+package ooga.model.entities.data;
+
+import ooga.model.entities.MainCharacter;
 
 /**
  * The main use of this enum is for the collisions. Based on the type of the entity different
