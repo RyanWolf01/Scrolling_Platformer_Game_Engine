@@ -1,11 +1,11 @@
 package ooga.model.entities;
 
-import ooga.model.entities.alive.Liver;
+import ooga.model.entities.alive.Alive;
 import ooga.model.entities.data.InitialAttributes;
 import ooga.model.entities.movement.HorizontalMover;
 import ooga.model.entities.movement.VerticalMover;
 
-public class MainCharacter extends Entity implements HorizontalMover, VerticalMover, Liver {
+public class MainCharacter extends Entity implements HorizontalMover, VerticalMover, Alive {
     private int xVelocity;
     private int yVelocity;
     private int lives;
@@ -29,10 +29,10 @@ public class MainCharacter extends Entity implements HorizontalMover, VerticalMo
         return lives;
     }
 
-    @Override
-    public void incrementLives() {
-        lives++;
-    }
+//    @Override
+//    public void incrementLives() {
+//        lives++;
+//    }
 
     @Override
     public void kill() {
