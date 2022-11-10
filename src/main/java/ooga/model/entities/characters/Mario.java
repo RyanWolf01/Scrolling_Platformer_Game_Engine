@@ -9,14 +9,17 @@ import ooga.model.entities.movement.VerticalMover;
 public class Mario extends MainCharacter implements HorizontalMover, VerticalMover,
     LifeDecrementer, LifeIncrementer {
 
+  private int xVelocity;
+  private int yVelocity;
+
   public Mario(InitialAttributes attributes) {
     super(attributes);
   }
 
   @Override
   public void move() {
-    incrementXCoordinate(xVelocity);
-    incrementYCoordinate(yVelocity);
+    setXCoordinate(getXCoordinate() + xVelocity);
+    setYCoordinate(getYCoordinate() + yVelocity);
   }
 
   @Override
@@ -25,19 +28,15 @@ public class Mario extends MainCharacter implements HorizontalMover, VerticalMov
   }
 
   @Override
-  public int getYVelocity() {
-    return yVelocity;
+  public void incrementXVelocity(int change) {
+    xVelocity = xVelocity + change;
   }
+
+
   @Override
-    public void incrementXVelocity(int change) {
-        xVelocity = xVelocity+change;
-    }
-
-
-    @Override
-    public void increaseLives(int lives) {
-        setLives(getLives() + lives);
-    }
+  public void increaseLives(int lives) {
+    setLives(getLives() + lives);
+  }
 
   @Override
   public void decreaseLives(int lives) {

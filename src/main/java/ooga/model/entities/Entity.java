@@ -26,6 +26,22 @@ public abstract class Entity {
         return yCoordinate;
     }
 
+    /**
+     *
+     * @param xCoordinate new X coordinate to be set to
+     */
+    public void setXCoordinate(int xCoordinate) {
+        this.xCoordinate = xCoordinate;
+    }
+
+    /**
+     *
+     * @param yCoordinate new Y coordinate to be set to
+     */
+    public void setYCoordinate(int yCoordinate) {
+        this.yCoordinate = yCoordinate;
+    }
+
     public int getLength(){
         return attributes.length();
     }
