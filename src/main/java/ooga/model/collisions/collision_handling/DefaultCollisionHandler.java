@@ -7,18 +7,28 @@ import ooga.model.entities.ImmutableEntityInfo;
 
 public class DefaultCollisionHandler implements CollisionHandler {
 
-  private PostCollisionActionGetter actionGetter;
+  private final CollisionChartReader myCollisionChartReader;
 
   public DefaultCollisionHandler() {
-    actionGetter = new PostCollisionActionGetter();
+    myCollisionChartReader = new CollisionChartReader();
   }
 
   @Override
   public void handleCollision(Entity entityA, Entity entityB, CollisionData collisionData) {
     ImmutableEntityInfo entityAInfo = entityA.getImmutableEntityInfo();
     ImmutableEntityInfo entityBInfo = entityB.getImmutableEntityInfo();
-    Action action = actionGetter.getPostCollisionAction(entityAInfo, entityBInfo, collisionData);
+    Action action = getPostCollisionAction(entityAInfo, entityBInfo, collisionData);
 
     action.execute(entityA);
+  }
+
+  public Action getPostCollisionAction(ImmutableEntityInfo targetEntityInfo, ImmutableEntityInfo sourceEntityInfo, CollisionData collisionData) {
+    if (! targetEntityInfo.hasKey(ImmutableEntityInfo.COLLISION_CHART_KEY)) {
+      throw new RuntimeException("Target Entity doesn't have a collision chart!");
+    }
+
+    CollisionChart collisionChart = myCollisionChartReader.getCollisionChart(targetEntityInfo.get(ImmutableEntityInfo.COLLISION_CHART_KEY));
+
+    return null;
   }
 }
