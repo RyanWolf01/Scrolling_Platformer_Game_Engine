@@ -9,5 +9,4 @@ public interface VerticalMover extends Mover {
      * @param change how much to change the velocity by
      */
     void incrementYVelocity(int change);
-    int getYVelocity();
 }

@@ -26,12 +26,20 @@ public abstract class Entity {
         return yCoordinate;
     }
 
-    public void incrementXCoordinate(int velocity){
-        xCoordinate += velocity;
+    /**
+     *
+     * @param xCoordinate new X coordinate to be set to
+     */
+    public void setXCoordinate(int xCoordinate) {
+        this.xCoordinate = xCoordinate;
     }
 
-    public void incrementYCoordinate(int velocity){
-        yCoordinate += velocity;
+    /**
+     *
+     * @param yCoordinate new Y coordinate to be set to
+     */
+    public void setYCoordinate(int yCoordinate) {
+        this.yCoordinate = yCoordinate;
     }
 
     public int getLength(){
