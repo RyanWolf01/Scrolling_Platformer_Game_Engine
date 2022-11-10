@@ -40,6 +40,8 @@ public class Mario extends MainCharacter implements HorizontalMover, VerticalMov
 
   @Override
   public void decreaseLives(int lives) {
+    if(getLives() == 0) // check if try to decrease lives below 0
+      lives = 0;
     setLives(getLives() - lives);
   }
 
