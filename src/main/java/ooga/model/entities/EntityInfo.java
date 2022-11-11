@@ -2,6 +2,7 @@ package ooga.model.entities;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class EntityInfo implements ImmutableEntityInfo {
@@ -19,6 +20,11 @@ public class EntityInfo implements ImmutableEntityInfo {
   @Override
   public boolean hasKey(String key) {
     return map.containsKey(key);
+  }
+
+  @Override
+  public Iterator<String> iterator() {
+    return map.keySet().iterator();
   }
 
   public void set(String key, String val) {

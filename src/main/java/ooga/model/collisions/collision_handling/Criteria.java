@@ -1,9 +1,8 @@
 package ooga.model.collisions.collision_handling;
 
-import java.util.Collection;
 import java.util.Map;
 import ooga.model.actions.Action;
-import ooga.model.collisions.CollisionData;
+import ooga.model.collisions.CollisionPhysicsData;
 import ooga.model.entities.ImmutableEntityInfo;
 
 public class Criteria {
@@ -16,7 +15,7 @@ public class Criteria {
     myActionClassString = actionClassString;
   }
 
-  public boolean matches(ImmutableEntityInfo sourceEntityInfo, CollisionData collisionData) {
+  public boolean matches(ImmutableEntityInfo sourceEntityInfo, CollisionPhysicsData collisionPhysicsData) {
     int count = 0;
     for (String key : myCriteria.keySet()) {
 
@@ -31,7 +30,7 @@ public class Criteria {
 
     }
 
-    String collisionDirection = collisionData.collisionDirection().toString();
+    String collisionDirection = collisionPhysicsData.collisionDirection().toString();
     return count == myCriteria.size() && collisionDirection.equals(
         myCriteria.get(COLLISION_DIRECTION_KEY));
   }

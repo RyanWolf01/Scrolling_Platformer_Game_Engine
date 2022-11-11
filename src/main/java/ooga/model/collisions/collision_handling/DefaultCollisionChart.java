@@ -5,8 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import ooga.model.actions.Action;
-import ooga.model.collisions.CollisionData;
-import ooga.model.collisions.collision_handling.exceptions.CollisionChartNotFoundException;
+import ooga.model.collisions.CollisionPhysicsData;
 import ooga.model.collisions.collision_handling.exceptions.NoCollisionCriteriaMatchException;
 import ooga.model.entities.ImmutableEntityInfo;
 
@@ -25,9 +24,9 @@ public class DefaultCollisionChart implements CollisionChart {
   }
 
   @Override
-  public Action getAction(ImmutableEntityInfo sourceEntityInfo, CollisionData collisionData) {
+  public Action getAction(ImmutableEntityInfo sourceEntityInfo, CollisionPhysicsData collisionPhysicsData) {
     for (Criteria criteria : myCriteria) {
-      if (criteria.matches(sourceEntityInfo, collisionData)) {
+      if (criteria.matches(sourceEntityInfo, collisionPhysicsData)) {
         return criteria.getAction();
       }
     }
