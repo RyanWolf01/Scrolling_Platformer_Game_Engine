@@ -1,5 +1,6 @@
 package ooga.model.collisions;
 
+import ooga.model.collisions.data.CollisionDirection;
 import ooga.model.entities.Entity;
 
 /**
