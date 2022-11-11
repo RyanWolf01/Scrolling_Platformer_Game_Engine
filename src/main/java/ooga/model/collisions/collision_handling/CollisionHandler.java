@@ -1,6 +1,7 @@
 package ooga.model.collisions.collision_handling;
 
 import ooga.model.collisions.CollisionPhysicsData;
+import ooga.model.collisions.CollisionPhysicsInfo;
 import ooga.model.entities.Entity;
 
 /**
@@ -15,8 +16,8 @@ public interface CollisionHandler {
    *
    * @param entityA              the targetEntity
    * @param entityB              the entity that's informing the collision
-   * @param collisionPhysicsData the physics data on this collision, such as which direction, from
-   *                             the perspecitve of EntityA, that the collision occurred.
+   * @param collisionPhysicsInfo the physics data on this collision, such as which direction, from
+   *                             the perspective of EntityA, that the collision occurred.
    */
-  void handleCollision(Entity entityA, Entity entityB, CollisionPhysicsData collisionPhysicsData);
+  void handleCollision(Entity entityA, Entity entityB, CollisionPhysicsInfo collisionPhysicsInfo);
 }

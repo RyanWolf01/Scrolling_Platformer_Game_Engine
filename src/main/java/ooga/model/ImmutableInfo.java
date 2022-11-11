@@ -1,6 +1,6 @@
-package ooga.model.entities;
+package ooga.model;
 
-public interface ImmutableEntityInfo extends Iterable<String>{
+public interface ImmutableInfo extends Iterable<String>{
   String TYPE_KEY = "TYPE";
   String COLLISION_CHART_KEY = "COLLISION_CHART";
 

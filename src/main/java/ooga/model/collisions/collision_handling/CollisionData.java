@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import ooga.model.collisions.CollisionPhysicsData;
-import ooga.model.entities.ImmutableEntityInfo;
+import ooga.model.collisions.CollisionPhysicsInfo;
+import ooga.model.ImmutableInfo;
 
 /**
  * Encapsulates the data representing a collision between Entity A and Entity B. The data is from
@@ -25,16 +26,16 @@ public class CollisionData implements Iterable<String> {
    *
    * @param entityAInfo          entityA's info
    * @param entityBInfo          entityB's info
-   * @param collisionPhysicsData data representing collision's physics (e.g. which side was hit,
+   * @param collisionPhysicsInfo data representing collision's physics (e.g. which side was hit,
    *                             from the perspective of Entity A).
    */
 
-  public CollisionData(ImmutableEntityInfo entityAInfo, ImmutableEntityInfo entityBInfo,
-      CollisionPhysicsData collisionPhysicsData) {
+  public CollisionData(ImmutableInfo entityAInfo, ImmutableInfo entityBInfo,
+      ImmutableInfo collisionPhysicsInfo) {
     data = new HashMap<>();
     addKeys(data, entityAInfo, "MY_");
     addKeys(data, entityBInfo, "OTHER_");
-    addKeys(data, collisionPhysicsData);
+    addKeys(data, collisionPhysicsInfo, "COLLISION_");
   }
 
   /**
@@ -68,17 +69,10 @@ public class CollisionData implements Iterable<String> {
   }
 
   // Add the keys in ImmutableEntityInfo to data
-  private void addKeys(Map<String, String> data, ImmutableEntityInfo entityInfo, String prefix) {
+  private void addKeys(Map<String, String> data, ImmutableInfo entityInfo, String prefix) {
     for (String key : entityInfo) {
       data.put(prefix + key, entityInfo.get(key));
     }
   }
 
-  // Add keys corresponding with CollisionPhysicsData
-  // TODO: Make this more extendable so that there can be all sorts of collisionPhysicsData that
-  // TODO: automatically be added. Should transition away from using a record for CollisionPhysicsData
-  // TODO: to do this
-  private void addKeys(Map<String, String> data, CollisionPhysicsData collisionPhysicsData) {
-    data.put("COLLISION_DIRECTION", collisionPhysicsData.collisionDirection().toString());
-  }
 }

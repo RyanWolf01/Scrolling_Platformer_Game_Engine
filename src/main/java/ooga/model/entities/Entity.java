@@ -1,5 +1,7 @@
 package ooga.model.entities;
 
+import ooga.model.ImmutableInfo;
+import ooga.model.Info;
 import ooga.model.entities.data.EntityType;
 import ooga.model.entities.data.InitialAttributes;
 
@@ -12,9 +14,9 @@ public abstract class Entity {
     private int xCoordinate;
     private int yCoordinate;
     private InitialAttributes attributes;
-    private EntityInfo entityInfo;
+    private Info entityInfo;
 
-    public Entity(InitialAttributes attributes, EntityInfo entityInfo){
+    public Entity(InitialAttributes attributes, Info entityInfo){
         this.attributes = attributes;
         xCoordinate = attributes.initialXCoordinate();
         yCoordinate = attributes.initialYCoordinate();
@@ -60,7 +62,7 @@ public abstract class Entity {
     }
 
 
-    public ImmutableEntityInfo getImmutableEntityInfo() {
+    public ImmutableInfo getImmutableEntityInfo() {
         return entityInfo;
     };
 

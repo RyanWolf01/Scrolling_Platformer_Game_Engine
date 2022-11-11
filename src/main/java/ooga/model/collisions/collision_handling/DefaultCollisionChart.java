@@ -5,9 +5,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import ooga.model.actions.Action;
-import ooga.model.collisions.CollisionPhysicsData;
 import ooga.model.collisions.collision_handling.exceptions.NoCollisionCriteriaMatchException;
-import ooga.model.entities.ImmutableEntityInfo;
+import ooga.model.ImmutableInfo;
 
 /**
  * A DefaultCollisionChart that implements CollisionChart and contains returns an Action based on
@@ -25,7 +24,7 @@ public class DefaultCollisionChart implements CollisionChart {
 
     // example of adding a row in the collision chart (called a Criteria object)
     Map<String, String> criteriaMap = new HashMap<>();
-    criteriaMap.put(ImmutableEntityInfo.TYPE_KEY, "Platform");
+    criteriaMap.put(ImmutableInfo.TYPE_KEY, "Platform");
     myCriteria.add(new Criteria(criteriaMap, "Jump"));
 
   }

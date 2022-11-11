@@ -1,33 +1,10 @@
 package ooga.model.entities;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import ooga.model.Info;
 
-public class EntityInfo implements ImmutableEntityInfo {
-  private Map<String, String> map = new HashMap<>();
+public class EntityInfo extends Info {
 
   public EntityInfo(String type) {
-    map.put(TYPE_KEY, type);
-  }
-
-  @Override
-  public String get(String key) {
-    return map.get(key);
-  }
-
-  @Override
-  public boolean hasKey(String key) {
-    return map.containsKey(key);
-  }
-
-  @Override
-  public Iterator<String> iterator() {
-    return map.keySet().iterator();
-  }
-
-  public void set(String key, String val) {
-    map.put(key, val);
+    super.set(TYPE_KEY, type);
   }
 }

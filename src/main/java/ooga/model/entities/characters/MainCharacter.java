@@ -1,7 +1,7 @@
 package ooga.model.entities.characters;
 
 import ooga.model.entities.Entity;
-import ooga.model.entities.EntityInfo;
+import ooga.model.Info;
 import ooga.model.entities.alive.Alive;
 import ooga.model.entities.data.InitialAttributes;
 import ooga.model.entities.movement.Mover;
@@ -9,7 +9,7 @@ import ooga.model.entities.movement.Mover;
 public abstract class MainCharacter extends Entity implements Alive, Mover {
     private int lives;
 
-    public MainCharacter(InitialAttributes attributes, EntityInfo entityInfo, int lives) {
+    public MainCharacter(InitialAttributes attributes, Info entityInfo, int lives) {
         super(attributes, entityInfo);
         this.lives = lives;
     }
