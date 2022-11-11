@@ -10,10 +10,11 @@ import ooga.model.collisions.collision_handling.exceptions.NoCollisionCriteriaMa
 import ooga.model.entities.ImmutableEntityInfo;
 
 /**
- * A DefaultCollisionChart that implements CollisionChart and contains returns an Action based
- * on the CollisionData given
+ * A DefaultCollisionChart that implements CollisionChart and contains returns an Action based on
+ * the CollisionData given
  */
 public class DefaultCollisionChart implements CollisionChart {
+
   private final Collection<Criteria> myCriteria;
 
   /**
@@ -31,8 +32,9 @@ public class DefaultCollisionChart implements CollisionChart {
 
   /**
    * Takes the CollisionData for a collision and outputs what action should be applied
-   * @param collisionData the data representing the entities involved with the collision
-   *                      and the collision physics
+   *
+   * @param collisionData the data representing the entities involved with the collision and the
+   *                      collision physics
    * @return Action
    */
   @Override

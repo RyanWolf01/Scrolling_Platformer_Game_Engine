@@ -39,6 +39,7 @@ public class CollisionData implements Iterable<String> {
 
   /**
    * Get the String info associated with the key specified.
+   *
    * @param key the key
    * @return String value
    */
@@ -48,6 +49,7 @@ public class CollisionData implements Iterable<String> {
 
   /**
    * Returns whether this CollisionData has the key specified
+   *
    * @param key the key
    * @return if the CollisionData contains this String
    */
@@ -57,6 +59,7 @@ public class CollisionData implements Iterable<String> {
 
   /**
    * Get the Iterator for this CollisionData object
+   *
    * @return Iterator<String>
    */
   @Override
