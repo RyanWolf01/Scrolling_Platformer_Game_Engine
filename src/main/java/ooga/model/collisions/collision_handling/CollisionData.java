@@ -1,5 +1,6 @@
 package ooga.model.collisions.collision_handling;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import ooga.model.collisions.CollisionPhysicsData;
@@ -9,6 +10,7 @@ public class CollisionData implements Iterable<String> {
   private Map<String, String> data;
 
   public CollisionData(ImmutableEntityInfo entityAInfo, ImmutableEntityInfo entityBInfo, CollisionPhysicsData collisionPhysicsData) {
+    data = new HashMap<>();
     addKeys(data, entityAInfo, "MY_");
     addKeys(data, entityAInfo, "OTHER_");
     addKeys(data, collisionPhysicsData);
