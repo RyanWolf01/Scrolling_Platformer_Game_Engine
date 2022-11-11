@@ -5,6 +5,15 @@ package ooga.model.collisions.collision_handling;
  */
 public class DefaultCollisionChartGetter implements CollisionChartGetter {
 
+  private CollisionChartReader myCollisionChartReader;
+
+  /**
+   * Instantiates a new DefaultCollisionChartReader
+   */
+  public DefaultCollisionChartGetter() {
+    myCollisionChartReader = new CollisionChartReader();
+  }
+
   /**
    * Return the CollisionChart at the path specified. Path should be relative to the resources
    * folder
@@ -14,6 +23,6 @@ public class DefaultCollisionChartGetter implements CollisionChartGetter {
    */
   @Override
   public CollisionChart getCollisionChart(String collisionChartPath) {
-    return null;
+    return myCollisionChartReader.readCollisionChart(collisionChartPath);
   }
 }
