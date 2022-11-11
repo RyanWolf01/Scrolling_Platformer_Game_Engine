@@ -5,7 +5,7 @@ package ooga.model.collisions.collision_handling;
  * CollisionChart's path to getCollisionChart. Accesses CollisionCharts faster than the
  * DefaultCollisionChartReader
  */
-public class PreloadedCollisionChartReader implements CollisionChartReader {
+public class PreloadedCollisionChartGetter implements CollisionChartGetter {
 
   /**
    * Return the CollisionChart at the path specified. Path should be relative to the resources

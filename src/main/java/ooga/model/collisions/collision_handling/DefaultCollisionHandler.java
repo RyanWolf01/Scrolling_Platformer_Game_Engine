@@ -11,24 +11,24 @@ import ooga.model.entities.ImmutableEntityInfo;
  */
 public class DefaultCollisionHandler implements CollisionHandler {
 
-  private final CollisionChartReader myCollisionChartReader;
+  private final CollisionChartGetter myCollisionChartGetter;
 
   /**
    * Instantiates a new DefaultCollisionHandler. Creates and uses a DefaultCollisionChartReader on
    * initialization.
    */
   public DefaultCollisionHandler() {
-    myCollisionChartReader = new DefaultCollisionChartReader();
+    myCollisionChartGetter = new DefaultCollisionChartGetter();
   }
 
   /**
    * Instantiates a new DefaultCollisionHandler. Uses the CollisionChartReader passed as an argument
    * to the constructor
    *
-   * @param collisionChartReader the CollisionChartReader to be used
+   * @param collisionChartGetter the CollisionChartReader to be used
    */
-  public DefaultCollisionHandler(CollisionChartReader collisionChartReader) {
-    myCollisionChartReader = collisionChartReader;
+  public DefaultCollisionHandler(CollisionChartGetter collisionChartGetter) {
+    myCollisionChartGetter = collisionChartGetter;
   }
 
   /**
@@ -56,7 +56,7 @@ public class DefaultCollisionHandler implements CollisionHandler {
       throw new CollisionChartNotFoundException("Target Entity doesn't have a collision chart!");
     }
 
-    CollisionChart collisionChart = myCollisionChartReader.getCollisionChart(
+    CollisionChart collisionChart = myCollisionChartGetter.getCollisionChart(
         targetEntityInfo.get(ImmutableEntityInfo.COLLISION_CHART_KEY));
     CollisionData collisionData = new CollisionData(targetEntityInfo, sourceEntityInfo,
         collisionPhysicsData);

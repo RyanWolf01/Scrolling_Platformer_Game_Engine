@@ -3,7 +3,7 @@ package ooga.model.collisions.collision_handling;
 /**
  * Return the CollisionChart that exists at the path specified
  */
-public interface CollisionChartReader {
+public interface CollisionChartGetter {
 
   /**
    * Return the CollisionChart that exists at the path specified by collisionChartPath
