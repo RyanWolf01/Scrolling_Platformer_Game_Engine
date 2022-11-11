@@ -17,4 +17,6 @@ public interface Entity {
      * @return what type of entity the current entity is
      */
     EntityType getEntityType();
+
+    EntityInfo getImmutableEntityInfo();
 }
