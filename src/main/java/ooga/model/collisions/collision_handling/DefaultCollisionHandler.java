@@ -29,7 +29,7 @@ public class DefaultCollisionHandler implements CollisionHandler {
     }
 
     CollisionChart collisionChart = myCollisionChartReader.getCollisionChart(targetEntityInfo.get(ImmutableEntityInfo.COLLISION_CHART_KEY));
-
-    return collisionChart.getAction(sourceEntityInfo, collisionPhysicsData);
+    CollisionData collisionData = new CollisionData(targetEntityInfo, sourceEntityInfo, collisionPhysicsData);
+    return collisionChart.getAction(collisionData);
   }
 }

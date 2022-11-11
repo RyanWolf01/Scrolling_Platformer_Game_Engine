@@ -8,31 +8,27 @@ import ooga.model.entities.ImmutableEntityInfo;
 public class Criteria {
   private Map<String, String> myCriteria;
   private String myActionClassString;
-  public final String COLLISION_DIRECTION_KEY = "COLLISION_DIRECTION";
 
   public Criteria(Map<String, String> criteria, String actionClassString) {
     myCriteria = criteria;
     myActionClassString = actionClassString;
   }
 
-  public boolean matches(ImmutableEntityInfo sourceEntityInfo, CollisionPhysicsData collisionPhysicsData) {
-    int count = 0;
+  public boolean matches(CollisionData collisionData) {
     for (String key : myCriteria.keySet()) {
 
-      if (sourceEntityInfo.hasKey(key)) {
-        if (sourceEntityInfo.get(key).equals(myCriteria.get(key))) {
-          count += 1;
-        }
-        else {
-          return false;
-        }
+      // make sure collisionData has all keys in myCriteria
+      if (! collisionData.hasKey(key)) {
+        return false;
       }
 
+      // make sure that all kv-pairs in myCriteria match those in collisionData
+      if (! collisionData.get(key).equals(myCriteria.get(key))) {
+        return false;
+      }
     }
 
-    String collisionDirection = collisionPhysicsData.collisionDirection().toString();
-    return count == myCriteria.size() && collisionDirection.equals(
-        myCriteria.get(COLLISION_DIRECTION_KEY));
+    return true;
   }
 
   // implement with reflection

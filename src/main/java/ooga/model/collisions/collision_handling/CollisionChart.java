@@ -5,5 +5,5 @@ import ooga.model.collisions.CollisionPhysicsData;
 import ooga.model.entities.ImmutableEntityInfo;
 
 public interface CollisionChart {
-  Action getAction(ImmutableEntityInfo sourceEntityInfo, CollisionPhysicsData collisionPhysicsData);
+  Action getAction(CollisionData collisionData);
 }

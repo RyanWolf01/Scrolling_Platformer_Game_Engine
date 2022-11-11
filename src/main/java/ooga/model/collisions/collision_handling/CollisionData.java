@@ -7,7 +7,7 @@ import ooga.model.collisions.CollisionPhysicsData;
 import ooga.model.entities.ImmutableEntityInfo;
 
 public class CollisionData implements Iterable<String> {
-  private Map<String, String> data;
+  private final Map<String, String> data;
 
   public CollisionData(ImmutableEntityInfo entityAInfo, ImmutableEntityInfo entityBInfo, CollisionPhysicsData collisionPhysicsData) {
     data = new HashMap<>();

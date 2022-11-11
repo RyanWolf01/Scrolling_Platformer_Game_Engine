@@ -24,9 +24,9 @@ public class DefaultCollisionChart implements CollisionChart {
   }
 
   @Override
-  public Action getAction(ImmutableEntityInfo sourceEntityInfo, CollisionPhysicsData collisionPhysicsData) {
+  public Action getAction(CollisionData collisionData) {
     for (Criteria criteria : myCriteria) {
-      if (criteria.matches(sourceEntityInfo, collisionPhysicsData)) {
+      if (criteria.matches(collisionData)) {
         return criteria.getAction();
       }
     }
