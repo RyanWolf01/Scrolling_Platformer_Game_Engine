@@ -11,22 +11,25 @@ import ooga.model.entities.data.InitialAttributes;
  * They might also all need to have some size.
  */
 public abstract class Entity {
-    private int xCoordinate;
-    private int yCoordinate;
+    private double xCoordinate;
+    private double yCoordinate;
+    private double length;
+    private double width;
     private InitialAttributes attributes;
     private Info entityInfo;
 
-    public Entity(InitialAttributes attributes, Info entityInfo){
+    public Entity(InitialAttributes attributes, Info entityInfo, double length, double width){
         this.attributes = attributes;
         xCoordinate = attributes.initialXCoordinate();
         yCoordinate = attributes.initialYCoordinate();
         this.entityInfo = entityInfo;
+
     }
 
-    public int getXCoordinate(){
+    public double getXCoordinate(){
         return xCoordinate;
     }
-    public int getYCoordinate(){
+    public double getYCoordinate(){
         return yCoordinate;
     }
 
@@ -34,7 +37,7 @@ public abstract class Entity {
      *
      * @param xCoordinate new X coordinate to be set to
      */
-    public void setXCoordinate(int xCoordinate) {
+    public void setXCoordinate(double xCoordinate) {
         this.xCoordinate = xCoordinate;
     }
 
@@ -42,24 +45,25 @@ public abstract class Entity {
      *
      * @param yCoordinate new Y coordinate to be set to
      */
-    public void setYCoordinate(int yCoordinate) {
+    public void setYCoordinate(double yCoordinate) {
         this.yCoordinate = yCoordinate;
     }
 
-    public int getLength(){
-        return attributes.length();
+    public double getLength(){
+        return length;
     }
 
-    public int getWidth(){
-        return attributes.width();
+    public double getWidth(){
+        return width;
     }
 
-    /**
-     * @return what type of entity the current entity is
-     */
-    public EntityType getEntityType(){
-        return attributes.type();
-    }
+    // TODO fix this method below
+//    /**
+//     * @return what type of entity the current entity is
+//     */
+//    public EntityType getEntityType(){
+//        return entityInfo.;
+//    }
 
 
     public ImmutableInfo getImmutableEntityInfo() {

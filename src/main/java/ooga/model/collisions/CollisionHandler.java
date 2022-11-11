@@ -14,8 +14,8 @@ public class CollisionHandler {
      * @param b the second entity, that is collided with
      */
     public void handleOnFirst(Entity a, Entity b){
-        a.getEntityType();
-        b.getEntityType();
+//        a.getEntityType();
+//        b.getEntityType();
     }
 
     /**
@@ -27,46 +27,46 @@ public class CollisionHandler {
      * @return null if no collision, direction if its a real collision
      */
     private CollisionDirection checkCollision(Entity a, Entity b){
-        int aXCoord = a.getXCoordinate();
-        int bXCoord = b.getXCoordinate();
-        int aYCoord = a.getYCoordinate();
-        int bYCoord = b.getYCoordinate();
-        int aLen = a.getLength();
-        int bLen = b.getLength();
-        int aWidth = a.getWidth();
-        int bWidth = b.getWidth();
-
-        boolean inXRange = false;
-        boolean inYRange = false;
-
-        if((aXCoord+aLen) >= bXCoord && (aXCoord < bXCoord+bLen)){
-            inXRange = true;
-        }
-
-        if((aYCoord+aWidth) >= bYCoord && (aYCoord < bYCoord+bWidth)){
-            inYRange = true;
-        }
-
-        if(!(inXRange && inYRange)){
-            return null;
-        }
-
-        if((aXCoord < bXCoord) && (aYCoord+aWidth > bYCoord)){
-            return CollisionDirection.RIGHT;
-        }
-
-        if((aXCoord > bXCoord) && (aYCoord+aWidth > bYCoord)){
-            return CollisionDirection.LEFT;
-        }
-
-        if((aYCoord < bYCoord) && (aXCoord < bXCoord+bLen)){
-            return CollisionDirection.TOP;
-        }
-
-        if((aYCoord > bYCoord) && (aXCoord < bXCoord+bLen)){
-            return CollisionDirection.BOTTOM;
-        }
-
+//        int aXCoord = a.getXCoordinate();
+//        int bXCoord = b.getXCoordinate();
+//        int aYCoord = a.getYCoordinate();
+//        int bYCoord = b.getYCoordinate();
+//        int aLen = a.getLength();
+//        int bLen = b.getLength();
+//        int aWidth = a.getWidth();
+//        int bWidth = b.getWidth();
+//
+//        boolean inXRange = false;
+//        boolean inYRange = false;
+//
+//        if((aXCoord+aLen) >= bXCoord && (aXCoord < bXCoord+bLen)){
+//            inXRange = true;
+//        }
+//
+//        if((aYCoord+aWidth) >= bYCoord && (aYCoord < bYCoord+bWidth)){
+//            inYRange = true;
+//        }
+//
+//        if(!(inXRange && inYRange)){
+//            return null;
+//        }
+//
+//        if((aXCoord < bXCoord) && (aYCoord+aWidth > bYCoord)){
+//            return CollisionDirection.RIGHT;
+//        }
+//
+//        if((aXCoord > bXCoord) && (aYCoord+aWidth > bYCoord)){
+//            return CollisionDirection.LEFT;
+//        }
+//
+//        if((aYCoord < bYCoord) && (aXCoord < bXCoord+bLen)){
+//            return CollisionDirection.TOP;
+//        }
+//
+//        if((aYCoord > bYCoord) && (aXCoord < bXCoord+bLen)){
+//            return CollisionDirection.BOTTOM;
+//        }
+//
         return null;
     }
 }

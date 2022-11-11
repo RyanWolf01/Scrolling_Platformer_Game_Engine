@@ -5,12 +5,12 @@ import ooga.model.entities.data.InitialAttributes;
 
 public class BoringPlatform extends Entity{
 
-    public BoringPlatform(InitialAttributes attributes, Info entityInfo) {
-        super(attributes, entityInfo);
+    public BoringPlatform(InitialAttributes attributes, Info entityInfo, double length, double width) {
+        super(attributes, entityInfo, length, width);
     }
 
     @Override
-    public int getXCoordinate() {
+    public double getXCoordinate() {
         return 0;
     }
 }
