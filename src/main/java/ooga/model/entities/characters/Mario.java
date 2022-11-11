@@ -1,5 +1,6 @@
 package ooga.model.entities.characters;
 
+import ooga.model.Info;
 import ooga.model.entities.alive.LifeDecrementer;
 import ooga.model.entities.alive.LifeIncrementer;
 import ooga.model.entities.data.InitialAttributes;
@@ -12,8 +13,8 @@ public class Mario extends MainCharacter implements HorizontalMover, VerticalMov
   private int xVelocity;
   private int yVelocity;
 
-  public Mario(InitialAttributes attributes, int lives) {
-    super(attributes, lives);
+  public Mario(InitialAttributes attributes, Info entityInfo, double length, double width, int lives) {
+    super(attributes, entityInfo, length, width, lives);
   }
 
   @Override
