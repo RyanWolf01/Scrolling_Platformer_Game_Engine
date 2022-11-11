@@ -3,8 +3,6 @@ package ooga.model.collisions.collision_handling;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import ooga.model.collisions.CollisionPhysicsData;
-import ooga.model.collisions.CollisionPhysicsInfo;
 import ooga.model.ImmutableInfo;
 
 /**

@@ -1,6 +1,5 @@
 package ooga.model.collisions.collision_handling;
 
-import ooga.model.collisions.CollisionPhysicsData;
 import ooga.model.collisions.CollisionPhysicsInfo;
 import ooga.model.entities.Entity;
 
