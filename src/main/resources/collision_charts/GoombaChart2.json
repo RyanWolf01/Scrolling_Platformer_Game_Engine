@@ -1,0 +1,19 @@
+[
+  {
+    "MY_powerup": "*",
+    "OPPONENT_type": "MARIO",
+    "COLLISION_direction": "TOP",
+    "ACTIONS": [
+      {
+        "classname": "DIE",
+        "params": []
+      }
+    ]
+  },
+
+  {
+    "OPPONENT_type": "MARIO",
+    "COLLISION_direction": "SIDE",
+    "ACTIONS": []
+  }
+]
