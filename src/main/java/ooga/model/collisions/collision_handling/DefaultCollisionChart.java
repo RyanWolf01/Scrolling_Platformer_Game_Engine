@@ -10,8 +10,7 @@ import ooga.model.collisions.collision_handling.exceptions.NoCollisionCriteriaMa
 import ooga.model.entities.ImmutableEntityInfo;
 
 public class DefaultCollisionChart implements CollisionChart {
-  public final String ACTION_KEY = "ACTION";
-  private Collection<Criteria> myCriteria;
+  private final Collection<Criteria> myCriteria;
 
   public DefaultCollisionChart() {
     myCriteria = new ArrayList<>();
