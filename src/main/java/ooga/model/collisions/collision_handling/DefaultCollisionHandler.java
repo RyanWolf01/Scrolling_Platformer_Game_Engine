@@ -56,10 +56,8 @@ public class DefaultCollisionHandler implements CollisionHandler {
       throw new CollisionChartNotFoundException("Target Entity doesn't have a collision chart!");
     }
 
-    CollisionChart collisionChart = myCollisionChartGetter.getCollisionChart(
-        targetEntityInfo.get(ImmutableEntityInfo.COLLISION_CHART_KEY));
-    CollisionData collisionData = new CollisionData(targetEntityInfo, sourceEntityInfo,
-        collisionPhysicsData);
+    CollisionChart collisionChart = myCollisionChartGetter.getCollisionChart(targetEntityInfo.get(ImmutableEntityInfo.COLLISION_CHART_KEY));
+    CollisionData collisionData = new CollisionData(targetEntityInfo, sourceEntityInfo, collisionPhysicsData);
     return collisionChart.getAction(collisionData);
   }
 }

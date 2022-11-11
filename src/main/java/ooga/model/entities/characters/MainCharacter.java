@@ -4,8 +4,9 @@ import ooga.model.entities.Entity;
 import ooga.model.entities.EntityInfo;
 import ooga.model.entities.alive.Alive;
 import ooga.model.entities.data.InitialAttributes;
+import ooga.model.entities.movement.Mover;
 
-public abstract class MainCharacter extends Entity implements Alive {
+public abstract class MainCharacter extends Entity implements Alive, Mover {
     private int lives;
 
     public MainCharacter(InitialAttributes attributes, EntityInfo entityInfo, int lives) {

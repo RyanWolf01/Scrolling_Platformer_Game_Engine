@@ -33,7 +33,7 @@ public class CollisionData implements Iterable<String> {
       CollisionPhysicsData collisionPhysicsData) {
     data = new HashMap<>();
     addKeys(data, entityAInfo, "MY_");
-    addKeys(data, entityAInfo, "OTHER_");
+    addKeys(data, entityBInfo, "OTHER_");
     addKeys(data, collisionPhysicsData);
   }
 
