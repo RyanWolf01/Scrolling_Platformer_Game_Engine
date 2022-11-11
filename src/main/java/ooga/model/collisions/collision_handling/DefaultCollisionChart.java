@@ -9,9 +9,16 @@ import ooga.model.collisions.CollisionPhysicsData;
 import ooga.model.collisions.collision_handling.exceptions.NoCollisionCriteriaMatchException;
 import ooga.model.entities.ImmutableEntityInfo;
 
+/**
+ * A DefaultCollisionChart that implements CollisionChart and contains returns an Action based
+ * on the CollisionData given
+ */
 public class DefaultCollisionChart implements CollisionChart {
   private final Collection<Criteria> myCriteria;
 
+  /**
+   * Instantiates a new DefaultCollisionChart
+   */
   public DefaultCollisionChart() {
     myCriteria = new ArrayList<>();
 
@@ -22,11 +29,17 @@ public class DefaultCollisionChart implements CollisionChart {
 
   }
 
+  /**
+   * Takes the CollisionData for a collision and outputs what action should be applied
+   * @param collisionData the data representing the entities involved with the collision
+   *                      and the collision physics
+   * @return Action
+   */
   @Override
   public Action getAction(CollisionData collisionData) {
     for (Criteria criteria : myCriteria) {
       if (criteria.matches(collisionData)) {
-        return criteria.getAction();
+        return criteria.getAction(collisionData);
       }
     }
 
