@@ -1,7 +1,11 @@
 package ooga.model.collisions.collision_handling;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import ooga.model.actions.Action;
+
+//TODO: Allow the user to call multiple actions, and allow actions to take parameters. Add Error
+//TODO: checking to this.
 
 /**
  * Represents one row in a CollisionChart. Contains all the different criteria that a collision with
@@ -9,6 +13,7 @@ import ooga.model.actions.Action;
  */
 public class Criteria {
 
+  private static final String ACTION_PACKAGE_PATH = "ooga.model.actions.";
   private final Map<String, String> myCriteria;
   private final String myActionClassString;
 
@@ -60,10 +65,22 @@ public class Criteria {
    */
   public Action getAction(CollisionData collisionData) {
     if (matches(collisionData)) {
-      return null;
+      return getActionInstance(myActionClassString);
     } else {
       throw new RuntimeException("Cannot return action for collisionData that doesn't match"
           + "with the criteria defined by this Criteria object. Improper usage of getAction");
     }
   }
+
+  private Action getActionInstance(String className) {
+    try {
+      Class<?> clazz = Class.forName(ACTION_PACKAGE_PATH + className);
+      return (Action) clazz.getDeclaredConstructor().newInstance();
+
+    } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
+             InstantiationException | IllegalAccessException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
 }
