@@ -41,4 +41,12 @@ public abstract class Container implements ImmutableContainer {
     return getEntity(index);
   }
 
+  /**
+   *
+   * @return size of container
+   */
+  public int getContainerSize(){
+    return entities.size();
+  }
+
 }

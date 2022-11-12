@@ -2,6 +2,7 @@ package ooga.model.entities.containers;
 
 import java.util.List;
 import ooga.model.entities.Entity;
+import ooga.model.entities.movement.Mover;
 
 public class MoverContainer extends EntityContainer {
 
@@ -25,6 +26,15 @@ public class MoverContainer extends EntityContainer {
    */
   public void moveAll(){
 
+    try {
+      for (int index = 0; index < getContainerSize(); index++) {
+        Mover currMover = (Mover) getEntity(index);
+        currMover.move();
+      }
+    }
+    catch(ClassCastException exception){
+      throw exception;
+    }
   }
 
 }
