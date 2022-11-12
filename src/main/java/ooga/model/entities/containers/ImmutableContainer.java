@@ -5,7 +5,7 @@ import ooga.model.entities.ImmutableEntity;
 /**
  * control use of entity container in the front end (don't allow view to add entities)
  */
-public interface ImmutableEntityContainer {
+public interface ImmutableContainer {
 
   /**
    * Get ImmutableEntity at index
@@ -13,6 +13,7 @@ public interface ImmutableEntityContainer {
    * @return ImmutableEntity
    */
   public ImmutableEntity getEntity(int index);
+
 
 
 }

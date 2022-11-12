@@ -3,33 +3,28 @@ package ooga.model.entities.containers;
 import java.util.ArrayList;
 import java.util.List;
 import ooga.model.entities.Entity;
+import ooga.model.entities.EntityInfo;
 import ooga.model.entities.ImmutableEntity;
+import ooga.model.entities.movement.Mover;
 
 /**
  * hold all entities
  */
-public class EntityContainer implements ImmutableEntityContainer{
+public class EntityContainer extends Container {
 
-  private List<Entity> entities;
-
+  /**
+   * default constructor
+   */
   public EntityContainer(){
-    entities = new ArrayList<>();
+    super();
   }
 
   /**
-   * Get ImmutableEntity at index
-   * @param index index in container
-   * @return ImmutableEntity
+   * If you want to add an entity upon creation of the container
+   * @param entity
    */
-  public ImmutableEntity getEntity(int index){
-    return entities.get(index);
-  }
-
-  /**
-   * Add Entity
-   */
-  public void addEntity(Entity entity){
-    entities.add(entity);
+  public EntityContainer(Entity entity){
+    super(entity);
   }
 
 }
