@@ -10,7 +10,7 @@ import ooga.model.entities.data.InitialAttributes;
  * The one thing they all have in common is that they need to have some X and Y location.
  * They might also all need to have some size.
  */
-public abstract class Entity {
+public abstract class Entity implements ImmutableEntity{
     private double xCoordinate;
     private double yCoordinate;
     private double length;
@@ -49,13 +49,13 @@ public abstract class Entity {
         this.yCoordinate = yCoordinate;
     }
 
-    public double getLength(){
-        return length;
-    }
-
-    public double getWidth(){
-        return width;
-    }
+//    public double getLength(){
+//        return length;
+//    }
+//
+//    public double getWidth(){
+//        return width;
+//    }
 
     // TODO fix this method below
 //    /**
@@ -66,8 +66,8 @@ public abstract class Entity {
 //    }
 
 
-    public ImmutableInfo getImmutableEntityInfo() {
-        return entityInfo;
-    };
+//    public ImmutableInfo getImmutableEntityInfo() {
+//        return entityInfo;
+//    };
 
 }
