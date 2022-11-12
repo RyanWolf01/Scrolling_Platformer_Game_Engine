@@ -5,7 +5,7 @@ import java.util.List;
 import ooga.model.entities.Entity;
 import ooga.model.entities.ImmutableEntity;
 
-public abstract class Container {
+public abstract class Container implements ImmutableContainer {
 
   private List<Entity> entities;
 
@@ -37,7 +37,7 @@ public abstract class Container {
    * @param index index in container
    * @return ImmutableEntity
    */
-  protected ImmutableEntity getEntity(int index){
+  public ImmutableEntity getEntity(int index){
     return getEntity(index);
   }
 

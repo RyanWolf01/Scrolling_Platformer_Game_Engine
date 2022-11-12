@@ -10,7 +10,7 @@ import ooga.model.entities.movement.Mover;
 /**
  * hold all entities
  */
-public class EntityContainer extends Container implements ImmutableEntityContainer{
+public class EntityContainer extends Container {
 
   /**
    * default constructor
