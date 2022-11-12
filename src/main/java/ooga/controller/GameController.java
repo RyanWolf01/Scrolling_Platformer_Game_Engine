@@ -1,5 +1,6 @@
 package ooga.controller;
 
+import javafx.scene.Node;
 import ooga.model.entities.Entity;
 import ooga.model.entities.containers.ImmutableContainer;
 
@@ -8,7 +9,8 @@ import ooga.model.entities.containers.ImmutableContainer;
  * will be running during the gameplay.
  */
 public class GameController {
-    private ImmutableContainer entities;
+    private ImmutableContainer modelEntities;
+
 
     public GameController(){
 
@@ -22,7 +24,7 @@ public class GameController {
 
     }
 
-    public void handleCollisions(Entity collider, Entity collided){
+    public void handleCollisions(Node collider, Node collided){
 
     }
 }
