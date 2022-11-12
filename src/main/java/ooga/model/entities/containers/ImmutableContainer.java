@@ -3,7 +3,7 @@ package ooga.model.entities.containers;
 import ooga.model.entities.ImmutableEntity;
 
 /**
- * control use of entity container in the front end (don't allow view to add entities)
+ * Control use of entity container in the front end (don't allow view to add entities)
  */
 public interface ImmutableContainer {
 
