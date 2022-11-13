@@ -3,8 +3,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import ooga.model.collisions.collision_handling.CollisionData;
 import ooga.model.entities.EntityInfo;
 import ooga.model.entities.containers.EntityContainer;
 import org.json.simple.JSONObject;
@@ -12,6 +14,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ContainerFactory;
 import org.json.simple.parser.ParseException;
+import ooga.model.collisions.collision_handling.Criteria;
 
 
 public class JSONInformationDecoder implements JSONTranslator {
@@ -39,7 +42,7 @@ public class JSONInformationDecoder implements JSONTranslator {
    * @throws IOException
    * @throws ParseException
    */
-  public EntityContainer makeEntityContainerFromJSONObject(JSONObject initialGameJSON) {
+  public EntityContainer makeEntityContainerFromLevelJSON(JSONObject initialGameJSON) {
     EntityContainer entities = new EntityContainer();
     /*
     have to parse the JSON object in the correct manner, *** check to make sure
@@ -52,8 +55,45 @@ public class JSONInformationDecoder implements JSONTranslator {
     return entities;
   }
 
+  // we will want this to make entity information from a JSONObject
   public EntityInfo makeEntityInfoFromJSONObject(JSONObject entityInformation) {
-    EntityInfo entityInfo = new EntityInfo();
+    return null;
   }
+
+  // we will want this to make collision data using rows of criteria and returning the collision data chart
+  public CollisionData makeCollisionDataFromJSONObject(JSONObject entityInformation) {
+    return null;
+  }
+
+  // method to handle JSON Object, and check is the value is another JSON object
+  // adapting from https://www.baeldung.com/jsonobject-iteration
+  // just have to do it for JSON.simple instead og just org.JSON
+
+  /*
+  public void handleJSONObject(JSONObject jsonObject) {
+    jsonObject.keySet().iterforEachRemaining(key -> {
+      Object value = jsonObject.get(key);
+      logger.info("Key: {0}", key);
+      handleValue(value);
+    });
+  }
+
+  void handleValue(Object value) {
+    if (value instanceof JSONObject) {
+      handleJSONObject((JSONObject) value);
+    } else if (value instanceof JSONArray) {
+      handleJSONArray((JSONArray) value);
+    } else {
+      logger.info("Value: {0}", value);
+    }
+  }
+   */
+
+
+  /*
+  Will need a method to TRAVERSE through a JSON object, iterating through the values it has
+  to check if they are also JSONObjects to properly make entityList and CollisionData
+   */
+
 
 }

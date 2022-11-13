@@ -10,6 +10,6 @@ public interface JSONTranslator {
 
   public JSONObject initialJSONInformation(String JSONFilePath) throws IOException, ParseException;
 
-  public EntityContainer makeEntityContainerFromJSONObject(JSONObject initialGameJSON);
+  public EntityContainer makeEntityContainerFromLevelJSON(JSONObject initialGameJSON);
 
 }

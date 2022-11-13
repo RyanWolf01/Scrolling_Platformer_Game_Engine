@@ -5,6 +5,7 @@ import javafx.scene.input.KeyCode;
 import ooga.model.entities.Entity;
 import ooga.model.entities.containers.ImmutableContainer;
 import ooga.view.entity_types.NodeContainer;
+import ooga.controller.JSONInformationDecoder;
 
 /**
  * This is how the View and model will be able to communicate. This class
