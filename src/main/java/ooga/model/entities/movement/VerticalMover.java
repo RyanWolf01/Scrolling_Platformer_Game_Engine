@@ -1,4 +1,4 @@
-package ooga.model.entities;
+package ooga.model.entities.movement;
 
 /**
  * Interface used for anything that moves in the Y direction
@@ -9,5 +9,4 @@ public interface VerticalMover extends Mover {
      * @param change how much to change the velocity by
      */
     void incrementYVelocity(int change);
-    int getYVelocity();
 }

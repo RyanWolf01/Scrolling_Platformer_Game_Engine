@@ -1,10 +1,12 @@
 {
     "game":"mario",
     "name": "Example Level",
+    "scroll_direction": "horizontal",
+    "scroll_type": "automatic",
     "language":"english",
     "background": "cloudyDay.png",
     "style":"light",
-    "obstacles":[
+    "structures":[
         {
             "type":"wall",
             "x":"0",

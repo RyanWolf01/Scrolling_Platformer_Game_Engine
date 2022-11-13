@@ -1,28 +1,16 @@
 package ooga.model.entities;
 
-public class BoringPlatform implements Entity{
-    @Override
-    public int getXCoordinate() {
-        return 0;
+import ooga.model.Info;
+import ooga.model.entities.data.InitialAttributes;
+
+public class BoringPlatform extends Entity{
+
+    public BoringPlatform(InitialAttributes attributes, Info entityInfo, double length, double width) {
+        super(attributes, entityInfo, length, width);
     }
 
     @Override
-    public int getYCoordinate() {
+    public double getXCoordinate() {
         return 0;
-    }
-
-    @Override
-    public int getLength() {
-        return 0;
-    }
-
-    @Override
-    public int getWidth() {
-        return 0;
-    }
-
-    @Override
-    public EntityType getEntityType() {
-        return EntityType.BORING_PLATFORM;
     }
 }
