@@ -1,6 +1,10 @@
 package ooga.controller;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import ooga.model.entities.containers.EntityContainer;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
@@ -26,10 +30,22 @@ public class JSONInformationDecoder implements JSONTranslator {
     return initialGameStates;
   }
 
-  public EntityContainer makeEntityContainerFromJSONObject(JSONObject initialGameJSON) throws IOException, ParseException {
+  /**
+   * This method takes in the JSONObject created when file reading is done and makes the entity
+   * list of initial entities given in the use chosen JSON file
+   * @param initialGameJSON, JSONObject representative of the JSON file with the game info
+   * @return entities, EntityContainer of all the initial game entities
+   * @throws IOException
+   * @throws ParseException
+   */
+  public EntityContainer makeEntityContainerFromJSONObject(JSONObject initialGameJSON) {
     EntityContainer entities = new EntityContainer();
-
-
+    /*
+    have to parse the JSON object in the correct manner, *** check to make sure
+    we are going to format everything for level JSONs the way we have in th example to creat this entity container
+    the right way with the right characteristics
+     */
+    return entities;
   }
 
 }
