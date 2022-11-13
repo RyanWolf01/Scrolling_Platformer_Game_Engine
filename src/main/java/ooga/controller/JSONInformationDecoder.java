@@ -5,6 +5,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import ooga.model.entities.EntityInfo;
 import ooga.model.entities.containers.EntityContainer;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
@@ -44,8 +45,15 @@ public class JSONInformationDecoder implements JSONTranslator {
     have to parse the JSON object in the correct manner, *** check to make sure
     we are going to format everything for level JSONs the way we have in th example to creat this entity container
     the right way with the right characteristics
+    using reflection to do this, making like entity info hold everything but
+    length width x and y --> so 5 params for the constructor
+    go through the keys in lik
      */
     return entities;
+  }
+
+  public EntityInfo makeEntityInfoFromJSONObject(JSONObject entityInformation) {
+    EntityInfo entityInfo = new EntityInfo();
   }
 
 }
