@@ -1,10 +1,13 @@
 package ooga.controller;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import ooga.model.entities.containers.EntityContainer;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
-import org.json.simple.parser.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ContainerFactory;
+import org.json.simple.parser.ParseException;
+
 
 public class JSONInformationDecoder implements JSONTranslator {
 
@@ -23,6 +26,10 @@ public class JSONInformationDecoder implements JSONTranslator {
     return initialGameStates;
   }
 
+  public EntityContainer makeEntityContainerFromJSONObject(JSONObject initialGameJSON) throws IOException, ParseException {
+    EntityContainer entities = new EntityContainer();
 
+
+  }
 
 }
