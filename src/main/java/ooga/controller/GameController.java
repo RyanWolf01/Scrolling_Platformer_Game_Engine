@@ -1,7 +1,9 @@
 package ooga.controller;
 
+import java.nio.file.Path;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
+import ooga.model.collisions.collision_handling.CollisionHandler;
 import ooga.model.entities.Entity;
 import ooga.model.entities.containers.ImmutableContainer;
 import ooga.view.entity_types.NodeContainer;
@@ -12,13 +14,22 @@ import ooga.view.entity_types.NodeContainer;
  */
 public class GameController {
     private ImmutableContainer modelEntities;
+    private CollisionHandler collisionHandler;
 
     /**
      * The GameController needs to have a mapping of backend to frontend objects
      *
      */
-    public GameController(){
+    public GameController() {
 
+    }
+
+    public void setupSimulation(Path configFilePath) {
+        /*
+        JSONInformationDecoder jsonDecoder = new JSONInformationDecoder();
+        PreloadedCollisionChartGetter collisionChartGetter = new PreloadedCollisionChartGetter(jsonDecoder, configFilePath.entityFiles);
+        CollisionHandler collisionHandler = new DefaultCollisionHandler(collisionChartGetter);
+         */
     }
 
     /**
