@@ -1,0 +1,53 @@
+{
+  "game":"mario",
+  "name": "Test Level 1",
+  "background": "cloudyDay.png",
+  "style":"light",
+  "length": 800,
+  "mario": {
+    "start X": 100,
+    "start Y": 700
+  },
+  "ground": [
+    {
+      "type": "ground",
+      "length": 500
+    },
+    {
+      "type": "gap",
+      "length": 100
+    },
+    {
+      "type": "ground",
+      "length": 200
+    }
+  ],
+  "platforms": [
+    {
+      "type":"red",
+      "x":"400",
+      "y":"400",
+      "height":"50",
+      "width":"50"
+    }
+  ],
+  "enemies": [
+    {
+      "type": "Goomba",
+      "x": 400,
+      "y": 700
+    }
+  ],
+  "coins": [
+    {
+      "type": "gold",
+      "x": 200,
+      "y": 700
+    },
+    {
+      "type": "gold",
+      "x": 250,
+      "y": 700
+    }
+  ]
+}
