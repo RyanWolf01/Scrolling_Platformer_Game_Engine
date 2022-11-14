@@ -1,5 +1,6 @@
 package ooga.model.entities;
 
+import ooga.model.ImmutableInfo;
 import ooga.model.Info;
 
 /**
@@ -62,8 +63,8 @@ public abstract class Entity implements ImmutableEntity{
 //    }
 
 
-//    public ImmutableInfo getImmutableEntityInfo() {
-//        return entityInfo;
-//    };
+    public ImmutableInfo getImmutableEntityInfo() {
+        return entityInfo;
+    };
 
 }
