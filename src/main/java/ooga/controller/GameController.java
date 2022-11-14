@@ -7,6 +7,7 @@ import ooga.model.collisions.collision_handling.CollisionHandler;
 import ooga.model.entities.containers.ImmutableContainer;
 import ooga.view.nodes.NodeContainer;
 
+
 /**
  * This is how the View and model will be able to communicate. This class
  * will be running during the gameplay.
