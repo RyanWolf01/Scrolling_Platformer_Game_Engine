@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.Node;
 import ooga.model.entities.Entity;
+import ooga.model.entities.EntityInfo;
 import ooga.model.entities.containers.EntityContainer;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
@@ -24,7 +25,7 @@ public class ConnectionContainer {
     connectorMap = new HashMap<>();
   }
 
-  public void addNewEntity(){
+  public void addNewEntity(int xCoordinate, int yCoordinate, double height, double width, EntityInfo info){
 
   }
 
