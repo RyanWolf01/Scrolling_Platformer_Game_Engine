@@ -76,12 +76,7 @@ public class JSONInformationDecoder implements JSONTranslator {
    * @return boolean value that determines whether the key is some kind of entity or not
    */
   private boolean checkJSONObjectValue(Object value) {
-    if (value instanceof JSONObject) {
-      handleJSONObjectParsing((JSONObject) value);
-      return true;
-    } else {
-      return false;
-    }
+    return value instanceof JSONObject;
   }
 
 }
