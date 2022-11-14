@@ -31,16 +31,24 @@ public class JSONInformationDecoder implements JSONTranslator {
   /**
    * This method takes in the JSONObject created when file reading is done and makes the entity list
    * of initial entities given in the use chosen JSON file
-   *
-   * @param initialGameJSON, JSONObject representative of the JSON file with the game info
-   * @return entities, EntityContainer of all the initial game entities
-   * @throws IOException
-   * @throws ParseException
+   * @param levelJSON, JSONObject representative of the JSON file with the game info
+   * @param entityJSON, JSONObject representative of the JSON file for entities
+   * @return connectionContainer, connection container of all the initial game entities
    */
-  public ConnectionContainer makeEntityContainerFromLevelJSON(JSONObject initialGameJSON) {
+  public ConnectionContainer makeEntityContainerFromLevelJSON(JSONObject levelJSON, JSONObject entityJSON) {
     ConnectionContainer connectionContainer = new ConnectionContainer();
-    EntityInfo =
-    connectionContainer.addNewEntity();
+    EntityInfo entityInfo = makeEntityInfoFromJSONObject(entityJSON);
+    for (Object o : levelJSON.keySet()) {
+      if (checkJSONObjectValue(levelJSON.get(o))) {
+        JSONObject valueJSONObject = (JSONObject) levelJSON.get(o);
+        connectionContainer.addNewEntity((int) valueJSONObject.get("x"), (int) valueJSONObject.get("y"),
+            (double) valueJSONObject.get("height"), (double) valueJSONObject.get("width"), (String) valueJSONObject.get("type"),
+            entityInfo);
+      } else {
+        //this is some other general info and can be added to maybe like a general info map?
+        //another resources file to use reflection for style and other general info
+      }
+    }
     return connectionContainer;
   }
 
@@ -62,8 +70,12 @@ public class JSONInformationDecoder implements JSONTranslator {
   // HAVE TO HAVE IT RETURN MAPS AND OTHER INFORMATION WE WANT
   public void handleJSONObjectParsing(JSONObject jsonObject) {
     for (Object o : jsonObject.keySet()) {
-      Object value = jsonObject.get(o);
-      handleJSONObjectValueChecking(value);
+      if (checkJSONObjectValue(jsonObject.get(o))) {
+        //this is an entity
+      } else {
+        //this is some other general info and can be added to maybe like a general info map?
+        //another resources file to use reflection for style and other general info
+      }
     }
 
   }
