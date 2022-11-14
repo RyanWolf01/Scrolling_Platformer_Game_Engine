@@ -82,4 +82,14 @@ public class ConnectionContainer {
     return nodes;
   }
 
+  /**
+   * Update the view objects' location in case they moved
+   */
+  public void update(){
+    for(ScrollingNode node : connectorMap.keySet()){
+      Entity entity = connectorMap.get(node);
+      node.update(entity.getXCoordinate(), entity.getYCoordinate());
+    }
+  }
+
 }

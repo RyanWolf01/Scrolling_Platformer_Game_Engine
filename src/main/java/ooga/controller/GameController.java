@@ -36,6 +36,8 @@ public class GameController {
      * @return NodeContainer that the View can
      */
     public NodeContainer step(){
+        //model.step(container.getEntities())
+        container.update();
         return null;
     }
 

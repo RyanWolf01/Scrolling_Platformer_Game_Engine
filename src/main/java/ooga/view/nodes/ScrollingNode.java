@@ -12,13 +12,16 @@ import ooga.model.entities.EntityInfo;
 public class ScrollingNode extends ImageView {
   public ScrollingNode(int xCoordinate, int yCoordinate, double height, double width, String url){
     super();
-    this.setX(xCoordinate);
-    this.setY(yCoordinate);
+    update(xCoordinate, yCoordinate);
     this.setFitHeight(height);
     this.setFitWidth(width);
 
     this.setImage(new Image(url));
+  }
 
+  public void update(double xCoordinate, double yCoordinate){
+    this.setX(xCoordinate);
+    this.setY(yCoordinate);
   }
 
 }
