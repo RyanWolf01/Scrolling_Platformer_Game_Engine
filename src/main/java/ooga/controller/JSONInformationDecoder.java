@@ -2,6 +2,7 @@ package ooga.controller;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.List;
 import java.util.Map;
 import ooga.model.collisions.collision_handling.CollisionData;
 import ooga.model.entities.EntityInfo;
@@ -12,6 +13,10 @@ import org.json.simple.parser.ParseException;
 
 
 public class JSONInformationDecoder implements JSONTranslator {
+
+  private List<JSONObject> entityJSONList;
+  private Map<String, Object> generalInfoMap;
+  public static final List<String> REQUIRED_ENTITY_PARAMETERS = List.of("type", "x", "y", "width", "height");
 
   /**
    * This method takes in the JSONFilePath as a string from the file reading where this clqss lives
@@ -41,12 +46,12 @@ public class JSONInformationDecoder implements JSONTranslator {
     for (Object o : levelJSON.keySet()) {
       if (checkJSONObjectValue(levelJSON.get(o))) {
         JSONObject valueJSONObject = (JSONObject) levelJSON.get(o);
+        entityJSONList.add(valueJSONObject);
         connectionContainer.addNewEntity((int) valueJSONObject.get("x"), (int) valueJSONObject.get("y"),
             (double) valueJSONObject.get("height"), (double) valueJSONObject.get("width"), (String) valueJSONObject.get("type"),
             entityInfo);
       } else {
-        //this is some other general info and can be added to maybe like a general info map?
-        //another resources file to use reflection for style and other general info
+        generalInfoMap.put((String) o, levelJSON.get(o));
       }
     }
     return connectionContainer;
