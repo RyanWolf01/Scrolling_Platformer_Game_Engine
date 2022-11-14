@@ -13,15 +13,14 @@ import ooga.view.nodes.NodeContainer;
  * will be running during the gameplay.
  */
 public class GameController {
-    private ImmutableContainer modelEntities;
-    private CollisionHandler collisionHandler;
+    private ConnectionContainer container;
 
     /**
      * The GameController needs to have a mapping of backend to frontend objects
      *
      */
     public GameController() {
-
+        container = new ConnectionContainer();
     }
 
     public void setupSimulation(Path configFilePath) {
