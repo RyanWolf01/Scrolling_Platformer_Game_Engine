@@ -38,14 +38,14 @@ public class GameController {
     public NodeContainer step(){
         //model.step(container.getEntities())
         container.update();
-        return null;
+        return container.viewables();
     }
 
     public void handleKeyInput(KeyCode code){
-
+        // eventually make map of keycodes to actions, then send that info to model
     }
 
-    public void handleCollisions(Node collider, Node collided){
-
+    public void handleCollision(Node collider, Node collided){
+        // model.handleCollision(container.getConnectedEntity(collider), container.getConnectedEntity(collided))
     }
 }
