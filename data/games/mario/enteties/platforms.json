@@ -1,0 +1,8 @@
+{
+  "red": {
+    "image": "redPlatform.png"
+  },
+  "ground": {
+    "image": "ground.png"
+  }
+}
