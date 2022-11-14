@@ -9,6 +9,7 @@ import java.util.Map;
 import ooga.model.collisions.collision_handling.CollisionData;
 import ooga.model.entities.EntityInfo;
 import ooga.model.entities.containers.EntityContainer;
+import org.eclipse.jetty.util.ajax.JSON;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -69,26 +70,6 @@ public class JSONInformationDecoder implements JSONTranslator {
   // adapting from https://www.baeldung.com/jsonobject-iteration
   // just have to do it for JSON.simple instead og just org.JSON
 
-
-  /*
-  public void handleJSONObject(JSONObject jsonObject) {
-    jsonObject.keySet().iterforEachRemaining(key -> {
-      Object value = jsonObject.get(key);
-      logger.info("Key: {0}", key);
-      handleValue(value);
-    });
-  }
-
-  void handleValue(Object value) {
-    if (value instanceof JSONObject) {
-      handleJSONObject((JSONObject) value);
-    } else if (value instanceof JSONArray) {
-      handleJSONArray((JSONArray) value);
-    } else {
-      logger.info("Value: {0}", value);
-    }
-  }
-   */
   public void handleJSONObjectParsing(JSONObject jsonObject) {
     for (Object o : jsonObject.keySet()) {
       Object value = jsonObject.get(o);
@@ -99,7 +80,10 @@ public class JSONInformationDecoder implements JSONTranslator {
 
   private JSONObject handleJSONObjectValueChecking(Object value) {
     if (value instanceof JSONObject) {
-      handle
+      handleJSONObjectParsing((JSONObject) value);
+      return ((JSONObject) value);
+    } else {
+      return null;
     }
   }
 
