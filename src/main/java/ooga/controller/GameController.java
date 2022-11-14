@@ -4,9 +4,8 @@ import java.nio.file.Path;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import ooga.model.collisions.collision_handling.CollisionHandler;
-import ooga.model.entities.Entity;
 import ooga.model.entities.containers.ImmutableContainer;
-import ooga.view.entity_types.NodeContainer;
+import ooga.view.nodes.NodeContainer;
 
 /**
  * This is how the View and model will be able to communicate. This class
