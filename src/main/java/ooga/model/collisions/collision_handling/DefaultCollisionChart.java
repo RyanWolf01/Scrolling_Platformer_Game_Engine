@@ -19,6 +19,7 @@ public class DefaultCollisionChart implements CollisionChart {
   /**
    * Instantiates a new DefaultCollisionChart
    */
+
   public DefaultCollisionChart() {
     myCriteria = new ArrayList<>();
 

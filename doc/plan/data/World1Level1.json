@@ -6,7 +6,7 @@
     "language":"english",
     "background": "cloudyDay.png",
     "style":"light",
-    "structures":[
+    "Entity":[
         {
             "type":"wall",
             "x":"0",
@@ -21,11 +21,12 @@
             "length":"20"
         }
     ],
-    "enemies": [
+    "MainCharacter": [
         {
-            "type": "Goomba",
+            "type": "Mario",
             "x": 10,
-            "y": 20
+            "y": 20,
+            "lives": 3
         }
     ],
     "coins": [
