@@ -29,7 +29,8 @@ public class ConnectionContainer {
   }
 
   /**
-   * Creates a new backend entity and frontend ScrollingNode
+   * Creates a new backend entity and frontend ScrollingNode, adds these objects to the respective
+   * containers and the Map
    * @param xCoordinate intitial X coord
    * @param yCoordinate initial Y Coord
    * @param height height
@@ -47,7 +48,38 @@ public class ConnectionContainer {
       throw new RuntimeException(e);
     }
 
+    String imageURL = null;
+    try{
+      imageURL = info.get("texture");
+    }
+    catch(IllegalArgumentException e){
+      // TODO: Fix this
+      //imageURL = something from default_images resource file
+    }
 
+    ScrollingNode node = new ScrollingNode(xCoordinate, yCoordinate, height, width, imageURL);
+
+    entities.addEntity(newEntity);
+    nodes.addNode(node);
+
+    connectorMap.put(node, newEntity);
+  }
+
+  /**
+   * If you want the backend object that is connected to your frontend object
+   * @param node frontend object
+   * @return backend object
+   */
+  public Entity getConnectedEntity(ScrollingNode node){
+    return connectorMap.get(node);
+  }
+
+  /**
+   * Returns the viewable objects
+   * @return NodeContainer of all the things
+   */
+  public NodeContainer viewables(){
+    return nodes;
   }
 
 }
