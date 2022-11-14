@@ -1,9 +1,6 @@
 package ooga.model.entities;
 
-import ooga.model.ImmutableInfo;
 import ooga.model.Info;
-import ooga.model.entities.data.EntityType;
-import ooga.model.entities.data.InitialAttributes;
 
 /**
  * Everything that can be represented in the game is an Entity of some type.
@@ -13,17 +10,16 @@ import ooga.model.entities.data.InitialAttributes;
 public abstract class Entity implements ImmutableEntity{
     private double xCoordinate;
     private double yCoordinate;
-    private double length;
+    private double height;
     private double width;
-    private InitialAttributes attributes;
     private Info entityInfo;
 
-    public Entity(InitialAttributes attributes, Info entityInfo, double length, double width){
-        this.attributes = attributes;
-        xCoordinate = attributes.initialXCoordinate();
-        yCoordinate = attributes.initialYCoordinate();
+    public Entity(int initialXCoordinate, int initialYCoordinate, double height, double width, Info entityInfo){
+        this.xCoordinate = initialXCoordinate;
+        this.yCoordinate = initialYCoordinate;
+        this.height = height;
+        this.width = width;
         this.entityInfo = entityInfo;
-
     }
 
     public double getXCoordinate(){

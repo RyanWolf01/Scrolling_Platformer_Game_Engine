@@ -1,7 +1,6 @@
-package ooga.view.entity_types;
+package ooga.view.nodes;
 
 import javafx.scene.Node;
-import ooga.model.entities.Entity;
 
 import java.util.ArrayList;
 import java.util.Iterator;

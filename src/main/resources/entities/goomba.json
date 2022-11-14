@@ -1,0 +1,32 @@
+{
+  "EntityInfo": {
+    "type": "GOOMBA",
+    "class_type": "DynamicEnemy",
+    "length": 5,
+    "width": 5,
+    "starting_lives": 4,
+    "default_powerup": "NONE",
+    "texture": "daslkfdsalk.png"
+  },
+  "CollisionChart": {
+    "type": "GOOMBA",
+    "criteria": [
+      {
+        "MY_powerup": "*",
+        "OPPONENT_type": "MARIO",
+        "COLLISION_direction": "TOP",
+        "ACTIONS": [
+          {
+            "classname": "Die",
+            "params": []
+          }
+        ]
+      },
+      {
+        "OPPONENT_type": "MARIO",
+        "COLLISION_direction": "SIDE",
+        "ACTIONS": []
+      }
+    ]
+  }
+}

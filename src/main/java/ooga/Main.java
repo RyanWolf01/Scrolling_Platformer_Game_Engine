@@ -5,6 +5,9 @@ package ooga;
  * Feel free to completely change this code or delete it entirely. 
  */
 public class Main {
+
+    public static final String DEFAULT_RESOURCE_PACKAGE = "cellsociety.properties.";
+
     /**
      * A method to test (and a joke :).
      */
