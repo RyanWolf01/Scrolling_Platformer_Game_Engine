@@ -1,21 +1,14 @@
 package ooga.controller;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.sql.Connection;
 import java.util.Map;
 import ooga.model.collisions.collision_handling.CollisionData;
 import ooga.model.entities.EntityInfo;
 import ooga.model.entities.containers.EntityContainer;
-import org.eclipse.jetty.util.ajax.JSON;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ContainerFactory;
 import org.json.simple.parser.ParseException;
-import ooga.model.collisions.collision_handling.Criteria;
 
 
 public class JSONInformationDecoder implements JSONTranslator {
@@ -36,24 +29,19 @@ public class JSONInformationDecoder implements JSONTranslator {
   }
 
   /**
-   * This method takes in the JSONObject created when file reading is done and makes the entity
-   * list of initial entities given in the use chosen JSON file
+   * This method takes in the JSONObject created when file reading is done and makes the entity list
+   * of initial entities given in the use chosen JSON file
+   *
    * @param initialGameJSON, JSONObject representative of the JSON file with the game info
    * @return entities, EntityContainer of all the initial game entities
    * @throws IOException
    * @throws ParseException
    */
-  public EntityContainer makeEntityContainerFromLevelJSON(JSONObject initialGameJSON) {
-    EntityContainer entities = new EntityContainer();
-    /*
-    have to parse the JSON object in the correct manner, *** check to make sure
-    we are going to format everything for level JSONs the way we have in th example to creat this entity container
-    the right way with the right characteristics
-    using reflection to do this, making like entity info hold everything but
-    length width x and y --> so 5 params for the constructor
-    go through the keys in lik
-     */
-    return entities;
+  public ConnectionContainer makeEntityContainerFromLevelJSON(JSONObject initialGameJSON) {
+    ConnectionContainer connectionContainer = new ConnectionContainer();
+    EntityInfo =
+    connectionContainer.addNewEntity();
+    return connectionContainer;
   }
 
   // we will want this to make entity information from a JSONObject
@@ -70,6 +58,8 @@ public class JSONInformationDecoder implements JSONTranslator {
   // adapting from https://www.baeldung.com/jsonobject-iteration
   // just have to do it for JSON.simple instead og just org.JSON
 
+  // **WHAT DO WE WANT TO DO WITH THIS, WANT TO USE IT IN THE ABOVE METHODS
+  // HAVE TO HAVE IT RETURN MAPS AND OTHER INFORMATION WE WANT
   public void handleJSONObjectParsing(JSONObject jsonObject) {
     for (Object o : jsonObject.keySet()) {
       Object value = jsonObject.get(o);
@@ -78,12 +68,19 @@ public class JSONInformationDecoder implements JSONTranslator {
 
   }
 
-  private JSONObject handleJSONObjectValueChecking(Object value) {
+  /**
+   * This method will take in the value in a key value pair in a JSON Object and determine whether the
+   * value is another JSON object, if it is, and this method returns true, then the key it corresponds to is an entity
+   * If this is false, the key, value pair in the JSON object is another type of general information
+   * @param value, the value in the key value pair in the JSON object
+   * @return boolean value that determines whether the key is some kind of entity or not
+   */
+  private boolean checkJSONObjectValue(Object value) {
     if (value instanceof JSONObject) {
       handleJSONObjectParsing((JSONObject) value);
-      return ((JSONObject) value);
+      return true;
     } else {
-      return null;
+      return false;
     }
   }
 
