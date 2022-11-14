@@ -1,8 +1,5 @@
 package ooga.model.collisions.collision_handling;
 
-import org.json.simple.JSONObject;
-import
-
 public class CollisionChartReader {
 
   /**
@@ -11,7 +8,7 @@ public class CollisionChartReader {
    * @param path path of CollisionChart
    * @return CollisionChart
    */
-  public CollisionChart readCollisionChart(JSONObject path) {
+  public CollisionChart readCollisionChart(String path) {
     return null;
   }
 }

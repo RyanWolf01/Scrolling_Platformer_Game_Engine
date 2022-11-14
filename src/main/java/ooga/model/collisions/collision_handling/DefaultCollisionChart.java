@@ -20,7 +20,6 @@ public class DefaultCollisionChart implements CollisionChart {
    * Instantiates a new DefaultCollisionChart
    */
 
-  /*
   public DefaultCollisionChart() {
     myCriteria = new ArrayList<>();
 
@@ -30,7 +29,6 @@ public class DefaultCollisionChart implements CollisionChart {
     myCriteria.add(new Criteria(criteriaMap, "Jump"));
 
   }
-   */
 
   /**
    * Takes the CollisionData for a collision and outputs what action should be applied
