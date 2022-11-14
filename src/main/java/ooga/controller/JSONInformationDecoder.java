@@ -69,6 +69,7 @@ public class JSONInformationDecoder implements JSONTranslator {
   // adapting from https://www.baeldung.com/jsonobject-iteration
   // just have to do it for JSON.simple instead og just org.JSON
 
+
   /*
   public void handleJSONObject(JSONObject jsonObject) {
     jsonObject.keySet().iterforEachRemaining(key -> {
@@ -88,12 +89,18 @@ public class JSONInformationDecoder implements JSONTranslator {
     }
   }
    */
+  public void handleJSONObjectParsing(JSONObject jsonObject) {
+    for (Object o : jsonObject.keySet()) {
+      Object value = jsonObject.get(o);
+      handleJSONObjectValueChecking(value);
+    }
 
+  }
 
-  /*
-  Will need a method to TRAVERSE through a JSON object, iterating through the values it has
-  to check if they are also JSONObjects to properly make entityList and CollisionData
-   */
-
+  private JSONObject handleJSONObjectValueChecking(Object value) {
+    if (value instanceof JSONObject) {
+      handle
+    }
+  }
 
 }
