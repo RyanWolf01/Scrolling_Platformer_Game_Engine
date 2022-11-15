@@ -38,7 +38,7 @@ public abstract class Container implements ImmutableContainer {
    * @return ImmutableEntity
    */
   public ImmutableEntity getEntity(int index){
-    return getEntity(index);
+    return entities.get(index);
   }
 
   /**
