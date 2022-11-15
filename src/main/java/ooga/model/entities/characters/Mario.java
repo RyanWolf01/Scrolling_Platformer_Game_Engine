@@ -5,9 +5,6 @@ import ooga.model.entities.movement.Mover;
 
 public class Mario extends MainCharacter implements Mover {
 
-  private int xVelocity;
-  private int yVelocity;
-
   public Mario(int initialXCoordinate, int initialYCoordinate, double height, double width, Info entityInfo) {
     super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
   }
@@ -21,14 +18,7 @@ public class Mario extends MainCharacter implements Mover {
     setYCoordinate(getYCoordinate() + yVelocity);
   }
 
-  /**
-   * Implements Mover interface changeVelocities method that changes object's velocities
-   */
-  @Override
-  public void changeVelocities(int changeXVelocity, int changeYVelocity){
-    xVelocity += changeXVelocity;
-    yVelocity += changeYVelocity;
-  }
+
 
   /**
    * Implements method in Alive interface that changes object's lives
