@@ -1,7 +1,7 @@
 package ooga.model.entities.containers;
 
 import ooga.model.entities.Entity;
-import ooga.model.entities.movement.Movement;
+import ooga.model.entities.movement.Mover;
 
 public class MoverContainer extends EntityContainer {
 
@@ -27,7 +27,7 @@ public class MoverContainer extends EntityContainer {
 
     try {
       for (int index = 0; index < getContainerSize(); index++) {
-        Movement currMover = (Movement) getEntity(index);
+        Mover currMover = (Mover) getEntity(index);
         currMover.move();
       }
     }
