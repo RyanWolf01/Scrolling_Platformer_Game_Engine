@@ -33,6 +33,9 @@ public class StopBothDirectionsTest {
     assertEquals(0, mario.getYCoordinate());
   }
 
+  /**
+   * don't execute
+   */
   @Test
   void testStopNeg() {
     Mario mario = new Mario(0, 0, 2, 2, null);

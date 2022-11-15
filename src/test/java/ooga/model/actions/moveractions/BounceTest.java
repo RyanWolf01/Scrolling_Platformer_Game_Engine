@@ -36,6 +36,9 @@ public class BounceTest {
     assertEquals(0, mario.getXCoordinate());
   }
 
+  /**
+   * don't execute
+   */
   @Test
   void testBounceNeg() {
     Mario mario = new Mario(0, 0, 2, 2, null);

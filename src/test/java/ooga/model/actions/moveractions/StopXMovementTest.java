@@ -33,6 +33,9 @@ public class StopXMovementTest {
     assertEquals(0, mario.getYCoordinate());
 }
 
+  /**
+   * don't execute
+   */
   @Test
   void testStopXMovementNeg() {
     Mario mario = new Mario(0, 0, 2, 2, null);
