@@ -56,6 +56,10 @@ public class JSONInformationDecoder implements JSONTranslator {
     }
     return connectionContainer;
   }
+  // TODO: make sure to do this using the KEY value instead of how it is now
+  // if key is entity, go through the value basically and make sure it had all required information
+  // this way, it will also hold everything, only 1 JSON file (plus collision stuff) but no separate one
+  // for more entity info, just if the key is in required entity info, then everything else is dumped in entity info
 
   // we will want this to make entity information from a JSONObject
   public EntityInfo makeEntityInfoFromJSONObject(JSONObject entityInformation) {
