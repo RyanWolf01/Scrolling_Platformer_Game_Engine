@@ -12,7 +12,9 @@ import ooga.model.ImmutableInfo;
  * CollisionData(B_Info, A_Info, physicsData)!
  */
 public class CollisionData implements Iterable<String> {
-
+  public static final String MY_PREFIX = "MY_";
+  public static final String OPPONENT_PREFIX = "OPPONENT_";
+  public static final String COLLISION_PREFIX = "COLLISION_";
   private final Map<String, String> data;
 
   /**
@@ -31,9 +33,9 @@ public class CollisionData implements Iterable<String> {
   public CollisionData(ImmutableInfo entityAInfo, ImmutableInfo entityBInfo,
       ImmutableInfo collisionPhysicsInfo) {
     data = new HashMap<>();
-    addKeys(data, entityAInfo, "MY_");
-    addKeys(data, entityBInfo, "OTHER_");
-    addKeys(data, collisionPhysicsInfo, "COLLISION_");
+    addKeys(data, entityAInfo, MY_PREFIX);
+    addKeys(data, entityBInfo, OPPONENT_PREFIX);
+    addKeys(data, collisionPhysicsInfo, COLLISION_PREFIX);
   }
 
   /**

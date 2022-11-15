@@ -2,6 +2,7 @@ package ooga.view.screens;
 
 import javafx.stage.Stage;
 import ooga.model.entities.Entity;
+import ooga.model.entities.EntityInfo;
 import ooga.model.entities.characters.Mario;
 import ooga.model.entities.containers.EntityContainer;
 import ooga.model.entities.data.InitialAttributes;
@@ -21,7 +22,7 @@ public class LevelScreenTest extends DukeApplicationTest {
   @Override
   public void start (Stage stage){
     EntityContainer testEntities = new EntityContainer();
-    Entity testMario = new Mario(new InitialAttributes(0, 0), null, 2, 2, 0);
+    Mario testMario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
     testEntities.addEntity(testMario);
     myLevel = new LevelScreen(testEntities);
     stage.setScene(myLevel.initiateLevel());
@@ -34,7 +35,7 @@ public class LevelScreenTest extends DukeApplicationTest {
   @Test
   void testMarioLocation(){
     EntityContainer testEntities = new EntityContainer();
-    Entity testMario = new Mario(new InitialAttributes(3, 3), null, 2, 2, 0);
+    Mario testMario = new Mario(3, 3, 2, 2, new EntityInfo("MARIO"));
     testEntities.addEntity(testMario);
     myLevel.step(testEntities);
   }
