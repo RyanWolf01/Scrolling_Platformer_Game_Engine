@@ -2,7 +2,7 @@ package ooga.model.collisions.collision_handling;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
-import ooga.model.actions.Action;
+import ooga.model.actions.aliveactions.AliveAction;
 
 //TODO: Allow the user to call multiple actions, and allow actions to take parameters. Add Error
 //TODO: checking to this.
@@ -63,7 +63,7 @@ public class Criteria {
    * @param collisionData the CollisionData of this collision
    * @return Action to be taken
    */
-  public Action getAction(CollisionData collisionData) {
+  public AliveAction getAction(CollisionData collisionData) {
     if (matches(collisionData)) {
       return getActionInstance(myActionClassString);
     } else {
@@ -72,10 +72,10 @@ public class Criteria {
     }
   }
 
-  private Action getActionInstance(String className) {
+  private AliveAction getActionInstance(String className) {
     try {
       Class<?> clazz = Class.forName(ACTION_PACKAGE_PATH + className);
-      return (Action) clazz.getDeclaredConstructor().newInstance();
+      return (AliveAction) clazz.getDeclaredConstructor().newInstance();
 
     } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
              InstantiationException | IllegalAccessException e) {
