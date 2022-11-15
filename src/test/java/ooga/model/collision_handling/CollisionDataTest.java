@@ -37,8 +37,8 @@ public class CollisionDataTest {
     String[] combined = new String[]{CP + "DIRECTION", "LEFT", MP + "powerUp", "NONE", MP + "test", "FOO", OP + "powerUp", "STAR", OP + "BTest", "BAR", CP + "substance", "WATER"};
 
     for (int i = 0; i < combined.length; i += 2) {
-      assertTrue(cpi.hasKey(combined[i]));
-      assertEquals(cpi.get(combined[i]), combined[i + 1]);
+      assertTrue(collisionData.hasKey(combined[i]));
+      assertEquals(collisionData.get(combined[i]), combined[i + 1]);
     }
   }
 
