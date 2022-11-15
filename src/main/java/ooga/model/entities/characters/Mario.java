@@ -1,6 +1,10 @@
 package ooga.model.entities.characters;
 
+import ooga.model.ImmutableInfo;
 import ooga.model.Info;
+import ooga.model.actions.aliveactions.AliveAction;
+import ooga.model.collisions.CollisionPhysicsInfo;
+import ooga.model.entities.Entity;
 import ooga.model.entities.movement.Mover;
 
 public class Mario extends MainCharacter implements Mover {
@@ -14,11 +18,9 @@ public class Mario extends MainCharacter implements Mover {
    */
   @Override
   public void move() {
-    setXCoordinate(getXCoordinate() + xVelocity);
-    setYCoordinate(getYCoordinate() + yVelocity);
+    setXCoordinate(getXCoordinate() + getXVelocity());
+    setYCoordinate(getYCoordinate() + getYVelocity());
   }
-
-
 
   /**
    * Implements method in Alive interface that changes object's lives
@@ -27,6 +29,16 @@ public class Mario extends MainCharacter implements Mover {
   @Override
   public void changeLives(int changeInLives) {
     setLives(getLives() + changeInLives);
+  }
+
+  /**
+   * reads from CollisionChart and performs resulting actions necessary to handle the collision
+   * @param other
+   */
+  @Override
+  public void onCollision(Entity other, CollisionPhysicsInfo physicsInfo){
+    ImmutableInfo entityAInfo = other.getImmutableEntityInfo();
+//    AliveAction action = getPostCollisionAction(entityAInfo, entityBInfo, collisionPhysicsInfo);
   }
 
 

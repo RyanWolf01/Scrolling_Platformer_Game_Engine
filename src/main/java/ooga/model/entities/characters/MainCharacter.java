@@ -1,11 +1,12 @@
 package ooga.model.entities.characters;
 
+import ooga.model.collisions.Collidable;
 import ooga.model.entities.Entity;
 import ooga.model.Info;
 import ooga.model.entities.alive.Alive;
 import ooga.model.entities.movement.Mover;
 
-public abstract class MainCharacter extends Entity implements Alive, Mover {
+public abstract class MainCharacter extends Entity implements Alive, Mover, Collidable {
     private int lives;
 
     private double xVelocity;

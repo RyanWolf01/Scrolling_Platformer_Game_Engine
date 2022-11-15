@@ -9,7 +9,7 @@ public interface Collidable {
 
   /**
    * reads from CollisionChart and performs resulting actions necessary to handle the collision
-   * @param other
+   * @param other Entity this object is colliding with
    */
   void onCollision(Entity other, CollisionPhysicsInfo physicsInfo);
 
