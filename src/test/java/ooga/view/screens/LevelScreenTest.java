@@ -21,10 +21,9 @@ public class LevelScreenTest extends DukeApplicationTest {
 
   @Override
   public void start (Stage stage){
-    EntityContainer testEntities = new EntityContainer();
+    testEntities = new EntityContainer();
     Mario testMario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
     testEntities.addEntity(testMario);
-    myLevel = new LevelScreen(testEntities);
     stage.setScene(myLevel.initiateLevel());
     stage.show();
   }
@@ -34,10 +33,9 @@ public class LevelScreenTest extends DukeApplicationTest {
 
   @Test
   void testMarioLocation(){
-    EntityContainer testEntities = new EntityContainer();
+    testEntities = new EntityContainer();
     Mario testMario = new Mario(3, 3, 2, 2, new EntityInfo("MARIO"));
     testEntities.addEntity(testMario);
-    myLevel.step(testEntities);
   }
 
 }
