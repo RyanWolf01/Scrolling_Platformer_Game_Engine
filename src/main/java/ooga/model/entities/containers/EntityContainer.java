@@ -1,11 +1,6 @@
 package ooga.model.entities.containers;
 
-import java.util.ArrayList;
-import java.util.List;
 import ooga.model.entities.Entity;
-import ooga.model.entities.EntityInfo;
-import ooga.model.entities.ImmutableEntity;
-import ooga.model.entities.movement.Mover;
 
 /**
  * hold all entities

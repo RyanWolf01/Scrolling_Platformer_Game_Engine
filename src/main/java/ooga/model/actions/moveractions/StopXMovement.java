@@ -1,0 +1,17 @@
+package ooga.model.actions.moveractions;
+
+import ooga.model.entities.movement.Mover;
+
+public class StopXMovement implements MoverAction{
+
+  /**
+   * stops entity moveement in x direction
+   * @param entity
+   */
+  @Override
+  public void execute(Mover entity){
+    entity.changeVelocities(-entity.getXVelocity(), 0);
+    entity.move();
+  }
+
+}
