@@ -24,4 +24,8 @@ public class NodeContainer implements Iterable<Node> {
     public void addNode(ScrollingNode node){
         entities.add(node);
     }
+
+    public int size(){
+        return entities.size();
+    }
 }

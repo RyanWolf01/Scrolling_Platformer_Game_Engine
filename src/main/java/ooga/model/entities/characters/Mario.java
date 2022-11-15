@@ -37,7 +37,7 @@ public class Mario extends MainCharacter implements Mover {
    */
   @Override
   public void onCollision(Entity other, CollisionPhysicsInfo physicsInfo){
-    ImmutableInfo entityAInfo = other.getImmutableEntityInfo();
+//    ImmutableInfo entityAInfo = other.getImmutableEntityInfo();
 //    AliveAction action = getPostCollisionAction(entityAInfo, entityBInfo, collisionPhysicsInfo);
   }
 
