@@ -13,8 +13,8 @@ public class Mario extends MainCharacter implements HorizontalMover, VerticalMov
   private int xVelocity;
   private int yVelocity;
 
-  public Mario(InitialAttributes attributes, Info entityInfo, double length, double width, int lives) {
-    super(attributes, entityInfo, length, width, lives);
+  public Mario(int initialXCoordinate, int initialYCoordinate, double height, double width, Info entityInfo) {
+    super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
   }
 
   @Override

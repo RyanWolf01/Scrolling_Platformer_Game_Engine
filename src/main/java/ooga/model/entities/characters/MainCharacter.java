@@ -9,9 +9,9 @@ import ooga.model.entities.movement.Mover;
 public abstract class MainCharacter extends Entity implements Alive, Mover {
     private int lives;
 
-    public MainCharacter(InitialAttributes attributes, Info entityInfo, double length, double width, int lives) {
-        super(attributes, entityInfo, length, width);
-        this.lives = lives;
+    public MainCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width, Info entityInfo) {
+        super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
+        this.lives = Integer.parseInt(entityInfo.get("lives"));
     }
 
 
