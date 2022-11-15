@@ -2,15 +2,15 @@ package ooga.model.actions.moveractions;
 
 import ooga.model.entities.movement.Mover;
 
-public class Stop implements MoverAction{
+public class StopYMovement implements MoverAction{
 
   /**
-   * moves entity up in y direction by a fixed amount
+   * stops entity moveement in y direction
    * @param entity
    */
   @Override
   public void execute(Mover entity){
-    entity.changeVelocities(-entity.getXVelocity(), -entity.getYVelocity());
+    entity.changeVelocities(0, -entity.getXVelocity());
     entity.move();
   }
 
