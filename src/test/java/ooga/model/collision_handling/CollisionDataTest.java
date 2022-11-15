@@ -1,5 +1,8 @@
 package ooga.model.collision_handling;
 
+import static ooga.model.collisions.collision_handling.CollisionData.COLLISION_PREFIX;
+import static ooga.model.collisions.collision_handling.CollisionData.MY_PREFIX;
+import static ooga.model.collisions.collision_handling.CollisionData.OPPONENT_PREFIX;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,7 +30,11 @@ public class CollisionDataTest {
     setInfo(cpi, cpiKvPairs);
 
     CollisionData collisionData = new CollisionData(entityAInfo, entityBInfo, cpi);
-    String[] combined = new String[]{"MY_powerUp", "NONE", "MY_test", "FOO", "OPPONENT_powerUp", "STAR", "OPPONENT_BTest", "BAR", "COLLISION_substance", "WATER"};
+
+    String CP = COLLISION_PREFIX;
+    String MP = MY_PREFIX;
+    String OP = OPPONENT_PREFIX;
+    String[] combined = new String[]{CP + "DIRECTION", "LEFT", MP + "powerUp", "NONE", MP + "test", "FOO", OP + "powerUp", "STAR", OP + "BTest", "BAR", CP + "substance", "WATER"};
 
     for (int i = 0; i < combined.length; i += 2) {
       assertTrue(cpi.hasKey(combined[i]));
