@@ -14,13 +14,19 @@ public abstract class MainCharacter extends Entity implements Alive, Mover {
         this.lives = Integer.parseInt(entityInfo.get("lives"));
     }
 
-
+    /**
+     * Returns number of lives of the current entity is alive. Extended by other
+     * interfaces.
+     */
     @Override
     public int getLives() {
         return lives;
     }
 
-
+    /**
+     * This method should perform all actions necessary to kill the entity. This is specific to a given entity, but
+     * for Mario this may include setting its velocities to 0 and disabling abilities.
+     */
     @Override
     public void kill() {
         lives--;

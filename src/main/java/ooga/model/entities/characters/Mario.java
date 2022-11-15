@@ -17,28 +17,42 @@ public class Mario extends MainCharacter implements HorizontalMover, VerticalMov
     super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
   }
 
+  /**
+   * Implements Mover interface move method that changes object's position
+   */
   @Override
   public void move() {
     setXCoordinate(getXCoordinate() + xVelocity);
     setYCoordinate(getYCoordinate() + yVelocity);
   }
 
+  /**
+   * Implements method in Mover interface that changes object's y velocity
+   */
   @Override
   public void incrementYVelocity(int change) {
     yVelocity += change;
   }
 
+  /**
+   * Implements method in Mover interface that changes object's x velocity
+   */
   @Override
   public void incrementXVelocity(int change) {
     xVelocity = xVelocity + change;
   }
 
-
+  /**
+   * Implements method in Alive interface that increases object's lives
+   */
   @Override
   public void increaseLives(int lives) {
     setLives(getLives() + lives);
   }
 
+  /**
+   * Implements method in Alive interface that decreases object's lives
+   */
   @Override
   public void decreaseLives(int lives) {
     setLives(getLives() - lives);
