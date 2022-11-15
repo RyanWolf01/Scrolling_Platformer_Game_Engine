@@ -3,9 +3,8 @@ package ooga.model.entities.characters;
 import ooga.model.entities.Entity;
 import ooga.model.Info;
 import ooga.model.entities.alive.Alive;
-import ooga.model.entities.movement.Movement;
 
-public abstract class MainCharacter extends Entity implements Alive, Movement {
+public abstract class MainCharacter extends Entity implements Alive {
     private int lives;
 
     public MainCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width, Info entityInfo) {

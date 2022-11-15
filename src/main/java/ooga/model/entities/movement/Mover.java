@@ -1,6 +1,8 @@
 package ooga.model.entities.movement;
 
-
+/**
+ * Implement in subclass to ensure guarding which directions an object can move
+ */
 public interface Mover {
     /**
      * This will move the Mover entity by its current velocity in whichever direction it should
