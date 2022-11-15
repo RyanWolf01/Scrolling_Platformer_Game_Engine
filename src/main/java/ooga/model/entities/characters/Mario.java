@@ -1,14 +1,9 @@
 package ooga.model.entities.characters;
 
 import ooga.model.Info;
-import ooga.model.entities.alive.LifeDecrementer;
-import ooga.model.entities.alive.LifeIncrementer;
-import ooga.model.entities.data.InitialAttributes;
-import ooga.model.entities.movement.HorizontalMover;
-import ooga.model.entities.movement.VerticalMover;
+import ooga.model.entities.movement.Mover;
 
-public class Mario extends MainCharacter implements HorizontalMover, VerticalMover,
-    LifeDecrementer, LifeIncrementer {
+public class Mario extends MainCharacter implements Mover {
 
   private int xVelocity;
   private int yVelocity;
@@ -21,32 +16,16 @@ public class Mario extends MainCharacter implements HorizontalMover, VerticalMov
    * Implements Mover interface move method that changes object's position
    */
   @Override
-  public void move() {
+  public void move(int changeXVelocity, int changeYVelocity) {
     setXCoordinate(getXCoordinate() + xVelocity);
     setYCoordinate(getYCoordinate() + yVelocity);
-  }
-
-  /**
-   * Implements method in Mover interface that changes object's y velocity
-   */
-  @Override
-  public void incrementYVelocity(int change) {
-    yVelocity += change;
-  }
-
-  /**
-   * Implements method in Mover interface that changes object's x velocity
-   */
-  @Override
-  public void incrementXVelocity(int change) {
-    xVelocity = xVelocity + change;
   }
 
   /**
    * Implements method in Alive interface that increases object's lives
    */
   @Override
-  public void increaseLives(int lives) {
+  public void changeLives(int lives) {
     setLives(getLives() + lives);
   }
 

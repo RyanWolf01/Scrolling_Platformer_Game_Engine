@@ -18,4 +18,9 @@ public interface Alive {
    */
   public void kill();
 
+  /**
+   * Either increases or decreases lives of entity
+   */
+  public void changeLives(int changeInLives);
+
 }
