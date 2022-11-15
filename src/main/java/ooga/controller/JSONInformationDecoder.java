@@ -7,6 +7,7 @@ import java.util.Map;
 import ooga.model.collisions.collision_handling.CollisionData;
 import ooga.model.entities.EntityInfo;
 import ooga.model.entities.containers.EntityContainer;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -14,6 +15,7 @@ import org.json.simple.parser.ParseException;
 
 public class JSONInformationDecoder implements JSONTranslator {
 
+  private static final String ENTITY_JSON_KEY = "Entity";
   private List<JSONObject> entityJSONList;
   private Map<String, Object> generalInfoMap;
   public static final List<String> REQUIRED_ENTITY_PARAMETERS = List.of("type", "x", "y", "width", "height");
@@ -35,21 +37,19 @@ public class JSONInformationDecoder implements JSONTranslator {
 
   /**
    * This method takes in the JSONObject created when file reading is done and makes the entity list
-   * of initial entities given in the use chosen JSON file
+   * of initial entities given in the use chosen JSON file, in the form of the connection container
+   * It also populates a map of general information about the game, which are any key value pairs in the
+   * JSON not in the JSON array value of the Entity key
    * @param levelJSON, JSONObject representative of the JSON file with the game info
-   * @param entityJSON, JSONObject representative of the JSON file for entities
-   * @return connectionContainer, connection container of all the initial game entities
+   * @param connectionContainer, a connection container object that will hold all the entities
+   * @return connectionContainer, updated, populated connection container of all the initial game entities
    */
-  public ConnectionContainer makeEntityContainerFromLevelJSON(JSONObject levelJSON, JSONObject entityJSON) {
-    ConnectionContainer connectionContainer = new ConnectionContainer();
-    EntityInfo entityInfo = makeEntityInfoFromJSONObject(entityJSON);
+  public ConnectionContainer makeEntityContainerFromLevelJSON(JSONObject levelJSON, ConnectionContainer connectionContainer) {
     for (Object o : levelJSON.keySet()) {
-      if (checkJSONObjectValue(levelJSON.get(o))) {
-        JSONObject valueJSONObject = (JSONObject) levelJSON.get(o);
-        entityJSONList.add(valueJSONObject);
-        connectionContainer.addNewEntity((int) valueJSONObject.get("x"), (int) valueJSONObject.get("y"),
-            (double) valueJSONObject.get("height"), (double) valueJSONObject.get("width"), (String) valueJSONObject.get("type"),
-            entityInfo);
+      if (o == ENTITY_JSON_KEY && checkJSONObjectValue(levelJSON.get(o))) {
+        JSONArray jsonEntityArray = (JSONArray) levelJSON.get(o);
+        populateEntityList(jsonEntityArray);
+        populateConnectionContainer(jsonEntityArray, connectionContainer);
       } else {
         generalInfoMap.put((String) o, levelJSON.get(o));
       }
@@ -75,29 +75,25 @@ public class JSONInformationDecoder implements JSONTranslator {
   // adapting from https://www.baeldung.com/jsonobject-iteration
   // just have to do it for JSON.simple instead og just org.JSON
 
-  // **WHAT DO WE WANT TO DO WITH THIS, WANT TO USE IT IN THE ABOVE METHODS
-  // HAVE TO HAVE IT RETURN MAPS AND OTHER INFORMATION WE WANT
-  public void handleJSONObjectParsing(JSONObject jsonObject) {
-    for (Object o : jsonObject.keySet()) {
-      if (checkJSONObjectValue(jsonObject.get(o))) {
-        //this is an entity
-      } else {
-        //this is some other general info and can be added to maybe like a general info map?
-        //another resources file to use reflection for style and other general info
-      }
-    }
-
-  }
-
   /**
    * This method will take in the value in a key value pair in a JSON Object and determine whether the
-   * value is another JSON object, if it is, and this method returns true, then the key it corresponds to is an entity
+   * value is a JSONArray, if it is, and this method returns true, then the key it corresponds to is a list of
+   * entity information sets
    * If this is false, the key, value pair in the JSON object is another type of general information
    * @param value, the value in the key value pair in the JSON object
-   * @return boolean value that determines whether the key is some kind of entity or not
+   * @return boolean value that determines whether the key is a JSONArray or not
    */
   private boolean checkJSONObjectValue(Object value) {
-    return value instanceof JSONObject;
+    return value instanceof JSONArray;
   }
 
+  private void populateEntityList(JSONArray entityArray) {
+    for (Object jsonObject: entityArray) {
+      entityJSONList.add((JSONObject) jsonObject);
+    }
+  }
+
+  private void populateConnectionContainer(JSONArray entityArray, ConnectionContainer connectionContainer) {
+
+  }
 }
