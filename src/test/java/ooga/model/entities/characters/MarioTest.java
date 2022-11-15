@@ -12,7 +12,7 @@ public class MarioTest {
   void testIncrementXVelocityPositive1() {
     Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.incrementXVelocity(5);
+    mario.changeVelocities(5,0);
     mario.move();
     assertEquals(5, mario.getXCoordinate());
   }
@@ -21,7 +21,7 @@ public class MarioTest {
   void testIncrementXVelocityPositive2() {
     Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.incrementXVelocity(-100);
+    mario.changeVelocities(-100,0);
     mario.move();
     assertEquals(-100, mario.getXCoordinate());
   }
@@ -30,7 +30,7 @@ public class MarioTest {
   void testIncrementXVelocityNegative() {
     Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.incrementXVelocity(0);
+    mario.changeVelocities(0,0);
     mario.move();
     assertEquals(0, mario.getXCoordinate());
   }
@@ -39,7 +39,7 @@ public class MarioTest {
   void testIncrementYVelocityPositive1() {
     Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.incrementYVelocity(5);
+    mario.changeVelocities(0,5);
     mario.move();
     assertEquals(5, mario.getYCoordinate());
   }
@@ -48,7 +48,7 @@ public class MarioTest {
   void testIncrementYVelocityPositive2() {
     Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.incrementYVelocity(-100);
+    mario.changeVelocities(0,-100);
     mario.move();
     assertEquals(-100, mario.getYCoordinate());
   }
@@ -57,7 +57,7 @@ public class MarioTest {
   void testIncrementYVelocityNegative() {
     Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.incrementYVelocity(0);
+    mario.changeVelocities(0,0);
     mario.move();
     assertEquals(0, mario.getYCoordinate());
   }
@@ -66,7 +66,7 @@ public class MarioTest {
   void testIncrementLivesPositive1() {
     Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.increaseLives(1);
+    mario.changeLives(1);
     assertEquals(1, mario.getLives());
   }
 
@@ -74,7 +74,7 @@ public class MarioTest {
   void testIncrementLivesPositive2() {
     Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.increaseLives(100);
+    mario.changeLives(100);
     assertEquals(100, mario.getLives());
   }
 
@@ -82,7 +82,7 @@ public class MarioTest {
   void testIncrementLivesNegative() {
     Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.increaseLives(0);
+    mario.changeLives(0);
     assertEquals(0, mario.getLives());
   }
 
@@ -90,7 +90,7 @@ public class MarioTest {
   void testDecrementLivesPositive1() {
     Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.decreaseLives(1);
+    mario.changeLives(1);
     assertEquals(0, mario.getLives());
   }
 
@@ -98,7 +98,7 @@ public class MarioTest {
   void testDecrementLivesPositive2() {
     Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.decreaseLives(101);
+    mario.changeLives(101);
     assertEquals(0, mario.getLives());
   }
 
@@ -106,7 +106,7 @@ public class MarioTest {
   void testDecrementLivesNegative() {
     Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.decreaseLives(0);
+    mario.changeLives(0);
     assertEquals(0, mario.getLives());
   }
 

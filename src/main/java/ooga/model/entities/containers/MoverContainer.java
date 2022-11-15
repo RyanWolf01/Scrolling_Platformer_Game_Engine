@@ -1,6 +1,5 @@
 package ooga.model.entities.containers;
 
-import java.util.List;
 import ooga.model.entities.Entity;
 import ooga.model.entities.movement.Mover;
 

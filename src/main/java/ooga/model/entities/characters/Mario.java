@@ -1,17 +1,13 @@
 package ooga.model.entities.characters;
 
+import ooga.model.ImmutableInfo;
 import ooga.model.Info;
-import ooga.model.entities.alive.LifeDecrementer;
-import ooga.model.entities.alive.LifeIncrementer;
-import ooga.model.entities.data.InitialAttributes;
-import ooga.model.entities.movement.HorizontalMover;
-import ooga.model.entities.movement.VerticalMover;
+import ooga.model.actions.aliveactions.AliveAction;
+import ooga.model.collisions.CollisionPhysicsInfo;
+import ooga.model.entities.Entity;
+import ooga.model.entities.movement.Mover;
 
-public class Mario extends MainCharacter implements HorizontalMover, VerticalMover,
-    LifeDecrementer, LifeIncrementer {
-
-  private int xVelocity;
-  private int yVelocity;
+public class Mario extends MainCharacter implements Mover {
 
   public Mario(int initialXCoordinate, int initialYCoordinate, double height, double width, Info entityInfo) {
     super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
@@ -22,40 +18,28 @@ public class Mario extends MainCharacter implements HorizontalMover, VerticalMov
    */
   @Override
   public void move() {
-    setXCoordinate(getXCoordinate() + xVelocity);
-    setYCoordinate(getYCoordinate() + yVelocity);
+    setXCoordinate(getXCoordinate() + getXVelocity());
+    setYCoordinate(getYCoordinate() + getYVelocity());
   }
 
   /**
-   * Implements method in Mover interface that changes object's y velocity
+   * Implements method in Alive interface that changes object's lives
+   * @param changeInLives is the change in lives
    */
   @Override
-  public void incrementYVelocity(int change) {
-    yVelocity += change;
+  public void changeLives(int changeInLives) {
+    setLives(getLives() + changeInLives);
   }
 
   /**
-   * Implements method in Mover interface that changes object's x velocity
+   * reads from CollisionChart and performs resulting actions necessary to handle the collision
+   * @param other
    */
   @Override
-  public void incrementXVelocity(int change) {
-    xVelocity = xVelocity + change;
+  public void onCollision(Entity other, CollisionPhysicsInfo physicsInfo){
+    ImmutableInfo entityAInfo = other.getImmutableEntityInfo();
+//    AliveAction action = getPostCollisionAction(entityAInfo, entityBInfo, collisionPhysicsInfo);
   }
 
-  /**
-   * Implements method in Alive interface that increases object's lives
-   */
-  @Override
-  public void increaseLives(int lives) {
-    setLives(getLives() + lives);
-  }
-
-  /**
-   * Implements method in Alive interface that decreases object's lives
-   */
-  @Override
-  public void decreaseLives(int lives) {
-    setLives(getLives() - lives);
-  }
 
 }
