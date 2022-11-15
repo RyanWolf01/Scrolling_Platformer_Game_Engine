@@ -22,11 +22,12 @@ public class GameController {
      * The GameController needs to have a mapping of backend to frontend objects
      *
      */
-    public GameController() {
+    public GameController(Path levelJSONPath, Path collisionJSONPath) {
         container = new ConnectionContainer();
+        setupSimulation(levelJSONPath, collisionJSONPath);
     }
 
-    public void setupSimulation(Path configFilePath) {
+    public void setupSimulation(Path configFilePath, Path collisionFilePath) {
         /*
         JSONInformationDecoder jsonDecoder = new JSONInformationDecoder();
         PreloadedCollisionChartGetter collisionChartGetter = new PreloadedCollisionChartGetter(jsonDecoder, configFilePath.entityFiles);
