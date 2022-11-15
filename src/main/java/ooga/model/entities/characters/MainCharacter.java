@@ -9,18 +9,24 @@ import ooga.model.entities.movement.Mover;
 public abstract class MainCharacter extends Entity implements Alive, Mover {
     private int lives;
 
-    public MainCharacter(InitialAttributes attributes, Info entityInfo, double length, double width, int lives) {
-        super(attributes, entityInfo, length, width);
-        this.lives = lives;
+    public MainCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width, Info entityInfo) {
+        super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
+        this.lives = Integer.parseInt(entityInfo.get("lives"));
     }
 
-
+    /**
+     * Returns number of lives of the current entity is alive. Extended by other
+     * interfaces.
+     */
     @Override
     public int getLives() {
         return lives;
     }
 
-
+    /**
+     * This method should perform all actions necessary to kill the entity. This is specific to a given entity, but
+     * for Mario this may include setting its velocities to 0 and disabling abilities.
+     */
     @Override
     public void kill() {
         lives--;
