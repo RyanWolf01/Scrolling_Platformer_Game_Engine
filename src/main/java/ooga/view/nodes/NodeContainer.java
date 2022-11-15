@@ -10,7 +10,7 @@ import java.util.List;
  * This is a list of JavaFX nodes that will be visualized by the View.
  */
 public class NodeContainer implements Iterable<Node> {
-    private List<Node> entities;
+    private List<ScrollingNode> entities;
 
     public NodeContainer(){
         entities = new ArrayList<>();
@@ -21,7 +21,7 @@ public class NodeContainer implements Iterable<Node> {
         return (Iterator<Node>) entities;
     }
 
-    public void addNode(Node node){
+    public void addNode(ScrollingNode node){
         entities.add(node);
     }
 }
