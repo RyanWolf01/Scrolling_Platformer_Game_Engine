@@ -88,7 +88,9 @@ public class JSONInformationDecoder implements JSONTranslator {
   }
 
   /**
-   *
+   * This method takes in a specific JSON array holds information for each of the entities
+   * and populates a list of all of the JSON objects, one for each entity in a level JSON file uploaded
+   * by the user
    * @param entityArray
    */
   private void populateEntityList(JSONArray entityArray) {
@@ -103,7 +105,9 @@ public class JSONInformationDecoder implements JSONTranslator {
   }
 
   /**
-   *
+   * This method creates entity info from a json object, taking all information in key value
+   * pairs in a JSON object for a specific entity and translating everything outside the required keys
+   * into an entityInfo that is used to add a new entity to the connection container
    * @param entityInformation
    * @return
    */
