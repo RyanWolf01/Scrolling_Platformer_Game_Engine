@@ -7,6 +7,7 @@ import java.util.Map;
 import ooga.model.collisions.collision_handling.CollisionData;
 import ooga.model.entities.EntityInfo;
 import ooga.model.entities.containers.EntityContainer;
+import org.eclipse.jetty.util.ajax.JSON;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -46,7 +47,7 @@ public class JSONInformationDecoder implements JSONTranslator {
    */
   public ConnectionContainer makeEntityContainerFromLevelJSON(JSONObject levelJSON, ConnectionContainer connectionContainer) {
     for (Object o : levelJSON.keySet()) {
-      if (o == ENTITY_JSON_KEY && checkJSONObjectValue(levelJSON.get(o))) {
+      if (o == ENTITY_JSON_KEY && checkJSONArrayValue(levelJSON.get(o))) {
         JSONArray jsonEntityArray = (JSONArray) levelJSON.get(o);
         populateEntityList(jsonEntityArray);
         populateConnectionContainer(jsonEntityArray, connectionContainer);
@@ -81,19 +82,58 @@ public class JSONInformationDecoder implements JSONTranslator {
    * entity information sets
    * If this is false, the key, value pair in the JSON object is another type of general information
    * @param value, the value in the key value pair in the JSON object
-   * @return boolean value that determines whether the key is a JSONArray or not
+   * @return boolean value that determines whether the value is a JSONArray or not
+   */
+  private boolean checkJSONArrayValue(Object value) {
+    return value instanceof JSONArray;
+  }
+
+  /**
+   * This method will take in the value in an item in a JSON Array and determine whether it is
+   * a JSONObject, if it is, and this method returns true
+   * @param value, the value in the key value pair in the JSON object
+   * @return boolean value that determines whether something is a JSONObject or not
    */
   private boolean checkJSONObjectValue(Object value) {
-    return value instanceof JSONArray;
+    return value instanceof JSONObject;
   }
 
   private void populateEntityList(JSONArray entityArray) {
     for (Object jsonObject: entityArray) {
-      entityJSONList.add((JSONObject) jsonObject);
+      if (checkJSONObjectValue(jsonObject)) {
+        entityJSONList.add((JSONObject) jsonObject);
+      } else {
+        // TODO: custom exception here
+        throw new RuntimeException();
+      }
     }
   }
 
+  /*
+  TODO: could also maybe do try catch here instead, lots of logic, longish method
+  might be smarter to do this
+   */
   private void populateConnectionContainer(JSONArray entityArray, ConnectionContainer connectionContainer) {
+    for (Object jsonObject: entityArray) {
+      JSONObject singleEntity = new JSONObject();
+      if (checkJSONObjectValue(jsonObject)) {
+        singleEntity = (JSONObject) jsonObject;
+      } else {
+        // TODO: custom exception here
+        throw new RuntimeException();
+      }
+      checkRequiredKeys(singleEntity);
 
+    }
+  }
+
+
+  private boolean checkRequiredKeys(JSONObject entityObject) {
+    for (String key : REQUIRED_ENTITY_PARAMETERS) {
+      if (!entityObject.containsKey(key)) {
+        return false;
+      }
+    }
+    return true;
   }
 }
