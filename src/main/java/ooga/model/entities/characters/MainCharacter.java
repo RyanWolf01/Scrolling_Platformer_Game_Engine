@@ -75,12 +75,4 @@ public abstract class MainCharacter extends Entity implements Alive, Mover, Coll
             this.lives = lives;
     }
 
-    /**
-     * allow characters to set their lives
-     * @param lives value to which lives will now be set
-     */
-    protected void set(int lives){
-        this.lives = lives;
-    }
-
 }
