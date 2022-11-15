@@ -16,6 +16,7 @@ public class BounceTest {
     bounce.execute(mario);
 
     assertEquals(5, mario.getYCoordinate());
+    assertEquals(0, mario.getXCoordinate());
   }
 
   /**
@@ -32,6 +33,7 @@ public class BounceTest {
     bounce2.execute(mario);
 
     assertEquals(10, mario.getYCoordinate());
+    assertEquals(0, mario.getXCoordinate());
   }
 
   @Test
@@ -41,6 +43,7 @@ public class BounceTest {
     Bounce bounce = new Bounce();
 
     assertEquals(0, mario.getYCoordinate());
+    assertEquals(0, mario.getXCoordinate());
   }
 
 }
