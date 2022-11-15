@@ -14,7 +14,7 @@ public abstract class MainCharacter extends Entity implements Alive, Mover, Coll
 
     public MainCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width, Info entityInfo) {
         super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
-        this.lives = Integer.parseInt(entityInfo.get("lives"));
+//        this.lives = Integer.parseInt(entityInfo.get("lives"));
     }
 
     /**
@@ -73,14 +73,6 @@ public abstract class MainCharacter extends Entity implements Alive, Mover, Coll
             this.lives = 0;
         else
             this.lives = lives;
-    }
-
-    /**
-     * allow characters to set their lives
-     * @param lives value to which lives will now be set
-     */
-    protected void set(int lives){
-        this.lives = lives;
     }
 
 }
