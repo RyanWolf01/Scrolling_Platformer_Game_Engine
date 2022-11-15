@@ -46,7 +46,7 @@ public class DefaultCollisionHandler implements CollisionHandler {
     ImmutableInfo entityBInfo = entityB.getImmutableEntityInfo();
     AliveAction action = getPostCollisionAction(entityAInfo, entityBInfo, collisionPhysicsInfo);
 
-    action.execute(entityA);
+//    action.execute(entityA);
   }
 
   // Get the action that results from this collision. Will be called with perspective of targetEntityInfo
