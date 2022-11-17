@@ -8,7 +8,7 @@ import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.data.ActionDataContainer;
 import ooga.model.entities.movement.Mover;
 
-public class Mario extends MainCharacter implements Mover {
+public class Mario extends MainCharacter {
 
   public Mario(int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
