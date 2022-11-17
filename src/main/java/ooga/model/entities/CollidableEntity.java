@@ -27,6 +27,15 @@ public abstract class CollidableEntity extends Entity implements Collidable {
         entityInfo);
   }
 
+  @Override
+  public void onCollision(Entity other, CollisionPhysicsInfo physicsInfo) {
+    ActionDataContainer adc = getActionDatas(this.getImmutableEntityInfo(),
+        other.getImmutableEntityInfo(), physicsInfo);
+    performActions(adc);
+  }
+
+  protected abstract void performActions(ActionDataContainer actionDataContainer);
+
   protected ActionDataContainer getActionDatas(
       ImmutableInfo targetEntityInfo, ImmutableInfo otherEntityInfo,
       CollisionPhysicsInfo collisionPhysicsInfo) {

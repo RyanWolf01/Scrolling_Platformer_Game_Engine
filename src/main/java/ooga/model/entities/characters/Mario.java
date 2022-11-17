@@ -35,14 +35,13 @@ public class Mario extends MainCharacter implements Mover {
   /**
    * reads from CollisionChart and performs resulting actions necessary to handle the collision
    *
-   * @param other
+   * @param actionDataContainer
    */
   @Override
-  public void onCollision(Entity other, CollisionPhysicsInfo physicsInfo) {
+  public void performActions(ActionDataContainer actionDataContainer) {
 //    ImmutableInfo entityAInfo = other.getImmutableEntityInfo();
 //    AliveAction action = getPostCollisionAction(entityAInfo, entityBInfo, collisionPhysicsInfo);
-    ActionDataContainer postCollisionActionData = getActionDatas(
-        this.getImmutableEntityInfo(), other.getImmutableEntityInfo(), physicsInfo);
+
   }
 
 }
