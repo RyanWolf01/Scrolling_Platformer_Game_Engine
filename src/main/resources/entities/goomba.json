@@ -18,6 +18,12 @@
         "ACTIONS": [
           {
             "classname": "Die",
+            "action_interface": "AliveAction",
+            "params": []
+          },
+          {
+            "classname": "Bounce",
+            "action_interface": "MoverAction",
             "params": []
           }
         ]
