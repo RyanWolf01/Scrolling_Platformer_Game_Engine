@@ -57,6 +57,8 @@ public class Mario extends MainCharacter {
     TODO: refer to the them in here as ActionParsers because their .getAction() classes would return
     TODO: different types (regarding those changes, nothing would change from the perspective of
     TODO: this file).
+
+    Also need to add testing and javadoc of course.
    */
   @Override
   public void performActions(ActionDataContainer actionDataContainer) {
