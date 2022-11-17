@@ -50,7 +50,7 @@ public class DefaultCollisionHandler implements CollisionHandler {
   }
 
   // Get the action that results from this collision. Will be called with perspective of targetEntityInfo
-  private AliveAction getPostCollisionAction(ImmutableInfo targetEntityInfo,
+  private ImmutableActionDataContainer getPostCollisionAction(ImmutableInfo targetEntityInfo,
       ImmutableInfo sourceEntityInfo, ImmutableInfo collisionPhysicsInfo) {
     if (!targetEntityInfo.hasKey(ImmutableInfo.COLLISION_CHART_KEY)) {
       throw new CollisionChartNotFoundException("Target Entity doesn't have a collision chart!");
@@ -59,6 +59,6 @@ public class DefaultCollisionHandler implements CollisionHandler {
     CollisionChart collisionChart = myCollisionChartGetter.getCollisionChart(targetEntityInfo.get(
         ImmutableInfo.COLLISION_CHART_KEY));
     CollisionData collisionData = new CollisionData(targetEntityInfo, sourceEntityInfo, collisionPhysicsInfo);
-    return collisionChart.getPostCollisionActionData(collisionData);
+    return collisionChart.getActionDatas(collisionData);
   }
 }

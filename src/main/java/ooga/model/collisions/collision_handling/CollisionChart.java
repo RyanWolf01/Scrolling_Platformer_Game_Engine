@@ -1,6 +1,6 @@
 package ooga.model.collisions.collision_handling;
 
-import ooga.model.actions.aliveactions.AliveAction;
+import ooga.model.collisions.data.ActionDataContainer;
 
 /**
  * Represents the Chart corresponding with each Entity that determines how it should respond to
@@ -16,5 +16,5 @@ public interface CollisionChart {
    *                      collision physics
    * @return Action to be applied on the owner of this CollisionChart
    */
-  AliveAction getPostCollisionActionData(CollisionData collisionData);
+  ActionDataContainer getActionDatas(CollisionData collisionData);
 }

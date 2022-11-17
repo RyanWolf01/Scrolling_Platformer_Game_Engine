@@ -2,11 +2,8 @@ package ooga.model.collisions.collision_handling;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.collisions.collision_handling.exceptions.NoCollisionCriteriaMatchException;
-import ooga.model.ImmutableInfo;
+import ooga.model.collisions.data.ActionDataContainer;
 
 /**
  * A DefaultCollisionChart that implements CollisionChart and contains returns an Action based on
@@ -24,9 +21,9 @@ public class DefaultCollisionChart implements CollisionChart {
     myCriteria = new ArrayList<>();
 
     // example of adding a row in the collision chart (called a Criteria object)
-    Map<String, String> criteriaMap = new HashMap<>();
-    criteriaMap.put(ImmutableInfo.TYPE_KEY, "Platform");
-    myCriteria.add(new Criteria(criteriaMap, "Jump"));
+//    Map<String, String> criteriaMap = new HashMap<>();
+//    criteriaMap.put(ImmutableInfo.TYPE_KEY, "Platform");
+//    myCriteria.add(new Criteria(criteriaMap, "Jump"));
 
   }
 
@@ -38,10 +35,10 @@ public class DefaultCollisionChart implements CollisionChart {
    * @return Action
    */
   @Override
-  public AliveAction getPostCollisionActionData(CollisionData collisionData) {
+  public ActionDataContainer getActionDatas(CollisionData collisionData) {
     for (Criteria criteria : myCriteria) {
       if (criteria.matches(collisionData)) {
-        return criteria.getPostCollisionActionData(collisionData);
+        return criteria.getActionDatas(collisionData);
       }
     }
 

@@ -1,7 +1,7 @@
 package ooga.model.collisions.collision_handling;
 
 import java.util.Map;
-import ooga.model.actions.aliveactions.AliveAction;
+import ooga.model.collisions.data.ActionDataContainer;
 
 //TODO: Allow the user to call multiple actions, and allow actions to take parameters. Add Error
 //TODO: checking to this.
@@ -14,8 +14,7 @@ public class Criteria {
 
   private static final String ACTION_PACKAGE_PATH = "ooga.model.actions.";
   private final Map<String, String> myCriteria;
-  private final AliveAction aliveAction;
-  private final String myActionClassString;
+  private final ActionDataContainer myImmutableActionDataContainer;
 
   /**
    * Initialize a new Criteria class. Takes a hashmap representing the criteria for this collision
@@ -24,11 +23,12 @@ public class Criteria {
    *
    * @param criteria          represents each of the attributes that must be satisfied for an Action
    *                          to be applied
-   * @param actionClassString the String of the Action class to be applied
+   * @param actionDataContainer the data regarding the actions that should be applied if this
+   *                                criteria matches
    */
-  public Criteria(Map<String, String> criteria, PostCollision) {
+  public Criteria(Map<String, String> criteria, ActionDataContainer actionDataContainer) {
     myCriteria = criteria;
-    myActionClassString = actionClassString;
+    myImmutableActionDataContainer = actionDataContainer;
   }
 
   /**
@@ -63,26 +63,13 @@ public class Criteria {
    * @param collisionData the CollisionData of this collision
    * @return Action to be taken
    */
-  public AliveAction getPostCollisionActionData(CollisionData collisionData) {
+  public ActionDataContainer getActionDatas(CollisionData collisionData) {
     if (matches(collisionData)) {
-      return getPostCollisionActionDataHelper(myActionClassString);
+      return myImmutableActionDataContainer;
     } else {
       throw new RuntimeException("Cannot return action for collisionData that doesn't match"
           + "with the criteria defined by this Criteria object. Improper usage of getAction");
     }
-  }
-
-  private AliveAction getPostCollisionActionDataHelper(String className) {
-
-//
-//    try {
-//      Class<?> clazz = Class.forName(ACTION_PACKAGE_PATH + className);
-//      return (PostCollisionActionData) clazz.getDeclaredConstructor().newInstance();
-//
-//    } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-//             InstantiationException | IllegalAccessException e) {
-//      throw new RuntimeException(e);
-//    }
   }
 
 }

@@ -9,7 +9,7 @@ import ooga.model.collisions.collision_handling.CollisionChartGetter;
 import ooga.model.collisions.collision_handling.CollisionData;
 import ooga.model.collisions.collision_handling.DefaultCollisionChartGetter;
 import ooga.model.collisions.collision_handling.exceptions.CollisionChartNotFoundException;
-import ooga.model.collisions.data.PostCollisionActionData;
+import ooga.model.collisions.data.ActionDataContainer;
 
 public abstract class CollidableEntity extends Entity implements Collidable {
 
@@ -27,8 +27,9 @@ public abstract class CollidableEntity extends Entity implements Collidable {
         entityInfo);
   }
 
-  protected PostCollisionActionData getPostCollisionActionData(ImmutableInfo targetEntityInfo,
-      ImmutableInfo otherEntityInfo, CollisionPhysicsInfo collisionPhysicsInfo) {
+  protected ActionDataContainer getActionDatas(
+      ImmutableInfo targetEntityInfo, ImmutableInfo otherEntityInfo,
+      CollisionPhysicsInfo collisionPhysicsInfo) {
 
     if (!targetEntityInfo.hasKey(ImmutableInfo.COLLISION_CHART_KEY)) {
       throw new CollisionChartNotFoundException("Target Entity doesn't have a collision chart!");
@@ -38,7 +39,7 @@ public abstract class CollidableEntity extends Entity implements Collidable {
         ImmutableInfo.COLLISION_CHART_KEY));
     CollisionData collisionData = new CollisionData(targetEntityInfo, otherEntityInfo,
         collisionPhysicsInfo);
-    return collisionChart.getPostCollisionActionData(collisionData);
+    return collisionChart.getActionDatas(collisionData);
   }
 }
 
