@@ -2,7 +2,7 @@ package ooga.model.entities.characters;
 
 import ooga.model.ImmutableInfo;
 import ooga.model.Info;
-import ooga.model.actions.aliveactions.PostCollisionActionData;
+import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.collisions.CollisionPhysicsInfo;
 import ooga.model.collisions.collision_handling.CollisionChart;
 import ooga.model.collisions.collision_handling.CollisionData;
@@ -45,7 +45,7 @@ public class Mario extends MainCharacter implements Mover {
     ooga.model.collisions.data.PostCollisionActionData postCollisionActionData = getPostCollisionActionData(this.getImmutableEntityInfo(), other.getImmutableEntityInfo(), physicsInfo);
   }
 
-  private PostCollisionActionData getPostCollisionAction(ImmutableInfo targetEntityInfo,
+  private AliveAction getPostCollisionAction(ImmutableInfo targetEntityInfo,
       ImmutableInfo sourceEntityInfo, ImmutableInfo collisionPhysicsInfo) {
     if (!targetEntityInfo.hasKey(ImmutableInfo.COLLISION_CHART_KEY)) {
       throw new CollisionChartNotFoundException("Target Entity doesn't have a collision chart!");

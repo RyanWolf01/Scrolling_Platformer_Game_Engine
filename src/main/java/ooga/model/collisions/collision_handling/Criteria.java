@@ -1,9 +1,7 @@
 package ooga.model.collisions.collision_handling;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
-import javafx.geometry.Pos;
-import ooga.model.actions.aliveactions.PostCollisionActionData;
+import ooga.model.actions.aliveactions.AliveAction;
 
 //TODO: Allow the user to call multiple actions, and allow actions to take parameters. Add Error
 //TODO: checking to this.
@@ -16,7 +14,7 @@ public class Criteria {
 
   private static final String ACTION_PACKAGE_PATH = "ooga.model.actions.";
   private final Map<String, String> myCriteria;
-  private final PostCollisionActionData postCollisionActionData;
+  private final AliveAction aliveAction;
   private final String myActionClassString;
 
   /**
@@ -28,7 +26,7 @@ public class Criteria {
    *                          to be applied
    * @param actionClassString the String of the Action class to be applied
    */
-  public Criteria(Map<String, String> criteria, String actionClassString) {
+  public Criteria(Map<String, String> criteria, PostCollision) {
     myCriteria = criteria;
     myActionClassString = actionClassString;
   }
@@ -65,7 +63,7 @@ public class Criteria {
    * @param collisionData the CollisionData of this collision
    * @return Action to be taken
    */
-  public PostCollisionActionData getPostCollisionActionData(CollisionData collisionData) {
+  public AliveAction getPostCollisionActionData(CollisionData collisionData) {
     if (matches(collisionData)) {
       return getPostCollisionActionDataHelper(myActionClassString);
     } else {
@@ -74,7 +72,7 @@ public class Criteria {
     }
   }
 
-  private PostCollisionActionData getPostCollisionActionDataHelper(String className) {
+  private AliveAction getPostCollisionActionDataHelper(String className) {
 
 //
 //    try {
