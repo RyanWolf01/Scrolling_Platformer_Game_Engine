@@ -2,7 +2,7 @@ package ooga.model.actions.aliveactions;
 
 import ooga.model.entities.alive.Alive;
 
-public class Kill implements AliveAction{
+public class Kill implements PostCollisionActionData {
 
   /**
    * decrease life by 1

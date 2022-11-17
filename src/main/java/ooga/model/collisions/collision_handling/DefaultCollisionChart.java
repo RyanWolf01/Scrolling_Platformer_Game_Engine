@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import ooga.model.actions.aliveactions.AliveAction;
+import ooga.model.actions.aliveactions.PostCollisionActionData;
 import ooga.model.collisions.collision_handling.exceptions.NoCollisionCriteriaMatchException;
 import ooga.model.ImmutableInfo;
 
@@ -38,10 +38,10 @@ public class DefaultCollisionChart implements CollisionChart {
    * @return Action
    */
   @Override
-  public AliveAction getAction(CollisionData collisionData) {
+  public PostCollisionActionData getPostCollisionActionData(CollisionData collisionData) {
     for (Criteria criteria : myCriteria) {
       if (criteria.matches(collisionData)) {
-        return criteria.getAction(collisionData);
+        return criteria.getPostCollisionActionData(collisionData);
       }
     }
 

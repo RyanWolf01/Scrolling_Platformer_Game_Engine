@@ -2,7 +2,8 @@ package ooga.model.collisions.collision_handling;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
-import ooga.model.actions.aliveactions.AliveAction;
+import javafx.geometry.Pos;
+import ooga.model.actions.aliveactions.PostCollisionActionData;
 
 //TODO: Allow the user to call multiple actions, and allow actions to take parameters. Add Error
 //TODO: checking to this.
@@ -15,6 +16,7 @@ public class Criteria {
 
   private static final String ACTION_PACKAGE_PATH = "ooga.model.actions.";
   private final Map<String, String> myCriteria;
+  private final PostCollisionActionData postCollisionActionData;
   private final String myActionClassString;
 
   /**
@@ -63,24 +65,26 @@ public class Criteria {
    * @param collisionData the CollisionData of this collision
    * @return Action to be taken
    */
-  public AliveAction getAction(CollisionData collisionData) {
+  public PostCollisionActionData getPostCollisionActionData(CollisionData collisionData) {
     if (matches(collisionData)) {
-      return getActionInstance(myActionClassString);
+      return getPostCollisionActionDataHelper(myActionClassString);
     } else {
       throw new RuntimeException("Cannot return action for collisionData that doesn't match"
           + "with the criteria defined by this Criteria object. Improper usage of getAction");
     }
   }
 
-  private AliveAction getActionInstance(String className) {
-    try {
-      Class<?> clazz = Class.forName(ACTION_PACKAGE_PATH + className);
-      return (AliveAction) clazz.getDeclaredConstructor().newInstance();
+  private PostCollisionActionData getPostCollisionActionDataHelper(String className) {
 
-    } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-             InstantiationException | IllegalAccessException e) {
-      throw new RuntimeException(e);
-    }
+
+//    try {
+//      Class<?> clazz = Class.forName(ACTION_PACKAGE_PATH + className);
+//      return (PostCollisionActionData) clazz.getDeclaredConstructor().newInstance();
+//
+//    } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
+//             InstantiationException | IllegalAccessException e) {
+//      throw new RuntimeException(e);
+//    }
   }
 
 }

@@ -1,6 +1,6 @@
 package ooga.model.collisions.collision_handling;
 
-import ooga.model.actions.aliveactions.AliveAction;
+import ooga.model.actions.aliveactions.PostCollisionActionData;
 import ooga.model.collisions.CollisionPhysicsInfo;
 import ooga.model.collisions.collision_handling.exceptions.CollisionChartNotFoundException;
 import ooga.model.entities.Entity;
@@ -44,13 +44,13 @@ public class DefaultCollisionHandler implements CollisionHandler {
       CollisionPhysicsInfo collisionPhysicsInfo) {
     ImmutableInfo entityAInfo = entityA.getImmutableEntityInfo();
     ImmutableInfo entityBInfo = entityB.getImmutableEntityInfo();
-    AliveAction action = getPostCollisionAction(entityAInfo, entityBInfo, collisionPhysicsInfo);
+    PostCollisionActionData action = getPostCollisionAction(entityAInfo, entityBInfo, collisionPhysicsInfo);
 
 //    action.execute(entityA);
   }
 
   // Get the action that results from this collision. Will be called with perspective of targetEntityInfo
-  private AliveAction getPostCollisionAction(ImmutableInfo targetEntityInfo,
+  private PostCollisionActionData getPostCollisionAction(ImmutableInfo targetEntityInfo,
       ImmutableInfo sourceEntityInfo, ImmutableInfo collisionPhysicsInfo) {
     if (!targetEntityInfo.hasKey(ImmutableInfo.COLLISION_CHART_KEY)) {
       throw new CollisionChartNotFoundException("Target Entity doesn't have a collision chart!");
@@ -59,6 +59,6 @@ public class DefaultCollisionHandler implements CollisionHandler {
     CollisionChart collisionChart = myCollisionChartGetter.getCollisionChart(targetEntityInfo.get(
         ImmutableInfo.COLLISION_CHART_KEY));
     CollisionData collisionData = new CollisionData(targetEntityInfo, sourceEntityInfo, collisionPhysicsInfo);
-    return collisionChart.getAction(collisionData);
+    return collisionChart.getPostCollisionActionData(collisionData);
   }
 }
