@@ -1,7 +1,6 @@
 package ooga.model.actionparsers;
 
 import java.lang.reflect.InvocationTargetException;
-import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.data.ActionData;
 import ooga.model.collisions.data.ActionDataContainer;
