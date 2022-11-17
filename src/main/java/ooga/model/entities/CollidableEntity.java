@@ -36,6 +36,7 @@ public abstract class CollidableEntity extends Entity implements Collidable {
 
   protected abstract void performActions(ActionDataContainer actionDataContainer);
 
+  //TODO: Come up with a better name (to express getting a "collection" of ActionData)
   protected ActionDataContainer getActionDatas(
       ImmutableInfo targetEntityInfo, ImmutableInfo otherEntityInfo,
       CollisionPhysicsInfo collisionPhysicsInfo) {
