@@ -7,9 +7,11 @@ import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.data.ActionDataContainer;
 import ooga.model.entities.movement.AutomaticMover;
+import ooga.model.entities.movement.MovementQueue;
 
 public class AutomaticMovingCharacter extends MovingCharacter implements AutomaticMover {
 
+  private MovementQueue movementQueue;
   /**
    * Goomba is an Enemy that can Move and have Lives
    * @param initialXCoordinate
@@ -19,8 +21,9 @@ public class AutomaticMovingCharacter extends MovingCharacter implements Automat
    * @param entityInfo
    */
   public AutomaticMovingCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width,
-      Info entityInfo) {
+      Info entityInfo, MovementQueue movementQueue) {
     super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
+    this.movementQueue = movementQueue;
   }
 
   /**
