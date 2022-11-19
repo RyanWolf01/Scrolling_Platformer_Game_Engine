@@ -1,7 +1,7 @@
 package ooga.model.entities.movement;
 
 /**
- * Implement move() subclass to ensure guarding which directions an object can move
+ * Implement move() in concrete classes to ensure guarding which directions an object can move
  */
 public interface Mover {
     /**
