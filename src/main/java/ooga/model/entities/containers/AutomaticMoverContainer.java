@@ -1,19 +1,18 @@
 package ooga.model.entities.containers;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
-import ooga.model.entities.Entity;
-import ooga.model.entities.ImmutableEntity;
+import ooga.model.entities.AutomaticMovingEntity;
+import ooga.model.entities.movement.AutomaticMover;
 import ooga.model.entities.movement.Mover;
 
-public class MoverContainer {
+public class AutomaticMoverContainer {
 
-  private List<Mover> movers;
+  private List<AutomaticMover> movers;
   /**
    * default constructor
    */
-  public MoverContainer(){
+  public AutomaticMoverContainer(){
     movers = new ArrayList<>();
   }
 
@@ -21,7 +20,7 @@ public class MoverContainer {
    * If you want to add an entity upon creation of the container
    * @param mover
    */
-  public MoverContainer(Mover mover){
+  public AutomaticMoverContainer(AutomaticMover mover){
     movers = new ArrayList<>();
     movers.add(mover);
   }
@@ -29,7 +28,7 @@ public class MoverContainer {
   /**
    * Add Mover
    */
-  public void addMover(Mover mover){
+  public void addMover(AutomaticMover mover){
     movers.add(mover);
   }
 
@@ -38,7 +37,7 @@ public class MoverContainer {
    * @param index index in container
    * @return ImmutableEntity
    */
-  public Mover getMover(int index){
+  public AutomaticMover getMover(int index){
     return movers.get(index);
   }
 
@@ -55,8 +54,8 @@ public class MoverContainer {
    */
   public void moveAll(){
     for (int index = 0; index < getContainerSize(); index++) {
-      Mover currMover = getMover(index);
-      currMover.move();
+      AutomaticMover currMover = getMover(index);
+      currMover.automaticMove();
     }
   }
 
