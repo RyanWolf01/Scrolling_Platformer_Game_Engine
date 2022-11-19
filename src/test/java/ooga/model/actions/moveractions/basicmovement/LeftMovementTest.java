@@ -15,7 +15,7 @@ public class LeftMovementTest {
     LeftMovement move = new LeftMovement();
     move.execute(mario);
 
-    assertEquals(0, mario.getXCoordinate());
+    assertEquals(5, mario.getXCoordinate());
     assertEquals(0, mario.getYCoordinate());
   }
 

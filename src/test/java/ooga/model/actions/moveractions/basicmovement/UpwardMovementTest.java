@@ -31,7 +31,7 @@ public class UpwardMovementTest {
     move.execute(mario);
 
     assertEquals(0, mario.getXCoordinate());
-    assertEquals(10, mario.getYCoordinate());
+    assertEquals(15, mario.getYCoordinate());
   }
 
   /**
