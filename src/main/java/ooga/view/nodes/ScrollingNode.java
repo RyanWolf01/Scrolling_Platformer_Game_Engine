@@ -10,6 +10,9 @@ import ooga.model.entities.EntityInfo;
  * object.
  */
 public class ScrollingNode extends ImageView {
+
+  private double backX;
+  private double backY;
   public ScrollingNode(int xCoordinate, int yCoordinate, double height, double width, String url){
     super();
     update(xCoordinate, yCoordinate);
@@ -20,8 +23,16 @@ public class ScrollingNode extends ImageView {
   }
 
   public void update(double xCoordinate, double yCoordinate){
-    this.setX(xCoordinate);
-    this.setY(yCoordinate);
+    backX = xCoordinate;
+    backY = yCoordinate;
+  }
+
+  public void updateCameraX(double cameraX){
+    this.setX(backX - cameraX);
+  }
+
+  public void updateCameraY(double cameraY){
+    this.setY(backY - cameraY);
   }
 
 }
