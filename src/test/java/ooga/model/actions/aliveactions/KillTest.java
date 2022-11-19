@@ -2,8 +2,7 @@ package ooga.model.actions.aliveactions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import ooga.model.entities.EntityInfo;
-import ooga.model.entities.characters.Mario;
+import ooga.model.entities.characters.maincharacters.Mario;
 import org.junit.jupiter.api.Test;
 
 public class KillTest {

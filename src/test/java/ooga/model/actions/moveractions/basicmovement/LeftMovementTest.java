@@ -1,20 +1,20 @@
-package ooga.model.actions.moveractions;
+package ooga.model.actions.moveractions.basicmovement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ooga.model.entities.characters.maincharacters.Mario;
 import org.junit.jupiter.api.Test;
 
-public class StopYMovementTest {
+public class LeftMovementTest {
 
   @Test
-  void testStopYMovementPos1() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+  void testMovementPos1() {
+    Mario mario = new Mario(10, 0, 2, 2, null);
 
-    StopYMovement stop = new StopYMovement();
-    stop.execute(mario);
+    LeftMovement move = new LeftMovement();
+    move.execute(mario);
 
-    assertEquals(0, mario.getXCoordinate());
+    assertEquals(5, mario.getXCoordinate());
     assertEquals(0, mario.getYCoordinate());
   }
 
@@ -22,12 +22,12 @@ public class StopYMovementTest {
    * stop twice
    */
   @Test
-  void testStopYMovementPos2() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+  void testMovementPos2() {
+    Mario mario = new Mario(10, 0, 2, 2, null);
 
-    StopYMovement stop = new StopYMovement();
-    stop.execute(mario);
-    stop.execute(mario);
+    LeftMovement move = new LeftMovement();
+    move.execute(mario);
+    move.execute(mario);
 
     assertEquals(0, mario.getXCoordinate());
     assertEquals(0, mario.getYCoordinate());
@@ -37,10 +37,10 @@ public class StopYMovementTest {
    * don't execute
    */
   @Test
-  void testStopYMovementNeg() {
+  void testMovementNeg() {
     Mario mario = new Mario(0, 0, 2, 2, null);
 
-    StopYMovement stop = new StopYMovement();
+    LeftMovement move = new LeftMovement();
 
     assertEquals(0, mario.getXCoordinate());
     assertEquals(0, mario.getYCoordinate());

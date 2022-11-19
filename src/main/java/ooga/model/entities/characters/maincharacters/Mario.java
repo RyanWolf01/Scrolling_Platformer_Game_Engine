@@ -1,4 +1,4 @@
-package ooga.model.entities.characters;
+package ooga.model.entities.characters.maincharacters;
 
 import ooga.model.Info;
 import ooga.model.actionparsers.AliveActionParser;
@@ -6,9 +6,9 @@ import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.data.ActionDataContainer;
-import ooga.model.entities.movement.Mover;
+import ooga.model.entities.characters.MovingCharacter;
 
-public class Mario extends MainCharacter {
+public class Mario extends MovingCharacter {
 
   public Mario(int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
@@ -22,6 +22,9 @@ public class Mario extends MainCharacter {
   public void move() {
     setXCoordinate(getXCoordinate() + getXVelocity());
     setYCoordinate(getYCoordinate() + getYVelocity());
+    if(getYCoordinate() >= getScreenSize()){
+      kill();
+    }
   }
 
   /**

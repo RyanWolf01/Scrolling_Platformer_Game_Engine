@@ -1,8 +1,7 @@
 package ooga.model.actions.moveractions;
 
 
-import ooga.model.entities.EntityInfo;
-import ooga.model.entities.characters.Mario;
+import ooga.model.entities.characters.maincharacters.Mario;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -5,44 +5,17 @@ import ooga.model.Info;
 import ooga.model.entities.alive.Alive;
 import ooga.model.entities.movement.Mover;
 
-public abstract class MainCharacter extends CollidableEntity implements Alive, Mover {
+public abstract class StaticCharacter extends CollidableEntity implements Alive {
 
   private int lives;
 
   private double xVelocity;
   private double yVelocity;
 
-  public MainCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width,
+  public StaticCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
 //        this.lives = Integer.parseInt(entityInfo.get("lives"));
-  }
-
-  /**
-   * Implements Mover interface changeVelocities method that changes object's velocities
-   */
-  @Override
-  public void changeVelocities(double changeXVelocity, double changeYVelocity) {
-    xVelocity += changeXVelocity;
-    yVelocity += changeYVelocity;
-  }
-
-  /**
-   * @return x velocity, implements Mover method This getter is needed for some MoverAction classes,
-   * and for subclasses
-   */
-  @Override
-  public double getXVelocity() {
-    return xVelocity;
-  }
-
-  /**
-   * @return y velocity, implements Mover method This getter is needed for some MoverAction classes,
-   * and for subclasses
-   */
-  @Override
-  public double getYVelocity() {
-    return yVelocity;
   }
 
   /**
@@ -69,11 +42,11 @@ public abstract class MainCharacter extends CollidableEntity implements Alive, M
    * @param lives value to which lives will now be set
    */
   protected void setLives(int lives) {
-      if (lives <= 0) {
-          this.lives = 0;
-      } else {
-          this.lives = lives;
-      }
+    if (lives <= 0) {
+      this.lives = 0;
+    } else {
+      this.lives = lives;
+    }
   }
 
 }

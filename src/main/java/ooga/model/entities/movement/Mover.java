@@ -1,7 +1,7 @@
 package ooga.model.entities.movement;
 
 /**
- * Implement move() subclass to ensure guarding which directions an object can move
+ * Implement move() in concrete classes to ensure guarding which directions an object can move
  */
 public interface Mover {
     /**
@@ -16,6 +16,15 @@ public interface Mover {
     void changeVelocities(double changeXVelocity, double changeYVelocity);
 
     /**
+     * Reset velocities
+     *
+     * @param resetX tells if should reset xVelocity
+     * @param resetY tells if should reset yVelocity
+     *
+     */
+    void resetVelocities(boolean resetX, boolean resetY);
+
+    /**
      *
      * @return double x velocity
      */
@@ -26,5 +35,7 @@ public interface Mover {
      * @return double y velocity
      */
     public double getYVelocity();
+
+
 
 }

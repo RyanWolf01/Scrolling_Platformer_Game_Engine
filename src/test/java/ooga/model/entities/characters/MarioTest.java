@@ -1,9 +1,9 @@
 package ooga.model.entities.characters;
 
 import ooga.model.entities.EntityInfo;
-import ooga.model.entities.data.InitialAttributes;
+import ooga.model.entities.characters.maincharacters.Mario;
 import org.junit.jupiter.api.Test;
-import static ooga.model.entities.data.EntityType.MAIN_CHARACTER;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MarioTest {

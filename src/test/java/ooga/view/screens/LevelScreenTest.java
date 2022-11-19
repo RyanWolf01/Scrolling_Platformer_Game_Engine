@@ -1,15 +1,11 @@
 package ooga.view.screens;
 
 import javafx.stage.Stage;
-import ooga.model.entities.Entity;
 import ooga.model.entities.EntityInfo;
-import ooga.model.entities.characters.Mario;
+import ooga.model.entities.characters.maincharacters.Mario;
 import ooga.model.entities.containers.EntityContainer;
-import ooga.model.entities.data.InitialAttributes;
 import org.junit.jupiter.api.Test;
 import util.DukeApplicationTest;
-
-import javax.swing.text.View;
 
 public class LevelScreenTest extends DukeApplicationTest {
 
