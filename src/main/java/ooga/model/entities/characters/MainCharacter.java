@@ -28,6 +28,21 @@ public abstract class MainCharacter extends CollidableEntity implements Alive, M
   }
 
   /**
+   * Reset velocities
+   *
+   * @param resetX tells if should reset xVelocity
+   * @param resetY tells if should reset yVelocity
+   *
+   */
+  @Override
+  public void resetVelocities(boolean resetX, boolean resetY){
+    if(resetX)
+      xVelocity = 0;
+    if(resetY)
+      yVelocity = 0;
+  }
+
+  /**
    * @return x velocity, implements Mover method This getter is needed for some MoverAction classes,
    * and for subclasses
    */
