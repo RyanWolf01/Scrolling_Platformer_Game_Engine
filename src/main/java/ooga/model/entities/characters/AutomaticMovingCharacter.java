@@ -13,7 +13,7 @@ public class AutomaticMovingCharacter extends MovingCharacter implements Automat
 
   private MovementQueue movementQueue;
   /**
-   * Goomba is an Enemy that can Move and have Lives
+   * AutomaticMovingCharacter has lives and can move; moves automatically
    * @param initialXCoordinate
    * @param initialYCoordinate
    * @param height
@@ -53,7 +53,8 @@ public class AutomaticMovingCharacter extends MovingCharacter implements Automat
    */
   @Override
   public void automaticMove(){
-
+    MoverAction move = movementQueue.nextMove();
+    move.execute(this);
   }
 
   @Override
