@@ -37,7 +37,7 @@ public class AutomaticMoverContainer {
    * @param index index in container
    * @return ImmutableEntity
    */
-  public AutomaticMover getMover(int index){
+  private AutomaticMover getMover(int index){
     return movers.get(index);
   }
 
