@@ -6,7 +6,7 @@ package ooga.model.entities.movement;
 public interface AutomaticMover {
 
   /**
-   * This will move the entity automatically based on the configured MoverActions in the MoverList
+   * This will move the entity automatically based on the configured MoverActions in the MovementQueue
    */
   void automaticMove();
 
