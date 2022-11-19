@@ -5,14 +5,14 @@ import ooga.model.Info;
 import ooga.model.entities.alive.Alive;
 import ooga.model.entities.movement.Mover;
 
-public abstract class MainCharacter extends CollidableEntity implements Alive, Mover {
+public abstract class MovingCharacter extends CollidableEntity implements Alive, Mover {
 
   private int lives;
 
   private double xVelocity;
   private double yVelocity;
 
-  public MainCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width,
+  public MovingCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
 //        this.lives = Integer.parseInt(entityInfo.get("lives"));

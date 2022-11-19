@@ -1,13 +1,13 @@
 package ooga.model.entities.data;
 
-import ooga.model.entities.characters.MainCharacter;
+import ooga.model.entities.characters.MovingCharacter;
 
 /**
  * The main use of this enum is for the collisions. Based on the type of the entity different
  * things will happen to different things.
  */
 public enum EntityType {
-    MAIN_CHARACTER(MainCharacter.class);
+    MAIN_CHARACTER(MovingCharacter.class);
 
     /**
      * This stuff will probably be helpful for reflection when doing collisions

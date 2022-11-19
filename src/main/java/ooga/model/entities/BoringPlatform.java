@@ -1,8 +1,6 @@
 package ooga.model.entities;
 
 import ooga.model.Info;
-import ooga.model.entities.characters.Mario;
-import ooga.model.entities.data.InitialAttributes;
 
 public class BoringPlatform extends Entity{
 

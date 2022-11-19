@@ -3,7 +3,7 @@ package ooga.model.actions.moveractions.basicmovement;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ooga.model.actions.moveractions.StopXMovement;
-import ooga.model.entities.characters.Mario;
+import ooga.model.entities.characters.maincharacters.Mario;
 import org.junit.jupiter.api.Test;
 
 public class UpwardMovementTest {
