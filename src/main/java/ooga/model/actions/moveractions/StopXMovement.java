@@ -10,7 +10,7 @@ public class StopXMovement implements MoverAction{
    */
   @Override
   public void execute(Mover entity){
-    entity.changeVelocities(-entity.getXVelocity(), 0);
+    entity.resetVelocities(true, false);
     entity.move();
   }
 
