@@ -3,12 +3,8 @@ package ooga.model.entities.containers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ooga.model.actions.moveractions.basicmovement.RightMovement;
-import ooga.model.actions.moveractions.basicmovement.UpwardMovement;
 import ooga.model.entities.characters.AutomaticMovingCharacter;
-import ooga.model.entities.characters.maincharacters.Mario;
-import ooga.model.entities.movement.AutomaticMover;
 import ooga.model.entities.movement.MovementQueue;
-import ooga.model.entities.movement.Mover;
 import org.junit.jupiter.api.Test;
 
 public class AutomaticMoverContainerTest {
@@ -61,13 +57,10 @@ public class AutomaticMoverContainerTest {
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());
 
-    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(0, 0, 0, 0, null, null);
+    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(0, 0, 0, 0, null, movementQueue);
     container.addMover(mover1);
 
-    container.moveAll();
-
     assertEquals(0, mover1.getXCoordinate());
-
   }
 
 

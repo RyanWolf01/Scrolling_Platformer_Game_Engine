@@ -56,6 +56,11 @@ public class AutomaticMoverContainer {
     for (int index = 0; index < getContainerSize(); index++) {
       AutomaticMover currMover = getMover(index);
       currMover.automaticMove();
+//      try {
+//        currMover.automaticMove();
+//      }catch(){
+//
+//      }
     }
   }
 
