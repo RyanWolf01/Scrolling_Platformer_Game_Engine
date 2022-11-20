@@ -33,7 +33,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage){
         //TODO : Find out what the path for collision should be
-        myController = new GameController(Path.of(DEFAULT_RESOURCE_PACKAGE + "games/mario/levels/testLevel1.json"), Path.of("Collision Path"));
+        myController = new GameController(DEFAULT_RESOURCE_PACKAGE + "games/mario/levels/testLevel1.json", "Collision Path");
         LevelScreen testLevel = new LevelScreen(myController);
         primaryStage.setScene(testLevel.initiateLevel());
         primaryStage.show();
