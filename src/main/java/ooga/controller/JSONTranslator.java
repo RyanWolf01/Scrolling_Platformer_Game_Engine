@@ -8,8 +8,8 @@ import org.json.simple.parser.ParseException;
 
 public interface JSONTranslator {
 
-  public JSONObject initialJSONInformation(String JSONFilePath) throws IOException, ParseException;
+  JSONObject initialJSONInformation(String JSONFilePath) throws IOException, ParseException;
 
-  public ConnectionContainer makeEntityContainerFromLevelJSON(JSONObject levelJSON, ConnectionContainer connectionContainer);
+  void makeEntityContainerFromLevelJSON(String JSONFilePath, ConnectionContainer connectionContainer);
 
 }
