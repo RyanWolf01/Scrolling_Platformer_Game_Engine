@@ -1,7 +1,7 @@
 package ooga.model.entities;
 
-import ooga.model.ImmutableInfo;
-import ooga.model.Info;
+import ooga.model.entities.data.ImmutableInfo;
+import ooga.model.entities.data.Info;
 
 /**
  * Everything that can be represented in the game is an Entity of some type.

@@ -2,7 +2,7 @@ package ooga.controller;
 
 import javafx.scene.Node;
 import ooga.model.entities.Entity;
-import ooga.model.entities.EntityInfo;
+import ooga.model.entities.data.EntityInfo;
 import ooga.view.nodes.ScrollingNode;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

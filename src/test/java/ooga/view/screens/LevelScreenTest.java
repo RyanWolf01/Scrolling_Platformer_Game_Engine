@@ -1,7 +1,7 @@
 package ooga.view.screens;
 
 import javafx.stage.Stage;
-import ooga.model.entities.EntityInfo;
+import ooga.model.entities.data.EntityInfo;
 import ooga.model.entities.characters.maincharacters.Mario;
 import ooga.model.entities.containers.EntityContainer;
 import org.junit.jupiter.api.Test;

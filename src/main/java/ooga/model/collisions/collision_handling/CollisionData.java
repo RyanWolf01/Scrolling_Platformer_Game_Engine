@@ -3,7 +3,7 @@ package ooga.model.collisions.collision_handling;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import ooga.model.ImmutableInfo;
+import ooga.model.entities.data.ImmutableInfo;
 
 /**
  * Encapsulates the data representing a collision between Entity A and Entity B. The data is from

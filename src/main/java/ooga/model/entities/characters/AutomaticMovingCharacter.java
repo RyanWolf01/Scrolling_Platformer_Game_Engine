@@ -1,6 +1,6 @@
 package ooga.model.entities.characters;
 
-import ooga.model.Info;
+import ooga.model.entities.data.Info;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.actions.aliveactions.AliveAction;

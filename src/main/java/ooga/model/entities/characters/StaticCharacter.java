@@ -1,9 +1,8 @@
 package ooga.model.entities.characters;
 
 import ooga.model.entities.CollidableEntity;
-import ooga.model.Info;
+import ooga.model.entities.data.Info;
 import ooga.model.entities.alive.Alive;
-import ooga.model.entities.movement.Mover;
 
 public abstract class StaticCharacter extends CollidableEntity implements Alive {
 

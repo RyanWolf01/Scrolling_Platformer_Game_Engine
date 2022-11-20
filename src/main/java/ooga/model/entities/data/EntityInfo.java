@@ -1,6 +1,4 @@
-package ooga.model.entities;
-
-import ooga.model.Info;
+package ooga.model.entities.data;
 
 public class EntityInfo extends Info {
 
