@@ -42,7 +42,8 @@ public class ConnectionContainer {
     Entity newEntity;
     try {
       Class<?> clazz = Class.forName(entityClassResources.getString(type));
-      newEntity = (Entity) clazz.getConstructor(Integer.class, Integer.class, Double.class, Double.class, EntityInfo.class).newInstance();
+      newEntity = (Entity) clazz.getConstructor(Integer.class, Integer.class, Double.class, Double.class, EntityInfo.class)
+              .newInstance(xCoordinate,yCoordinate, height, width, info);
     } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
              InstantiationException | IllegalAccessException e) {
       throw new RuntimeException(e);

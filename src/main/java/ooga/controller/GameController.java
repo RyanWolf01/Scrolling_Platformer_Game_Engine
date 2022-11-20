@@ -2,9 +2,12 @@ package ooga.controller;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
 
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
+import ooga.model.actions.aliveactions.AliveAction;
+import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.collision_handling.CollisionHandler;
 import ooga.model.entities.containers.ImmutableContainer;
 import ooga.view.nodes.NodeContainer;
@@ -16,23 +19,29 @@ import ooga.view.nodes.ScrollingNode;
  * will be running during the gameplay.
  */
 public class GameController {
+    private Map<KeyCode, MoverAction> keyActionMap;
     private ConnectionContainer container;
 
     /**
      * The GameController needs to have a mapping of backend to frontend objects
      *
      */
-    public GameController(Path levelJSONPath, Path collisionJSONPath) {
-        container = new ConnectionContainer();
+    public GameController(String levelJSONPath, String collisionJSONPath) {
         setupSimulation(levelJSONPath, collisionJSONPath);
+        setupKeyAction();
     }
 
-    public void setupSimulation(Path configFilePath, Path collisionFilePath) {
+    private void setupSimulation(String configFilePath, String collisionFilePath) {
         /*
         JSONInformationDecoder jsonDecoder = new JSONInformationDecoder();
         PreloadedCollisionChartGetter collisionChartGetter = new PreloadedCollisionChartGetter(jsonDecoder, configFilePath.entityFiles);
         CollisionHandler collisionHandler = new DefaultCollisionHandler(collisionChartGetter);
          */
+    }
+
+    private void setupKeyAction(String controlsJSONFile){
+
+
     }
 
     /**
