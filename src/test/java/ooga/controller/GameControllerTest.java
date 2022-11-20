@@ -35,7 +35,7 @@ public class GameControllerTest {
         JSONInformationDecoder jsoner = new JSONInformationDecoder();
         FileReader infoFile = new FileReader("something");
         JSONObject initialGameStates = (JSONObject) new JSONParser().parse(infoFile);
-        ConnectionContainer container = jsoner.makeEntityContainerFromLevelJSON(initialGameStates, connectionContainer);
+        jsoner.makeEntityContainerFromLevelJSON("something", connectionContainer);
 
         // assertEquals(nodes.size(), container.getContainerSize());
     }

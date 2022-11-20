@@ -19,29 +19,20 @@ import ooga.view.nodes.ScrollingNode;
  * will be running during the gameplay.
  */
 public class GameController {
-    private Map<KeyCode, MoverAction> keyActionMap;
     private ConnectionContainer container;
+    private UserControlHandler controlHandler;
+    private JSONInformationDecoder jsonDecoder;
 
     /**
      * The GameController needs to have a mapping of backend to frontend objects
      *
      */
     public GameController(String levelJSONPath, String collisionJSONPath) {
-        setupSimulation(levelJSONPath, collisionJSONPath);
-        setupKeyAction();
-    }
-
-    private void setupSimulation(String configFilePath, String collisionFilePath) {
-        /*
-        JSONInformationDecoder jsonDecoder = new JSONInformationDecoder();
-        PreloadedCollisionChartGetter collisionChartGetter = new PreloadedCollisionChartGetter(jsonDecoder, configFilePath.entityFiles);
-        CollisionHandler collisionHandler = new DefaultCollisionHandler(collisionChartGetter);
-         */
-    }
-
-    private void setupKeyAction(String controlsJSONFile){
-
-
+        controlHandler = new UserControlHandler();
+        container = new ConnectionContainer();
+        jsonDecoder = new JSONInformationDecoder();
+        jsonDecoder.makeEntityContainerFromLevelJSON(levelJSONPath, container);
+        //jsonDecoder.makeUserControlHandlerFromJSON(controlsJSONFile, controlHandler);
     }
 
     /**
@@ -56,7 +47,7 @@ public class GameController {
     }
 
     public void handleKeyInput(KeyCode code){
-        // eventually make map of keycodes to actions, then send that info to model
+
     }
 
     /**
