@@ -28,4 +28,11 @@ public class NodeContainer implements Iterable<Node> {
     public int size(){
         return entities.size();
     }
+
+    public void updateCameraPosition(double cameraX, double cameraY){
+        for (ScrollingNode a : entities) {
+            a.updateCameraX(cameraX);
+            a.updateCameraY(cameraY);
+        }
+    }
 }
