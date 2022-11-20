@@ -17,7 +17,7 @@ public class BasicStaticCharacter extends StaticCharacter {
    * @param entityInfo
    */
   public BasicStaticCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width,
-      Info entityInfo, MovementQueue movementQueue) {
+      Info entityInfo) {
     super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
   }
 
