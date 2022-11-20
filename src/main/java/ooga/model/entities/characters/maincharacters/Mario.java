@@ -1,5 +1,4 @@
 package ooga.model.entities.characters.maincharacters;
-
 import ooga.model.Info;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.MoverActionParser;
@@ -7,8 +6,12 @@ import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.data.ActionDataContainer;
 import ooga.model.entities.characters.MovingCharacter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Mario extends MovingCharacter {
+
+  private static final Logger LOG = LogManager.getLogger(Mario.class);
 
   public Mario(int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
@@ -24,6 +27,7 @@ public class Mario extends MovingCharacter {
     setYCoordinate(getYCoordinate() + getYVelocity());
     if(getYCoordinate() >= getScreenSize()){
       kill();
+      LOG.info("Mario was killed.");
     }
   }
 
