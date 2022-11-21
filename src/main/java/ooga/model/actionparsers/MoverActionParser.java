@@ -11,17 +11,22 @@ public class MoverActionParser {
 
   public static final String ACTION_INTERFACE_NAME = "MoverAction";
 
-  private ActionDataContainer myActionDataContainer;
+  private final ActionDataContainer myActionDataContainer;
 
   public MoverActionParser(ActionDataContainer actionDataContainer) {
     myActionDataContainer = actionDataContainer;
   }
 
-  public int parseAndApplyActions(Mover moverEntity) {
+  /**
+   * Parses MoverActions encoded in actionDataContainer and applies them to the mover param
+   * @param mover the mover on which an action will be applied
+   * @return num actions applied to mover
+   */
+  public int parseAndApplyActions(Mover mover) {
     int numActionsExecuted = 0;
     for (ActionData actionData : myActionDataContainer) {
       if (actionData.interfaceName().equals(ACTION_INTERFACE_NAME)) {
-        parseAction(actionData).execute(moverEntity);
+        parseAction(actionData).execute(mover);
         numActionsExecuted += 1;
       }
     }
