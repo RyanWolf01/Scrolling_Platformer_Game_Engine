@@ -20,7 +20,7 @@ import java.util.HashMap;
 public class StartScreen {
 
   private static HashMap<String, String> gameToGame;
-  private static final String RESOURCE_DIRECTORY = System.getProperty("user.dir") + "\\data\\";
+  private static final String RESOURCE_DIRECTORY = System.getProperty("user.dir") + "\\src\\main\\resources\\";
   private static final String ICON_DIRECTORY =  "icons\\";
   private static final String GAMES_DIRECTORY = "games\\";
   private static final String LEVEL_DIRECTORY = "levels\\";
@@ -53,7 +53,7 @@ public class StartScreen {
     startGame.setText("Start Game");
 
     startGame.setOnAction(event -> {
-      new View(mainStage, gameToGame.get(gameSelector.getValue()), levelFile);
+      new View(mainStage, gameSelector.getValue(), levelFile);
     });
     gameChooser.add(startGame, 0, 2);
 
@@ -72,10 +72,10 @@ public class StartScreen {
     levelButton.setText("Choose Level");
     levelButton.setOnAction(event -> {
       String gameDirectory = RESOURCE_DIRECTORY + GAMES_DIRECTORY + gameToGame.get(gameSelector.getValue()) + LEVEL_DIRECTORY;
-      System.out.println(gameDirectory);
-      fileChooser.setInitialDirectory(new File(gameDirectory));
+      System.out.println(System.getProperty("user.dir") + "/src/main/resources/games/mario/levels/");
+      fileChooser.setInitialDirectory(new File(System.getProperty("user.dir") + "/src/main/resources/games/mario/levels/"));
       levelFile = fileChooser.showOpenDialog(mainStage);
-      LOG.info(levelFile);
+      LOG.debug(levelFile);
     });
 
 

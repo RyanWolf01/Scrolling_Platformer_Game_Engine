@@ -1,6 +1,7 @@
 package ooga.view.nodes;
 
 import javafx.scene.Node;
+import ooga.Main;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -35,4 +36,10 @@ public class NodeContainer implements Iterable<Node> {
             a.updateCameraY(cameraY);
         }
     }
+
+
+    public ScrollingNode getMainCharacter(){
+        return new ScrollingNode(50, 0, 25, 25, Main.DEFAULT_RESOURCE_PACKAGE + "\\src\\main\\resources\\games\\mario\\assets\\mario.png");
+    }
+
 }
