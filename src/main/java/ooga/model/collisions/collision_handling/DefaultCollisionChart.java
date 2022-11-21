@@ -2,6 +2,7 @@ package ooga.model.collisions.collision_handling;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import ooga.model.collisions.collision_handling.exceptions.NoCollisionCriteriaMatchException;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 
@@ -17,8 +18,8 @@ public class DefaultCollisionChart implements CollisionChart {
    * Instantiates a new DefaultCollisionChart
    */
 
-  public DefaultCollisionChart() {
-    myCriteria = new ArrayList<>();
+  public DefaultCollisionChart(List<Criteria> criteriaList) {
+    myCriteria = criteriaList;
 
     // example of adding a row in the collision chart (called a Criteria object)
 //    Map<String, String> criteriaMap = new HashMap<>();
