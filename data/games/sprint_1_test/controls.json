@@ -1,0 +1,5 @@
+{
+  "W": "jump",
+  "A": "move_left",
+  "D": "move_right"
+}
