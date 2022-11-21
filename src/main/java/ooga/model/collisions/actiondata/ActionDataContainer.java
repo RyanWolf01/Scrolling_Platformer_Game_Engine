@@ -1,4 +1,4 @@
-package ooga.model.collisions.data;
+package ooga.model.collisions.actiondata;
 
 import java.util.Collection;
 import java.util.Iterator;

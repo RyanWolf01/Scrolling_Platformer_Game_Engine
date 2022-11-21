@@ -3,13 +3,13 @@ package ooga.model.entities;
 import ooga.model.entities.data.ImmutableInfo;
 import ooga.model.entities.data.Info;
 import ooga.model.collisions.Collidable;
-import ooga.model.collisions.CollisionPhysicsInfo;
+import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.collisions.collision_handling.CollisionChart;
 import ooga.model.collisions.collision_handling.CollisionChartGetter;
 import ooga.model.collisions.collision_handling.CollisionData;
 import ooga.model.collisions.collision_handling.DefaultCollisionChartGetter;
 import ooga.model.collisions.collision_handling.exceptions.CollisionChartNotFoundException;
-import ooga.model.collisions.data.ActionDataContainer;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 
 public abstract class CollidableEntity extends Entity implements Collidable {
 

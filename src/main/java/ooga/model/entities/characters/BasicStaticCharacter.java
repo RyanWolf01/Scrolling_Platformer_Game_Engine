@@ -3,8 +3,7 @@ package ooga.model.entities.characters;
 import ooga.model.entities.data.Info;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actions.aliveactions.AliveAction;
-import ooga.model.collisions.data.ActionDataContainer;
-import ooga.model.entities.movement.MovementQueue;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 
 public class BasicStaticCharacter extends StaticCharacter {
 
