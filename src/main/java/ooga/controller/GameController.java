@@ -2,6 +2,7 @@ package ooga.controller;
 
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
+import ooga.model.collisions.collision_handling.CollisionData;
 import ooga.view.nodes.NodeContainer;
 
 
@@ -22,9 +23,11 @@ public class GameController {
         controlHandler = new UserControlHandler();
         container = new ConnectionContainer();
         jsonDecoder = new JSONInformationDecoder();
+        collisionData = new CollisionData();
         jsonDecoder.makeEntityContainerFromLevelJSON(levelJSONPath, container);
         // TODO: integrate new String for controls JSON into this constructor and in related locations in main and controller tests
         jsonDecoder.makeUserControlHandlerFromJSON(controlsJSONPath, controlHandler);
+        jsonDecoder.makeCollisionDataFromJSONObject(collisionJSONPath, )
     }
 
     /**
