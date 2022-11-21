@@ -125,7 +125,7 @@ public class JSONInformationDecoder implements JSONTranslator {
   }
 
 
-  // TODO: figure this out once I know what we are changing with collision info
+  // TODO: figure this out once I know what we are doing with collision info
   private CollisionData makeCollisionDataFromJSONObject(JSONObject entityInformation) {
     return null;
   }
@@ -133,6 +133,17 @@ public class JSONInformationDecoder implements JSONTranslator {
   // method to handle JSON Object, and check is the value is another JSON object
   // adapting from https://www.baeldung.com/jsonobject-iteration
   // just have to do it for JSON.simple instead og just org.JSON
+
+
+  public UserControlHandler makeUserControlHandlerFromJSON(String controlsJSONPath, UserControlHandler controlHandler) {
+    JSONObject controlsJSONObject = null;
+    try {
+      controlsJSONObject = initialJSONInformation(controlsJSONPath);
+    } catch (IOException | ParseException e) {
+      throw new RuntimeException(e);
+    }
+
+  }
 
   /**
    * This method will take in the value in a key value pair in a JSON Object and determine whether the
