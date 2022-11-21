@@ -4,9 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.Action;
-import ooga.model.collisions.data.ActionData;
-import ooga.model.collisions.data.ActionDataContainer;
+import ooga.model.collisions.actiondata.ActionData;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.entities.data.EntityInfo;
 import org.junit.jupiter.api.Test;
 
