@@ -9,6 +9,7 @@ import javafx.util.Duration;
 import ooga.controller.GameController;
 import ooga.view.screens.LevelScreen;
 import ooga.view.screens.StartScreen;
+
 import java.nio.file.Path;
 import java.sql.Time;
 
@@ -32,13 +33,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage){
-        //TODO : Find out what the path for collision should be
-        myController = new GameController(Path.of(DEFAULT_RESOURCE_PACKAGE + "games/mario/levels/testLevel1.json"), Path.of("Collision Path"));
+        //Create Splash Screen and set it to the stage
+        StartScreen startScreen = new StartScreen(primaryStage);
+        /*
+        myController = new GameController(DEFAULT_RESOURCE_PACKAGE + "games/mario/levels/testLevel1.json");
         LevelScreen testLevel = new LevelScreen(myController);
         primaryStage.setScene(testLevel.initiateLevel());
         primaryStage.show();
         myAnimation = new Timeline();
         myAnimation.setCycleCount(Timeline.INDEFINITE);
         myAnimation.getKeyFrames().add(new KeyFrame(Duration.seconds(FRAME_DELAY), e -> testLevel.step(FRAME_DELAY)));
+         */
     }
 }
