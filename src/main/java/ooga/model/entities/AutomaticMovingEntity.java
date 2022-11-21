@@ -3,7 +3,7 @@ package ooga.model.entities;
 import ooga.model.entities.data.Info;
 import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.actions.moveractions.MoverAction;
-import ooga.model.collisions.data.ActionDataContainer;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.entities.movement.AutomaticMover;
 import ooga.model.entities.movement.MovementQueue;
 

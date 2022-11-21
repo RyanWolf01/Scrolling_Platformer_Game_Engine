@@ -1,4 +1,4 @@
-package ooga.model.collisions.data;
+package ooga.model.collisions.physics;
 
 public enum CollisionDirection {
     TOP,

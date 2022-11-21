@@ -1,12 +1,11 @@
 package ooga.model.entities.characters;
 
-import ooga.model.entities.characters.maincharacters.Mario;
 import ooga.model.entities.data.Info;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
-import ooga.model.collisions.data.ActionDataContainer;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.entities.movement.AutomaticMover;
 import ooga.model.entities.movement.MovementQueue;
 import org.apache.logging.log4j.LogManager;

@@ -4,9 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.Action;
-import ooga.model.collisions.data.ActionData;
-import ooga.model.collisions.data.ActionDataContainer;
+import ooga.model.collisions.actiondata.ActionData;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.entities.data.EntityInfo;
 import org.junit.jupiter.api.Test;
 
@@ -88,26 +87,12 @@ public class BasicStaticCharacterTest {
     character.setLives(2);
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();
-    ActionData data = new ActionData("Kill", "AliveAction", params);
+    ActionData data = new ActionData("ooga.model.actions.aliveactions.Kill", "AliveAction", params);
     actionList.add(data);
     ActionDataContainer container = new ActionDataContainer(actionList);
     character.performActions(container);
 
     assertEquals(1, character.getLives());
-  }
-
-  @Test
-  void testPerformActionsNeg(){
-    BasicStaticCharacter character = new BasicStaticCharacter(0, 0, 2, 2, new EntityInfo("example"));
-
-    List<ActionData> actionList = new ArrayList<>();
-    List<String> params = new ArrayList<>();
-//    ActionData data = new ActionData("Kill", "AliveAction", params);
-//    actionList.add(data);
-    ActionDataContainer container = new ActionDataContainer(actionList);
-    character.performActions(container);
-
-    assertEquals(0, character.getLives());
   }
 
 }
