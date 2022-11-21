@@ -1,0 +1,27 @@
+{
+  "GOOMBA": {
+    "criteria": [
+      {
+        "OPPONENT_type": "MARIO",
+        "COLLISION_direction": "TOP",
+        "ACTIONS": [
+          {
+            "classname": "Die",
+            "action_interface": "AliveAction",
+            "params": []
+          },
+          {
+            "classname": "Bounce",
+            "action_interface": "MoverAction",
+            "params": []
+          }
+        ]
+      },
+      {
+        "OPPONENT_type": "MARIO",
+        "COLLISION_direction": "SIDE",
+        "ACTIONS": []
+      }
+    ]
+  }
+}
