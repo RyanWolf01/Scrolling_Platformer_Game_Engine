@@ -126,7 +126,7 @@ public class JSONInformationDecoder implements JSONTranslator {
 
 
   // TODO: figure this out once I know what we are doing with collision info
-  public CollisionData makeCollisionDataFromJSONObject(String collisionJSONPath, CollisionData collisionData) {
+  public CollisionData makeCollisionDataFromJSONObject(String collisionJSONPath, ) {
 
     return collisionData;
   }
