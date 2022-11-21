@@ -5,7 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import ooga.Main;
+import ooga.model.entities.AutomaticMovingEntity;
+import ooga.model.entities.CollidableEntity;
 import ooga.model.entities.Entity;
+import ooga.model.entities.characters.maincharacters.MainCharacterEntity;
+import ooga.model.entities.containers.AutomaticMoverContainer;
+import ooga.model.entities.containers.CollidableContainer;
 import ooga.model.entities.data.EntityInfo;
 import ooga.model.entities.containers.EntityContainer;
 import ooga.view.nodes.NodeContainer;
@@ -19,11 +24,16 @@ import ooga.view.nodes.ScrollingNode;
 public class ConnectionContainer {
   public static final ResourceBundle entityClassResources = ResourceBundle.getBundle(Main.DEFAULT_RESOURCE_PACKAGE+"Entities");
   private EntityContainer entities;
+  private AutomaticMoverContainer autoMovers;
+  private CollidableContainer collidables;
+  private MainCharacterEntity mainCharacter;
   private NodeContainer nodes;
   private Map<ScrollingNode, Entity> connectorMap;
 
   public ConnectionContainer(){
     entities = new EntityContainer();
+    autoMovers = new AutomaticMoverContainer();
+    collidables = new CollidableContainer();
     nodes = new NodeContainer();
     connectorMap = new HashMap<>();
   }
@@ -48,6 +58,21 @@ public class ConnectionContainer {
              InstantiationException | IllegalAccessException e) {
       throw new RuntimeException(e);
     }
+
+    if(type.equals("main_character")){ // if it's a main character type entity, overwrite the basic newEntity
+      mainCharacter = new MainCharacterEntity(xCoordinate,yCoordinate, height, width, info);
+      newEntity = mainCharacter;
+    }
+    if(AutomaticMovingEntity.AUTOMATIC_MOVING_ENTITY_TYPES.contains(type)){
+      // TODO: fix this perhaps
+      AutomaticMovingEntity newMover = new AutomaticMovingEntity(xCoordinate,yCoordinate, height, width, info, null);
+      autoMovers.addMover(newMover);
+      newEntity = newMover;
+    }
+//    if(CollidableEntity.COLLIDABLE_ENTITY_TYPES.contains(type)){
+//      CollidableEntity newCollidable = new CollidableEntity()
+//    }
+
 
     String imageURL = null;
     try{
