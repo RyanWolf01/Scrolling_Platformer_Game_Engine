@@ -22,14 +22,14 @@ public class GameControllerTest {
 
     @Test
     public void constructorTest(){
-        controller = new GameController("something", "something else");
+        controller = new GameController("something", "something else", "something else again");
         assertInstanceOf(controller.getClass(), GameController.class);
     }
 
     @Test
     public void stepTest() throws IOException, ParseException {
         ConnectionContainer connectionContainer = new ConnectionContainer();
-        controller = new GameController("something", "something else");
+        controller = new GameController("something", "something else", "something else again");
         NodeContainer nodes = controller.step();
 
         JSONInformationDecoder jsoner = new JSONInformationDecoder();
