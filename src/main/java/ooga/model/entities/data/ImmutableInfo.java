@@ -1,4 +1,4 @@
-package ooga.model;
+package ooga.model.entities.data;
 
 public interface ImmutableInfo extends Iterable<String>{
   String TYPE_KEY = "TYPE";

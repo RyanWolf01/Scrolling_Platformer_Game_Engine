@@ -45,7 +45,7 @@ public class AutomaticMoverContainer {
    *
    * @return size of container
    */
-  public int getContainerSize(){
+  private int getContainerSize(){
     return movers.size();
   }
 

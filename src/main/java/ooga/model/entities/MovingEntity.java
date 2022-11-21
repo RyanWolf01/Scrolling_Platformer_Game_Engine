@@ -1,6 +1,6 @@
 package ooga.model.entities;
 
-import ooga.model.Info;
+import ooga.model.entities.data.Info;
 import ooga.model.entities.movement.Mover;
 
 public abstract class MovingEntity extends CollidableEntity implements Mover {

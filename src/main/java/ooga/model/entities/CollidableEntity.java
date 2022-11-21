@@ -1,7 +1,7 @@
 package ooga.model.entities;
 
-import ooga.model.ImmutableInfo;
-import ooga.model.Info;
+import ooga.model.entities.data.ImmutableInfo;
+import ooga.model.entities.data.Info;
 import ooga.model.collisions.Collidable;
 import ooga.model.collisions.CollisionPhysicsInfo;
 import ooga.model.collisions.collision_handling.CollisionChart;

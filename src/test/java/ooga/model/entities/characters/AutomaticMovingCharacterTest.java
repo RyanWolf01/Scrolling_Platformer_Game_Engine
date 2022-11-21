@@ -3,9 +3,7 @@ package ooga.model.entities.characters;
 import ooga.model.actions.moveractions.basicmovement.LeftMovement;
 import ooga.model.actions.moveractions.basicmovement.RightMovement;
 import ooga.model.actions.moveractions.basicmovement.UpwardMovement;
-import ooga.model.entities.EntityInfo;
-import ooga.model.entities.characters.maincharacters.Mario;
-import ooga.model.entities.movement.AutomaticMover;
+import ooga.model.entities.data.EntityInfo;
 import ooga.model.entities.movement.MovementQueue;
 import org.junit.jupiter.api.Test;
 
