@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.collisions.data.ActionData;
 import ooga.model.collisions.data.ActionDataContainer;
+import ooga.model.entities.alive.Alive;
+import ooga.model.entities.movement.Mover;
 
 public class AliveActionParser {
 
@@ -15,23 +17,16 @@ public class AliveActionParser {
     myActionDataContainer = actionDataContainer;
   }
 
-  public AliveAction getAction() {
+  public int parseAndApplyActions(Alive aliveEntity) {
+    int numActionsExecuted = 0;
     for (ActionData actionData : myActionDataContainer) {
       if (actionData.interfaceName().equals(ACTION_INTERFACE_NAME)) {
-        return parseAction(actionData);
+        parseAction(actionData).execute(aliveEntity);
+        numActionsExecuted += 1;
       }
     }
 
-    throw new ActionParsingException("getAction could not find an action of type AliveAction");
-  }
-
-  public boolean hasAction() {
-    for (ActionData actionData : myActionDataContainer) {
-      if (actionData.interfaceName().equals(ACTION_INTERFACE_NAME)) {
-        return true;
-      }
-    }
-    return false;
+    return numActionsExecuted;
   }
 
   private AliveAction parseAction(ActionData actionData) {

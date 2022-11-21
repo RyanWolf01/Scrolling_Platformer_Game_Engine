@@ -10,6 +10,10 @@ public class ActionDataContainer implements Iterable<ActionData> {
     myActionData = actionData;
   }
 
+  public int size() {
+    return myActionData.size();
+  }
+
   @Override
   public Iterator<ActionData> iterator() {
     return myActionData.iterator();

@@ -1,5 +1,6 @@
 package ooga.model.entities;
 
+import ooga.model.actionparsers.ActionParsingException;
 import ooga.model.entities.data.ImmutableInfo;
 import ooga.model.entities.data.Info;
 import ooga.model.collisions.Collidable;
@@ -31,10 +32,16 @@ public abstract class CollidableEntity extends Entity implements Collidable {
   public void onCollision(Entity other, CollisionPhysicsInfo physicsInfo) {
     ActionDataContainer adc = getActionDatas(this.getImmutableEntityInfo(),
         other.getImmutableEntityInfo(), physicsInfo);
-    performActions(adc);
+
+    int numActionsPerformed = performActions(adc);
+    if (numActionsPerformed != adc.size()) {
+      throw new ActionParsingException(String.format("%d actions were performed, but %d actions"
+              + " should have been performed according to this entity's collision chart.",
+          numActionsPerformed, adc.size()));
+    }
   }
 
-  protected abstract void performActions(ActionDataContainer actionDataContainer);
+  protected abstract int performActions(ActionDataContainer actionDataContainer);
 
   //TODO: Come up with a better name (to express getting a "collection" of ActionData)
   protected ActionDataContainer getActionDatas(

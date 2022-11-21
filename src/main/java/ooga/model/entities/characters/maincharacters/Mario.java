@@ -68,25 +68,28 @@ public class Mario extends MovingCharacter {
     Also need to add testing and javadoc of course.
    */
   @Override
-  public void performActions(ActionDataContainer actionDataContainer) {
-    performAliveAction(actionDataContainer);
-    performMoverAction(actionDataContainer);
+  protected int performActions(ActionDataContainer actionDataContainer) {
+    int count = 0;
+    count += new MoverActionParser(actionDataContainer).parseAndApplyActions(this);
+    count += new AliveActionParser(actionDataContainer).parseAndApplyActions(this);
+
+    return count;
   }
 
-  private void performMoverAction(ActionDataContainer actionDataContainer) {
-    MoverActionParser moverActionParser = new MoverActionParser(actionDataContainer);
-    if (moverActionParser.hasAction()) {
-      MoverAction moverAction = moverActionParser.getAction();
-      moverAction.execute(this);
-    }
-  }
-
-  private void performAliveAction(ActionDataContainer actionDataContainer) {
-    AliveActionParser aliveActionParser = new AliveActionParser(actionDataContainer);
-    if (aliveActionParser.hasAction()) {
-      AliveAction aliveAction = aliveActionParser.getAction();
-      aliveAction.execute(this);
-    }
-  }
+//  private void performMoverAction(ActionDataContainer actionDataContainer) {
+//    MoverActionParser moverActionParser = new MoverActionParser(actionDataContainer);
+//    if (moverActionParser.hasAction()) {
+//      MoverAction moverAction = moverActionParser.getAction();
+//      moverAction.execute(this);
+//    }
+//  }
+//
+//  private void performAliveAction(ActionDataContainer actionDataContainer) {
+//    AliveActionParser aliveActionParser = new AliveActionParser(actionDataContainer);
+//    if (aliveActionParser.hasAction()) {
+//      AliveAction aliveAction = aliveActionParser.getAction();
+//      aliveAction.execute(this);
+//    }
+//  }
 
 }
