@@ -95,18 +95,4 @@ public class BasicStaticCharacterTest {
     assertEquals(1, character.getLives());
   }
 
-  @Test
-  void testPerformActionsNeg(){
-    BasicStaticCharacter character = new BasicStaticCharacter(0, 0, 2, 2, new EntityInfo("example"));
-
-    List<ActionData> actionList = new ArrayList<>();
-    List<String> params = new ArrayList<>();
-    ActionData data = new ActionData("ooga.model.actions.aliveactions.Kill", "AliveAction", params);
-    actionList.add(data);
-    ActionDataContainer container = new ActionDataContainer(actionList);
-    character.performActions(container);
-
-    assertEquals(0, character.getLives());
-  }
-
 }
