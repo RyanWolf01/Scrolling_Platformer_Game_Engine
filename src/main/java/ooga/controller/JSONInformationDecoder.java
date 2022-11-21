@@ -138,8 +138,8 @@ public class JSONInformationDecoder implements JSONTranslator {
   /**
    * Method that takes in String for the controls JSON and the UserControlHandler and populates the handler with the
    * key value pairs of controls and actions
-   * @param controlsJSONPath
-   * @param controlHandler
+   * @param controlsJSONPath, string path to controls JSON
+   * @param controlHandler, UserControlHandler we want to populate with actions
    * @return populated controlHandler with all controls in it
    */
   public UserControlHandler makeUserControlHandlerFromJSON(String controlsJSONPath, UserControlHandler controlHandler) {
