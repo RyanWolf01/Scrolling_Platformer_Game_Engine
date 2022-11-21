@@ -128,6 +128,7 @@ public class JSONInformationDecoder implements JSONTranslator {
   // TODO: figure this out once I know what we are doing with collision info
   private CollisionData makeCollisionDataFromJSONObject(JSONObject entityInformation) {
     return null;
+    //
   }
 
   // method to handle JSON Object, and check is the value is another JSON object
