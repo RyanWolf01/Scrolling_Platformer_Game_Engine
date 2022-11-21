@@ -4,7 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.data.ActionData;
 import ooga.model.collisions.data.ActionDataContainer;
-import ooga.model.entities.alive.Alive;
 import ooga.model.entities.movement.Mover;
 
 public class MoverActionParser {
