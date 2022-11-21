@@ -1,13 +1,10 @@
 package ooga.controller;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 import ooga.model.collisions.collision_handling.CollisionData;
-import ooga.model.entities.EntityInfo;
-import ooga.model.entities.containers.EntityContainer;
-import org.eclipse.jetty.util.ajax.JSON;
+import ooga.model.entities.data.EntityInfo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -41,11 +38,18 @@ public class JSONInformationDecoder implements JSONTranslator {
    * of initial entities given in the use chosen JSON file, in the form of the connection container
    * It also populates a map of general information about the game, which are any key value pairs in the
    * JSON not in the JSON array value of the Entity key
-   * @param levelJSON, JSONObject representative of the JSON file with the game info
+   * @param JSONFilePath, string path of the JSON file with the game info
    * @param connectionContainer, a connection container object that will hold all the entities
    * @return connectionContainer, updated, populated connection container of all the initial game entities
    */
-  public ConnectionContainer makeEntityContainerFromLevelJSON(JSONObject levelJSON, ConnectionContainer connectionContainer) {
+  public void makeEntityContainerFromLevelJSON(String JSONFilePath, ConnectionContainer connectionContainer) {
+    JSONObject levelJSON = null;
+    try {
+      levelJSON = initialJSONInformation(JSONFilePath);
+    } catch (IOException | ParseException e) {
+      throw new RuntimeException(e);
+    }
+
     for (Object o : levelJSON.keySet()) {
       if (o == ENTITY_JSON_KEY && checkJSONArrayValue(levelJSON.get(o))) {
         JSONArray jsonEntityArray = (JSONArray) levelJSON.get(o);
@@ -55,7 +59,6 @@ public class JSONInformationDecoder implements JSONTranslator {
         generalInfoMap.put((String) o, levelJSON.get(o));
       }
     }
-    return connectionContainer;
   }
 
 

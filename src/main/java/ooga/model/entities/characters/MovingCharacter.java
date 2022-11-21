@@ -1,18 +1,18 @@
 package ooga.model.entities.characters;
 
 import ooga.model.entities.CollidableEntity;
-import ooga.model.Info;
+import ooga.model.entities.data.Info;
 import ooga.model.entities.alive.Alive;
 import ooga.model.entities.movement.Mover;
 
-public abstract class MainCharacter extends CollidableEntity implements Alive, Mover {
+public abstract class MovingCharacter extends CollidableEntity implements Alive, Mover {
 
+  private static final int SCREEN_SIZE = 0; // TODO read from Properties file
   private int lives;
-
   private double xVelocity;
   private double yVelocity;
 
-  public MainCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width,
+  public MovingCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
 //        this.lives = Integer.parseInt(entityInfo.get("lives"));
@@ -25,6 +25,21 @@ public abstract class MainCharacter extends CollidableEntity implements Alive, M
   public void changeVelocities(double changeXVelocity, double changeYVelocity) {
     xVelocity += changeXVelocity;
     yVelocity += changeYVelocity;
+  }
+
+  /**
+   * Reset velocities
+   *
+   * @param resetX tells if should reset xVelocity
+   * @param resetY tells if should reset yVelocity
+   *
+   */
+  @Override
+  public void resetVelocities(boolean resetX, boolean resetY){
+    if(resetX)
+      xVelocity = 0;
+    if(resetY)
+      yVelocity = 0;
   }
 
   /**
@@ -74,6 +89,14 @@ public abstract class MainCharacter extends CollidableEntity implements Alive, M
       } else {
           this.lives = lives;
       }
+  }
+
+  /**
+   *
+   * @return screen size
+   */
+  protected int getScreenSize(){
+    return SCREEN_SIZE;
   }
 
 }

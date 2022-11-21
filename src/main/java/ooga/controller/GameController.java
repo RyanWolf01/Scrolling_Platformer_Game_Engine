@@ -1,14 +1,8 @@
 package ooga.controller;
 
-import java.nio.file.Path;
-import java.util.List;
-
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
-import ooga.model.collisions.collision_handling.CollisionHandler;
-import ooga.model.entities.containers.ImmutableContainer;
 import ooga.view.nodes.NodeContainer;
-import ooga.view.nodes.ScrollingNode;
 
 
 /**
@@ -17,22 +11,19 @@ import ooga.view.nodes.ScrollingNode;
  */
 public class GameController {
     private ConnectionContainer container;
+    private UserControlHandler controlHandler;
+    private JSONInformationDecoder jsonDecoder;
 
     /**
      * The GameController needs to have a mapping of backend to frontend objects
      *
      */
-    public GameController(Path levelJSONPath, Path collisionJSONPath) {
+    public GameController(String levelJSONPath, String collisionJSONPath) {
+        controlHandler = new UserControlHandler();
         container = new ConnectionContainer();
-        setupSimulation(levelJSONPath, collisionJSONPath);
-    }
-
-    public void setupSimulation(Path configFilePath, Path collisionFilePath) {
-        /*
-        JSONInformationDecoder jsonDecoder = new JSONInformationDecoder();
-        PreloadedCollisionChartGetter collisionChartGetter = new PreloadedCollisionChartGetter(jsonDecoder, configFilePath.entityFiles);
-        CollisionHandler collisionHandler = new DefaultCollisionHandler(collisionChartGetter);
-         */
+        jsonDecoder = new JSONInformationDecoder();
+        jsonDecoder.makeEntityContainerFromLevelJSON(levelJSONPath, container);
+        //jsonDecoder.makeUserControlHandlerFromJSON(controlsJSONFile, controlHandler);
     }
 
     /**
@@ -47,7 +38,7 @@ public class GameController {
     }
 
     public void handleKeyInput(KeyCode code){
-        // eventually make map of keycodes to actions, then send that info to model
+
     }
 
     /**

@@ -1,7 +1,7 @@
 package ooga.model.collisions.collision_handling;
 
 import java.util.Map;
-import ooga.model.collisions.data.ActionDataContainer;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 
 //TODO: Allow the user to call multiple actions, and allow actions to take parameters. Add Error
 //TODO: checking to this.

@@ -2,36 +2,48 @@ package ooga.model.actionparsers;
 
 import java.lang.reflect.InvocationTargetException;
 import ooga.model.actions.moveractions.MoverAction;
-import ooga.model.collisions.data.ActionData;
-import ooga.model.collisions.data.ActionDataContainer;
+import ooga.model.entities.movement.Mover;
+import ooga.model.collisions.actiondata.ActionData;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 
+
+/**
+ * Takes an ActionDataContainer and uses reflection to parse AliveActions from them. Then applies
+ * these AliveActions to an Alive character.
+ */
 public class MoverActionParser {
 
   public static final String ACTION_INTERFACE_NAME = "MoverAction";
 
-  private ActionDataContainer myActionDataContainer;
+  private final ActionDataContainer myActionDataContainer;
 
+  /**
+   * Returns a new MoverActionParser instantiated with the ActionDataContainer passed
+   *
+   * @param actionDataContainer the ActionDataContainer with ActionData to be parsed
+   */
   public MoverActionParser(ActionDataContainer actionDataContainer) {
     myActionDataContainer = actionDataContainer;
   }
 
-  public MoverAction getAction() {
+  /**
+   * Parse all MoveActions from this MoveActionParser's ActionDataContainer and apply them to the
+   * Mover entity passed. Throws an ActionParsingException if an error occurs. Returns the number of
+   * MoverActions applied to the Mover specified.
+   *
+   * @param mover Mover entity to be executed on
+   * @return number of MoverActionsApplied.
+   */
+  public int parseAndApplyActions(Mover mover) {
+    int numActionsExecuted = 0;
     for (ActionData actionData : myActionDataContainer) {
       if (actionData.interfaceName().equals(ACTION_INTERFACE_NAME)) {
-        return parseAction(actionData);
+        parseAction(actionData).execute(mover);
+        numActionsExecuted += 1;
       }
     }
 
-    throw new ActionParsingException("getAction could not find an action of type AliveAction");
-  }
-
-  public boolean hasAction() {
-    for (ActionData actionData : myActionDataContainer) {
-      if (actionData.interfaceName().equals(ACTION_INTERFACE_NAME)) {
-        return true;
-      }
-    }
-    return false;
+    return numActionsExecuted;
   }
 
   private MoverAction parseAction(ActionData actionData) {

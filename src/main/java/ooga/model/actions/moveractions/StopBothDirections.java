@@ -10,7 +10,7 @@ public class StopBothDirections implements MoverAction{
    */
   @Override
   public void execute(Mover entity){
-    entity.changeVelocities(-entity.getXVelocity(), -entity.getYVelocity());
+    entity.resetVelocities(true, true);
     entity.move();
   }
 

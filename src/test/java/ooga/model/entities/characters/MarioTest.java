@@ -1,9 +1,14 @@
 package ooga.model.entities.characters;
 
-import ooga.model.entities.EntityInfo;
-import ooga.model.entities.data.InitialAttributes;
+import java.util.ArrayList;
+import java.util.List;
+import ooga.model.collisions.actiondata.ActionData;
+import ooga.model.collisions.actiondata.ActionDataContainer;
+import ooga.model.entities.data.EntityInfo;
+import ooga.model.entities.characters.maincharacters.Mario;
+import ooga.model.entities.movement.MovementQueue;
 import org.junit.jupiter.api.Test;
-import static ooga.model.entities.data.EntityType.MAIN_CHARACTER;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MarioTest {
@@ -48,9 +53,9 @@ public class MarioTest {
   void testIncrementYVelocityPositive2() {
     Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.changeVelocities(0,-100);
+    mario.changeVelocities(0,10000);
     mario.move();
-    assertEquals(-100, mario.getYCoordinate());
+    assertEquals(10000, mario.getYCoordinate());
   }
 
   @Test
@@ -108,6 +113,34 @@ public class MarioTest {
 
     mario.changeLives(0);
     assertEquals(0, mario.getLives());
+  }
+
+  @Test
+  void testPerformActionsPos1(){
+    Mario character = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+
+    List<ActionData> actionList = new ArrayList<>();
+    List<String> params = new ArrayList<>();
+    ActionData data = new ActionData("ooga.model.actions.aliveactions.IncreaseLife", "AliveAction", params);
+    actionList.add(data);
+    ActionDataContainer container = new ActionDataContainer(actionList);
+    character.performActions(container);
+
+    assertEquals(1, character.getLives());
+  }
+
+  @Test
+  void testPerformActionsPos2(){
+    Mario character = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+
+    List<ActionData> actionList = new ArrayList<>();
+    List<String> params = new ArrayList<>();
+    ActionData data = new ActionData("ooga.model.actions.moveractions.Bounce", "MoverAction", params);
+    actionList.add(data);
+    ActionDataContainer container = new ActionDataContainer(actionList);
+    character.performActions(container);
+
+    assertEquals(5, character.getYCoordinate());
   }
 
 

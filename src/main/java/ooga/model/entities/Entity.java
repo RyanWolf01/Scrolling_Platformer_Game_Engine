@@ -1,7 +1,7 @@
 package ooga.model.entities;
 
-import ooga.model.ImmutableInfo;
-import ooga.model.Info;
+import ooga.model.entities.data.ImmutableInfo;
+import ooga.model.entities.data.Info;
 
 /**
  * Everything that can be represented in the game is an Entity of some type.
@@ -46,22 +46,21 @@ public abstract class Entity implements ImmutableEntity{
         this.yCoordinate = yCoordinate;
     }
 
-//    public double getLength(){
-//        return length;
-//    }
-//
-//    public double getWidth(){
-//        return width;
-//    }
+    /**
+     * Need this getter in the PhysicsCalculator class
+     * @return height of entity
+     */
+    public double getHeight(){
+        return height;
+    }
 
-    // TODO fix this method below
-//    /**
-//     * @return what type of entity the current entity is
-//     */
-//    public EntityType getEntityType(){
-//        return entityInfo.;
-//    }
-
+    /**
+     * Need this getter in the PhysicsCalculator class
+     * @return width of entity
+     */
+    public double getWidth(){
+        return width;
+    }
 
     public ImmutableInfo getImmutableEntityInfo() {
         return entityInfo;

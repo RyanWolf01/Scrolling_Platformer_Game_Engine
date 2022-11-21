@@ -3,7 +3,7 @@ package ooga.model.collisions.collision_handling;
 import java.util.ArrayList;
 import java.util.Collection;
 import ooga.model.collisions.collision_handling.exceptions.NoCollisionCriteriaMatchException;
-import ooga.model.collisions.data.ActionDataContainer;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 
 /**
  * A DefaultCollisionChart that implements CollisionChart and contains returns an Action based on

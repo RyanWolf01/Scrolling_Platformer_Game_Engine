@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import ooga.Main;
 import ooga.model.entities.Entity;
-import ooga.model.entities.EntityInfo;
+import ooga.model.entities.data.EntityInfo;
 import ooga.model.entities.containers.EntityContainer;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
@@ -42,7 +42,8 @@ public class ConnectionContainer {
     Entity newEntity;
     try {
       Class<?> clazz = Class.forName(entityClassResources.getString(type));
-      newEntity = (Entity) clazz.getConstructor(Integer.class, Integer.class, Double.class, Double.class, EntityInfo.class).newInstance();
+      newEntity = (Entity) clazz.getConstructor(Integer.class, Integer.class, Double.class, Double.class, EntityInfo.class)
+              .newInstance(xCoordinate,yCoordinate, height, width, info);
     } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
              InstantiationException | IllegalAccessException e) {
       throw new RuntimeException(e);

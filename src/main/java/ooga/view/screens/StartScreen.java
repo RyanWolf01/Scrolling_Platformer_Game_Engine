@@ -49,7 +49,7 @@ public class StartScreen {
     startGame.setText("Start Game");
 
     startGame.setOnAction(event -> {
-      new View(gameToGame.get(gameSelector.getValue()), levelFile);
+      new View(mainStage, gameToGame.get(gameSelector.getValue()), levelFile);
     });
     gameChooser.add(startGame, 0, 2);
 
