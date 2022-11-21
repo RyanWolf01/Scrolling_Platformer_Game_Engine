@@ -18,10 +18,7 @@ import java.sql.Time;
  */
 public class Main extends Application {
 
-    public static final String DEFAULT_RESOURCE_PACKAGE = System.getProperty("user.dir") + "/data/";
-    private GameController myController;
-    private Timeline myAnimation;
-    private static final double FRAME_DELAY = 1/60;
+    public static final String DEFAULT_RESOURCE_PACKAGE = System.getProperty("user.dir") + "\\data\\";
 
     /**
      * A method to test (and a joke :).
@@ -35,14 +32,5 @@ public class Main extends Application {
     public void start(Stage primaryStage){
         //Create Splash Screen and set it to the stage
         StartScreen startScreen = new StartScreen(primaryStage);
-        /*
-        myController = new GameController(DEFAULT_RESOURCE_PACKAGE + "games/mario/levels/testLevel1.json");
-        LevelScreen testLevel = new LevelScreen(myController);
-        primaryStage.setScene(testLevel.initiateLevel());
-        primaryStage.show();
-        myAnimation = new Timeline();
-        myAnimation.setCycleCount(Timeline.INDEFINITE);
-        myAnimation.getKeyFrames().add(new KeyFrame(Duration.seconds(FRAME_DELAY), e -> testLevel.step(FRAME_DELAY)));
-         */
     }
 }

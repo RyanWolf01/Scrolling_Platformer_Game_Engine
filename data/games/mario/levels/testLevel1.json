@@ -1,7 +1,7 @@
 {
   "game": "mario",
   "name": "Test Level 1",
-  "background": "cloudyDay.png",
+  "background": "bliss.jpg",
   "style": "light",
   "length": 2400,
   "mario": {

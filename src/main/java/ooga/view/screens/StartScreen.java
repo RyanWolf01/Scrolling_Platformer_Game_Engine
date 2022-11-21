@@ -8,8 +8,11 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import ooga.model.entities.characters.maincharacters.Mario;
 import ooga.view.View;
 import ooga.view.interactives.GameSelector;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.util.HashMap;
@@ -26,6 +29,7 @@ public class StartScreen {
 
   private GridPane gameChooser;
   private GameSelector gameSelector;
+  private static final Logger LOG = LogManager.getLogger(StartScreen.class);
 
   Stage mainStage;
   public StartScreen(Stage primaryStage){
@@ -68,10 +72,10 @@ public class StartScreen {
     levelButton.setText("Choose Level");
     levelButton.setOnAction(event -> {
       String gameDirectory = RESOURCE_DIRECTORY + GAMES_DIRECTORY + gameToGame.get(gameSelector.getValue()) + LEVEL_DIRECTORY;
-      // logger.info("PathName of Level" + RESOURCE_DIRECTORY + LEVEL_DIRECTORY + gameDirectory);
       System.out.println(gameDirectory);
       fileChooser.setInitialDirectory(new File(gameDirectory));
       levelFile = fileChooser.showOpenDialog(mainStage);
+      LOG.info(levelFile);
     });
 
 
