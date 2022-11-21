@@ -5,23 +5,40 @@ import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.collisions.data.ActionData;
 import ooga.model.collisions.data.ActionDataContainer;
 import ooga.model.entities.alive.Alive;
-import ooga.model.entities.movement.Mover;
 
+/**
+ * Takes an ActionDataContainer and uses reflection to parse AliveActions from them. Then applies
+ * these AliveActions to an Alive character.
+ */
 public class AliveActionParser {
 
   public static final String ACTION_INTERFACE_NAME = "AliveAction";
 
-  private ActionDataContainer myActionDataContainer;
+  private final ActionDataContainer myActionDataContainer;
+
+  /**
+   * Returns a new AliveActionParser instantiated with the ActionDataContainer passed
+   *
+   * @param actionDataContainer the ActionDataContainer with ActionData to be parsed
+   */
 
   public AliveActionParser(ActionDataContainer actionDataContainer) {
     myActionDataContainer = actionDataContainer;
   }
 
-  public int parseAndApplyActions(Alive aliveEntity) {
+  /**
+   * Parse all AliveActions from this AliveActionParser's ActionDataContainer and apply them to the
+   * Alive entity passed. Throws an ActionParsingException if an error occurs. Returns the number of
+   * AliveActions applied to the alive entity specified.
+   *
+   * @param alive Alive entity to be executed on
+   * @return number of AliveActionsApplied.
+   */
+  public int parseAndApplyActions(Alive alive) {
     int numActionsExecuted = 0;
     for (ActionData actionData : myActionDataContainer) {
       if (actionData.interfaceName().equals(ACTION_INTERFACE_NAME)) {
-        parseAction(actionData).execute(aliveEntity);
+        parseAction(actionData).execute(alive);
         numActionsExecuted += 1;
       }
     }

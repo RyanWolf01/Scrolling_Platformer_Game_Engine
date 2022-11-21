@@ -6,20 +6,32 @@ import ooga.model.collisions.data.ActionData;
 import ooga.model.collisions.data.ActionDataContainer;
 import ooga.model.entities.movement.Mover;
 
+/**
+ * Takes an ActionDataContainer and uses reflection to parse AliveActions from them. Then applies
+ * these AliveActions to an Alive character.
+ */
 public class MoverActionParser {
 
   public static final String ACTION_INTERFACE_NAME = "MoverAction";
 
   private final ActionDataContainer myActionDataContainer;
 
+  /**
+   * Returns a new MoverActionParser instantiated with the ActionDataContainer passed
+   *
+   * @param actionDataContainer the ActionDataContainer with ActionData to be parsed
+   */
   public MoverActionParser(ActionDataContainer actionDataContainer) {
     myActionDataContainer = actionDataContainer;
   }
 
   /**
-   * Parses MoverActions encoded in actionDataContainer and applies them to the mover param
-   * @param mover the mover on which an action will be applied
-   * @return num actions applied to mover
+   * Parse all MoveActions from this MoveActionParser's ActionDataContainer and apply them to the
+   * Mover entity passed. Throws an ActionParsingException if an error occurs. Returns the number of
+   * MoverActions applied to the Mover specified.
+   *
+   * @param mover Mover entity to be executed on
+   * @return number of MoverActionsApplied.
    */
   public int parseAndApplyActions(Mover mover) {
     int numActionsExecuted = 0;
