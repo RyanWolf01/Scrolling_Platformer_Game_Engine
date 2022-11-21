@@ -11,13 +11,12 @@ public class AutomaticMoverContainerTest {
 
   @Test
   void testMoveAllPos1(){
-    AutomaticMoverContainer container = new AutomaticMoverContainer();
 
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());
 
     AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(0, 0, 0, 0, null, movementQueue);
-    container.addMover(mover1);
+    AutomaticMoverContainer container = new AutomaticMoverContainer(mover1);
 
     container.moveAll();
 
