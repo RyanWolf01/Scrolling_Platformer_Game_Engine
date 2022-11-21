@@ -64,7 +64,7 @@ public class ConnectionContainer {
       newEntity = mainCharacter;
     }
     if(AutomaticMovingEntity.AUTOMATIC_MOVING_ENTITY_TYPES.contains(type)){
-      // TODO: fix this perhaps
+      // TODO: fix this so that there is a movement queue
       AutomaticMovingEntity newMover = new AutomaticMovingEntity(xCoordinate,yCoordinate, height, width, info, null);
       autoMovers.addMover(newMover);
       newEntity = newMover;
