@@ -10,14 +10,6 @@ import org.junit.jupiter.api.Test;
 public class AutomaticMoverContainerTest {
 
   @Test
-  void testAddEntity() {
-    AutomaticMovingCharacter mover = new AutomaticMovingCharacter(0, 0, 0, 0, null, null);
-    AutomaticMoverContainer container = new AutomaticMoverContainer(mover);
-    container.addMover(mover);
-    assertEquals(1, container.getContainerSize());
-  }
-
-  @Test
   void testMoveAllPos1(){
     AutomaticMoverContainer container = new AutomaticMoverContainer();
 

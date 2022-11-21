@@ -45,7 +45,7 @@ public class AutomaticMoverContainer {
    *
    * @return size of container
    */
-  public int getContainerSize(){
+  private int getContainerSize(){
     return movers.size();
   }
 
@@ -56,11 +56,6 @@ public class AutomaticMoverContainer {
     for (int index = 0; index < getContainerSize(); index++) {
       AutomaticMover currMover = getMover(index);
       currMover.automaticMove();
-//      try {
-//        currMover.automaticMove();
-//      }catch(){
-//
-//      }
     }
   }
 
