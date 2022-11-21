@@ -1,9 +1,17 @@
 package ooga.controller;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import ooga.model.collisions.actiondata.ActionData;
+import ooga.model.collisions.actiondata.ActionDataContainer;
+import ooga.model.collisions.collision_handling.CollisionChart;
 import ooga.model.collisions.collision_handling.CollisionData;
+import ooga.model.collisions.collision_handling.Criteria;
+import ooga.model.collisions.collision_handling.DefaultCollisionChart;
 import ooga.model.entities.data.EntityInfo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -125,11 +133,61 @@ public class JSONInformationDecoder implements JSONTranslator {
   }
 
 
-  // TODO: figure this out once I know what we are doing with collision info
-  public CollisionData makeCollisionDataFromJSONObject(String collisionJSONPath, ) {
-
-    return collisionData;
+  // TODO: refactor this method to simplify the control flow logic
+  public CollisionChart makeCollisionDataFromJSONObject(String collisionJSONPath, String type) {
+    JSONObject collisionJSON = null;
+    JSONArray criteriaJSON = null;
+    List<Criteria> criteriaList = new ArrayList<Criteria>();
+    try {
+      collisionJSON = initialJSONInformation(collisionJSONPath);
+    } catch (IOException | ParseException e) {
+      throw new RuntimeException(e);
+    }
+    if (checkJSONArrayValue(collisionJSON.get(type))) {
+      criteriaJSON = (JSONArray) collisionJSON.get(type);
+      Map<String,String> criteriaMap = new HashMap<>();
+      ActionDataContainer actionDataContainer = new ActionDataContainer();
+      for (Object o : criteriaJSON) {
+        if (checkJSONObjectValue(o)) {
+          JSONObject criteriaElement = (JSONObject) o;
+          for (Object j : criteriaElement.keySet()) {
+            if (j.equals("ACTIONS")) {
+              //TODO: surround with try catch and check type errors
+              loadActionDataContainer(actionDataContainer, (JSONArray) criteriaElement.get(j));
+            } else {
+              criteriaMap.put((String) j, (String) criteriaElement.get(j));
+            }
+          }
+        }
+        Criteria criteria = new Criteria(criteriaMap, actionDataContainer);
+        criteriaList.add(criteria);
+      }
+    } else {
+      throw new RuntimeException("invalid type");
+    }
+    return new DefaultCollisionChart(criteriaList);
   }
+
+
+  private void loadActionDataContainer(ActionDataContainer actionDataContainer, JSONArray actionJSONArray) {
+    for (Object o : actionJSONArray) {
+      JSONObject action;
+      Collection<String> parameters;
+      if (checkJSONObjectValue(o)) {
+        action = (JSONObject) o;
+
+      } else {
+        throw new RuntimeException("not an object");
+      }
+
+      //TODO: handle exception here**
+      parameters = (Collection<String>) action.get("params");
+      ActionData actionData = new ActionData((String) action.get("classname"), (String) action.get("action_interface"),
+          parameters);
+      actionDataContainer.addActionData(actionData);
+    }
+  }
+
 
   // method to handle JSON Object, and check is the value is another JSON object
   // adapting from https://www.baeldung.com/jsonobject-iteration
