@@ -27,13 +27,13 @@ public class GameController {
      * The GameController needs to have a mapping of backend to frontend objects
      *
      */
-    public GameController(String levelJSONPath, String collisionJSONPath) {
+    public GameController(String levelJSONPath, String collisionJSONPath, String controlsJSONPath) {
         controlHandler = new UserControlHandler();
         container = new ConnectionContainer();
         jsonDecoder = new JSONInformationDecoder();
         jsonDecoder.makeEntityContainerFromLevelJSON(levelJSONPath, container);
         // TODO: integrate new String for controls JSON into this constructor and in related locations in main and controller tests
-        // jsonDecoder.makeUserControlHandlerFromJSON(controlsJSONPath, controlHandler);
+        jsonDecoder.makeUserControlHandlerFromJSON(controlsJSONPath, controlHandler);
     }
 
     /**

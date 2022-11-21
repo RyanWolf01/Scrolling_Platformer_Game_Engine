@@ -34,7 +34,7 @@ public class Main extends Application {
     public void start(Stage primaryStage){
         //TODO : Find out what the path for collision should be
         //TODO (for arman): find out and input path for the controlsJSON (to be 3rd param in GameController constructor)
-        myController = new GameController(DEFAULT_RESOURCE_PACKAGE + "games/mario/levels/testLevel1.json", "Collision Path");
+        myController = new GameController(DEFAULT_RESOURCE_PACKAGE + "games/mario/levels/testLevel1.json", "Collision Path", "Controls Path");
         LevelScreen testLevel = new LevelScreen(myController);
         primaryStage.setScene(testLevel.initiateLevel());
         primaryStage.show();
