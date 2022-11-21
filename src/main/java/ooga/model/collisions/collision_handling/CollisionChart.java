@@ -1,6 +1,6 @@
 package ooga.model.collisions.collision_handling;
 
-import ooga.model.collisions.data.ActionDataContainer;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 
 /**
  * Represents the Chart corresponding with each Entity that determines how it should respond to

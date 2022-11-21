@@ -4,7 +4,7 @@ import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
-import ooga.model.collisions.data.ActionDataContainer;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.entities.characters.MovingCharacter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -68,25 +68,12 @@ public class Mario extends MovingCharacter {
     Also need to add testing and javadoc of course.
    */
   @Override
-  public void performActions(ActionDataContainer actionDataContainer) {
-    performAliveAction(actionDataContainer);
-    performMoverAction(actionDataContainer);
-  }
+  protected int performActions(ActionDataContainer actionDataContainer) {
+    int count = 0;
+    count += new MoverActionParser(actionDataContainer).parseAndApplyActions(this);
+    count += new AliveActionParser(actionDataContainer).parseAndApplyActions(this);
 
-  private void performMoverAction(ActionDataContainer actionDataContainer) {
-    MoverActionParser moverActionParser = new MoverActionParser(actionDataContainer);
-    if (moverActionParser.hasAction()) {
-      MoverAction moverAction = moverActionParser.getAction();
-      moverAction.execute(this);
-    }
-  }
-
-  private void performAliveAction(ActionDataContainer actionDataContainer) {
-    AliveActionParser aliveActionParser = new AliveActionParser(actionDataContainer);
-    if (aliveActionParser.hasAction()) {
-      AliveAction aliveAction = aliveActionParser.getAction();
-      aliveAction.execute(this);
-    }
+    return count;
   }
 
 }
