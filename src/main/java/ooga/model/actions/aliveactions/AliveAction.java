@@ -7,6 +7,5 @@ import java.util.Arrays;
 import java.util.List;
 
 public interface AliveAction {
-  List<String> ALIVE_ACTIONS = new ArrayList<>(Arrays.asList("kill", "add_life"));
   void execute(Alive entity);
 }

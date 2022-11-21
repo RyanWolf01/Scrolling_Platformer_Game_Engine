@@ -1,5 +1,8 @@
 package ooga.model.entities;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import ooga.model.entities.data.Info;
 import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.actions.moveractions.MoverAction;
@@ -8,6 +11,7 @@ import ooga.model.entities.movement.AutomaticMover;
 import ooga.model.entities.movement.MovementQueue;
 
 public class AutomaticMovingEntity extends MovingEntity implements AutomaticMover {
+  public static final List<String> AUTOMATIC_MOVING_ENTITY_TYPES = new ArrayList<>(Arrays.asList("goomba", "koopah"));
 
   private MovementQueue movementQueue;
   /**

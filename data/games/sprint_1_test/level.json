@@ -1,0 +1,35 @@
+{
+  "game": "mario",
+  "name": "Test Level 1",
+  "background": "cloudyDay.png",
+  "style": "light",
+  "camera_width": "400",
+  "camera_height": "500",
+  "scrolling_direction": "horizontal",
+  "Entity": [
+    {
+      "type": "mario",
+      "x": "20",
+      "y": "30",
+      "height": "20",
+      "width": "10",
+      "texture": "textures/mario.png"
+    },
+    {
+      "type": "static_platform",
+      "texture": "textures/platform.png",
+      "x": "50",
+      "y": "100",
+      "height": "10",
+      "width": "50"
+    },
+    {
+      "type": "ground",
+      "texture": "texture/ground.png",
+      "width": 1000,
+      "height": 10,
+      "x": 0,
+      "y": 10
+    }
+  ]
+}
