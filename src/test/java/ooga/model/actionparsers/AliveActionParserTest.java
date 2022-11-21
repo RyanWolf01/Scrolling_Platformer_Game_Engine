@@ -34,7 +34,7 @@ public class AliveActionParserTest {
     int res = aliveActionParser.parseAndApplyActions(alive);
     assertEquals(3, res);
 
-    // Assertion below tests functionality of IncreaseLife and Kill
+    // Assertion below tests functionality of IncreaseLife and Kill Actions
     assertEquals(numLives + 1, alive.getLives());
   }
 
