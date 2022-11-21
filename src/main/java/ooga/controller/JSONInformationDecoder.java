@@ -135,6 +135,13 @@ public class JSONInformationDecoder implements JSONTranslator {
   // just have to do it for JSON.simple instead og just org.JSON
 
 
+  /**
+   * Method that takes in String for the controls JSON and the UserControlHandler and populates the handler with the
+   * key value pairs of controls and actions
+   * @param controlsJSONPath
+   * @param controlHandler
+   * @return populated controlHandler with all controls in it
+   */
   public UserControlHandler makeUserControlHandlerFromJSON(String controlsJSONPath, UserControlHandler controlHandler) {
     JSONObject controlsJSONObject = null;
     try {
@@ -142,7 +149,14 @@ public class JSONInformationDecoder implements JSONTranslator {
     } catch (IOException | ParseException e) {
       throw new RuntimeException(e);
     }
-
+    for (Object o : controlsJSONObject.keySet()) {
+      if (checkJSONArrayValue(controlsJSONObject.get(o))) {
+        throw new RuntimeException("Not a valid key value pair for controls");
+      } else {
+        controlHandler.addControl((String) o, (String) controlsJSONObject.get(o));
+      }
+    }
+    return controlHandler;
   }
 
   /**
