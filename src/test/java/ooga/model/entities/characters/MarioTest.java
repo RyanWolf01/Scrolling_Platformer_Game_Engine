@@ -48,9 +48,9 @@ public class MarioTest {
   void testIncrementYVelocityPositive2() {
     Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.changeVelocities(0,-100);
+    mario.changeVelocities(0,10000);
     mario.move();
-    assertEquals(-100, mario.getYCoordinate());
+    assertEquals(10000, mario.getYCoordinate());
   }
 
   @Test

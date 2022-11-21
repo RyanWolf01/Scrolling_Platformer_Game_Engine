@@ -74,7 +74,7 @@ public class BasicStaticCharacterTest {
 
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();
-    ActionData data = new ActionData("IncreaseLife", "AliveAction", params);
+    ActionData data = new ActionData("ooga.model.actions.aliveactions.IncreaseLife", "AliveAction", params);
     actionList.add(data);
     ActionDataContainer container = new ActionDataContainer(actionList);
     character.performActions(container);
@@ -88,7 +88,7 @@ public class BasicStaticCharacterTest {
     character.setLives(2);
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();
-    ActionData data = new ActionData("Kill", "AliveAction", params);
+    ActionData data = new ActionData("ooga.model.actions.aliveactions.Kill", "AliveAction", params);
     actionList.add(data);
     ActionDataContainer container = new ActionDataContainer(actionList);
     character.performActions(container);
@@ -102,8 +102,8 @@ public class BasicStaticCharacterTest {
 
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();
-//    ActionData data = new ActionData("Kill", "AliveAction", params);
-//    actionList.add(data);
+    ActionData data = new ActionData("ooga.model.actions.aliveactions.Kill", "AliveAction", params);
+    actionList.add(data);
     ActionDataContainer container = new ActionDataContainer(actionList);
     character.performActions(container);
 
