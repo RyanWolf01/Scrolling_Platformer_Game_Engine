@@ -1,17 +1,8 @@
 package ooga.controller;
 
-import java.nio.file.Path;
-import java.util.List;
-import java.util.Map;
-
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
-import ooga.model.actions.aliveactions.AliveAction;
-import ooga.model.actions.moveractions.MoverAction;
-import ooga.model.collisions.collision_handling.CollisionHandler;
-import ooga.model.entities.containers.ImmutableContainer;
 import ooga.view.nodes.NodeContainer;
-import ooga.view.nodes.ScrollingNode;
 
 
 /**

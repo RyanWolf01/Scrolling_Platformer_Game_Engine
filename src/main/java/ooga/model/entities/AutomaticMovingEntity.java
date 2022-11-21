@@ -3,7 +3,7 @@ package ooga.model.entities;
 import ooga.model.entities.data.Info;
 import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.actions.moveractions.MoverAction;
-import ooga.model.collisions.data.ActionDataContainer;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.entities.movement.AutomaticMover;
 import ooga.model.entities.movement.MovementQueue;
 
@@ -43,16 +43,16 @@ public class AutomaticMovingEntity extends MovingEntity implements AutomaticMove
   }
 
   @Override
-  public void performActions(ActionDataContainer actionDataContainer) {
-    performMoverAction(actionDataContainer);
+  protected int performActions(ActionDataContainer actionDataContainer) {
+    return new MoverActionParser(actionDataContainer).parseAndApplyActions(this);
   }
 
-  private void performMoverAction(ActionDataContainer actionDataContainer) {
-    MoverActionParser moverActionParser = new MoverActionParser(actionDataContainer);
-    if (moverActionParser.hasAction()) {
-      MoverAction moverAction = moverActionParser.getAction();
-      moverAction.execute(this);
-    }
-  }
+//  private void performMoverAction(ActionDataContainer actionDataContainer) {
+//    MoverActionParser moverActionParser = new MoverActionParser(actionDataContainer);
+//    if (moverActionParser.hasAction()) {
+//      MoverAction moverAction = moverActionParser.getAction();
+//      moverAction.execute(this);
+//    }
+//  }
 
 }
