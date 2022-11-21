@@ -68,7 +68,7 @@ public class Mario extends MovingCharacter {
     Also need to add testing and javadoc of course.
    */
   @Override
-  protected int performActions(ActionDataContainer actionDataContainer) {
+  public int performActions(ActionDataContainer actionDataContainer) {
     int count = 0;
     count += new MoverActionParser(actionDataContainer).parseAndApplyActions(this);
     count += new AliveActionParser(actionDataContainer).parseAndApplyActions(this);
