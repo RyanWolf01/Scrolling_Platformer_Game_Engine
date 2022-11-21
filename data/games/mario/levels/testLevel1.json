@@ -1,9 +1,9 @@
 {
   "game": "mario",
   "name": "Test Level 1",
-  "background": "cloudyDay.png",
+  "background": "bliss.jpg",
   "style": "light",
-  "length": 800,
+  "length": 2400,
   "mario": {
     "start X": 100,
     "start Y": 700
@@ -19,6 +19,14 @@
         "width": "50"
       },
       {
+        "type": "red",
+        "texture": "redPlatform.png",
+        "x": "1800",
+        "y": "400",
+        "height": "100",
+        "width": "50"
+      },
+      {
         "type": "ground",
         "texture": "ground.png",
         "length": 500,
@@ -31,12 +39,24 @@
         "length": 200,
         "x": 600,
         "y": 750
+      },
+      {
+        "type": "ground",
+        "texture": "ground.png",
+        "length": 1400,
+        "x": 1000,
+        "y": 750
       }
     ],
     "enemies": [
       {
         "type": "Goomba",
         "x": 400,
+        "y": 700
+      },
+      {
+        "type": "Goomba",
+        "x": 1800,
         "y": 700
       }
     ],
