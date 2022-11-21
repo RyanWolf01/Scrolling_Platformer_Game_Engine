@@ -1,10 +1,10 @@
 package ooga.model.entities.characters;
 
+import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.entities.data.Info;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actions.aliveactions.AliveAction;
-import ooga.model.collisions.data.ActionDataContainer;
-import ooga.model.entities.movement.MovementQueue;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 
 public class BasicStaticCharacter extends StaticCharacter {
 
@@ -32,15 +32,16 @@ public class BasicStaticCharacter extends StaticCharacter {
   }
 
   @Override
-  public void performActions(ActionDataContainer actionDataContainer) {
-    performAliveAction(actionDataContainer);
+  protected int performActions(ActionDataContainer actionDataContainer) {
+    return new AliveActionParser(actionDataContainer).parseAndApplyActions(this);
   }
-  private void performAliveAction(ActionDataContainer actionDataContainer) {
-    AliveActionParser aliveActionParser = new AliveActionParser(actionDataContainer);
-    if (aliveActionParser.hasAction()) {
-      AliveAction aliveAction = aliveActionParser.getAction();
-      aliveAction.execute(this);
-    }
-  }
+
+//  private void performAliveAction(ActionDataContainer actionDataContainer) {
+//    AliveActionParser aliveActionParser = new AliveActionParser(actionDataContainer);
+//    if (aliveActionParser.hasAction()) {
+//      AliveAction aliveAction = aliveActionParser.getAction();
+//      aliveAction.execute(this);
+//    }
+//  }
 
 }

@@ -1,8 +1,12 @@
 package ooga.model.entities.characters;
 
+import java.util.ArrayList;
+import java.util.List;
 import ooga.model.actions.moveractions.basicmovement.LeftMovement;
 import ooga.model.actions.moveractions.basicmovement.RightMovement;
 import ooga.model.actions.moveractions.basicmovement.UpwardMovement;
+import ooga.model.collisions.actiondata.ActionData;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.entities.data.EntityInfo;
 import ooga.model.entities.movement.MovementQueue;
 import org.junit.jupiter.api.Test;
@@ -175,5 +179,36 @@ public class AutomaticMovingCharacterTest {
     assertEquals(10, movingCharacter.getXCoordinate());
     assertEquals(5, movingCharacter.getYCoordinate());
   }
+
+  @Test
+  void testPerformActionsPos1(){
+    MovementQueue movementQueue = new MovementQueue();
+    AutomaticMovingCharacter character = new AutomaticMovingCharacter(0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+
+    List<ActionData> actionList = new ArrayList<>();
+    List<String> params = new ArrayList<>();
+    ActionData data = new ActionData("ooga.model.actions.aliveactions.IncreaseLife", "AliveAction", params);
+    actionList.add(data);
+    ActionDataContainer container = new ActionDataContainer(actionList);
+    character.performActions(container);
+
+    assertEquals(1, character.getLives());
+  }
+
+  @Test
+  void testPerformActionsPos2(){
+    MovementQueue movementQueue = new MovementQueue();
+    AutomaticMovingCharacter character = new AutomaticMovingCharacter(0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+
+    List<ActionData> actionList = new ArrayList<>();
+    List<String> params = new ArrayList<>();
+    ActionData data = new ActionData("ooga.model.actions.moveractions.Bounce", "MoverAction", params);
+    actionList.add(data);
+    ActionDataContainer container = new ActionDataContainer(actionList);
+    character.performActions(container);
+
+    assertEquals(5, character.getYCoordinate());
+  }
+
 
 }
