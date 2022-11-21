@@ -6,11 +6,11 @@ import static ooga.model.collisions.collision_handling.CollisionData.OPPONENT_PR
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import ooga.model.Info;
+import ooga.model.entities.data.Info;
 import ooga.model.collisions.CollisionPhysicsInfo;
 import ooga.model.collisions.collision_handling.CollisionData;
 import ooga.model.collisions.data.CollisionDirection;
-import ooga.model.entities.EntityInfo;
+import ooga.model.entities.data.EntityInfo;
 import org.junit.jupiter.api.Test;
 
 public class CollisionDataTest {

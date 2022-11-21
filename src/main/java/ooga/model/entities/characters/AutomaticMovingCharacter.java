@@ -1,6 +1,7 @@
 package ooga.model.entities.characters;
 
-import ooga.model.Info;
+import ooga.model.entities.characters.maincharacters.Mario;
+import ooga.model.entities.data.Info;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.actions.aliveactions.AliveAction;
@@ -8,9 +9,12 @@ import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.data.ActionDataContainer;
 import ooga.model.entities.movement.AutomaticMover;
 import ooga.model.entities.movement.MovementQueue;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class AutomaticMovingCharacter extends MovingCharacter implements AutomaticMover {
 
+  private static final Logger LOG = LogManager.getLogger(AutomaticMovingCharacter.class);
   private MovementQueue movementQueue;
   /**
    * AutomaticMovingCharacter has lives and can move; moves automatically
@@ -53,8 +57,15 @@ public class AutomaticMovingCharacter extends MovingCharacter implements Automat
    */
   @Override
   public void automaticMove(){
-    MoverAction move = movementQueue.nextMove();
-    move.execute(this);
+
+    try {
+      MoverAction move = movementQueue.nextMove();
+      move.execute(this);
+    }
+    catch(NullPointerException exception){
+      LOG.error("MovementQueue not initialized or empty.");
+      throw exception;
+    }
   }
 
   @Override

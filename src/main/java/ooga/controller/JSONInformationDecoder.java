@@ -1,13 +1,10 @@
 package ooga.controller;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 import ooga.model.collisions.collision_handling.CollisionData;
-import ooga.model.entities.EntityInfo;
-import ooga.model.entities.containers.EntityContainer;
-import org.eclipse.jetty.util.ajax.JSON;
+import ooga.model.entities.data.EntityInfo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;

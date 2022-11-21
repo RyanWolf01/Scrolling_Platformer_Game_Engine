@@ -1,6 +1,6 @@
 package ooga.model.entities.characters;
 
-import ooga.model.entities.EntityInfo;
+import ooga.model.entities.data.EntityInfo;
 import ooga.model.entities.characters.maincharacters.Mario;
 import org.junit.jupiter.api.Test;
 

@@ -2,7 +2,6 @@ package ooga.view.nodes;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import ooga.model.entities.EntityInfo;
 
 /**
  * The ScrollingNode object extends the JavaFX ImageView object.
