@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GameControllerTest {
 
     GameController controller;
+    File levelJSON = new File()
 
     @Test
     public void constructorTest(){
