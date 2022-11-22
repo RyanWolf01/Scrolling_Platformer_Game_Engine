@@ -1,9 +1,8 @@
-package ooga.model.collisions.collision_handling;
+package ooga.model.collisions.collisionhandling;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import ooga.model.collisions.collision_handling.exceptions.NoCollisionCriteriaMatchException;
+import ooga.model.collisions.collisionhandling.exceptions.NoCollisionCriteriaMatchException;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 
 /**

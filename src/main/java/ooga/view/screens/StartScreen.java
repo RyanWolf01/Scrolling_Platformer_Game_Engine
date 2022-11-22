@@ -62,7 +62,8 @@ public class StartScreen {
   }
 
   public void changeBackground(String url){
-    gameChooser.setBackground(new Background(new BackgroundImage(new Image(RESOURCE_DIRECTORY + ICON_DIRECTORY + url), null, null, null, null)));
+    gameChooser.setBackground(new Background(new BackgroundImage(new Image(
+        getClass().getResourceAsStream(RESOURCE_DIRECTORY + ICON_DIRECTORY + url)), null, null, null, null)));
   }
 
   private Button createLevelButton(){

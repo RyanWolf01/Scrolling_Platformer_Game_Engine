@@ -5,27 +5,27 @@ import ooga.model.entities.data.ImmutableInfo;
 import ooga.model.entities.data.Info;
 import ooga.model.collisions.Collidable;
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
-import ooga.model.collisions.collision_handling.CollisionChart;
-import ooga.model.collisions.collision_handling.CollisionChartGetter;
-import ooga.model.collisions.collision_handling.CollisionData;
-import ooga.model.collisions.collision_handling.DefaultCollisionChartGetter;
-import ooga.model.collisions.collision_handling.exceptions.CollisionChartParsingException;
+import ooga.model.collisions.collisionhandling.CollisionChart;
+import ooga.model.collisions.collisionhandling.CollisionChartGetter;
+import ooga.model.collisions.collisionhandling.CollisionData;
+import ooga.model.collisions.collisionhandling.DefaultCollisionChartGetter;
+import ooga.model.collisions.collisionhandling.exceptions.CollisionChartParsingException;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 
 public abstract class CollidableEntity extends Entity implements Collidable {
-  private final CollisionChartGetter myCollisionChartGetter;
+  private final CollisionChart myCollisionChart;
 
-  public CollidableEntity(CollisionChartGetter collisionChartGetter, int initialXCoordinate,
+  public CollidableEntity(CollisionChart collisionChart, int initialXCoordinate,
       int initialYCoordinate, double height, double width, Info entityInfo) {
     super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
-    myCollisionChartGetter = collisionChartGetter;
+    myCollisionChart = collisionChart;
   }
 
-  public CollidableEntity(int initialXCoordinate, int initialYCoordinate, double height,
-      double width, Info entityInfo) {
-    this(new DefaultCollisionChartGetter(), initialXCoordinate, initialYCoordinate, height, width,
-        entityInfo);
-  }
+//  public CollidableEntity(int initialXCoordinate, int initialYCoordinate, double height,
+//      double width, Info entityInfo) {
+//    this(new DefaultCollisionChartGetter(), initialXCoordinate, initialYCoordinate, height, width,
+//        entityInfo);
+//  }
 
   @Override
   public void onCollision(Entity other, CollisionPhysicsInfo physicsInfo) {
@@ -51,11 +51,11 @@ public abstract class CollidableEntity extends Entity implements Collidable {
       throw new CollisionChartParsingException("Target Entity's type isn't specified");
     }
 
-    CollisionChart collisionChart = myCollisionChartGetter.getCollisionChart(targetEntityInfo.get(
-        ImmutableInfo.TYPE_KEY));
+//    CollisionChart collisionChart = myCollisionChartGetter.getCollisionChart(targetEntityInfo.get(
+//        ImmutableInfo.TYPE_KEY));
     CollisionData collisionData = new CollisionData(targetEntityInfo, otherEntityInfo,
         collisionPhysicsInfo);
-    return collisionChart.getActionDatas(collisionData);
+    return myCollisionChart.getActionDatas(collisionData);
   }
 }
 
