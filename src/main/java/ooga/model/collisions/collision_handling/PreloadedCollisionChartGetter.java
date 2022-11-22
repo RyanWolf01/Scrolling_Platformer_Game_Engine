@@ -25,4 +25,16 @@ public class PreloadedCollisionChartGetter implements CollisionChartGetter {
     return null;
 //    return myCollisionCharts.get(collisionChartPath);
   }
+
+  /**
+   * Return the CollisionChart at the path specified. Path should be relative to the resources
+   *
+   * @param type the type of this Entity whose collision chart is being found
+   * @param collisionChartPath the path of this CollisionChart relative to the resources folder
+   * @return CollisionChart
+   */
+  @Override
+  public CollisionChart getCollisionChart(String type, String collisionChartPath) {
+    return null;
+  }
 }

@@ -1,6 +1,7 @@
 package ooga.model.collisions.collision_handling;
 
 import static ooga.Main.COLLISION_CHART_PATH;
+import static ooga.Main.DEFAULT_RESOURCE_PACKAGE;
 
 import ooga.controller.JSONInformationDecoder;
 
@@ -18,7 +19,13 @@ public class DefaultCollisionChartGetter implements CollisionChartGetter {
    */
   @Override
   public CollisionChart getCollisionChart(String entityType) {
-    JSONInformationDecoder decoder = new JSONInformationDecoder();
-    return decoder.makeCollisionDataFromJSONObject(COLLISION_CHART_PATH, entityType);
+    return getCollisionChart(entityType, COLLISION_CHART_PATH);
   }
+
+  @Override
+  public CollisionChart getCollisionChart(String entityType, String collisionChartPath) {
+    JSONInformationDecoder decoder = new JSONInformationDecoder();
+    return decoder.makeCollisionDataFromJSONObject(collisionChartPath, entityType);
+  }
+
 }
