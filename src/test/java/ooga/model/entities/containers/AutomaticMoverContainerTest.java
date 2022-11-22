@@ -15,7 +15,7 @@ public class AutomaticMoverContainerTest {
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());
 
-    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(0, 0, 0, 0, null, movementQueue);
+    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
     AutomaticMoverContainer container = new AutomaticMoverContainer(mover1);
 
     container.moveAll();
@@ -30,9 +30,9 @@ public class AutomaticMoverContainerTest {
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());
 
-    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(0, 0, 0, 0, null, movementQueue);
+    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
     container.addMover(mover1);
-    AutomaticMovingCharacter mover2 = new AutomaticMovingCharacter(0, 0, 0, 0, null, movementQueue);
+    AutomaticMovingCharacter mover2 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
     container.addMover(mover2);
 
     container.moveAll();
@@ -48,7 +48,7 @@ public class AutomaticMoverContainerTest {
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());
 
-    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(0, 0, 0, 0, null, movementQueue);
+    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
     container.addMover(mover1);
 
     assertEquals(0, mover1.getXCoordinate());
