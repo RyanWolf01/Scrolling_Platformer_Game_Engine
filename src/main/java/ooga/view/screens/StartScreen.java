@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.GridPane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ooga.model.entities.characters.maincharacters.Mario;
@@ -20,13 +21,13 @@ import java.util.HashMap;
 public class StartScreen {
 
   private static HashMap<String, String> gameToGame;
-  private static final String RESOURCE_DIRECTORY = System.getProperty("user.dir") + "\\data\\";
-  private static final String ICON_DIRECTORY =  "icons\\";
-  private static final String GAMES_DIRECTORY = "games\\";
-  private static final String LEVEL_DIRECTORY = "levels\\";
+  private static final String RESOURCE_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/";
+  private static final String ICON_DIRECTORY =  "icons/";
+  private static final String GAMES_DIRECTORY = "games/";
+  private static final String LEVEL_DIRECTORY = "levels/";
   private static final String[] GAME_LIST = {"Super Mario Bros", "Doodle Jump", "Geometry Dash", "Duvall Life Simulator"};
   private File levelFile;
-
+  private DirectoryChooser directoryChooser;
   private GridPane gameChooser;
   private GameSelector gameSelector;
   private static final Logger LOG = LogManager.getLogger(StartScreen.class);
@@ -53,7 +54,7 @@ public class StartScreen {
     startGame.setText("Start Game");
 
     startGame.setOnAction(event -> {
-      new View(mainStage, gameToGame.get(gameSelector.getValue()), levelFile);
+      new View(mainStage, gameSelector.getValue(), directoryChooser, levelFile);
     });
     gameChooser.add(startGame, 0, 2);
 
@@ -72,10 +73,12 @@ public class StartScreen {
     levelButton.setText("Choose Level");
     levelButton.setOnAction(event -> {
       String gameDirectory = RESOURCE_DIRECTORY + GAMES_DIRECTORY + gameToGame.get(gameSelector.getValue()) + LEVEL_DIRECTORY;
-      System.out.println(gameDirectory);
-      fileChooser.setInitialDirectory(new File(gameDirectory));
+      LOG.info(System.getProperty("user.dir") + "/src/main/resources/games/mario/levels/");
+      directoryChooser = new DirectoryChooser();
+      directoryChooser.setInitialDirectory(new File(gameDirectory));
+      fileChooser.setInitialDirectory(directoryChooser.getInitialDirectory());
       levelFile = fileChooser.showOpenDialog(mainStage);
-      LOG.info(levelFile);
+      LOG.debug(levelFile);
     });
 
 

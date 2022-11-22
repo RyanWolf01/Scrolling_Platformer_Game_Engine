@@ -26,6 +26,13 @@ public class ScrollingNode extends ImageView {
     backY = yCoordinate;
   }
 
+  public double getBackX(){
+    return backX;
+  }
+  public double getBackY(){
+    return backY;
+  }
+
   public void updateCameraX(double cameraX){
     this.setX(backX - cameraX);
   }
