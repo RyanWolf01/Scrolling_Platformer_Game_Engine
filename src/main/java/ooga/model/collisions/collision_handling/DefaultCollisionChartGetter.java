@@ -1,9 +1,9 @@
 package ooga.model.collisions.collision_handling;
 
 import static ooga.Main.COLLISION_CHART_PATH;
-import static ooga.Main.DEFAULT_RESOURCE_PACKAGE;
 
 import ooga.controller.JSONInformationDecoder;
+import ooga.model.collisions.collision_handling.exceptions.CollisionChartParsingException;
 
 /**
  * Accesses CollisionCharts by reading them in from a file at the specified path for every access.
@@ -24,8 +24,14 @@ public class DefaultCollisionChartGetter implements CollisionChartGetter {
 
   @Override
   public CollisionChart getCollisionChart(String entityType, String collisionChartPath) {
-    JSONInformationDecoder decoder = new JSONInformationDecoder();
-    return decoder.makeCollisionDataFromJSONObject(collisionChartPath, entityType);
-  }
+    try {
+      JSONInformationDecoder decoder = new JSONInformationDecoder();
+      return decoder.makeCollisionDataFromJSONObject(collisionChartPath, entityType);
+    } catch (RuntimeException e) {
+      throw new CollisionChartParsingException("An exception occurred while attempting to parse the"
+          + " collision chart for type " + entityType + ". The specified path for the "
+          + "CollisionChart is: " + collisionChartPath, e);
+    }
 
+  }
 }

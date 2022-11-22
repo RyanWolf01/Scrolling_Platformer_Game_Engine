@@ -1,5 +1,7 @@
 package ooga.model.collision_handling;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.collisions.physics.PhysicsCalculator;
 import ooga.model.entities.characters.BasicStaticCharacter;
@@ -18,8 +20,14 @@ public class CollidableEntityTest {
     PhysicsCalculator phyCalc = new PhysicsCalculator();
     CollisionPhysicsInfo cpi = phyCalc.calculatePhysics(mario, goomba);
 
+    int numLives = mario.getLives();
+    mario.changeVelocities(18, 7);
+
     mario.onCollision(goomba, cpi);
 
-
+    assertEquals(numLives - 1, mario.getLives());
+    assertEquals(0, mario.getXVelocity());
+    assertEquals(0, mario.getYVelocity());
+    
   }
 }

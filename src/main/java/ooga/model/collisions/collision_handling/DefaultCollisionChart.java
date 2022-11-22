@@ -44,6 +44,7 @@ public class DefaultCollisionChart implements CollisionChart {
     }
 
     throw new NoCollisionCriteriaMatchException("This collision chart doesn't define how to handle"
-        + " this type of collision between these two Entities");
+        + " this type of collision between these two Entities. Here's the CollisionData: " +
+        collisionData.toString());
   }
 }

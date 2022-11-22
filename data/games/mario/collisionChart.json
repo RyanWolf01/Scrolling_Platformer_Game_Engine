@@ -1,17 +1,42 @@
 {
+  "MARIO": [
+    {
+      "OPPONENT_type": "GOOMBA",
+      "COLLISION_direction": "SIDE",
+      "ACTIONS": [
+        {
+          "classname": "ooga.model.actions.aliveactions.Kill",
+          "action_interface": "AliveAction",
+          "params": []
+        },
+        {
+          "classname": "ooga.model.actions.moveractions.StopBothDirections",
+          "action_interface": "MoverAction",
+          "params": []
+        }
+      ]
+    },
+    {
+      "OPPONENT_type": "GOOMBA",
+      "COLLISION_direction": "TOP",
+      "ACTIONS": [
+        {
+          "classname": "ooga.model.actions.moveractions.Bounce",
+          "action_interface": "MoverAction",
+          "params": []
+        }
+      ]
+    }
+  ],
+
   "GOOMBA": [
         {
         "OPPONENT_type": "MARIO",
         "COLLISION_direction": "TOP",
         "ACTIONS": [
             {
-              "classname": "Die",
+              "classname": "ooga.model.actions.aliveactions.Kill",
               "action_interface": "AliveAction",
-              "params": []
-            },
-            {
-              "classname": "Bounce",
-              "action_interface": "MoverAction",
               "params": []
             }
           ]

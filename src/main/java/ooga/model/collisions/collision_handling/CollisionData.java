@@ -68,6 +68,15 @@ public class CollisionData implements Iterable<String> {
     return data.keySet().iterator();
   }
 
+  /**
+   * toString method that prints out all the key-value pairs in the CollisionChart
+   * @return String kv-pairs
+   */
+  @Override
+  public String toString() {
+    return data.toString();
+  }
+
   // Add the keys in ImmutableEntityInfo to data
   private void addKeys(Map<String, String> data, ImmutableInfo entityInfo, String prefix) {
     for (String key : entityInfo) {
