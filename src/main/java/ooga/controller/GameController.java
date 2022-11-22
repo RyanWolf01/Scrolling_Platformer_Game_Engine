@@ -25,11 +25,11 @@ public class GameController {
      */
     public GameController(String levelJSON, String collisionJSON, String controlsJSON) {
         controlHandler = new UserControlHandler();
-        container = new ConnectionContainer();
-        jsonDecoder = new JSONInformationDecoder();
-        jsonDecoder.makeEntityContainerFromLevelJSON(levelJSON, container);
+        jsonDecoder = new JSONInformationDecoder(levelJSON, collisionJSON, controlsJSON);
+        container = new ConnectionContainer(jsonDecoder);
+        jsonDecoder.makeEntityContainerFromLevelJSON(container);
         // TODO: integrate new String for controls JSON into this constructor and in related locations in main and controller tests
-        jsonDecoder.makeUserControlHandlerFromJSON(controlsJSON, controlHandler);
+        jsonDecoder.makeUserControlHandlerFromJSON(controlHandler);
         model = new Model(container.entities());
     }
 

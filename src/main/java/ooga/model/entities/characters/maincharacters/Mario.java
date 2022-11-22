@@ -1,4 +1,5 @@
 package ooga.model.entities.characters.maincharacters;
+import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.data.Info;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.MoverActionParser;
@@ -13,9 +14,9 @@ public class Mario extends MainCharacterEntity {
 
   private static final Logger LOG = LogManager.getLogger(Mario.class);
 
-  public Mario(int initialXCoordinate, int initialYCoordinate, double height, double width,
+  public Mario(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
-    super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
+    super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
   }
 
   /**

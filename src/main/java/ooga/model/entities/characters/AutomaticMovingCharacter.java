@@ -1,5 +1,6 @@
 package ooga.model.entities.characters;
 
+import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.data.Info;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.MoverActionParser;
@@ -23,9 +24,9 @@ public class AutomaticMovingCharacter extends MovingCharacter implements Automat
    * @param width
    * @param entityInfo
    */
-  public AutomaticMovingCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width,
+  public AutomaticMovingCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo, MovementQueue movementQueue) {
-    super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
+    super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
     this.movementQueue = movementQueue;
   }
 

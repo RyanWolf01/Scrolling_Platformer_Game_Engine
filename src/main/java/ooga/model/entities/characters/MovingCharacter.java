@@ -1,5 +1,6 @@
 package ooga.model.entities.characters;
 
+import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.CollidableEntity;
 import ooga.model.entities.data.Info;
 import ooga.model.entities.alive.Alive;
@@ -12,9 +13,9 @@ public abstract class MovingCharacter extends CollidableEntity implements Alive,
   private double xVelocity;
   private double yVelocity;
 
-  public MovingCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width,
+  public MovingCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
-    super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
+    super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
 //        this.lives = Integer.parseInt(entityInfo.get("lives"));
   }
 

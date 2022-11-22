@@ -1,6 +1,7 @@
 package ooga.model.entities.characters;
 
 import ooga.model.actionparsers.MoverActionParser;
+import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.data.Info;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actions.aliveactions.AliveAction;
@@ -16,9 +17,9 @@ public class BasicStaticCharacter extends StaticCharacter {
    * @param width
    * @param entityInfo
    */
-  public BasicStaticCharacter(int initialXCoordinate, int initialYCoordinate, double height, double width,
+  public BasicStaticCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
-    super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
+    super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
   }
 
   /**

@@ -20,13 +20,15 @@ public class ConnectionContainer {
   public static final ResourceBundle entityClassResources = ResourceBundle.getBundle(Main.DEFAULT_RESOURCE_PACKAGE+"Entities");
   public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.DEFAULT_RESOURCE_PACKAGE+"Containers");
   private BackendContainer entities;
+  private JSONInformationDecoder decoder;
   private NodeContainer nodes;
   private Map<ScrollingNode, Entity> connectorMap;
 
-  public ConnectionContainer(){
-    entities = new BackendContainer();
+  public ConnectionContainer(JSONInformationDecoder decoder){
+    entities = new BackendContainer(decoder);
     nodes = new NodeContainer();
     connectorMap = new HashMap<>();
+    decoder = this.decoder;
   }
 
   /**
