@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * This is a list of JavaFX nodes that will be visualized by the View.
  */
-public class NodeContainer implements Iterable<Node> {
+public class NodeContainer implements Iterable<ScrollingNode> {
     private List<ScrollingNode> entities;
 
     public NodeContainer(){
@@ -18,8 +18,8 @@ public class NodeContainer implements Iterable<Node> {
     }
 
     @Override
-    public Iterator<Node> iterator() {
-        return (Iterator<Node>) entities;
+    public Iterator<ScrollingNode> iterator() {
+        return (Iterator<ScrollingNode>) entities;
     }
 
     public void addNode(ScrollingNode node){
