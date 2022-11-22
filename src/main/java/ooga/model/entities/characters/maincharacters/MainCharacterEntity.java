@@ -10,7 +10,7 @@ import ooga.model.entities.data.Info;
 /**
  * Maybe all main character entities
  */
-public class MainCharacterEntity extends MovingCharacter implements UserControllable {
+public abstract class MainCharacterEntity extends MovingCharacter implements UserControllable {
 
   public MainCharacterEntity(int initialXCoordinate, int initialYCoordinate, double height,
       double width, Info entityInfo) {
@@ -19,56 +19,11 @@ public class MainCharacterEntity extends MovingCharacter implements UserControll
 
   @Override
   public void acceptMoveAction(MoverAction action) {
-
+    action.execute(this);
   }
 
   @Override
   public void acceptAliveAction(AliveAction action) {
-
-  }
-
-  @Override
-  public int getLives() {
-    return 0;
-  }
-
-  @Override
-  public void kill() {
-
-  }
-
-  @Override
-  public void changeLives(int changeInLives) {
-
-  }
-
-  @Override
-  public void move() {
-
-  }
-
-  @Override
-  public void changeVelocities(double changeXVelocity, double changeYVelocity) {
-
-  }
-
-  @Override
-  public void resetVelocities(boolean resetX, boolean resetY) {
-
-  }
-
-  @Override
-  public double getXVelocity() {
-    return 0;
-  }
-
-  @Override
-  public double getYVelocity() {
-    return 0;
-  }
-
-  @Override
-  protected int performActions(ActionDataContainer actionDataContainer) {
-    return 0;
+    action.execute(this);
   }
 }

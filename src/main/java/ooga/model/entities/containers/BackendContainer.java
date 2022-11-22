@@ -98,6 +98,10 @@ public class BackendContainer {
     return collidables.contains(entity);
   }
 
+  public CollidableContainer collidables(){
+    return collidables;
+  }
+
   private boolean isMainCharacterType(String type){
     return Arrays.asList(containerResources.getStringArray("main_characters")).contains(type);
   }

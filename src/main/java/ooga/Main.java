@@ -14,23 +14,24 @@ import java.nio.file.Path;
 import java.sql.Time;
 
 /**
- * Feel free to completely change this code or delete it entirely. 
+ * Feel free to completely change this code or delete it entirely.
  */
 public class Main extends Application {
-
-    public static final String DEFAULT_RESOURCE_PACKAGE = System.getProperty("user.dir") + "/src/main/resources/";
-
-    /**
-     * A method to test (and a joke :).
-     */
-    public double getVersion () {
-        return 0.001;
-    }
+  public static final String COLLISION_CHART_PATH = "games/mario/collisionChart.json";
+  public static final String DEFAULT_RESOURCE_PACKAGE = System.getProperty("user.dir") + "/src/main/resources/";
 
 
-    @Override
-    public void start(Stage primaryStage){
-        //Create Splash Screen and set it to the stage
-        StartScreen startScreen = new StartScreen(primaryStage);
-    }
+  /**
+   * A method to test (and a joke :).
+   */
+  public double getVersion() {
+    return 0.001;
+  }
+
+
+  @Override
+  public void start(Stage primaryStage) {
+    //Create Splash Screen and set it to the stage
+    StartScreen startScreen = new StartScreen(primaryStage);
+  }
 }

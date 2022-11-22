@@ -62,7 +62,7 @@ public class MoverActionParser {
              IllegalAccessException | NoSuchMethodException e) {
 
       throw new ActionParsingException(
-          "Parsing of ActionData did not work properly. The ActionData attempted to be parsed:"
+          "Parsing of ActionData did not work properly. The ActionData attempted to be parsed: "
               + actionData.toString(), e);
     }
 

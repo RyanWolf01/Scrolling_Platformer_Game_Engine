@@ -1,12 +1,13 @@
 package ooga.model.entities.containers;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import ooga.model.entities.CollidableEntity;
 import ooga.model.entities.Entity;
 import ooga.model.entities.movement.AutomaticMover;
 
-public class CollidableContainer{
+public class CollidableContainer implements Iterable<CollidableEntity>{
 
   private List<CollidableEntity> collidables;
   /**
@@ -27,4 +28,11 @@ public class CollidableContainer{
   public boolean contains(Entity entity){
     return collidables.contains(entity);
   }
+
+  @Override
+  public Iterator<CollidableEntity> iterator() {
+    return collidables.iterator();
+  }
+
+
 }

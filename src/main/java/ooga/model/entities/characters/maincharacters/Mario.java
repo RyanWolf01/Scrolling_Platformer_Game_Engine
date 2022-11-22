@@ -9,7 +9,7 @@ import ooga.model.entities.characters.MovingCharacter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Mario extends MovingCharacter {
+public class Mario extends MainCharacterEntity {
 
   private static final Logger LOG = LogManager.getLogger(Mario.class);
 
@@ -68,12 +68,13 @@ public class Mario extends MovingCharacter {
     Also need to add testing and javadoc of course.
    */
   @Override
-  protected int performActions(ActionDataContainer actionDataContainer) {
+  public int performActions(ActionDataContainer actionDataContainer) {
     int count = 0;
     count += new MoverActionParser(actionDataContainer).parseAndApplyActions(this);
     count += new AliveActionParser(actionDataContainer).parseAndApplyActions(this);
 
     return count;
   }
+
 
 }

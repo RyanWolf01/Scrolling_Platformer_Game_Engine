@@ -1,12 +1,13 @@
 package ooga.model.entities.containers;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import ooga.model.entities.AutomaticMovingEntity;
 import ooga.model.entities.movement.AutomaticMover;
 import ooga.model.entities.movement.Mover;
 
-public class AutomaticMoverContainer {
+public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
 
   private List<AutomaticMover> movers;
   /**
@@ -59,4 +60,8 @@ public class AutomaticMoverContainer {
     }
   }
 
+  @Override
+  public Iterator<AutomaticMover> iterator() {
+    return movers.iterator();
+  }
 }
