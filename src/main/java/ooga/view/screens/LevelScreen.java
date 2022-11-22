@@ -33,7 +33,7 @@ public class LevelScreen {
   private final int levelHeight = 800;
   private final String BACKGROUND_DIRECTORY = Main.DEFAULT_RESOURCE_PACKAGE + "backgrounds\\";
   private Pane levelPane;
-
+  private ScrollingNode mainCharacter;
   private NodeContainer myNodes;
   private GameController myController;
   private GameCamera myGameCamera;
@@ -66,27 +66,45 @@ public class LevelScreen {
     return scene;
   }
 
+/**
+* Generates the new frame of the level
+ * @param nextNodes is the list of nodes that the level needs to display for the frame
+*/
   public void step(NodeContainer nextNodes){
+    LOG.debug("Camera X: " + myGameCamera.getCameraX());
+    LOG.debug("Camera Y: " + myGameCamera.getCameraX());
+
+    if(myNodes != null){
+      for (Node a : myNodes) {
+          levelPane.getChildren().remove(a);
+      }
+    }
     myNodes = nextNodes;
-    //get MainCharacter from myNodes
-    ScrollingNode mainCharacter = myNodes.getMainCharacter();
+    mainCharacter = myNodes.getMainCharacter();
     updateCamera(mainCharacter);
     translateNodes();
     for (Node node : myNodes) {
         levelPane.getChildren().add(node);
     }
+    levelPane.getChildren().add(mainCharacter);
   }
 
 
+/**
+* TODO: Get the values for the margin and the start x and y from a json file
+ * This creates the camera with initial values
+*/
   private void createCamera(){
     double startX = 0;
     double startY = 0;
-    Margin startingMargin = new Margin(100, 800, 0, 0);
-    int height = levelHeight;
-    int width = levelWidth;
-    myGameCamera = new GameCamera(startX, startY, startingMargin, height, width);
-    myGameCamera.setPlayerLocation(0, 0);
+    Margin startingMargin = new Margin(100, 400, 0, 0);
+    myGameCamera = new GameCamera(startX, startY, startingMargin, levelHeight, levelWidth);
+    myGameCamera.setPlayerLocation(100, 0);
   }
+/**
+* Sends the mainCharacter to the camera, so the camera can decide if it needs to scroll
+ * @param mainCharacter is the node of the mainCharacter that the camera bases its position on
+*/
   private void updateCamera(ScrollingNode mainCharacter){
     //get player location from myNodes
     double playerX = mainCharacter.getBackX();
@@ -94,10 +112,19 @@ public class LevelScreen {
     myGameCamera.setPlayerLocation(playerX, playerY);
   }
 
+/**
+* Once the new camera position is determined, it tells the NodeContainer to move them all to reflect the new camera position
+*/
   private void translateNodes(){
     myNodes.updateCameraPosition(myGameCamera.getCameraX(), myGameCamera.getCameraY());
   }
 
+/**
+* Looks inside the level file, finds the background image, and sets it to the level pane
+ * @param levelFile
+ * @throws IOException Will be handled later
+ * @throws ParseException Will be handled later
+*/
   private void setBackground(File levelFile) throws IOException, ParseException {
     Background newBackground;
     FileReader infoFile = new FileReader(levelFile);

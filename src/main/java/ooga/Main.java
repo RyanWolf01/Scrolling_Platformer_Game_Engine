@@ -18,7 +18,7 @@ import java.sql.Time;
  */
 public class Main extends Application {
 
-    public static final String DEFAULT_RESOURCE_PACKAGE = System.getProperty("user.dir") + "\\src\\main\\resources\\";
+    public static final String DEFAULT_RESOURCE_PACKAGE = System.getProperty("user.dir") + "/src/main/resources/";
 
     /**
      * A method to test (and a joke :).

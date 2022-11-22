@@ -3,6 +3,7 @@ package ooga.view;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Node;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import ooga.controller.GameController;
@@ -20,12 +21,13 @@ public class View {
   private static Timeline levelAnimation;
 
   private LevelScreen level;
-  private static final double FRAME_DELAY = 1.0/60.0;
+  //private static final double FRAME_DELAY = 1.0/60.0;
+  private static final double FRAME_DELAY = 3.0;
 
   private static final Logger LOG = LogManager.getLogger(View.class);
 
-  public View(Stage mainStage, String GameTitle, File levelFile){
-    //myController = new GameController(levelFile);
+  public View(Stage mainStage, String GameTitle, DirectoryChooser directoryChooser, File levelFile){
+    //myController = new GameController(directoryChooser);
     level = new LevelScreen(myController);
     LOG.info(levelFile);
     mainStage.setScene(level.initiateLevel(levelFile));
@@ -38,9 +40,9 @@ public class View {
   }
 
   private void step(double frameTime){
-    System.out.println("EEEE");
-    NodeContainer nextNodes = myController.step();
-    level.step(nextNodes);
+    //NodeContainer nextNodes = myController.step();
+    //level.step(nextNodes);
+    level.step(new NodeContainer());
   }
 
 }
