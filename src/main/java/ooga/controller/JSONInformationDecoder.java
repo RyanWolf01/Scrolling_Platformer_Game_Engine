@@ -31,6 +31,8 @@ public class JSONInformationDecoder {
     this.levelJSON = levelJSON;
     this.controlsJSON = controlsJSON;
     this.collisionsJSON = collisionsJSON;
+    this.generalInfoMap = new HashMap<>();
+    this.entityJSONList = new ArrayList<>();
   }
 
 
@@ -99,8 +101,8 @@ public class JSONInformationDecoder {
         throw new RuntimeException("Not all required information for entity");
       }
       singleEntityInfo = makeEntityInfoFromJSONObject(singleEntity);
-      connectionContainer.addNewEntity((int) singleEntity.get("x"), (int) singleEntity.get("y"),
-          (double) singleEntity.get("height"), (double) singleEntity.get("width"), (String) singleEntity.get("type"),
+      connectionContainer.addNewEntity(Integer.parseInt((String) singleEntity.get("x")), Integer.parseInt((String) singleEntity.get("y")),
+          Double.parseDouble((String) singleEntity.get("height")), Double.parseDouble((String) singleEntity.get("width")), (String) singleEntity.get("type"),
           singleEntityInfo);
     }
   }

@@ -17,8 +17,8 @@ import ooga.view.nodes.ScrollingNode;
  * the JSON to the game.
  */
 public class ConnectionContainer {
-  public static final ResourceBundle entityClassResources = ResourceBundle.getBundle(Main.DEFAULT_RESOURCE_PACKAGE+"Entities");
-  public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.DEFAULT_RESOURCE_PACKAGE+"Containers");
+  public static final ResourceBundle entityClassResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Entities");
+  public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Containers");
   private BackendContainer entities;
   private JSONInformationDecoder decoder;
   private NodeContainer nodes;
@@ -55,7 +55,7 @@ public class ConnectionContainer {
     ScrollingNode newNode = new ScrollingNode(xCoordinate, yCoordinate, height, width, imageURL);
 
     nodes.addNode(newNode);
-    if(isMainCharacterType("type")){
+    if(isMainCharacterType(type)){
       nodes.setMainCharacter(newNode);
     }
 
@@ -98,6 +98,6 @@ public class ConnectionContainer {
   }
 
   private boolean isMainCharacterType(String type){
-    return Arrays.asList(containerResources.getStringArray("main_characters")).contains(type);
+    return Arrays.asList(containerResources.getString("main_characters").split(",")).contains(type);
   }
 }

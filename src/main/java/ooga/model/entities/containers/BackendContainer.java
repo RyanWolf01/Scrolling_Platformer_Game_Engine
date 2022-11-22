@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import ooga.Main;
+import ooga.controller.ConnectionContainer;
 import ooga.controller.JSONInformationDecoder;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.collisionhandling.CollisionChartGetter;
@@ -14,15 +15,15 @@ import ooga.model.entities.Entity;
 import ooga.model.entities.StaticEntity;
 import ooga.model.entities.characters.maincharacters.MainCharacterEntity;
 import ooga.model.entities.data.EntityInfo;
+import ooga.model.entities.data.Info;
 import ooga.model.entities.movement.MovementQueue;
 
 /**
  * This mega container holds all the information the backend needs
  */
 public class BackendContainer {
-  public static final ResourceBundle entityClassResources = ResourceBundle.getBundle(Main.DEFAULT_RESOURCE_PACKAGE+"Entities");
-  public static final ResourceBundle containerResources = ResourceBundle.getBundle(
-      Main.DEFAULT_RESOURCE_PACKAGE+"Containers");
+  //public static final ResourceBundle entityClassResources = ResourceBundle.getBundle(Main.DEFAULT_RESOURCE_PACKAGE+"Entities");
+  //public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.DEFAULT_RESOURCE_PACKAGE+"Containers");
   private EntityContainer entities;
   private AutomaticMoverContainer autoMovers;
   private CollidableContainer collidables;
@@ -46,8 +47,8 @@ public class BackendContainer {
 
       MainCharacterEntity main;
       try {
-        main = (MainCharacterEntity) Class.forName(entityClassResources.getString(type)).
-            getConstructor(CollisionChart.class, Integer.class, Integer.class, Double.class, Double.class, EntityInfo.class)
+        main = (MainCharacterEntity) Class.forName(ConnectionContainer.entityClassResources.getString(type)).
+            getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class)
             .newInstance(chart, xCoordinate,yCoordinate, height, width, info);
       } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
                InstantiationException | IllegalAccessException e) {
@@ -65,8 +66,8 @@ public class BackendContainer {
 
       AutomaticMovingEntity newMover;
       try {
-        newMover = (AutomaticMovingEntity) Class.forName(entityClassResources.getString(type)).
-            getConstructor(CollisionChart.class, Integer.class, Integer.class, Double.class, Double.class, EntityInfo.class, MovementQueue.class)
+        newMover = (AutomaticMovingEntity) Class.forName(ConnectionContainer.entityClassResources.getString(type)).
+            getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class, MovementQueue.class)
             .newInstance(chart, xCoordinate,yCoordinate, height, width, info, null);
       } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
                InstantiationException | IllegalAccessException e) {
@@ -88,8 +89,8 @@ public class BackendContainer {
 
       //zz
       try {
-        newCollidable = (CollidableEntity) Class.forName(entityClassResources.getString(type)).
-            getConstructor(CollisionChart.class, Integer.class, Integer.class, Double.class, Double.class, EntityInfo.class)
+        newCollidable = (CollidableEntity) Class.forName(ConnectionContainer.entityClassResources.getString(type)).
+            getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class)
             .newInstance(chart, xCoordinate,yCoordinate, height, width, info);
       } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
                InstantiationException | IllegalAccessException e) {
@@ -101,8 +102,8 @@ public class BackendContainer {
     }
     else{
       try {
-        newEntity = (StaticEntity) Class.forName(entityClassResources.getString(type)).
-            getConstructor(Integer.class, Integer.class, Double.class, Double.class, EntityInfo.class)
+        newEntity = (StaticEntity) Class.forName(ConnectionContainer.entityClassResources.getString(type)).
+            getConstructor(int.class, int.class, double.class, double.class, Info.class)
             .newInstance(xCoordinate,yCoordinate, height, width, info);
       } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
                InstantiationException | IllegalAccessException e) {
@@ -132,14 +133,14 @@ public class BackendContainer {
   }
 
   private boolean isMainCharacterType(String type){
-    return Arrays.asList(containerResources.getStringArray("main_characters")).contains(type);
+    return Arrays.asList(ConnectionContainer.containerResources.getString("main_characters").split(",")).contains(type);
   }
 
   private boolean isAutomaticMoverType(String type){
-    return Arrays.asList(containerResources.getStringArray("automatic_movers")).contains(type);
+    return Arrays.asList(ConnectionContainer.containerResources.getString("automatic_movers").split(",")).contains(type);
   }
 
   private boolean isCollidableType(String type){
-    return Arrays.asList(containerResources.getStringArray("collidables")).contains(type);
+    return Arrays.asList(ConnectionContainer.containerResources.getString("collidables").split(",")).contains(type);
   }
 }

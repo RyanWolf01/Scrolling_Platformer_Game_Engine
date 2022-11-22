@@ -8,6 +8,10 @@ import ooga.model.actions.moveractions.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import ooga.model.actions.moveractions.basicmovement.DownwardMovement;
+import ooga.model.actions.moveractions.basicmovement.LeftMovement;
+import ooga.model.actions.moveractions.basicmovement.RightMovement;
+import ooga.model.actions.moveractions.basicmovement.UpwardMovement;
 
 /**
  * This is used to connect the users keyboard inputs to actions for the main character to perform
@@ -69,6 +73,10 @@ public class UserControlHandler {
         allMoverActions.put("stop_both_directions", new StopBothDirections());
         allMoverActions.put("stop_x_movement", new StopXMovement());
         allMoverActions.put("stop_y_movement", new StopYMovement());
+        allMoverActions.put("move_left", new LeftMovement());
+        allMoverActions.put("move_right", new RightMovement());
+        allMoverActions.put("move_down", new DownwardMovement());
+        allMoverActions.put("move_up", new UpwardMovement());
     }
 
 }

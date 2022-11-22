@@ -28,10 +28,10 @@ public class LevelScreen {
 
 
 
-  private final int levelWidth = 1600;
+  private final int levelWidth = 1200;
 
-  private final int levelHeight = 800;
-  private final String BACKGROUND_DIRECTORY = Main.DEFAULT_RESOURCE_PACKAGE + "backgrounds\\";
+  private final int levelHeight = 600;
+  private final String BACKGROUND_DIRECTORY = "/backgrounds/";
   private Pane levelPane;
   private ScrollingNode mainCharacter;
   private NodeContainer myNodes;
@@ -86,7 +86,6 @@ public class LevelScreen {
     for (Node node : myNodes) {
         levelPane.getChildren().add(node);
     }
-    levelPane.getChildren().add(mainCharacter);
   }
 
 
@@ -97,7 +96,7 @@ public class LevelScreen {
   private void createCamera(){
     double startX = 0;
     double startY = 0;
-    Margin startingMargin = new Margin(100, 400, 0, 0);
+    Margin startingMargin = new Margin(100, 400, 100, 100);
     myGameCamera = new GameCamera(startX, startY, startingMargin, levelHeight, levelWidth);
     myGameCamera.setPlayerLocation(100, 0);
   }

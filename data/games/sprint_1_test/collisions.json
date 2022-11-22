@@ -1,24 +1,8 @@
 {
-  "MARIO": [
+  "mario": [
     {
-      "OPPONENT_TYPE": "GOOMBA",
-      "COLLISION_DIRECTION": "RIGHT",
-      "ACTIONS": [
-        {
-          "classname": "ooga.model.actions.aliveactions.Kill",
-          "action_interface": "AliveAction",
-          "params": []
-        },
-        {
-          "classname": "ooga.model.actions.moveractions.StopBothDirections",
-          "action_interface": "MoverAction",
-          "params": []
-        }
-      ]
-    },
-    {
-      "OPPONENT_TYPE": "GOOMBA",
-      "COLLISION_DIRECTION": "BOTTOM",
+      "OPPONENT_TYPE": "static_platform",
+      "COLLISION_DIRECTION": "LEFT",
       "ACTIONS": [
         {
           "classname": "ooga.model.actions.moveractions.Bounce",
@@ -26,7 +10,41 @@
           "params": []
         }
       ]
+    },
+    {
+      "OPPONENT_TYPE": "static_platform",
+      "COLLISION_DIRECTION": "RIGHT",
+      "ACTIONS": [
+        {
+          "classname": "ooga.model.actions.moveractions.Bounce",
+          "action_interface": "MoverAction",
+          "params": []
+        }
+      ]
+    },
+    {
+      "OPPONENT_TYPE": "static_platform",
+      "COLLISION_DIRECTION": "TOP",
+      "ACTIONS": [
+        {
+          "classname": "ooga.model.actions.moveractions.StopYMovement",
+          "action_interface": "MoverAction",
+          "params": []
+        }
+      ]
+    },
+    {
+      "OPPONENT_TYPE": "static_platform",
+      "COLLISION_DIRECTION": "BOTTOM",
+      "ACTIONS": [
+        {
+          "classname": "ooga.model.actions.moveractions.StopYMovement",
+          "action_interface": "MoverAction",
+          "params": []
+        }
+      ]
     }
+
   ],
 
   "GOOMBA": [

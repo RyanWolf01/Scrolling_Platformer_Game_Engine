@@ -1,5 +1,6 @@
 {
-  "W": "jump",
+  "W": "move_down",
   "A": "move_left",
-  "D": "move_right"
+  "D": "move_right",
+  "S": "move_up"
 }

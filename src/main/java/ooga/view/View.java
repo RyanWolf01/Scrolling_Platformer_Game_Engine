@@ -27,9 +27,9 @@ public class View {
 
   public View(Stage mainStage, String GameTitle, File levelDirectory){
 
-    myController = new GameController(new File(levelDirectory + "/level"), new File(levelDirectory + "/collisions"), new File(levelDirectory + "/controls"));
+    myController = new GameController(levelDirectory + "/level.json", levelDirectory + "/collisions.json", levelDirectory + "/controls.json");
     level = new LevelScreen(myController);
-    mainStage.setScene(level.initiateLevel(new File(levelDirectory + "/level")));
+    mainStage.setScene(level.initiateLevel(new File(levelDirectory + "/level.json")));
     mainStage.setTitle(GameTitle);
 
     levelAnimation = new Timeline();
