@@ -2,6 +2,9 @@ package ooga.controller;
 
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
+import ooga.model.collisions.collision_handling.CollisionChart;
+import ooga.model.collisions.collision_handling.CollisionData;
+import ooga.model.collisions.collision_handling.DefaultCollisionChart;
 import ooga.view.nodes.NodeContainer;
 
 
@@ -13,17 +16,20 @@ public class GameController {
     private ConnectionContainer container;
     private UserControlHandler controlHandler;
     private JSONInformationDecoder jsonDecoder;
+    private DefaultCollisionChart collisionChart;
 
     /**
      * The GameController needs to have a mapping of backend to frontend objects
      *
      */
-    public GameController(String levelJSONPath, String collisionJSONPath) {
+    public GameController(String levelJSONPath, String collisionJSONPath, String controlsJSONPath) {
         controlHandler = new UserControlHandler();
         container = new ConnectionContainer();
         jsonDecoder = new JSONInformationDecoder();
+
         jsonDecoder.makeEntityContainerFromLevelJSON(levelJSONPath, container);
-        //jsonDecoder.makeUserControlHandlerFromJSON(controlsJSONFile, controlHandler);
+        // TODO: integrate new String for controls JSON into this constructor and in related locations in main and controller tests
+        jsonDecoder.makeUserControlHandlerFromJSON(controlsJSONPath, controlHandler);
     }
 
     /**
