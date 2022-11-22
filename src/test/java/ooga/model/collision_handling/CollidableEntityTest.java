@@ -30,4 +30,23 @@ public class CollidableEntityTest {
     assertEquals(0, mario.getYVelocity());
 
   }
+
+  @Test
+  void test_onCollision2() {
+    Mario mario = new Mario(0, 50, 50, 20, new EntityInfo("MARIO"));
+    BasicStaticCharacter goomba = new BasicStaticCharacter(0, 0, 51, 22, new EntityInfo("GOOMBA"));
+
+    mario.setYCoordinate(45);
+
+    PhysicsCalculator phyCalc = new PhysicsCalculator();
+    CollisionPhysicsInfo cpi = phyCalc.calculatePhysics(mario, goomba);
+
+    int goombaLives = goomba.getLives();
+    double yVel = mario.getYVelocity();
+
+    mario.onCollision(goomba, cpi);
+
+    assertEquals(goombaLives - 1, goomba.getLives());
+    assertEquals(yVel + 5, mario.getYVelocity());
+  }
 }
