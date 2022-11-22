@@ -9,7 +9,7 @@ public class DownwardMovementTest {
 
   @Test
   void testMovementPos1() {
-    Mario mario = new Mario(0, 15, 2, 2, null);
+    Mario mario = new Mario(null, 0, 15, 2, 2, null);
 
     DownwardMovement move = new DownwardMovement();
     move.execute(mario);
@@ -23,7 +23,7 @@ public class DownwardMovementTest {
    */
   @Test
   void testMovementPos2() {
-    Mario mario = new Mario(0, 15, 2, 2, null);
+    Mario mario = new Mario(null,0, 15, 2, 2, null);
 
     DownwardMovement move = new DownwardMovement();
     move.execute(mario);
@@ -38,7 +38,7 @@ public class DownwardMovementTest {
    */
   @Test
   void testMovementNeg() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null,0, 0, 2, 2, null);
 
     DownwardMovement move = new DownwardMovement();
 
