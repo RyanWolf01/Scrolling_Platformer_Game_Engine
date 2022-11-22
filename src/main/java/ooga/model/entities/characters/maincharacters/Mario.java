@@ -9,7 +9,7 @@ import ooga.model.entities.characters.MovingCharacter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Mario extends MovingCharacter {
+public class Mario extends MainCharacterEntity {
 
   private static final Logger LOG = LogManager.getLogger(Mario.class);
 
@@ -75,5 +75,6 @@ public class Mario extends MovingCharacter {
 
     return count;
   }
+
 
 }
