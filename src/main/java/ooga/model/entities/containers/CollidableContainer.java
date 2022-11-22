@@ -3,6 +3,7 @@ package ooga.model.entities.containers;
 import java.util.ArrayList;
 import java.util.List;
 import ooga.model.entities.CollidableEntity;
+import ooga.model.entities.Entity;
 import ooga.model.entities.movement.AutomaticMover;
 
 public class CollidableContainer{
@@ -23,12 +24,7 @@ public class CollidableContainer{
     collidables.add(entity);
   }
 
-
-  /**
-   * @return size of container
-   */
-  private int getContainerSize(){
-    return collidables.size();
+  public boolean contains(Entity entity){
+    return collidables.contains(entity);
   }
-
 }

@@ -2,6 +2,9 @@ package ooga.model;
 
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
+import ooga.model.entities.CollidableEntity;
+import ooga.model.entities.Entity;
+import ooga.model.entities.containers.BackendContainer;
 import ooga.model.entities.containers.EntityContainer;
 
 /**
@@ -9,7 +12,7 @@ import ooga.model.entities.containers.EntityContainer;
  * methods are called by the controller
  */
 public class Model {
-  EntityContainer allEntities;
+  BackendContainer entities;
 
   public void step(){
 
@@ -23,7 +26,7 @@ public class Model {
 
   }
 
-  public void handleCollision(){
+  public void handleCollision(Entity collider, Entity collided){
 
   }
 
