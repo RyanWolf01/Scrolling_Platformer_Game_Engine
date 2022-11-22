@@ -59,7 +59,7 @@ public class JSONInformationDecoder implements JSONTranslator {
     }
 
     for (Object o : levelJSON.keySet()) {
-      if (o == ENTITY_JSON_KEY && checkJSONArrayValue(levelJSON.get(o))) {
+      if (o.equals(ENTITY_JSON_KEY) && checkJSONArrayValue(levelJSON.get(o))) {
         JSONArray jsonEntityArray = (JSONArray) levelJSON.get(o);
         populateEntityList(jsonEntityArray);
         populateConnectionContainer(jsonEntityArray, connectionContainer);
