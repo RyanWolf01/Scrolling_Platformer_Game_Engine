@@ -29,7 +29,7 @@ public class BackendContainer {
     collidables = new CollidableContainer();
   }
 
-  public Entity addNewEntity(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
+  public Entity addNewEntity(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info, String collisionChartPath){
     Entity newEntity = null;
     if(isMainCharacterType(type)){ // if it's a main character type entity, overwrite the basic newEntity
       MainCharacterEntity main;
@@ -68,6 +68,7 @@ public class BackendContainer {
     else if(isCollidableType(type)){ // only a collidable
       CollidableEntity newCollidable;
 
+      //zz
       try {
         newCollidable = (CollidableEntity) Class.forName(entityClassResources.getString(type)).
             getConstructor(Integer.class, Integer.class, Double.class, Double.class, EntityInfo.class)

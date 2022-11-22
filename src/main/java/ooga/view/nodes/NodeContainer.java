@@ -21,7 +21,7 @@ public class NodeContainer implements Iterable<ScrollingNode> {
 
     @Override
     public Iterator<ScrollingNode> iterator() {
-        return (Iterator<ScrollingNode>) entities;
+        return entities.iterator();
     }
 
     public void addNode(ScrollingNode node){
