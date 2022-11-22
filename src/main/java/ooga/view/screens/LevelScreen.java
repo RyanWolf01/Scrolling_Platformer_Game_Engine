@@ -2,16 +2,27 @@ package ooga.view.screens;
 
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ooga.Main;
 import ooga.controller.GameController;
 import ooga.model.entities.Entity;
 import ooga.model.entities.ImmutableEntity;
 import ooga.model.entities.containers.EntityContainer;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Iterator;
 
 public class LevelScreen {
@@ -21,6 +32,7 @@ public class LevelScreen {
   private final int levelWidth = 1600;
 
   private final int levelHeight = 800;
+  private final String BACKGROUND_DIRECTORY = Main.DEFAULT_RESOURCE_PACKAGE + "backgrounds\\";
   private Pane levelPane;
 
   private NodeContainer myNodes;
@@ -34,46 +46,43 @@ public class LevelScreen {
     myController = controller;
   }
 
-  public Scene initiateLevel(){
+  public Scene initiateLevel(File levelFile){
     levelPane = new Pane();
 
     levelPane.setId("Pane");
-
+    try {
+      setBackground(levelFile);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    } catch (ParseException e) {
+      throw new RuntimeException(e);
+    }
 
 
     Scene scene = new Scene(levelPane, levelWidth, levelHeight);
     return scene;
   }
 
-  public void step(double frameTime){
-    NodeContainer nextNodes = myController.step();
+  public void step(NodeContainer nextNodes){
     myNodes = nextNodes;
-    createEntities();
   }
 
-  private void createEntities(){
-    Iterator<Node> nodeIterator = myNodes.iterator();
-    while(nodeIterator.hasNext()) {
-      Node element = nodeIterator.next();
-      createEntity(element);
-      System.out.print(element + " ");
-    }
-  }
 
-  //TODO: Actually Create the Elements in NodeContainer
-  private void createEntity(Node newElement){
-    levelPane.getChildren().add(newElement);
-  }
-  private void createImageOnScreen(ImmutableEntity newEntity){
+  private void updateCamera(){
 
   }
 
-  private void createMainCharacter(ImmutableEntity newEntity){
-    //ImageView newImage = new ImageView(System.getProperty("user.dir") + "/data" + "/games" + "/" + gameType);
-    ImageView newImage = new ImageView(System.getProperty("user.dir") + "/data/games/mario/assets/mario.png");
-    newImage.setY(newEntity.getYCoordinate());
-    newImage.setX(newEntity.getXCoordinate());
-    levelPane.getChildren().add(newImage);
+  private void setBackground(File levelFile) throws IOException, ParseException {
+    Background newBackground;
+    FileReader infoFile = new FileReader(levelFile);
+    JSONObject levelJson = (JSONObject) new JSONParser().parse(infoFile);
+    String backgroundFile = (String) levelJson.get("background");
+    System.out.println(backgroundFile);
+    Image backgroundImage = new Image(BACKGROUND_DIRECTORY + backgroundFile);
+
+    newBackground = new Background(new BackgroundImage(backgroundImage, null, null, null, null));
+
+    levelPane.setBackground(newBackground);
   }
 
 }

@@ -11,6 +11,7 @@ public class JSONDecodingTest {
 
   // make some sample JSON array and object here to use to test methods
   JSONArray sampleArray = new JSONArray();
+  ;
 
   JSONObject sampleEntity1 = new JSONObject();
   JSONObject sampleEntity2 = new JSONObject();
