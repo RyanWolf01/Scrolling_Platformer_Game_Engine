@@ -12,19 +12,10 @@ import java.io.File;
 
 public class LevelScreenTest extends DukeApplicationTest {
 
-  private LevelScreen myLevel;
-  private EntityContainer testEntities;
-
-
-
 
   @Override
   public void start (Stage stage){
-    testEntities = new EntityContainer();
-    Mario testMario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
-    testEntities.addEntity(testMario);
-    stage.setScene(myLevel.initiateLevel(new File(Main.DEFAULT_RESOURCE_PACKAGE + "games\\mario\\levels\\testLevel1.json")));
-    stage.show();
+
   }
 
 
@@ -32,9 +23,6 @@ public class LevelScreenTest extends DukeApplicationTest {
 
   @Test
   void testMarioLocation(){
-    testEntities = new EntityContainer();
-    Mario testMario = new Mario(3, 3, 2, 2, new EntityInfo("MARIO"));
-    testEntities.addEntity(testMario);
   }
 
 }
