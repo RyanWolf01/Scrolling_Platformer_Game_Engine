@@ -26,13 +26,13 @@ public class GameController {
      *
      */
     public GameController(String levelJSONPath, String collisionJSONPath, String controlsJSONPath) {
-        model = new Model();
         controlHandler = new UserControlHandler();
         container = new ConnectionContainer();
         jsonDecoder = new JSONInformationDecoder();
         jsonDecoder.makeEntityContainerFromLevelJSON(levelJSONPath, container);
         // TODO: integrate new String for controls JSON into this constructor and in related locations in main and controller tests
         jsonDecoder.makeUserControlHandlerFromJSON(controlsJSONPath, controlHandler);
+        model = new Model(container.entities());
     }
 
     /**
@@ -48,10 +48,10 @@ public class GameController {
 
     public void handleKeyInput(KeyCode code){
         if(controlHandler.isMoveAction(code)){
-            model.handleKeyPress(controlHandler.getMoverAction(code));
+            model.handleMoveKey(controlHandler.getMoverAction(code));
         }
         else if(controlHandler.isAliveAction(code)){
-            model.handleKeyPress(controlHandler.getAliveAction(code));
+            model.handleAliveKey(controlHandler.getAliveAction(code));
         }
     }
 

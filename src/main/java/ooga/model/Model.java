@@ -14,16 +14,20 @@ import ooga.model.entities.containers.EntityContainer;
 public class Model {
   BackendContainer entities;
 
+  public Model(BackendContainer entities){
+    this.entities = entities;
+  }
+
   public void step(){
 
   }
 
-  public void handleKeyPress(MoverAction action){
-
+  public void handleMoveKey(MoverAction action){
+    entities.mainCharacter().acceptMoveAction(action);
   }
 
-  public void handleKeyPress(AliveAction action){
-
+  public void handleAliveKey(AliveAction action){
+    entities.mainCharacter().acceptAliveAction(action);
   }
 
   public void handleCollision(Entity collider, Entity collided){

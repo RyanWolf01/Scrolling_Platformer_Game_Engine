@@ -91,6 +91,10 @@ public class ConnectionContainer {
     return entities.isCollidable(connectorMap.get(node));
   }
 
+  public BackendContainer entities(){
+    return entities;
+  }
+
   private boolean isMainCharacterType(String type){
     return Arrays.asList(containerResources.getStringArray("main_characters")).contains(type);
   }

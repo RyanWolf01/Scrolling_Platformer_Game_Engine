@@ -54,8 +54,8 @@ public class UserControlHandler {
         return moveActionMap.get(code);
     }
 
-    public MoverAction getAliveAction(KeyCode code){
-        return moveActionMap.get(code);
+    public AliveAction getAliveAction(KeyCode code){
+        return aliveActionMap.get(code);
     }
 
     private void setUpActions(){

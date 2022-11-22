@@ -86,6 +86,14 @@ public class BackendContainer {
     return newEntity;
   }
 
+  public AutomaticMoverContainer automaticMovers(){
+    return autoMovers;
+  }
+
+  public MainCharacterEntity mainCharacter(){
+    return mainCharacter;
+  }
+
   public boolean isCollidable(Entity entity){
     return collidables.contains(entity);
   }
