@@ -21,16 +21,15 @@ public class View {
   private static Timeline levelAnimation;
 
   private LevelScreen level;
-  //private static final double FRAME_DELAY = 1.0/60.0;
-  private static final double FRAME_DELAY = 3.0;
+  private static final double FRAME_DELAY = 1.0/60.0;
 
   private static final Logger LOG = LogManager.getLogger(View.class);
 
-  public View(Stage mainStage, String GameTitle, DirectoryChooser directoryChooser, File levelFile){
-    //myController = new GameController(directoryChooser);
+  public View(Stage mainStage, String GameTitle, File levelDirectory){
+
+    myController = new GameController(new File(levelDirectory + "/level"), new File(levelDirectory + "/collisions"), new File(levelDirectory + "/controls"));
     level = new LevelScreen(myController);
-    LOG.info(levelFile);
-    mainStage.setScene(level.initiateLevel(levelFile));
+    mainStage.setScene(level.initiateLevel(new File(levelDirectory + "/level")));
     mainStage.setTitle(GameTitle);
 
     levelAnimation = new Timeline();
@@ -40,9 +39,8 @@ public class View {
   }
 
   private void step(double frameTime){
-    //NodeContainer nextNodes = myController.step();
-    //level.step(nextNodes);
-    level.step(new NodeContainer());
+    NodeContainer nextNodes = myController.step();
+    level.step(nextNodes);
   }
 
 }
