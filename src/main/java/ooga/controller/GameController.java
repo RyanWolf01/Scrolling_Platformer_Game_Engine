@@ -46,7 +46,12 @@ public class GameController {
     }
 
     public void handleKeyInput(KeyCode code){
-
+        if(controlHandler.isMoveAction(code)){
+            model.handleKeyPress(controlHandler.getMoverAction(code));
+        }
+        else if(controlHandler.isAliveAction(code)){
+            model.handleKeyPress(controlHandler.getAliveAction(code));
+        }
     }
 
     /**

@@ -1,5 +1,7 @@
 package ooga.model;
 
+import ooga.model.actions.aliveactions.AliveAction;
+import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.entities.containers.EntityContainer;
 
 /**
@@ -13,7 +15,11 @@ public class Model {
 
   }
 
-  public void handleKeyPress(){
+  public void handleKeyPress(MoverAction action){
+
+  }
+
+  public void handleKeyPress(AliveAction action){
 
   }
 
