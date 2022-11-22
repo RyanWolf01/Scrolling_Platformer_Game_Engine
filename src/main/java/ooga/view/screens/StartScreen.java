@@ -9,7 +9,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import ooga.model.entities.characters.maincharacters.Mario;
 import ooga.view.View;
 import ooga.view.interactives.GameSelector;
 import org.apache.logging.log4j.LogManager;
@@ -21,7 +20,7 @@ import java.util.HashMap;
 public class StartScreen {
 
   private static HashMap<String, String> gameToGame;
-  private static final String RESOURCE_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/";
+  private static final String RESOURCE_DIRECTORY = "/";
   private static final String ICON_DIRECTORY =  "icons/";
   private static final String GAMES_DIRECTORY = "games/";
   private static final String LEVEL_DIRECTORY = "levels/";
@@ -68,18 +67,10 @@ public class StartScreen {
 
   private Button createLevelButton(){
     Button levelButton = new Button();
-    FileChooser fileChooser = new FileChooser();
+
 
     levelButton.setText("Choose Level");
-    levelButton.setOnAction(event -> {
-      String gameDirectory = RESOURCE_DIRECTORY + GAMES_DIRECTORY + gameToGame.get(gameSelector.getValue()) + LEVEL_DIRECTORY;
-      LOG.info(System.getProperty("user.dir") + "/src/main/resources/games/mario/levels/");
-      directoryChooser = new DirectoryChooser();
-      directoryChooser.setInitialDirectory(new File(gameDirectory));
-      fileChooser.setInitialDirectory(directoryChooser.getInitialDirectory());
-      levelFile = fileChooser.showOpenDialog(mainStage);
-      LOG.debug(levelFile);
-    });
+    levelButton.setOnAction(event -> chooseLevel());
 
 
     return levelButton;
@@ -87,10 +78,22 @@ public class StartScreen {
 
   private void createLevelDirectoryMap(){
     gameToGame = new HashMap<>();
-    String[] games = {"mario\\", "doodle\\", "dash\\"};
+    String[] games = {"mario/", "doodle/", "dash/"};
     for (int i = 0; i < games.length; i++) {
         gameToGame.put(GAME_LIST[i], games[i]);
     }
+  }
+
+  private void chooseLevel(){
+    FileChooser fileChooser = new FileChooser();
+    String levelDirectory = System.getProperty("user.dir");
+    //String levelDirectory = RESOURCE_DIRECTORY + GAMES_DIRECTORY + gameToGame.get(gameSelector.getValue()) + LEVEL_DIRECTORY;
+    LOG.debug("Directory for level: " + levelDirectory);
+    directoryChooser = new DirectoryChooser();
+    directoryChooser.setInitialDirectory(new File(levelDirectory));
+    fileChooser.setInitialDirectory(directoryChooser.getInitialDirectory());
+    levelFile = fileChooser.showOpenDialog(mainStage);
+    LOG.debug(levelFile);
   }
 
 }
