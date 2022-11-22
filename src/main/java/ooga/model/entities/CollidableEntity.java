@@ -57,7 +57,7 @@ public abstract class CollidableEntity extends Entity implements Collidable {
     }
 
     CollisionChart collisionChart = myCollisionChartGetter.getCollisionChart(targetEntityInfo.get(
-        ImmutableInfo.COLLISION_CHART_KEY));
+        ImmutableInfo.TYPE_KEY));
     CollisionData collisionData = new CollisionData(targetEntityInfo, otherEntityInfo,
         collisionPhysicsInfo);
     return collisionChart.getActionDatas(collisionData);
