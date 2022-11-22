@@ -9,7 +9,7 @@ public class BounceTest {
 
   @Test
   void testBouncePos1() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     Bounce bounce = new Bounce();
     bounce.execute(mario);
@@ -23,7 +23,7 @@ public class BounceTest {
    */
   @Test
   void testBouncePos2() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     Bounce bounce = new Bounce();
     bounce.execute(mario);
@@ -40,7 +40,7 @@ public class BounceTest {
    */
   @Test
   void testBounceNeg() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     Bounce bounce = new Bounce();
 

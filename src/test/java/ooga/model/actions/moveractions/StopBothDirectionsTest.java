@@ -9,7 +9,7 @@ public class StopBothDirectionsTest {
 
   @Test
   void testStopPos1() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     StopBothDirections stop = new StopBothDirections();
     stop.execute(mario);
@@ -23,7 +23,7 @@ public class StopBothDirectionsTest {
    */
   @Test
   void testStopPos2() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     StopBothDirections stop = new StopBothDirections();
     stop.execute(mario);
@@ -38,7 +38,7 @@ public class StopBothDirectionsTest {
    */
   @Test
   void testStopNeg() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     StopBothDirections stop = new StopBothDirections();
 

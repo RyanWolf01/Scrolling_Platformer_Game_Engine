@@ -24,7 +24,7 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingEntity movingEntity = new AutomaticMovingEntity(0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    MovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
 
     movingEntity.changeVelocities(5,0);
     movingEntity.move();
@@ -37,7 +37,7 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingEntity movingEntity = new AutomaticMovingEntity(0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    MovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
 
     movingEntity.changeVelocities(-100,0);
     movingEntity.move();
@@ -50,7 +50,7 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingEntity movingEntity = new AutomaticMovingEntity(0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    MovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
 
     movingEntity.changeVelocities(0,0);
     movingEntity.move();
@@ -63,7 +63,7 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingEntity movingEntity = new AutomaticMovingEntity(0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    MovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
 
     movingEntity.changeVelocities(0,5);
     movingEntity.move();
@@ -76,7 +76,7 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingEntity movingEntity = new AutomaticMovingEntity(0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    MovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
 
     movingEntity.changeVelocities(0,-100);
     movingEntity.move();
@@ -89,7 +89,7 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingEntity movingEntity = new AutomaticMovingEntity(0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    MovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
 
     movingEntity.changeVelocities(0,0);
     movingEntity.move();
@@ -102,7 +102,7 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new RightMovement());
     movementQueue.addMove(new RightMovement());
 
-    AutomaticMovingEntity movingEntity = new AutomaticMovingEntity(0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    AutomaticMovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
     movingEntity.automaticMove();
     assertEquals(5, movingEntity.getXCoordinate());
   }
@@ -113,7 +113,7 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new RightMovement());
     movementQueue.addMove(new UpwardMovement());
 
-    AutomaticMovingEntity movingEntity = new AutomaticMovingEntity(0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    AutomaticMovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
     movingEntity.automaticMove();
     movingEntity.automaticMove();
     movingEntity.automaticMove();
@@ -124,7 +124,7 @@ public class AutomaticMovingEntityTest {
   @Test
   void testPerformActionsPos1(){
     MovementQueue movementQueue = new MovementQueue();
-    AutomaticMovingEntity character = new AutomaticMovingEntity(0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    AutomaticMovingEntity character = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();
@@ -139,7 +139,7 @@ public class AutomaticMovingEntityTest {
   @Test
   void testPerformActionsPos2(){
     MovementQueue movementQueue = new MovementQueue();
-    AutomaticMovingEntity character = new AutomaticMovingEntity(0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    AutomaticMovingEntity character = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();

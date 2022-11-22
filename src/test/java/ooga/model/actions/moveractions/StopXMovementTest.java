@@ -9,7 +9,7 @@ public class StopXMovementTest {
 
   @Test
   void testStopXMovementPos1() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     StopXMovement stop = new StopXMovement();
     stop.execute(mario);
@@ -23,7 +23,7 @@ public class StopXMovementTest {
    */
   @Test
   void testStopXMovementPos2() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     StopXMovement stop = new StopXMovement();
     stop.execute(mario);
@@ -38,7 +38,7 @@ public class StopXMovementTest {
    */
   @Test
   void testStopXMovementNeg() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     StopXMovement stop = new StopXMovement();
 
