@@ -1,8 +1,9 @@
 {
   "MARIO": [
     {
-      "OPPONENT_type": "GOOMBA",
-      "COLLISION_direction": "SIDE",
+      "MY_TYPE": "MARIO",
+      "OPPONENT_TYPE": "GOOMBA",
+      "COLLISION_DIRECTION": "RIGHT",
       "ACTIONS": [
         {
           "classname": "ooga.model.actions.aliveactions.Kill",
@@ -17,6 +18,7 @@
       ]
     },
     {
+      "MY_type": "MARIO",
       "OPPONENT_type": "GOOMBA",
       "COLLISION_direction": "TOP",
       "ACTIONS": [
