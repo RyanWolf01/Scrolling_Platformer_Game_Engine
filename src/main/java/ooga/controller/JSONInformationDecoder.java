@@ -137,7 +137,7 @@ public class JSONInformationDecoder implements JSONTranslator {
   public CollisionChart makeCollisionDataFromJSONObject(String collisionJSONPath, String type) {
     JSONObject allJSON;
     JSONArray criteriaListJSON;
-    List<Criteria> criteriaList = new ArrayList<Criteria>();
+    List<Criteria> criteriaList = new ArrayList<>();
 
     // make sure we can open JSON file
     try {

@@ -11,8 +11,6 @@ import ooga.model.entities.movement.AutomaticMover;
 import ooga.model.entities.movement.MovementQueue;
 
 public class AutomaticMovingEntity extends MovingEntity implements AutomaticMover {
-  public static final List<String> AUTOMATIC_MOVING_ENTITY_TYPES = new ArrayList<>(Arrays.asList("goomba", "koopah"));
-
   private MovementQueue movementQueue;
   /**
    * AutomaticMovingCharacter has lives and can move; moves automatically

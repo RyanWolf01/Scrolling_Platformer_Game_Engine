@@ -17,10 +17,9 @@ import java.sql.Time;
  * Feel free to completely change this code or delete it entirely.
  */
 public class Main extends Application {
+  public static final String COLLISION_CHART_PATH = "games/mario/collisionChart.json";
+  public static final String DEFAULT_RESOURCE_PACKAGE = System.getProperty("user.dir") + "/src/main/resources/";
 
-  public static final String DEFAULT_RESOURCE_PACKAGE = System.getProperty("user.dir") + "\\data\\";
-  public static final String COLLISION_CHART_PATH =
-      System.getProperty("user.dir") + "/data/games/mario/collisionChart.json";
 
   /**
    * A method to test (and a joke :).

@@ -1,5 +1,8 @@
 package ooga.view;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class GameCamera implements Camera {
 
   private double cameraX;
@@ -9,6 +12,8 @@ public class GameCamera implements Camera {
   private double cameraHeight;
   private Margin margin;
   private boolean scrollable = true;
+
+  private static final Logger LOG = LogManager.getLogger(GameCamera.class);
 
 
   public GameCamera() {
@@ -29,11 +34,15 @@ public class GameCamera implements Camera {
     if(!scrollable) return;
 
     if(! inHorizontalSpace(playerX)){
-      translateHorizontal(generateDeltaX(playerX));
+      double delta = generateDeltaX(playerX);
+      LOG.debug("Move Camera Horizontal" + delta);
+      translateHorizontal(delta);
     }
 
     if(! inVerticalSpace(playerY)){
-      translateVertical(generateDeltaY(playerY));
+      double delta = generateDeltaY(playerY);
+      LOG.debug("Move Camera Horizontal" + delta);
+      translateVertical(delta);
     }
 
   }

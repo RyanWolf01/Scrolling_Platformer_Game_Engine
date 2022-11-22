@@ -1,6 +1,7 @@
 package ooga.view.nodes;
 
 import javafx.scene.Node;
+import ooga.Main;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,16 +10,18 @@ import java.util.List;
 /**
  * This is a list of JavaFX nodes that will be visualized by the View.
  */
-public class NodeContainer implements Iterable<Node> {
+public class NodeContainer implements Iterable<ScrollingNode> {
     private List<ScrollingNode> entities;
+    private ScrollingNode mainCharacterNode;
 
     public NodeContainer(){
         entities = new ArrayList<>();
+        mainCharacterNode = null;
     }
 
     @Override
-    public Iterator<Node> iterator() {
-        return (Iterator<Node>) entities;
+    public Iterator<ScrollingNode> iterator() {
+        return (Iterator<ScrollingNode>) entities;
     }
 
     public void addNode(ScrollingNode node){
@@ -35,4 +38,13 @@ public class NodeContainer implements Iterable<Node> {
             a.updateCameraY(cameraY);
         }
     }
+
+    public void setMainCharacter(ScrollingNode node){
+        mainCharacterNode = node;
+    }
+
+    public ScrollingNode getMainCharacter(){
+        return mainCharacterNode;
+    }
+
 }
