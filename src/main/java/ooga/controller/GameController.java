@@ -7,6 +7,7 @@ import ooga.model.collisions.collision_handling.CollisionChart;
 import ooga.model.collisions.collision_handling.CollisionData;
 import ooga.model.collisions.collision_handling.DefaultCollisionChart;
 import ooga.view.nodes.NodeContainer;
+import ooga.view.nodes.ScrollingNode;
 
 
 /**
@@ -25,13 +26,13 @@ public class GameController {
      *
      */
     public GameController(String levelJSONPath, String collisionJSONPath, String controlsJSONPath) {
-        model = new Model();
         controlHandler = new UserControlHandler();
         container = new ConnectionContainer();
         jsonDecoder = new JSONInformationDecoder();
         jsonDecoder.makeEntityContainerFromLevelJSON(levelJSONPath, container);
         // TODO: integrate new String for controls JSON into this constructor and in related locations in main and controller tests
         jsonDecoder.makeUserControlHandlerFromJSON(controlsJSONPath, controlHandler);
+        model = new Model(container.entities());
     }
 
     /**
@@ -40,13 +41,18 @@ public class GameController {
      */
     public NodeContainer step(){
         checkForCollisions();
-        //model.step(container.getEntities())
+        model.step();
         container.update();
         return container.viewables();
     }
 
     public void handleKeyInput(KeyCode code){
-
+        if(controlHandler.isMoveAction(code)){
+            model.handleMoveKey(controlHandler.getMoverAction(code));
+        }
+        else if(controlHandler.isAliveAction(code)){
+            model.handleAliveKey(controlHandler.getAliveAction(code));
+        }
     }
 
     /**
@@ -54,10 +60,10 @@ public class GameController {
      */
     private void checkForCollisions(){
         NodeContainer nodes = container.viewables();
-        for(Node collider: nodes){
-            for(Node collided: nodes){
-                if(collider.getBoundsInParent().intersects(collided.getBoundsInParent()) && collided != collider){ // collided
-                    // model.handleCollision(container.getConnectedEntity(collider), container.getConnectedEntity(collided))
+        for(ScrollingNode collider: nodes){
+            for(ScrollingNode collided: nodes){
+                if(collider.getBoundsInParent().intersects(collided.getBoundsInParent()) && collided != collider && container.isCollidable(collider)){
+                    model.handleCollision(container.getConnectedEntity(collider), container.getConnectedEntity(collided));
                 }
             }
         }

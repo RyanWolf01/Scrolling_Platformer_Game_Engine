@@ -1,5 +1,10 @@
 package ooga.model;
 
+import ooga.model.actions.aliveactions.AliveAction;
+import ooga.model.actions.moveractions.MoverAction;
+import ooga.model.entities.CollidableEntity;
+import ooga.model.entities.Entity;
+import ooga.model.entities.containers.BackendContainer;
 import ooga.model.entities.containers.EntityContainer;
 
 /**
@@ -7,17 +12,25 @@ import ooga.model.entities.containers.EntityContainer;
  * methods are called by the controller
  */
 public class Model {
-  EntityContainer allEntities;
+  BackendContainer entities;
+
+  public Model(BackendContainer entities){
+    this.entities = entities;
+  }
 
   public void step(){
 
   }
 
-  public void handleKeyPress(){
-
+  public void handleMoveKey(MoverAction action){
+    entities.mainCharacter().acceptMoveAction(action);
   }
 
-  public void handleCollision(){
+  public void handleAliveKey(AliveAction action){
+    entities.mainCharacter().acceptAliveAction(action);
+  }
+
+  public void handleCollision(Entity collider, Entity collided){
 
   }
 

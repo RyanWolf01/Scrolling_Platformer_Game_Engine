@@ -42,6 +42,22 @@ public class UserControlHandler {
         }
     }
 
+    public boolean isMoveAction(KeyCode code){
+        return moveActionMap.containsKey(code);
+    }
+
+    public boolean isAliveAction(KeyCode code){
+        return aliveActionMap.containsKey(code);
+    }
+
+    public MoverAction getMoverAction(KeyCode code){
+        return moveActionMap.get(code);
+    }
+
+    public AliveAction getAliveAction(KeyCode code){
+        return aliveActionMap.get(code);
+    }
+
     private void setUpActions(){
         allAliveActions = new HashMap<>();
         allMoverActions = new HashMap<>();

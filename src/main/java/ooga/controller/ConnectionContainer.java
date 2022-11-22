@@ -1,21 +1,13 @@
 package ooga.controller;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import ooga.Main;
-import ooga.model.entities.AutomaticMovingEntity;
-import ooga.model.entities.CollidableEntity;
 import ooga.model.entities.Entity;
-import ooga.model.entities.characters.maincharacters.MainCharacterEntity;
-import ooga.model.entities.containers.AutomaticMoverContainer;
 import ooga.model.entities.containers.BackendContainer;
-import ooga.model.entities.containers.CollidableContainer;
 import ooga.model.entities.data.EntityInfo;
-import ooga.model.entities.containers.EntityContainer;
-import ooga.model.entities.movement.MovementQueue;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
 
@@ -61,6 +53,9 @@ public class ConnectionContainer {
     ScrollingNode newNode = new ScrollingNode(xCoordinate, yCoordinate, height, width, imageURL);
 
     nodes.addNode(newNode);
+    if(isMainCharacterType("type")){
+      nodes.setMainCharacter(newNode);
+    }
 
     connectorMap.put(newNode, newEntity);
   }
@@ -90,5 +85,17 @@ public class ConnectionContainer {
       Entity entity = connectorMap.get(node);
       node.update(entity.getXCoordinate(), entity.getYCoordinate());
     }
+  }
+
+  public boolean isCollidable(ScrollingNode node){
+    return entities.isCollidable(connectorMap.get(node));
+  }
+
+  public BackendContainer entities(){
+    return entities;
+  }
+
+  private boolean isMainCharacterType(String type){
+    return Arrays.asList(containerResources.getStringArray("main_characters")).contains(type);
   }
 }

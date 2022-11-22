@@ -12,9 +12,11 @@ import java.util.List;
  */
 public class NodeContainer implements Iterable<ScrollingNode> {
     private List<ScrollingNode> entities;
+    private ScrollingNode mainCharacterNode;
 
     public NodeContainer(){
         entities = new ArrayList<>();
+        mainCharacterNode = null;
     }
 
     @Override
@@ -37,9 +39,12 @@ public class NodeContainer implements Iterable<ScrollingNode> {
         }
     }
 
+    public void setMainCharacter(ScrollingNode node){
+        mainCharacterNode = node;
+    }
 
     public ScrollingNode getMainCharacter(){
-        return null;
+        return mainCharacterNode;
     }
 
 }

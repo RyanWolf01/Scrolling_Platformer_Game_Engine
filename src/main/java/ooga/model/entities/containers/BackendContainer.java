@@ -2,7 +2,6 @@ package ooga.model.entities.containers;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 import ooga.Main;
 import ooga.model.entities.AutomaticMovingEntity;
@@ -11,7 +10,6 @@ import ooga.model.entities.Entity;
 import ooga.model.entities.characters.maincharacters.MainCharacterEntity;
 import ooga.model.entities.data.EntityInfo;
 import ooga.model.entities.movement.MovementQueue;
-import ooga.view.nodes.NodeContainer;
 
 /**
  * This mega container holds all the information the backend needs
@@ -33,7 +31,7 @@ public class BackendContainer {
 
   public Entity addNewEntity(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
     Entity newEntity = null;
-    if(isMainCharacter(type)){ // if it's a main character type entity, overwrite the basic newEntity
+    if(isMainCharacterType(type)){ // if it's a main character type entity, overwrite the basic newEntity
       MainCharacterEntity main;
       try {
         main = (MainCharacterEntity) Class.forName(entityClassResources.getString(type)).
@@ -47,7 +45,7 @@ public class BackendContainer {
       newEntity = main;
       collidables.addCollidable(main); // all main characters are collidable
     }
-    else if(isAutomaticMover(type)){
+    else if(isAutomaticMoverType(type)){
       // TODO: fix this so that there is a movement queue, not just null
 
       AutomaticMovingEntity newMover;
@@ -63,11 +61,11 @@ public class BackendContainer {
       autoMovers.addMover(newMover);
       newEntity = newMover;
 
-      if(isCollidable(type)){ // an automatic mover that is also a collidable
+      if(isCollidableType(type)){ // an automatic mover that is also a collidable
         collidables.addCollidable(newMover);
       }
     }
-    else if(isCollidable(type)){ // only a collidable
+    else if(isCollidableType(type)){ // only a collidable
       CollidableEntity newCollidable;
 
       try {
@@ -88,15 +86,27 @@ public class BackendContainer {
     return newEntity;
   }
 
-  private boolean isMainCharacter(String type){
+  public AutomaticMoverContainer automaticMovers(){
+    return autoMovers;
+  }
+
+  public MainCharacterEntity mainCharacter(){
+    return mainCharacter;
+  }
+
+  public boolean isCollidable(Entity entity){
+    return collidables.contains(entity);
+  }
+
+  private boolean isMainCharacterType(String type){
     return Arrays.asList(containerResources.getStringArray("main_characters")).contains(type);
   }
 
-  private boolean isAutomaticMover(String type){
+  private boolean isAutomaticMoverType(String type){
     return Arrays.asList(containerResources.getStringArray("automatic_movers")).contains(type);
   }
 
-  private boolean isCollidable(String type){
+  private boolean isCollidableType(String type){
     return Arrays.asList(containerResources.getStringArray("collidables")).contains(type);
   }
 }
