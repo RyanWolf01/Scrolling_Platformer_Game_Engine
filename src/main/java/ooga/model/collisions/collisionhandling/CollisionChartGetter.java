@@ -1,4 +1,4 @@
-package ooga.model.collisions.collision_handling;
+package ooga.model.collisions.collisionhandling;
 
 /**
  * Return the CollisionChart that exists at the path specified

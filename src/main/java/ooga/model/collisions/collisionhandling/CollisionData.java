@@ -1,4 +1,4 @@
-package ooga.model.collisions.collision_handling;
+package ooga.model.collisions.collisionhandling;
 
 import java.util.HashMap;
 import java.util.Iterator;

@@ -1,4 +1,4 @@
-package ooga.model.collisions.collision_handling.exceptions;
+package ooga.model.collisions.collisionhandling.exceptions;
 
 /**
  * An exception thrown when a CollisionChart cannot be found

@@ -1,9 +1,9 @@
-package ooga.model.collisions.collision_handling;
+package ooga.model.collisions.collisionhandling;
 
 import static ooga.Main.COLLISION_CHART_PATH;
 
 import ooga.controller.JSONInformationDecoder;
-import ooga.model.collisions.collision_handling.exceptions.CollisionChartParsingException;
+import ooga.model.collisions.collisionhandling.exceptions.CollisionChartParsingException;
 
 /**
  * Accesses CollisionCharts by reading them in from a file at the specified path for every access.

@@ -1,12 +1,9 @@
 package ooga.controller;
 
 import java.io.File;
-import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import ooga.model.Model;
-import ooga.model.collisions.collision_handling.CollisionChart;
-import ooga.model.collisions.collision_handling.CollisionData;
-import ooga.model.collisions.collision_handling.DefaultCollisionChart;
+import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
 
