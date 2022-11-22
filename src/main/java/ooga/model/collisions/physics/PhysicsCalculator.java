@@ -27,19 +27,19 @@ public class PhysicsCalculator {
     double bXCoord = b.getXCoordinate();
     double aYCoord = a.getYCoordinate();
     double bYCoord = b.getYCoordinate();
-    double aLen = a.getHeight();
-    double bLen = b.getHeight();
     double aWidth = a.getWidth();
     double bWidth = b.getWidth();
+    double aHeight = a.getHeight();
+    double bHeight = b.getHeight();
 
     boolean inXRange = false;
     boolean inYRange = false;
 
-    if ((aXCoord + aLen) >= bXCoord && (aXCoord < bXCoord + bLen)) {
+    if ((aXCoord + aWidth) >= bXCoord && (aXCoord < bXCoord + bWidth)) {
       inXRange = true;
     }
 
-    if ((aYCoord + aWidth) >= bYCoord && (aYCoord < bYCoord + bWidth)) {
+    if ((aYCoord + aHeight) >= bYCoord && (aYCoord < bYCoord + bHeight)) {
       inYRange = true;
     }
 
@@ -47,19 +47,19 @@ public class PhysicsCalculator {
       return null;
     }
 
-    if ((aXCoord < bXCoord) && (aYCoord + aWidth > bYCoord)) {
+    if ((aXCoord < bXCoord) && (aYCoord + aHeight > bYCoord)) {
       return CollisionDirection.RIGHT;
     }
 
-    if ((aXCoord > bXCoord) && (aYCoord + aWidth > bYCoord)) {
+    if ((aXCoord > bXCoord) && (aYCoord + aHeight > bYCoord)) {
       return CollisionDirection.LEFT;
     }
 
-    if ((aYCoord < bYCoord) && (aXCoord < bXCoord + bLen)) {
+    if ((aYCoord < bYCoord) && (aXCoord < bXCoord + bWidth)) {
       return CollisionDirection.TOP;
     }
 
-    if ((aYCoord > bYCoord) && (aXCoord < bXCoord + bLen)) {
+    if ((aYCoord > bYCoord) && (aXCoord < bXCoord + bWidth)) {
       return CollisionDirection.BOTTOM;
     }
 
