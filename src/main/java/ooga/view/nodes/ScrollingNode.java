@@ -18,12 +18,14 @@ public class ScrollingNode extends ImageView {
     this.setFitHeight(height);
     this.setFitWidth(width);
 
-    this.setImage(new Image(url));
+    this.setImage(new Image(getClass().getResourceAsStream(url)));
   }
 
   public void update(double xCoordinate, double yCoordinate){
     backX = xCoordinate;
     backY = yCoordinate;
+    this.setX(xCoordinate);
+    this.setY(yCoordinate);
   }
 
   public double getBackX(){

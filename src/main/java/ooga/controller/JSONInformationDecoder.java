@@ -8,10 +8,9 @@ import java.util.List;
 import java.util.Map;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
-import ooga.model.collisions.collision_handling.CollisionChart;
-import ooga.model.collisions.collision_handling.CollisionData;
-import ooga.model.collisions.collision_handling.Criteria;
-import ooga.model.collisions.collision_handling.DefaultCollisionChart;
+import ooga.model.collisions.collisionhandling.CollisionChart;
+import ooga.model.collisions.collisionhandling.Criteria;
+import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
 import ooga.model.entities.data.EntityInfo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -19,15 +18,26 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 
-public class JSONInformationDecoder implements JSONTranslator {
-
+public class JSONInformationDecoder {
+  private String levelJSON;
+  private String collisionsJSON;
+  private String controlsJSON;
   private static final String ENTITY_JSON_KEY = "Entity";
   private List<JSONObject> entityJSONList;
   private Map<String, Object> generalInfoMap;
   public static final List<String> REQUIRED_ENTITY_PARAMETERS = List.of("type", "x", "y", "width", "height");
 
+  public JSONInformationDecoder(String levelJSON, String collisionsJSON, String controlsJSON){
+    this.levelJSON = levelJSON;
+    this.controlsJSON = controlsJSON;
+    this.collisionsJSON = collisionsJSON;
+    this.generalInfoMap = new HashMap<>();
+    this.entityJSONList = new ArrayList<>();
+  }
+
+
   /**
-   * This method takes in the JSONFilePath as a string from the file reading where this clqss lives
+   * This method takes in the JSONFilePath as a string from the file reading where this class lives
    * and converts the JSON file chosen by the user into a JSON object of initial game information
    * needed by the model and view
    * @param JSONFilePath, string for the filepath to the JSON file selected by the user
@@ -46,25 +56,24 @@ public class JSONInformationDecoder implements JSONTranslator {
    * of initial entities given in the use chosen JSON file, in the form of the connection container
    * It also populates a map of general information about the game, which are any key value pairs in the
    * JSON not in the JSON array value of the Entity key
-   * @param JSONFilePath, string path of the JSON file with the game info
    * @param connectionContainer, a connection container object that will hold all the entities
    * @return connectionContainer, updated, populated connection container of all the initial game entities
    */
-  public void makeEntityContainerFromLevelJSON(String JSONFilePath, ConnectionContainer connectionContainer) {
-    JSONObject levelJSON = null;
+  public void makeEntityContainerFromLevelJSON(ConnectionContainer connectionContainer) {
+    JSONObject levelJSONObject = null;
     try {
-      levelJSON = initialJSONInformation(JSONFilePath);
+      levelJSONObject = initialJSONInformation(levelJSON);
     } catch (IOException | ParseException e) {
       throw new RuntimeException(e);
     }
 
-    for (Object o : levelJSON.keySet()) {
-      if (o.equals(ENTITY_JSON_KEY) && checkJSONArrayValue(levelJSON.get(o))) {
-        JSONArray jsonEntityArray = (JSONArray) levelJSON.get(o);
+    for (Object o : levelJSONObject.keySet()) {
+      if (o.equals(ENTITY_JSON_KEY) && checkJSONArrayValue(levelJSONObject.get(o))) {
+        JSONArray jsonEntityArray = (JSONArray) levelJSONObject.get(o);
         populateEntityList(jsonEntityArray);
         populateConnectionContainer(jsonEntityArray, connectionContainer);
       } else {
-        generalInfoMap.put((String) o, levelJSON.get(o));
+        generalInfoMap.put((String) o, levelJSONObject.get(o));
       }
     }
   }
@@ -92,8 +101,8 @@ public class JSONInformationDecoder implements JSONTranslator {
         throw new RuntimeException("Not all required information for entity");
       }
       singleEntityInfo = makeEntityInfoFromJSONObject(singleEntity);
-      connectionContainer.addNewEntity((int) singleEntity.get("x"), (int) singleEntity.get("y"),
-          (double) singleEntity.get("height"), (double) singleEntity.get("width"), (String) singleEntity.get("type"),
+      connectionContainer.addNewEntity(Integer.parseInt((String) singleEntity.get("x")), Integer.parseInt((String) singleEntity.get("y")),
+          Double.parseDouble((String) singleEntity.get("height")), Double.parseDouble((String) singleEntity.get("width")), (String) singleEntity.get("type"),
           singleEntityInfo);
     }
   }
@@ -134,14 +143,14 @@ public class JSONInformationDecoder implements JSONTranslator {
 
 
   // TODO: refactor this method to simplify the control flow logic
-  public CollisionChart makeCollisionDataFromJSONObject(String collisionJSONPath, String type) {
+  public CollisionChart makeCollisionDataFromJSONObject(String type) {
     JSONObject allJSON;
     JSONArray criteriaListJSON;
     List<Criteria> criteriaList = new ArrayList<>();
 
     // make sure we can open JSON file
     try {
-      allJSON = initialJSONInformation(collisionJSONPath);
+      allJSON = initialJSONInformation(collisionsJSON);
     } catch (IOException | ParseException e) {
       throw new RuntimeException(e);
     }
@@ -208,14 +217,13 @@ public class JSONInformationDecoder implements JSONTranslator {
   /**
    * Method that takes in String for the controls JSON and the UserControlHandler and populates the handler with the
    * key value pairs of controls and actions
-   * @param controlsJSONPath, string path to controls JSON
    * @param controlHandler, UserControlHandler we want to populate with actions
    * @return populated controlHandler with all controls in it
    */
-  public UserControlHandler makeUserControlHandlerFromJSON(String controlsJSONPath, UserControlHandler controlHandler) {
+  public UserControlHandler makeUserControlHandlerFromJSON(UserControlHandler controlHandler) {
     JSONObject controlsJSONObject = null;
     try {
-      controlsJSONObject = initialJSONInformation(controlsJSONPath);
+      controlsJSONObject = initialJSONInformation(controlsJSON);
     } catch (IOException | ParseException e) {
       throw new RuntimeException(e);
     }

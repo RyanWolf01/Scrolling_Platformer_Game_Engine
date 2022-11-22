@@ -1,5 +1,6 @@
 package ooga.model.entities;
 
+import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.data.Info;
 import ooga.model.entities.movement.Mover;
 
@@ -9,9 +10,9 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
   private double xVelocity;
   private double yVelocity;
 
-  public MovingEntity(int initialXCoordinate, int initialYCoordinate, double height, double width,
+  public MovingEntity(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
-    super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
+    super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
   }
 
   /**

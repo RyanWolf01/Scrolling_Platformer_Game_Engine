@@ -1,14 +1,14 @@
 package ooga.model.collision_handling;
 
-import static ooga.model.collisions.collision_handling.CollisionData.COLLISION_PREFIX;
-import static ooga.model.collisions.collision_handling.CollisionData.MY_PREFIX;
-import static ooga.model.collisions.collision_handling.CollisionData.OPPONENT_PREFIX;
+import static ooga.model.collisions.collisionhandling.CollisionData.COLLISION_PREFIX;
+import static ooga.model.collisions.collisionhandling.CollisionData.MY_PREFIX;
+import static ooga.model.collisions.collisionhandling.CollisionData.OPPONENT_PREFIX;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import ooga.model.entities.data.Info;
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
-import ooga.model.collisions.collision_handling.CollisionData;
+import ooga.model.collisions.collisionhandling.CollisionData;
 import ooga.model.collisions.physics.CollisionDirection;
 import ooga.model.entities.data.EntityInfo;
 import org.junit.jupiter.api.Test;

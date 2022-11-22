@@ -25,7 +25,7 @@ public class StartScreen {
   private static final String GAMES_DIRECTORY = "games/";
   private static final String LEVEL_DIRECTORY = "levels/";
   private static final String[] GAME_LIST = {"Super Mario Bros", "Doodle Jump", "Geometry Dash", "Duvall Life Simulator"};
-  private File levelFile;
+  private File levelDirectory;
   private DirectoryChooser directoryChooser;
   private GridPane gameChooser;
   private GameSelector gameSelector;
@@ -53,7 +53,7 @@ public class StartScreen {
     startGame.setText("Start Game");
 
     startGame.setOnAction(event -> {
-      new View(mainStage, gameSelector.getValue(), directoryChooser, levelFile);
+      new View(mainStage, gameSelector.getValue(), levelDirectory);
     });
     gameChooser.add(startGame, 0, 2);
 
@@ -62,7 +62,8 @@ public class StartScreen {
   }
 
   public void changeBackground(String url){
-    gameChooser.setBackground(new Background(new BackgroundImage(new Image(RESOURCE_DIRECTORY + ICON_DIRECTORY + url), null, null, null, null)));
+    gameChooser.setBackground(new Background(new BackgroundImage(new Image(
+        getClass().getResourceAsStream(RESOURCE_DIRECTORY + ICON_DIRECTORY + url)), null, null, null, null)));
   }
 
   private Button createLevelButton(){
@@ -86,14 +87,13 @@ public class StartScreen {
 
   private void chooseLevel(){
     FileChooser fileChooser = new FileChooser();
-    String levelDirectory = System.getProperty("user.dir");
+    String fileDirectory = System.getProperty("user.dir");
     //String levelDirectory = RESOURCE_DIRECTORY + GAMES_DIRECTORY + gameToGame.get(gameSelector.getValue()) + LEVEL_DIRECTORY;
-    LOG.debug("Directory for level: " + levelDirectory);
     directoryChooser = new DirectoryChooser();
-    directoryChooser.setInitialDirectory(new File(levelDirectory));
-    fileChooser.setInitialDirectory(directoryChooser.getInitialDirectory());
-    levelFile = fileChooser.showOpenDialog(mainStage);
-    LOG.debug(levelFile);
+    directoryChooser.setInitialDirectory(new File(fileDirectory));
+    levelDirectory = directoryChooser.showDialog(mainStage);
+    System.out.println(levelDirectory);
+    LOG.debug(this.levelDirectory);
   }
 
 }

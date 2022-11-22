@@ -1,24 +1,17 @@
 package ooga;
 
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import ooga.controller.GameController;
-import ooga.view.screens.LevelScreen;
 import ooga.view.screens.StartScreen;
-
-import java.nio.file.Path;
-import java.sql.Time;
 
 /**
  * Feel free to completely change this code or delete it entirely.
  */
 public class Main extends Application {
-  public static final String COLLISION_CHART_PATH = "games/mario/collisionChart.json";
+  public static final String COLLISION_CHART_PATH = System.getProperty("user.dir") + "data/games/sprint_1_test/collisions.json";
   public static final String DEFAULT_RESOURCE_PACKAGE = System.getProperty("user.dir") + "/src/main/resources/";
+  public static final String PROPERTIES_PACKAGE = "properties.";
 
 
   /**
