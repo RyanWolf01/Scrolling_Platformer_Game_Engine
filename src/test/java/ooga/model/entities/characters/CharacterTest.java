@@ -11,7 +11,7 @@ public class CharacterTest {
 
   @Test
   void testKillPos1() {
-    MovingCharacter mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    MovingCharacter mario = new Mario(null, 0, 0, 2, 2, new EntityInfo("MARIO"));
 
     IncreaseLife increaseLife = new IncreaseLife();
     increaseLife.execute(mario);
@@ -23,7 +23,7 @@ public class CharacterTest {
 
   @Test
   void testKillPos2() {
-    MovingCharacter mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    MovingCharacter mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     IncreaseLife increaseLife = new IncreaseLife();
     increaseLife.execute(mario);
@@ -37,7 +37,7 @@ public class CharacterTest {
 
   @Test
   void testSetLivesPos1() {
-    MovingCharacter mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    MovingCharacter mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.setLives(100);
     assertEquals(100, mario.getLives());
@@ -45,7 +45,7 @@ public class CharacterTest {
 
   @Test
   void testSetLivesPos2() {
-    MovingCharacter mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    MovingCharacter mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.setLives(-100);
     assertEquals(0, mario.getLives());
@@ -53,7 +53,7 @@ public class CharacterTest {
 
   @Test
   void testSetLivesNeg() {
-    MovingCharacter mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    MovingCharacter mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.setLives(0);
     assertEquals(0, mario.getLives());
@@ -61,7 +61,7 @@ public class CharacterTest {
 
   @Test
   void testChangeVelocitiesPos1() {
-    MovingCharacter mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    MovingCharacter mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeVelocities(1,1);
     assertEquals(1, mario.getXVelocity());
@@ -70,7 +70,7 @@ public class CharacterTest {
 
   @Test
   void testChangeVelocitiesPos2() {
-    MovingCharacter mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    MovingCharacter mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeVelocities(100,0);
     assertEquals(100, mario.getXVelocity());
@@ -79,7 +79,7 @@ public class CharacterTest {
 
   @Test
   void testChangeVelocitiesNeg() {
-    MovingCharacter mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    MovingCharacter mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeVelocities(0,0);
     assertEquals(0, mario.getXVelocity());

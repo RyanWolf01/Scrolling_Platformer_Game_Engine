@@ -15,7 +15,7 @@ public class MarioTest {
 
   @Test
   void testIncrementXVelocityPositive1() {
-    Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeVelocities(5,0);
     mario.move();
@@ -24,7 +24,7 @@ public class MarioTest {
 
   @Test
   void testIncrementXVelocityPositive2() {
-    Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeVelocities(-100,0);
     mario.move();
@@ -33,7 +33,7 @@ public class MarioTest {
 
   @Test
   void testIncrementXVelocityNegative() {
-    Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeVelocities(0,0);
     mario.move();
@@ -42,7 +42,7 @@ public class MarioTest {
 
   @Test
   void testIncrementYVelocityPositive1() {
-    Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeVelocities(0,5);
     mario.move();
@@ -51,7 +51,7 @@ public class MarioTest {
 
   @Test
   void testIncrementYVelocityPositive2() {
-    Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeVelocities(0,10000);
     mario.move();
@@ -60,7 +60,7 @@ public class MarioTest {
 
   @Test
   void testIncrementYVelocityNegative() {
-    Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeVelocities(0,0);
     mario.move();
@@ -69,7 +69,7 @@ public class MarioTest {
 
   @Test
   void testIncrementLivesPositive1() {
-    Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeLives(1);
     assertEquals(1, mario.getLives());
@@ -77,7 +77,7 @@ public class MarioTest {
 
   @Test
   void testIncrementLivesPositive2() {
-    Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeLives(100);
     assertEquals(100, mario.getLives());
@@ -85,7 +85,7 @@ public class MarioTest {
 
   @Test
   void testIncrementLivesNegative() {
-    Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeLives(0);
     assertEquals(0, mario.getLives());
@@ -93,7 +93,7 @@ public class MarioTest {
 
   @Test
   void testDecrementLivesPositive1() {
-    Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeLives(1);
     assertEquals(1, mario.getLives());
@@ -101,7 +101,7 @@ public class MarioTest {
 
   @Test
   void testDecrementLivesPositive2() {
-    Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeLives(101);
     assertEquals(101, mario.getLives());
@@ -109,7 +109,7 @@ public class MarioTest {
 
   @Test
   void testDecrementLivesNegative() {
-    Mario mario = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeLives(0);
     assertEquals(0, mario.getLives());
@@ -117,7 +117,7 @@ public class MarioTest {
 
   @Test
   void testPerformActionsPos1(){
-    Mario character = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    Mario character = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();
@@ -131,7 +131,7 @@ public class MarioTest {
 
   @Test
   void testPerformActionsPos2(){
-    Mario character = new Mario(0, 0, 2, 2, new EntityInfo("MARIO"));
+    Mario character = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();

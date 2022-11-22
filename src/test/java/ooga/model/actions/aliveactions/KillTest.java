@@ -9,7 +9,7 @@ public class KillTest {
 
   @Test
   void testKillPos1() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     IncreaseLife increaseLife = new IncreaseLife();
     increaseLife.execute(mario);
@@ -27,7 +27,7 @@ public class KillTest {
    */
   @Test
   void testKillPos2() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     IncreaseLife increaseLife = new IncreaseLife();
     increaseLife.execute(mario);
@@ -46,7 +46,7 @@ public class KillTest {
    */
   @Test
   void testKillNeg() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     Kill kill = new Kill();
 

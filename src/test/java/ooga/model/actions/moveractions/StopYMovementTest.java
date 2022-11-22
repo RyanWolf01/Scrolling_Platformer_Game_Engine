@@ -9,7 +9,7 @@ public class StopYMovementTest {
 
   @Test
   void testStopYMovementPos1() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     StopYMovement stop = new StopYMovement();
     stop.execute(mario);
@@ -23,7 +23,7 @@ public class StopYMovementTest {
    */
   @Test
   void testStopYMovementPos2() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null,0, 0, 2, 2, null);
 
     StopYMovement stop = new StopYMovement();
     stop.execute(mario);
@@ -38,7 +38,7 @@ public class StopYMovementTest {
    */
   @Test
   void testStopYMovementNeg() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     StopYMovement stop = new StopYMovement();
 
