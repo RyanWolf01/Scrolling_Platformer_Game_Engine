@@ -1,6 +1,7 @@
 package ooga.controller;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -13,6 +14,7 @@ import ooga.model.entities.containers.AutomaticMoverContainer;
 import ooga.model.entities.containers.CollidableContainer;
 import ooga.model.entities.data.EntityInfo;
 import ooga.model.entities.containers.EntityContainer;
+import ooga.model.entities.movement.MovementQueue;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
 
@@ -23,6 +25,7 @@ import ooga.view.nodes.ScrollingNode;
  */
 public class ConnectionContainer {
   public static final ResourceBundle entityClassResources = ResourceBundle.getBundle(Main.DEFAULT_RESOURCE_PACKAGE+"Entities");
+  public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.DEFAULT_RESOURCE_PACKAGE+"Containers");
   private EntityContainer entities;
   private AutomaticMoverContainer autoMovers;
   private CollidableContainer collidables;
@@ -49,29 +52,56 @@ public class ConnectionContainer {
    * @param info extra info that might be helpful
    */
   public void addNewEntity(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
-    Entity newEntity;
-    try {
-      Class<?> clazz = Class.forName(entityClassResources.getString(type));
-      newEntity = (Entity) clazz.getConstructor(Integer.class, Integer.class, Double.class, Double.class, EntityInfo.class)
-              .newInstance(xCoordinate,yCoordinate, height, width, info);
-    } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-             InstantiationException | IllegalAccessException e) {
-      throw new RuntimeException(e);
+    Entity newEntity = null;
+    if(isMainCharacter(type)){ // if it's a main character type entity, overwrite the basic newEntity
+      MainCharacterEntity main;
+      try {
+        main = (MainCharacterEntity) Class.forName(entityClassResources.getString(type)).
+            getConstructor(Integer.class, Integer.class, Double.class, Double.class, EntityInfo.class)
+            .newInstance(xCoordinate,yCoordinate, height, width, info);
+      } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
+               InstantiationException | IllegalAccessException e) {
+        throw new RuntimeException(e);
+      }
+      mainCharacter = main;
+      newEntity = main;
+      collidables.addCollidable(main); // all main characters are collidable
     }
+    else if(isAutomaticMover(type)){
+      // TODO: fix this so that there is a movement queue, not just null
 
-    if(type.equals("main_character")){ // if it's a main character type entity, overwrite the basic newEntity
-      mainCharacter = new MainCharacterEntity(xCoordinate,yCoordinate, height, width, info);
-      newEntity = mainCharacter;
-    }
-    if(AutomaticMovingEntity.AUTOMATIC_MOVING_ENTITY_TYPES.contains(type)){
-      // TODO: fix this so that there is a movement queue
-      AutomaticMovingEntity newMover = new AutomaticMovingEntity(xCoordinate,yCoordinate, height, width, info, null);
+      AutomaticMovingEntity newMover;
+      try {
+        newMover = (AutomaticMovingEntity) Class.forName(entityClassResources.getString(type)).
+            getConstructor(Integer.class, Integer.class, Double.class, Double.class, EntityInfo.class, MovementQueue.class)
+            .newInstance(xCoordinate,yCoordinate, height, width, info, null);
+      } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
+               InstantiationException | IllegalAccessException e) {
+        throw new RuntimeException(e);
+      }
+
       autoMovers.addMover(newMover);
       newEntity = newMover;
+
+      if(isCollidable(type)){
+        collidables.addCollidable(newMover);
+      }
     }
-//    if(CollidableEntity.COLLIDABLE_ENTITY_TYPES.contains(type)){
-//      CollidableEntity newCollidable = new CollidableEntity()
-//    }
+    else if(isCollidable(type)){ // only a collidable
+      CollidableEntity newCollidable;
+
+      try {
+        newCollidable = (CollidableEntity) Class.forName(entityClassResources.getString(type)).
+            getConstructor(Integer.class, Integer.class, Double.class, Double.class, EntityInfo.class)
+            .newInstance(xCoordinate,yCoordinate, height, width, info);
+      } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
+               InstantiationException | IllegalAccessException e) {
+        throw new RuntimeException(e);
+      }
+
+      collidables.addCollidable(newCollidable);
+      newEntity = newCollidable;
+    }
 
 
     String imageURL = null;
@@ -116,6 +146,18 @@ public class ConnectionContainer {
       Entity entity = connectorMap.get(node);
       node.update(entity.getXCoordinate(), entity.getYCoordinate());
     }
+  }
+
+  private boolean isMainCharacter(String type){
+    return Arrays.asList(containerResources.getStringArray("main_characters")).contains(type);
+  }
+
+  private boolean isAutomaticMover(String type){
+    return Arrays.asList(containerResources.getStringArray("automatic_movers")).contains(type);
+  }
+
+  private boolean isCollidable(String type){
+    return Arrays.asList(containerResources.getStringArray("collidables")).contains(type);
   }
 
 }

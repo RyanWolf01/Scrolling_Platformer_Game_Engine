@@ -1,8 +1,5 @@
 package ooga.model.entities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import ooga.model.actionparsers.ActionParsingException;
 import ooga.model.entities.data.ImmutableInfo;
 import ooga.model.entities.data.Info;
@@ -16,8 +13,6 @@ import ooga.model.collisions.collision_handling.exceptions.CollisionChartNotFoun
 import ooga.model.collisions.actiondata.ActionDataContainer;
 
 public abstract class CollidableEntity extends Entity implements Collidable {
-  public static final List<String> COLLIDABLE_ENTITY_TYPES = new ArrayList<>(
-      Arrays.asList("wall", "platform", "etc"));
   private final CollisionChartGetter myCollisionChartGetter;
 
   public CollidableEntity(CollisionChartGetter collisionChartGetter, int initialXCoordinate,
