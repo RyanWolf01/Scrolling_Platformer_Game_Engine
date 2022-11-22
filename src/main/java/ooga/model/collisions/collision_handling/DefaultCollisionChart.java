@@ -20,12 +20,6 @@ public class DefaultCollisionChart implements CollisionChart {
 
   public DefaultCollisionChart(List<Criteria> criteriaList) {
     myCriteria = criteriaList;
-
-    // example of adding a row in the collision chart (called a Criteria object)
-//    Map<String, String> criteriaMap = new HashMap<>();
-//    criteriaMap.put(ImmutableInfo.TYPE_KEY, "Platform");
-//    myCriteria.add(new Criteria(criteriaMap, "Jump"));
-
   }
 
   /**
