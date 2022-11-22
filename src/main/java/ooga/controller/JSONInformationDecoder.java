@@ -135,36 +135,47 @@ public class JSONInformationDecoder implements JSONTranslator {
 
   // TODO: refactor this method to simplify the control flow logic
   public CollisionChart makeCollisionDataFromJSONObject(String collisionJSONPath, String type) {
-    JSONObject collisionJSON = null;
-    JSONArray criteriaJSON = null;
-    List<Criteria> criteriaList = new ArrayList<Criteria>();
+    JSONObject allJSON;
+    JSONArray criteriaListJSON;
+    List<Criteria> criteriaList = new ArrayList<>();
+
+    // make sure we can open JSON file
     try {
-      collisionJSON = initialJSONInformation(collisionJSONPath);
+      allJSON = initialJSONInformation(collisionJSONPath);
     } catch (IOException | ParseException e) {
       throw new RuntimeException(e);
     }
-    if (checkJSONArrayValue(collisionJSON.get(type))) {
-      criteriaJSON = (JSONArray) collisionJSON.get(type);
-      Map<String,String> criteriaMap = new HashMap<>();
-      ActionDataContainer actionDataContainer = new ActionDataContainer();
-      for (Object o : criteriaJSON) {
-        if (checkJSONObjectValue(o)) {
-          JSONObject criteriaElement = (JSONObject) o;
-          for (Object j : criteriaElement.keySet()) {
-            if (j.equals("ACTIONS")) {
-              //TODO: surround with try catch and check type errors
-              loadActionDataContainer(actionDataContainer, (JSONArray) criteriaElement.get(j));
-            } else {
-              criteriaMap.put((String) j, (String) criteriaElement.get(j));
-            }
-          }
-        }
-        Criteria criteria = new Criteria(criteriaMap, actionDataContainer);
-        criteriaList.add(criteria);
-      }
-    } else {
+
+    // make sure this type has a corresponding CollisionChart
+    if (! checkJSONArrayValue(allJSON.get(type))) {
       throw new RuntimeException("invalid type");
     }
+
+    criteriaListJSON = (JSONArray) allJSON.get(type);
+
+    for (Object criteriaJSON : criteriaListJSON) {
+      // Items to be loaded into a Criteria object, to be loaded into the criteriaList
+      Map<String,String> criteriaMap = new HashMap<>();
+      ActionDataContainer actionDataContainer = new ActionDataContainer();
+
+      if (! checkJSONObjectValue(criteriaJSON)) {
+        continue;
+      }
+      JSONObject criteriaElement = (JSONObject) criteriaJSON;
+
+      for (Object j : criteriaElement.keySet()) {
+        if (j.equals("ACTIONS")) {
+          //TODO: surround with try catch and check type errors
+          loadActionDataContainer(actionDataContainer, (JSONArray) criteriaElement.get(j));
+        } else {
+          criteriaMap.put((String) j, (String) criteriaElement.get(j));
+        }
+      }
+
+      Criteria criteria = new Criteria(criteriaMap, actionDataContainer);
+      criteriaList.add(criteria);
+    }
+
     return new DefaultCollisionChart(criteriaList);
   }
 
