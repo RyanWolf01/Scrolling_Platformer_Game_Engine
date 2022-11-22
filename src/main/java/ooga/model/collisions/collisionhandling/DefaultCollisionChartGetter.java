@@ -18,19 +18,12 @@ public class DefaultCollisionChartGetter implements CollisionChartGetter {
    * @return CollisionChart
    */
   @Override
-  public CollisionChart getCollisionChart(String entityType) {
-    return getCollisionChart(entityType, COLLISION_CHART_PATH);
-  }
-
-  @Override
-  public CollisionChart getCollisionChart(String entityType, String collisionChartPath) {
+  public CollisionChart getCollisionChart(JSONInformationDecoder decoder, String entityType) {
     try {
-      JSONInformationDecoder decoder = new JSONInformationDecoder();
-      return decoder.makeCollisionDataFromJSONObject(collisionChartPath, entityType);
+      return decoder.makeCollisionDataFromJSONObject(entityType);
     } catch (RuntimeException e) {
       throw new CollisionChartParsingException("An exception occurred while attempting to parse the"
-          + " collision chart for type " + entityType + ". The specified path for the "
-          + "CollisionChart is: " + collisionChartPath, e);
+          + " collision chart for type " + entityType, e);
     }
 
   }
