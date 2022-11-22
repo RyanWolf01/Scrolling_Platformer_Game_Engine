@@ -61,6 +61,9 @@ public class ConnectionContainer {
     ScrollingNode newNode = new ScrollingNode(xCoordinate, yCoordinate, height, width, imageURL);
 
     nodes.addNode(newNode);
+    if(isMainCharacter("type")){
+      nodes.setMainCharacter(newNode);
+    }
 
     connectorMap.put(newNode, newEntity);
   }
@@ -90,5 +93,9 @@ public class ConnectionContainer {
       Entity entity = connectorMap.get(node);
       node.update(entity.getXCoordinate(), entity.getYCoordinate());
     }
+  }
+
+  private boolean isMainCharacter(String type){
+    return Arrays.asList(containerResources.getStringArray("main_characters")).contains(type);
   }
 }
