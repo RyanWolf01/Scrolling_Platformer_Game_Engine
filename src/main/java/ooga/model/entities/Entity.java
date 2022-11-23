@@ -66,4 +66,20 @@ public abstract class Entity implements ImmutableEntity{
         return entityInfo;
     };
 
+    /**
+     * By default, this entity's X velocity is zero
+     * @return 0
+     */
+    public double getXVelocity() {
+        return 0;
+    }
+
+    /**
+     * By default, this entitity's Y velocity is zero
+     * @return 0
+     */
+    public double getYVelocity() {
+        return 0;
+    }
+
 }

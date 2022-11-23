@@ -1,5 +1,6 @@
 package ooga.model.collisions.physics;
 
+import ooga.model.entities.CollidableEntity;
 import ooga.model.entities.Entity;
 
 public class PhysicsCalculator {
@@ -19,7 +20,7 @@ public class PhysicsCalculator {
    * if so, on which side of Entity a did the collision happen
    *
    * @param a first entity, which we mostly care about
-   * @param b second entity, which we don't care so much about
+   * @param b second entity, which we don't care so mz32zX Cuch about
    * @return null if no collision, direction if its a real collision
    */
   private CollisionDirection checkDirection(Entity a, Entity b) {
