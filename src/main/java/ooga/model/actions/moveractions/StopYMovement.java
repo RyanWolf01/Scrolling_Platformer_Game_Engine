@@ -11,7 +11,9 @@ public class StopYMovement implements MoverAction{
   @Override
   public void execute(Mover entity){
     entity.resetVelocities(false, true);
+    entity.changeVelocities(0, -1);
     entity.move();
+    entity.resetVelocities(false, true);
   }
 
 }

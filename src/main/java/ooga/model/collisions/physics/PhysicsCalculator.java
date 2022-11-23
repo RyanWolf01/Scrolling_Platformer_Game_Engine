@@ -1,5 +1,7 @@
 package ooga.model.collisions.physics;
 
+import java.util.ArrayList;
+import java.util.List;
 import ooga.model.entities.Entity;
 
 public class PhysicsCalculator {
@@ -11,64 +13,89 @@ public class PhysicsCalculator {
    * @param b the second entity, that is collided with
    */
   public CollisionPhysicsInfo calculatePhysics(Entity a, Entity b) {
-    return new CollisionPhysicsInfo(true, checkDirection(a, b));
+    return new CollisionPhysicsInfo(true, checkDirection2(a, b));
+//    return new CollisionPhysicsInfo(true, CollisionDirection.BOTTOM);
   }
 
-  /**
-   * Method that uses the components of each entity to figure out if there has been a collision and,
-   * if so, on which side of Entity a did the collision happen
-   *
-   * @param a first entity, which we mostly care about
-   * @param b second entity, which we don't care so mz32zX Cuch about
-   * @return null if no collision, direction if its a real collision
-   */
-  private CollisionDirection checkDirection(Entity a, Entity b) {
-    double aXCoord = a.getXCoordinate();
-    double bXCoord = b.getXCoordinate();
-    double aYCoord = a.getYCoordinate();
-    double bYCoord = b.getYCoordinate();
-    double aWidth = a.getWidth();
-    double bWidth = b.getWidth();
-    double aHeight = a.getHeight();
-    double bHeight = b.getHeight();
+  public CollisionDirection checkDirection2(Entity a, Entity b) {
+    List<Edge> edgesA = new ArrayList<>();
+    edgesA.add(getTopEdge(a));
+    edgesA.add(getBottomEdge(a));
+    edgesA.add(getLeftEdge(a));
+    edgesA.add(getRightEdge(a));
 
-    boolean inXRange = false;
-    boolean inYRange = false;
+    List<Edge> edgesB = new ArrayList<>();
+    edgesB.add(getTopEdge(b));
+    edgesB.add(getBottomEdge(b));
+    edgesB.add(getLeftEdge(b));
+    edgesB.add(getRightEdge(b));
 
-    if ((aXCoord + aWidth) >= bXCoord && (aXCoord < bXCoord + bWidth)) {
-      inXRange = true;
+    double minTime = Double.MAX_VALUE;
+    Edge minTimeEdge = null;
+
+    for (Edge edgeA : edgesA) {
+      for (Edge edgeB : edgesB) {
+        if (edgeA.willIntersect(edgeB)) {
+
+          double timeToIntersect = edgeA.timeToIntersect(edgeB);
+          minTime = Math.min(minTime, timeToIntersect);
+          if (minTime == timeToIntersect) {
+            minTimeEdge = edgeA;
+          }
+
+        }
+      }
     }
 
-    if ((aYCoord + aHeight) >= bYCoord && (aYCoord < bYCoord + bHeight)) {
-      inYRange = true;
+    if (minTimeEdge == null) {
+      throw new RuntimeException("These objects did not collide");
+    }
+    else {
+      return minTimeEdge.direction;
     }
 
-    if (!(inXRange && inYRange)) {
-      return null;
-    }
-
-    if ((aXCoord < bXCoord) && (aYCoord + aHeight > bYCoord)) {
-      return CollisionDirection.RIGHT;
-    }
-
-    if ((aXCoord > bXCoord) && (aYCoord + aHeight > bYCoord)) {
-      return CollisionDirection.LEFT;
-    }
-
-    if ((aYCoord < bYCoord) && (aXCoord < bXCoord + bWidth)) {
-      return CollisionDirection.TOP;
-    }
-
-    if ((aYCoord > bYCoord) && (aXCoord < bXCoord + bWidth)) {
-      return CollisionDirection.BOTTOM;
-    }
-
-    return null;
   }
 
-  private CollisionDirection checkDirection2(Entity a, Entity b) {
-    return null;
+  private Edge getTopEdge(Entity entity) {
+    double xvel = entity.getXVelocity();
+    double yvel = entity.getYVelocity();
+
+    return new Edge(CollisionDirection.TOP,
+        new Coordinate(entity.getXCoordinate() - xvel, entity.getYCoordinate() - yvel),
+        new Coordinate(entity.getXCoordinate() + entity.getWidth() - xvel, entity.getYCoordinate() - yvel),
+        xvel, yvel);
   }
+
+  private Edge getBottomEdge(Entity entity) {
+    double xvel = entity.getXVelocity();
+    double yvel = entity.getYVelocity();
+
+    return new Edge(CollisionDirection.BOTTOM,
+        new Coordinate(entity.getXCoordinate() - xvel, entity.getYCoordinate() + entity.getHeight() - yvel),
+        new Coordinate(entity.getXCoordinate() + entity.getWidth() - xvel, entity.getYCoordinate() + entity.getHeight() - yvel),
+        xvel, yvel);
+  }
+
+  private Edge getLeftEdge(Entity entity) {
+    double xvel = entity.getXVelocity();
+    double yvel = entity.getYVelocity();
+
+    return new Edge(CollisionDirection.LEFT,
+        new Coordinate(entity.getXCoordinate() - xvel, entity.getYCoordinate() - yvel),
+        new Coordinate(entity.getXCoordinate() - xvel, entity.getYCoordinate() + entity.getHeight() - yvel),
+        xvel, yvel);
+  }
+
+  private Edge getRightEdge(Entity entity) {
+    double xvel = entity.getXVelocity();
+    double yvel = entity.getYVelocity();
+
+    return new Edge(CollisionDirection.RIGHT,
+        new Coordinate(entity.getXCoordinate() + entity.getWidth() - xvel, entity.getYCoordinate() - yvel),
+        new Coordinate(entity.getXCoordinate() + entity.getWidth() - xvel, entity.getYCoordinate() + entity.getHeight() - yvel),
+        xvel, yvel);
+  }
+
 
   private class Coordinate {
     double x, y;
@@ -102,25 +129,32 @@ public class PhysicsCalculator {
 
     }
 
+    // TODO: Let this account for rounding errors (trying to compare 3.0 to 3.00000000001 and getting
+    //  false when checking if they're equal)
     public boolean willIntersect(Edge otherEdge) {
+      return timeToIntersect(otherEdge) != Double.MAX_VALUE;
+    }
+
+    public double timeToIntersect(Edge otherEdge) {
       if (!bothHorizontalOrVertical(this, otherEdge)) {
-        return false;
+        return Double.MAX_VALUE;
       }
 
       if (this.direction == CollisionDirection.TOP || this.direction == CollisionDirection.BOTTOM) {
-        return willIntersectTopOrBottom(otherEdge);
+        return timeToIntersectTopOrBottom(otherEdge);
       }
       else {
-        return willIntersectLeftOrRight(otherEdge);
+        return timeToIntersectLeftOrRight(otherEdge);
       }
     }
 
     // TODO: consolidate willIntersectTopOrBottom and willIntersectLeftOrRight into one method
-    private boolean willIntersectTopOrBottom(Edge otherEdge) {
+    // IF YOU'RE NOT CHANGING VELOCITIES WITH KEY PRESSES THEN THIS WON'T WORK!!!
+    private double timeToIntersectTopOrBottom(Edge otherEdge) {
       // Calculate time for x values to intersect
       double denominator = (otherEdge.yVelocity - this.yVelocity);
       if (denominator == 0) {
-        return false;
+        return Double.MAX_VALUE;
       }
       double time = (this.vertex1.y - otherEdge.vertex1.y) / denominator;
 
@@ -131,14 +165,19 @@ public class PhysicsCalculator {
       double otherX2 = otherEdge.vertex2.x + otherEdge.xVelocity * time;
 
       // make sure the x values are in range of each other
-      return (thisX2 >= otherX1 && thisX1 <= otherX2);
+      if (thisX2 >= otherX1 && thisX1 <= otherX2) {
+        return time;
+      }
+      else {
+        return Double.MAX_VALUE;
+      }
     }
 
-    private boolean willIntersectLeftOrRight(Edge otherEdge) {
+    private double timeToIntersectLeftOrRight(Edge otherEdge) {
       // Calculate time for x values to intersect
       double denominator = (otherEdge.xVelocity - this.xVelocity);
       if (denominator == 0) {
-        return false;
+        return Double.MAX_VALUE;
       }
       double time = (this.vertex1.x - otherEdge.vertex1.x) / denominator;
 
@@ -149,7 +188,12 @@ public class PhysicsCalculator {
       double otherY2 = otherEdge.vertex2.y + otherEdge.yVelocity * time;
 
       // make sure the x values are in range of each other
-      return (thisY2 >= otherY1 && thisY1 <= otherY2);
+      if (thisY2 >= otherY1 && thisY1 <= otherY2) {
+        return time;
+      }
+      else {
+        return Double.MAX_VALUE;
+      }
     }
 
     private boolean bothHorizontalOrVertical(Edge edge1, Edge edge2) {

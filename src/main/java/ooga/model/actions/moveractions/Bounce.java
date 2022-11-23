@@ -4,7 +4,7 @@ import ooga.model.entities.movement.Mover;
 
 public class Bounce implements MoverAction{
 
-  private static final int BOUNCE_VELOCITY = 5; // change this to properties file
+  private static final int BOUNCE_VELOCITY = -5; // change this to properties file
 
   /**
    * moves entity up in y direction by a fixed amount
