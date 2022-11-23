@@ -2,6 +2,7 @@ package ooga.model.collisions.physics;
 
 import java.util.ArrayList;
 import java.util.List;
+import ooga.model.entities.CollidableEntity;
 import ooga.model.entities.Entity;
 
 public class PhysicsCalculator {
@@ -13,11 +14,30 @@ public class PhysicsCalculator {
    * @param b the second entity, that is collided with
    */
   public CollisionPhysicsInfo calculatePhysics(Entity a, Entity b) {
-    return new CollisionPhysicsInfo(true, checkDirection2(a, b));
+    return new CollisionPhysicsInfo(true, checkDirection(a, b));
 //    return new CollisionPhysicsInfo(true, CollisionDirection.BOTTOM);
   }
 
-  public CollisionDirection checkDirection2(Entity a, Entity b) {
+  public CollisionDirection checkDirection(Entity a, Entity b) {
+    CollisionDirection ret = checkDirectionVelocityMethod(a, b);
+    if (ret == null) {
+      ret = checkDirectionPositionMethod(a, b);
+    }
+
+    if (ret == null) {
+      throw new RuntimeException("These objects did not collide");
+    }
+    else {
+      return ret;
+    }
+
+  }
+
+  private CollisionDirection checkDirectionPositionMethod(Entity a, Entity b) {
+    return null;
+  }
+
+  private CollisionDirection checkDirectionVelocityMethod(Entity a, Entity b) {
     List<Edge> edgesA = new ArrayList<>();
     edgesA.add(getTopEdge(a));
     edgesA.add(getBottomEdge(a));
@@ -31,7 +51,7 @@ public class PhysicsCalculator {
     edgesB.add(getRightEdge(b));
 
     double minTime = Double.MAX_VALUE;
-    Edge minTimeEdge = null;
+    CollisionDirection minTimeDirection = null;
 
     for (Edge edgeA : edgesA) {
       for (Edge edgeB : edgesB) {
@@ -40,23 +60,16 @@ public class PhysicsCalculator {
           double timeToIntersect = edgeA.timeToIntersect(edgeB);
           minTime = Math.min(minTime, timeToIntersect);
           if (minTime == timeToIntersect) {
-            minTimeEdge = edgeA;
+            minTimeDirection = edgeA.direction;
           }
-
         }
       }
     }
 
-    if (minTimeEdge == null) {
-      throw new RuntimeException("These objects did not collide");
-    }
-    else {
-      return minTimeEdge.direction;
-    }
-
+    return minTimeDirection;
   }
 
-  private Edge getTopEdge(Entity entity) {
+    private Edge getTopEdge(Entity entity) {
     double xvel = entity.getXVelocity();
     double yvel = entity.getYVelocity();
 
