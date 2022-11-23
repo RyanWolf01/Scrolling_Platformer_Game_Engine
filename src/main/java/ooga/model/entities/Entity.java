@@ -75,7 +75,7 @@ public abstract class Entity implements ImmutableEntity{
     }
 
     /**
-     * By default, this entitity's Y velocity is zero
+     * By default, this entity's Y velocity is zero
      * @return 0
      */
     public double getYVelocity() {
