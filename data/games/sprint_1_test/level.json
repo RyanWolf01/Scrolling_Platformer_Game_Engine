@@ -9,8 +9,8 @@
   "Entity": [
     {
       "type": "mario",
-      "x": "300",
-      "y": "-20",
+      "x": "500",
+      "y": "-40",
       "height": "100",
       "width": "50",
       "texture": "/games/mario/assets/mario.png"

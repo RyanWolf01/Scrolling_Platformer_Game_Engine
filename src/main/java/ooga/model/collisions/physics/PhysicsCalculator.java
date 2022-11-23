@@ -14,7 +14,7 @@ public class PhysicsCalculator {
    * @param b the second entity, that is collided with
    */
   public CollisionPhysicsInfo calculatePhysics(Entity a, Entity b) {
-    return new CollisionPhysicsInfo(true, checkDirection(a, b));
+    return new CollisionPhysicsInfo(true, checkDirectionVelocityMethod(a, b));
 //    return new CollisionPhysicsInfo(true, CollisionDirection.BOTTOM);
   }
 
@@ -66,7 +66,13 @@ public class PhysicsCalculator {
       }
     }
 
-    return minTimeDirection;
+    if (minTimeDirection == null) {
+      throw new RuntimeException("These objects did not collide");
+    }
+    else {
+      return minTimeDirection;
+    }
+
   }
 
     private Edge getTopEdge(Entity entity) {
