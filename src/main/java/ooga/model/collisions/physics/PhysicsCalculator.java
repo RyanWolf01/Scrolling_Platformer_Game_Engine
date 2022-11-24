@@ -7,6 +7,10 @@ import ooga.model.entities.Entity;
 
 public class PhysicsCalculator {
 
+  // TODO: Potential bug -- what if you have two entities that shouldn't collide and you feed them
+  // into here. If they do collide within trajectory of the entities but outside of the potential
+  // distance they could've travelled to hit each other. You need to only allow things that are
+  // within the velocity travelled...
   /**
    * This will enact the rules on the first entity, Entity a
    *
