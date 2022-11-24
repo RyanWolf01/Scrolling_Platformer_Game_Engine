@@ -14,6 +14,9 @@ public class PhysicsCalculator {
    * @param b the second entity, that is collided with
    */
   public CollisionPhysicsInfo calculatePhysics(Entity a, Entity b) {
+    if (a.wasPreviouslyColliding(b)) {
+      return new CollisionPhysicsInfo(true, a.getPreviousCollisionDirection(b));
+    }
     return new CollisionPhysicsInfo(true, checkDirectionVelocityMethod(a, b));
 //    return new CollisionPhysicsInfo(true, CollisionDirection.BOTTOM);
   }

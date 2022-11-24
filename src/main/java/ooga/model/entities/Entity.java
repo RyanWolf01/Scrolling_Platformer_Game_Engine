@@ -1,5 +1,6 @@
 package ooga.model.entities;
 
+import ooga.model.collisions.physics.CollisionDirection;
 import ooga.model.entities.data.ImmutableInfo;
 import ooga.model.entities.data.Info;
 
@@ -80,6 +81,15 @@ public abstract class Entity implements ImmutableEntity{
      */
     public double getYVelocity() {
         return 0;
+    }
+
+
+    public CollisionDirection getPreviousCollisionDirection(Entity otherEntity) {
+        return null;
+    }
+
+    public boolean wasPreviouslyColliding(Entity otherEntity) {
+        return false;
     }
 
 }

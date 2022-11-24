@@ -61,10 +61,13 @@ public class GameController {
         for(ScrollingNode collider: nodes){
             for(ScrollingNode collided: nodes){
                 if(collider.getBoundsInParent().intersects(collided.getBoundsInParent()) && collided != collider && container.isCollidable(collider)){
+                    // TODO: add entity b to entity a's list of things that it's collided with previously
                     model.handleCollision(container.getConnectedEntity(collider), container.getConnectedEntity(collided));
                 }
             }
         }
+        // TODO: for every thing in entity a's list of things that it's collided with, remove all the
+        // things that weren't added in this iteration
     }
 
 

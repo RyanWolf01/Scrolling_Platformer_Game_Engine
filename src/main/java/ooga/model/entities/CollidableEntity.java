@@ -1,19 +1,20 @@
 package ooga.model.entities;
 
+import java.util.HashMap;
 import ooga.model.actionparsers.ActionParsingException;
+import ooga.model.collisions.physics.CollisionDirection;
 import ooga.model.entities.data.ImmutableInfo;
 import ooga.model.entities.data.Info;
 import ooga.model.collisions.Collidable;
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.collisions.collisionhandling.CollisionChartGetter;
 import ooga.model.collisions.collisionhandling.CollisionData;
-import ooga.model.collisions.collisionhandling.DefaultCollisionChartGetter;
 import ooga.model.collisions.collisionhandling.exceptions.CollisionChartParsingException;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 
 public abstract class CollidableEntity extends Entity implements Collidable {
   private final CollisionChart myCollisionChart;
+  private HashMap<Entity, CollisionDirection> previousCollisions;
 
   public CollidableEntity(CollisionChart collisionChart, int initialXCoordinate,
       int initialYCoordinate, double height, double width, Info entityInfo) {
@@ -56,6 +57,16 @@ public abstract class CollidableEntity extends Entity implements Collidable {
     CollisionData collisionData = new CollisionData(targetEntityInfo, otherEntityInfo,
         collisionPhysicsInfo);
     return myCollisionChart.getActionDatas(collisionData);
+  }
+
+  @Override
+  public CollisionDirection getPreviousCollisionDirection(Entity otherEntity) {
+    return previousCollisions.get(otherEntity);
+  }
+
+  @Override
+  public boolean wasPreviouslyColliding(Entity otherEntity) {
+    return previousCollisions.containsKey(otherEntity);
   }
 }
 
