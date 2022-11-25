@@ -23,6 +23,8 @@ public class PhysicsCalculator {
   // just move through each other and keep going), that won't work. They'll get stuck on each other,
   // and it will appear like Entity a is inside of Entity b, because a keeps moving down over and
   // over again inside of Entity b because its original velocity doesn't change.
+  // This movement should only really be done after you've determined that things should stop when
+  // hitting each other.
   /**
    * This will enact the rules on the first entity, Entity a
    *
