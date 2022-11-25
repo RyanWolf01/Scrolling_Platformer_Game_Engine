@@ -11,6 +11,8 @@ public class PhysicsCalculator {
   // into here. If they do collide within trajectory of the entities but outside of the potential
   // distance they could've travelled to hit each other. You need to only allow things that are
   // within the velocity travelled...
+  // Technically still works since you only call this function if you know a and b have collided
+  // just make sure time is less than 1.0
   /**
    * This will enact the rules on the first entity, Entity a
    *
@@ -77,6 +79,20 @@ public class PhysicsCalculator {
       throw new RuntimeException("These objects did not collide");
     }
     else {
+      double moveBackX = a.getXVelocity() - (a.getXVelocity() * minTime);
+      double moveBackY = a.getYVelocity() - (a.getYVelocity() * minTime);
+      if (minTimeDirection == CollisionDirection.BOTTOM) {
+        a.setYCoordinate(a.getYCoordinate() - moveBackY - 0.25);
+      }
+      else if (minTimeDirection == CollisionDirection.TOP) {
+        a.setYCoordinate(a.getYCoordinate() - moveBackY + 0.25);
+      }
+      else if (minTimeDirection == CollisionDirection.LEFT) {
+        a.setXCoordinate(a.getXCoordinate() - moveBackX + 0.25);
+      }
+      else if (minTimeDirection == CollisionDirection.RIGHT) {
+        a.setXCoordinate(a.getXCoordinate() - moveBackX - 0.25);
+      }
       return minTimeDirection;
     }
 

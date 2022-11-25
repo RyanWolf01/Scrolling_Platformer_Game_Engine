@@ -41,11 +41,6 @@
           "classname": "ooga.model.actions.moveractions.StopYMovement",
           "action_interface": "MoverAction",
           "params": []
-        },
-        {
-          "classname": "ooga.model.actions.moveractions.Bounce",
-          "action_interface": "MoverAction",
-          "params": []
         }
       ]
     }

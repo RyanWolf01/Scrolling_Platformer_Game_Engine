@@ -1,6 +1,7 @@
 package ooga.model.entities;
 
 import java.util.HashMap;
+import java.util.Map;
 import ooga.model.actionparsers.ActionParsingException;
 import ooga.model.collisions.physics.CollisionDirection;
 import ooga.model.entities.data.ImmutableInfo;
@@ -14,12 +15,14 @@ import ooga.model.collisions.actiondata.ActionDataContainer;
 
 public abstract class CollidableEntity extends Entity implements Collidable {
   private final CollisionChart myCollisionChart;
-  private HashMap<Entity, CollisionDirection> previousCollisions;
+  private final Map<Entity, CollisionDirection> myPreviousCollisions;
 
   public CollidableEntity(CollisionChart collisionChart, int initialXCoordinate,
       int initialYCoordinate, double height, double width, Info entityInfo) {
     super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
     myCollisionChart = collisionChart;
+    myPreviousCollisions = new HashMap<>();
+
   }
 
 //  public CollidableEntity(int initialXCoordinate, int initialYCoordinate, double height,
@@ -61,12 +64,12 @@ public abstract class CollidableEntity extends Entity implements Collidable {
 
   @Override
   public CollisionDirection getPreviousCollisionDirection(Entity otherEntity) {
-    return previousCollisions.get(otherEntity);
+    return myPreviousCollisions.get(otherEntity);
   }
 
   @Override
   public boolean wasPreviouslyColliding(Entity otherEntity) {
-    return previousCollisions.containsKey(otherEntity);
+    return myPreviousCollisions.containsKey(otherEntity);
   }
 }
 
