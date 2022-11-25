@@ -37,11 +37,7 @@
       "OPPONENT_TYPE": "static_platform",
       "COLLISION_DIRECTION": "BOTTOM",
       "ACTIONS": [
-        {
-          "classname": "ooga.model.actions.moveractions.StopYMovement",
-          "action_interface": "MoverAction",
-          "params": []
-        }
+
       ]
     }
 

@@ -13,6 +13,16 @@ public class PhysicsCalculator {
   // within the velocity travelled...
   // Technically still works since you only call this function if you know a and b have collided
   // just make sure time is less than 1.0
+
+  // TODO: Another potential bug: If mario is wedged between two things that it collides with at the
+  // same time, Mario will retain its original velocities after colliding with thing1 and this could
+  // mess up collisions with thing2
+
+  // The approach of moving Mario back to its original position right before impact doesn't really
+  // work because if you don't want to do anything if two objects collide (pretend that they can
+  // just move through each other and keep going), that won't work. They'll get stuck on each other,
+  // and it will appear like Entity a is inside of Entity b, because a keeps moving down over and
+  // over again inside of Entity b because its original velocity doesn't change.
   /**
    * This will enact the rules on the first entity, Entity a
    *
