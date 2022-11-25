@@ -19,7 +19,7 @@ public class CollisionDataTest {
   public void testCollisionData() {
     EntityInfo entityAInfo = new EntityInfo("GOOMBA");
     EntityInfo entityBInfo = new EntityInfo("MARIO");
-    CollisionPhysicsInfo cpi = new CollisionPhysicsInfo(true, CollisionDirection.LEFT);
+    CollisionPhysicsInfo cpi = new CollisionPhysicsInfo(true, 1, CollisionDirection.LEFT);
 
     String[] kvPairsA = new String[]{"powerUp", "NONE", "test", "FOO"};
     String[] kvPairsB = new String[]{"powerUp", "STAR", "BTest", "BAR"};

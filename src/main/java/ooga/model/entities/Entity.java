@@ -1,6 +1,9 @@
 package ooga.model.entities;
 
+import java.util.HashMap;
+import java.util.Map;
 import ooga.model.collisions.physics.CollisionDirection;
+import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.entities.data.ImmutableInfo;
 import ooga.model.entities.data.Info;
 
@@ -83,6 +86,8 @@ public abstract class Entity implements ImmutableEntity{
         return 0;
     }
 
+    // TODO: Put methods below in Collidable only and only allow Collidable things
+    // as first parameter in PhysicsCalculator
 
     public CollisionDirection getPreviousCollisionDirection(Entity otherEntity) {
         return null;
@@ -90,6 +95,18 @@ public abstract class Entity implements ImmutableEntity{
 
     public boolean wasPreviouslyColliding(Entity otherEntity) {
         return false;
+    }
+
+    public boolean hasSequentialCollisionWith(Entity otherEntity) {
+        return false;
+    }
+
+    public CollisionPhysicsInfo physicsInfoOfSequentialCollisionWith(Entity otherEntity) {
+        return null;
+    }
+
+    public Map<Entity, CollisionPhysicsInfo> getMySequentialCollisions() {
+        return new HashMap<>();
     }
 
 }

@@ -25,6 +25,25 @@ public class PhysicsCalculator {
   // over again inside of Entity b because its original velocity doesn't change.
   // This movement should only really be done after you've determined that things should stop when
   // hitting each other.
+
+  // CollisionPhysics info can contain the number of times these things have sequentially hit each
+  // other. For the first hit, we can move the things right outside of their spaces. Then, if they
+  // hit again, we can use the previous CollisionDirection and allow the things to intersect inside
+  // each other.
+
+  // Also important to have CollisionPhysics contain the number of times things have sequentially
+  // hit because what if you hit something that you want to move through, but do something every
+  // time that thing is hit, like gain a point, you don't necessarily want to gain a point every
+  // 1/60th of a second or every time a collision occurs while the thing is going through another
+  // object. Only once during the sequence of that collision. But you might also want to continually
+  // do something to an object that's being collided with but at a specific rate (e.g. if you're
+  // colliding with water, you might want to decrement your oxygen level by 1 per 3 seconds). This
+  // would require knowing how many times you've collided with the water using
+  // collisioncheckrate and number of collisions.
+  // What you can do is reset the position so things aren't techincally "colliding" after the first
+  // collision, and if the things are colliding in the next round of checks, then don't do that/allow
+  // the things to pass through. Will eliminate movement during 1 frame, which may be visible/look
+  // funny and also mess up perfect trajectories of things...
   /**
    * This will enact the rules on the first entity, Entity a
    *
@@ -32,11 +51,25 @@ public class PhysicsCalculator {
    * @param b the second entity, that is collided with
    */
   public CollisionPhysicsInfo calculatePhysics(Entity a, Entity b) {
-    if (a.wasPreviouslyColliding(b)) {
-      return new CollisionPhysicsInfo(true, a.getPreviousCollisionDirection(b));
-    }
-    return new CollisionPhysicsInfo(true, checkDirectionVelocityMethod(a, b));
+//    if (a.wasPreviouslyColliding(b)) {
+//      return new CollisionPhysicsInfo(true, 1, a.getPreviousCollisionDirection(b));
+//    }
+    CollisionPhysicsInfo info = new CollisionPhysicsInfo(true, 1, checkDirectionVelocityMethod(a, b));
+    a.getMySequentialCollisions().put(b, info);
+    return info;
 //    return new CollisionPhysicsInfo(true, CollisionDirection.BOTTOM);
+  }
+
+  /**
+   * Assumes that a and b have already been colliding. TODO: Should check to make sure this is actually true
+   * @param a
+   * @param b
+   * @param prevCollisionPhysicsInfo
+   * @return
+   */
+  public CollisionPhysicsInfo calculatePhysics(Entity a, Entity b, CollisionPhysicsInfo prevCollisionPhysicsInfo) {
+    prevCollisionPhysicsInfo.incrementNumConsecutiveCollisions();
+    return prevCollisionPhysicsInfo;
   }
 
   public CollisionDirection checkDirection(Entity a, Entity b) {

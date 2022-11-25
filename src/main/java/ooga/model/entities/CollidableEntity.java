@@ -15,13 +15,13 @@ import ooga.model.collisions.actiondata.ActionDataContainer;
 
 public abstract class CollidableEntity extends Entity implements Collidable {
   private final CollisionChart myCollisionChart;
-  private final Map<Entity, CollisionDirection> myPreviousCollisions;
+  private final Map<Entity, CollisionPhysicsInfo> mySequentialCollisions;
 
   public CollidableEntity(CollisionChart collisionChart, int initialXCoordinate,
       int initialYCoordinate, double height, double width, Info entityInfo) {
     super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
     myCollisionChart = collisionChart;
-    myPreviousCollisions = new HashMap<>();
+    mySequentialCollisions = new HashMap<>();
 
   }
 
@@ -64,12 +64,29 @@ public abstract class CollidableEntity extends Entity implements Collidable {
 
   @Override
   public CollisionDirection getPreviousCollisionDirection(Entity otherEntity) {
-    return myPreviousCollisions.get(otherEntity);
+//    return mySequentialCollisions.get(otherEntity);
+    return null;
   }
 
   @Override
   public boolean wasPreviouslyColliding(Entity otherEntity) {
-    return myPreviousCollisions.containsKey(otherEntity);
+    return mySequentialCollisions.containsKey(otherEntity);
+  }
+
+  @Override
+  public boolean hasSequentialCollisionWith(Entity otherEntity) {
+    return mySequentialCollisions.containsKey(otherEntity);
+  }
+
+  @Override
+  public CollisionPhysicsInfo physicsInfoOfSequentialCollisionWith(Entity otherEntity) {
+    return mySequentialCollisions.get(otherEntity);
+  }
+
+  // TODO: Fix this so that it's not just a getter returning a Map.
+  @Override
+  public Map<Entity, CollisionPhysicsInfo> getMySequentialCollisions() {
+    return mySequentialCollisions;
   }
 }
 
