@@ -49,7 +49,9 @@ public class PhysicsCalculator {
   // calculate where the collision comes from... Temporary (?) solution, add a PhysicsDirection.NONE
   // and in the collisionChart, add a criteria for colliding with platforms with direction of NONE.
   // Here, make it so that nothing is done when this happens. Because i guess in this situtation, if
-  // something is teleporting into you, you
+  // something is teleporting into you, you. Want to use hierarchical collision charts so that you
+  // can put the reaction to spawning inside other things under characteristics of Entity, rather
+  // than having to redefine it for goomba, etc.
 
   // still deal with the issue of stacked platforms, hitting upper_platform before lower_platform
   // but handling both in the same sequence, so that you move thing inside the upper platform
