@@ -38,8 +38,14 @@
           "params": []
         }
       ]
-    }
+    },
+    {
+      "OPPONENT_TYPE": "static_platform",
+      "COLLISION_DIRECTION": "NONE",
+      "ACTIONS": [
 
+      ]
+    }
   ],
 
   "GOOMBA": [

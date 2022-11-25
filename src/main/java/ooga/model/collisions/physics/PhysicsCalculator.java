@@ -44,6 +44,16 @@ public class PhysicsCalculator {
   // collision, and if the things are colliding in the next round of checks, then don't do that/allow
   // the things to pass through. Will eliminate movement during 1 frame, which may be visible/look
   // funny and also mess up perfect trajectories of things...
+
+  // Another bug -- what if you spawn A inside of B, then you'll throw an error because you can't
+  // calculate where the collision comes from... Temporary (?) solution, add a PhysicsDirection.NONE
+  // and in the collisionChart, add a criteria for colliding with platforms with direction of NONE.
+  // Here, make it so that nothing is done when this happens. Because i guess in this situtation, if
+  // something is teleporting into you, you
+
+  // still deal with the issue of stacked platforms, hitting upper_platform before lower_platform
+  // but handling both in the same sequence, so that you move thing inside the upper platform
+  // afterwards since you move it outside of lower platform, which is within upper one.... i think
   /**
    * This will enact the rules on the first entity, Entity a
    *
@@ -74,16 +84,17 @@ public class PhysicsCalculator {
 
   public CollisionDirection checkDirection(Entity a, Entity b) {
     CollisionDirection ret = checkDirectionVelocityMethod(a, b);
-    if (ret == null) {
-      ret = checkDirectionPositionMethod(a, b);
-    }
-
-    if (ret == null) {
-      throw new RuntimeException("These objects did not collide");
-    }
-    else {
-      return ret;
-    }
+    return ret;
+//    if (ret == null) {
+//      ret = checkDirectionPositionMethod(a, b);
+//    }
+//
+//    if (ret == null) {
+//      throw new RuntimeException("These objects did not collide");
+//    }
+//    else {
+//      return ret;
+//    }
 
   }
 
@@ -105,7 +116,7 @@ public class PhysicsCalculator {
     edgesB.add(getRightEdge(b));
 
     double minTime = Double.MAX_VALUE;
-    CollisionDirection minTimeDirection = null;
+    CollisionDirection minTimeDirection = CollisionDirection.NONE;
 
     for (Edge edgeA : edgesA) {
       for (Edge edgeB : edgesB) {
@@ -120,10 +131,10 @@ public class PhysicsCalculator {
       }
     }
 
-    if (minTimeDirection == null) {
-      throw new RuntimeException("These objects did not collide");
-    }
-    else {
+//    if (minTimeDirection == CollisionDirection.NONE) {
+//      throw new RuntimeException("These objects did not collide");
+//    }
+    if (minTimeDirection != CollisionDirection.NONE) {
       double moveBackX = a.getXVelocity() - (a.getXVelocity() * minTime);
       double moveBackY = a.getYVelocity() - (a.getYVelocity() * minTime);
       if (minTimeDirection == CollisionDirection.BOTTOM) {
@@ -138,8 +149,9 @@ public class PhysicsCalculator {
       else if (minTimeDirection == CollisionDirection.RIGHT) {
         a.setXCoordinate(a.getXCoordinate() - moveBackX - 0.25);
       }
-      return minTimeDirection;
     }
+
+    return minTimeDirection;
 
   }
 

@@ -9,8 +9,8 @@
   "Entity": [
     {
       "type": "mario",
-      "x": "500",
-      "y": "-40",
+      "x": "300",
+      "y": "40",
       "height": "100",
       "width": "50",
       "texture": "/games/mario/assets/mario.png"
@@ -21,7 +21,15 @@
       "x": "500",
       "y": "100",
       "height": "10",
-      "width": "50"
+      "width": "150"
+    },
+    {
+      "type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "500",
+      "y": "91",
+      "height": "10",
+      "width": "100"
     }
   ]
 }

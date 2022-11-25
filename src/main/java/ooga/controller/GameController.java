@@ -2,6 +2,7 @@ package ooga.controller;
 
 import java.io.File;
 import java.util.Map;
+import java.util.Set;
 import javafx.scene.input.KeyCode;
 import ooga.model.Model;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
@@ -106,7 +107,8 @@ public class GameController {
         for (ScrollingNode node : nodeContainer) {
             Entity entity = container.getConnectedEntity(node);
             Map<Entity, CollisionPhysicsInfo> map = entity.getMySequentialCollisions();
-            for (Entity otherEntity : map.keySet()) {
+            Entity[] keys = map.keySet().toArray(new Entity[0]);
+            for (Entity otherEntity : keys) {
                 if (! map.get(otherEntity).collisionIsFresh()) {
                     map.remove(otherEntity);
                 }
