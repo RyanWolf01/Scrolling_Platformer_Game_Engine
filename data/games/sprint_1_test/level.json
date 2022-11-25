@@ -9,19 +9,30 @@
   "Entity": [
     {
       "type": "mario",
+      "character_type": "mario",
       "x": "500",
-      "y": "40",
+      "y": "-1",
       "height": "100",
       "width": "50",
       "texture": "/games/mario/assets/mario.png"
     },
     {
       "type": "static_platform",
+      "character_type": "static_platform",
       "texture": "/games/mario/assets/ground.png",
-      "x": "500",
+      "x": "200",
       "y": "100",
       "height": "10",
-      "width": "150"
+      "width": "1000"
+    },
+    {
+      "type": "automatic_moving_entity",
+      "character_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "800",
+      "y": "49",
+      "height": "50",
+      "width": "40"
     }
   ]
 }

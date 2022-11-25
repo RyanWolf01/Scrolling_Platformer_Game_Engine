@@ -33,8 +33,7 @@ public abstract class CollidableEntity extends Entity implements Collidable {
 
   @Override
   public void onCollision(Entity other, CollisionPhysicsInfo physicsInfo) {
-    ActionDataContainer adc = getActionDatas(this.getImmutableEntityInfo(),
-        other.getImmutableEntityInfo(), physicsInfo);
+    ActionDataContainer adc = getActionDatas(this.getImmutableEntityInfo(), other.getImmutableEntityInfo(), physicsInfo);
 
     int numActionsPerformed = performActions(adc);
     if (numActionsPerformed != adc.size()) {

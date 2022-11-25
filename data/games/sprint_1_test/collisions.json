@@ -1,69 +1,100 @@
 {
-  "mario": [
-    {
-      "OPPONENT_TYPE": "static_platform",
-      "COLLISION_DIRECTION": "LEFT",
-      "ACTIONS": [
-        {
-          "classname": "ooga.model.actions.moveractions.Bounce",
-          "action_interface": "MoverAction",
-          "params": []
-        }
-      ]
-    },
-    {
-      "OPPONENT_TYPE": "static_platform",
-      "COLLISION_DIRECTION": "RIGHT",
-      "ACTIONS": [
-        {
-          "classname": "ooga.model.actions.moveractions.Bounce",
-          "action_interface": "MoverAction",
-          "params": []
-        }
-      ]
-    },
-    {
-      "OPPONENT_TYPE": "static_platform",
-      "COLLISION_DIRECTION": "TOP",
-      "ACTIONS": [
-      ]
-    },
-    {
-      "OPPONENT_TYPE": "static_platform",
-      "COLLISION_DIRECTION": "BOTTOM",
-      "ACTIONS": [
-        {
-          "classname": "ooga.model.actions.moveractions.StopYMovement",
-          "action_interface": "MoverAction",
-          "params": []
-        }
-      ]
-    },
-    {
-      "OPPONENT_TYPE": "static_platform",
-      "COLLISION_DIRECTION": "NONE",
-      "ACTIONS": [
-
-      ]
-    }
-  ],
-
-  "GOOMBA": [
-        {
-        "OPPONENT_TYPE": "MARIO",
+  "entity": {
+    "parent": "",
+    "collision_chart": [
+      {
+        "OPPONENT_TYPE": "static_platform",
+        "COLLISION_DIRECTION": "LEFT",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.moveractions.Bounce",
+            "action_interface": "MoverAction",
+            "params": []
+          }
+        ]
+      },
+      {
+        "OPPONENT_TYPE": "static_platform",
+        "COLLISION_DIRECTION": "RIGHT",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.moveractions.Bounce",
+            "action_interface": "MoverAction",
+            "params": []
+          }
+        ]
+      },
+      {
+        "OPPONENT_TYPE": "static_platform",
         "COLLISION_DIRECTION": "TOP",
         "ACTIONS": [
-            {
-              "classname": "ooga.model.actions.aliveactions.Kill",
-              "action_interface": "AliveAction",
-              "params": []
-            }
-          ]
-        },
-        {
-          "OPPONENT_TYPE": "MARIO",
-          "COLLISION_DIRECTION": "SIDE",
-          "ACTIONS": []
-        }
+        ]
+      },
+      {
+        "OPPONENT_TYPE": "static_platform",
+        "COLLISION_DIRECTION": "BOTTOM",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.moveractions.StopYMovement",
+            "action_interface": "MoverAction",
+            "params": []
+          }
+        ]
+      },
+      {
+        "OPPONENT_TYPE": "static_platform",
+        "COLLISION_DIRECTION": "NONE",
+        "ACTIONS": [
+        ]
+      }
     ]
+  },
+  "mario": {
+    "parent": "entity",
+    "collision_chart": [
+      {
+        "OPPONENT_TYPE": "goomba",
+        "COLLISION_DIRECTION": "BOTTOM",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.moveraction.Bounce",
+            "action_interface": "MoverAction",
+            "params": []
+          }
+        ]
+      }
+    ]
+  },
+  "goomba": {
+    "parent": "enemy",
+    "collision_chart": [
+      {
+        "OPPONENT_TYPE": "mario",
+        "COLLISION_DIRECTION": "TOP",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.aliveactions.Kill",
+            "action_interface": "AliveAction",
+            "params": []
+          },
+          {
+            "classname": "ooga.model.actions.moveraction.LeftMovement",
+            "action_interface": "MoverAction",
+            "params": []
+          }
+        ]
+      },
+      {
+        "OPPONENT_TYPE": "MARIO",
+        "COLLISION_DIRECTION": "SIDE",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.aliveactions.Bounce",
+            "action_interface": "AliveAction",
+            "params": []
+          }
+        ]
+      }
+    ]
+  }
 }
