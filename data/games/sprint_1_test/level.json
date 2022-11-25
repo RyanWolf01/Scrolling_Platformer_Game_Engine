@@ -26,7 +26,7 @@
       "width": "1000"
     },
     {
-      "type": "automatic_moving_entity",
+      "type": "static_entity",
       "character_type": "goomba",
       "texture": "/games/mario/assets/goomba.png",
       "x": "800",
