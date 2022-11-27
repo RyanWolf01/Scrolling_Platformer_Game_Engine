@@ -17,6 +17,7 @@ public class ConnectionContainerTest {
         assertInstanceOf(container.getClass(), ConnectionContainer.class);
     }
 
+    @Test
     public void testAdd(){
         container = new ConnectionContainer(decoder);
         EntityInfo info = new EntityInfo("uh");
@@ -26,6 +27,7 @@ public class ConnectionContainerTest {
         assertEquals(1, container.viewables().size());
     }
 
+    @Test
     public void testMultipleAdds(){
         container = new ConnectionContainer(decoder);
         EntityInfo info = new EntityInfo("uh");
@@ -36,6 +38,7 @@ public class ConnectionContainerTest {
         assertEquals(2, container.viewables().size());
     }
 
+    @Test
     public void testMap(){
         container = new ConnectionContainer(decoder);
         EntityInfo info = new EntityInfo("uh");
@@ -51,6 +54,7 @@ public class ConnectionContainerTest {
         }
     }
 
+    @Test
     public void testUpdate(){
         container = new ConnectionContainer(decoder);
         EntityInfo info = new EntityInfo("uh");
