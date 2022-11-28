@@ -147,6 +147,11 @@ public class JSONInformationDecoder {
 
 
   // TODO: refactor this method to simplify the control flow logic
+  /*
+  Basically, we should get every single file in the collisions folder and combine it into one big
+  JSON object. Then look for the type in here, and fill in type values for when you're checking
+  OPPONENT_TYPE?...
+   */
   private CollisionChart makeCollisionDataFromJSONObject(String type, CollisionChart collisionChart) {
     JSONObject allJSON;
     JSONArray criteriaListJSON;
