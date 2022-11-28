@@ -34,6 +34,11 @@
         "COLLISION_DIRECTION": "NONE",
         "ACTIONS": [
         ]
+      },
+      {
+        "ACTIONS": [
+
+        ]
       }
     ]
   },
@@ -42,6 +47,22 @@
   "mario": {
     "parent": "movingEntity",
     "collision_chart": [
+      {
+        "OPPONENT_TYPE": "static_platform",
+        "COLLISION_DIRECTION": "BOTTOM",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.moveractions.StopYMovement",
+            "action_interface": "MoverAction",
+            "params": []
+          },
+          {
+            "classname": "ooga.model.actions.moveractions.Bounce",
+            "action_interface": "MoverAction",
+            "params": []
+          }
+        ]
+      },
       {
         "OPPONENT_TYPE": "goomba",
         "COLLISION_DIRECTION": "BOTTOM",
