@@ -1,24 +1,28 @@
 package ooga.model.entities;
 
+import java.util.HashMap;
+import java.util.Map;
 import ooga.model.actionparsers.ActionParsingException;
+import ooga.model.collisions.physics.CollisionDirection;
 import ooga.model.entities.data.ImmutableInfo;
 import ooga.model.entities.data.Info;
 import ooga.model.collisions.Collidable;
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.collisions.collisionhandling.CollisionChartGetter;
 import ooga.model.collisions.collisionhandling.CollisionData;
-import ooga.model.collisions.collisionhandling.DefaultCollisionChartGetter;
 import ooga.model.collisions.collisionhandling.exceptions.CollisionChartParsingException;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 
 public abstract class CollidableEntity extends Entity implements Collidable {
   private final CollisionChart myCollisionChart;
+  private final Map<Entity, CollisionPhysicsInfo> mySequentialCollisions;
 
   public CollidableEntity(CollisionChart collisionChart, int initialXCoordinate,
       int initialYCoordinate, double height, double width, Info entityInfo) {
     super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
     myCollisionChart = collisionChart;
+    mySequentialCollisions = new HashMap<>();
+
   }
 
 //  public CollidableEntity(int initialXCoordinate, int initialYCoordinate, double height,
@@ -29,8 +33,7 @@ public abstract class CollidableEntity extends Entity implements Collidable {
 
   @Override
   public void onCollision(Entity other, CollisionPhysicsInfo physicsInfo) {
-    ActionDataContainer adc = getActionDatas(this.getImmutableEntityInfo(),
-        other.getImmutableEntityInfo(), physicsInfo);
+    ActionDataContainer adc = getActionDatas(this.getImmutableEntityInfo(), other.getImmutableEntityInfo(), physicsInfo);
 
     int numActionsPerformed = performActions(adc);
     if (numActionsPerformed != adc.size()) {
@@ -56,6 +59,33 @@ public abstract class CollidableEntity extends Entity implements Collidable {
     CollisionData collisionData = new CollisionData(targetEntityInfo, otherEntityInfo,
         collisionPhysicsInfo);
     return myCollisionChart.getActionDatas(collisionData);
+  }
+
+//  @Override
+//  public CollisionDirection getPreviousCollisionDirection(Entity otherEntity) {
+////    return mySequentialCollisions.get(otherEntity);
+//    return null;
+//  }
+//
+//  @Override
+//  public boolean wasPreviouslyColliding(Entity otherEntity) {
+//    return mySequentialCollisions.containsKey(otherEntity);
+//  }
+
+  @Override
+  public boolean hasSequentialCollisionWith(Entity otherEntity) {
+    return mySequentialCollisions.containsKey(otherEntity);
+  }
+
+  @Override
+  public CollisionPhysicsInfo physicsInfoOfSequentialCollisionWith(Entity otherEntity) {
+    return mySequentialCollisions.get(otherEntity);
+  }
+
+  // TODO: Fix this so that it's not just a getter returning a Map.
+  @Override
+  public Map<Entity, CollisionPhysicsInfo> getMySequentialCollisions() {
+    return mySequentialCollisions;
   }
 }
 

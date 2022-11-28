@@ -2,6 +2,7 @@ package ooga.model;
 
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
+import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.collisions.physics.PhysicsCalculator;
 import ooga.model.entities.CollidableEntity;
 import ooga.model.entities.Entity;
@@ -45,6 +46,23 @@ public class Model {
       }
       if(collidable.equals(collided)){
         collidable.onCollision(collider, new PhysicsCalculator().calculatePhysics(collided, collider));
+      }
+    }
+  }
+
+  /**
+   * Assumes that this Collision is one in a consecutive chain of previous collisions
+   * @param collider
+   * @param collided
+   * @param prevCollisionPhysicsInfo
+   */
+  public void handleCollision(Entity collider, Entity collided, CollisionPhysicsInfo prevCollisionPhysicsInfo){
+    for(CollidableEntity collidable : entities.collidables()){
+      if(collidable.equals(collider)){
+        collidable.onCollision(collided, new PhysicsCalculator().calculatePhysics(collider, collided, prevCollisionPhysicsInfo));
+      }
+      if(collidable.equals(collided)){
+        collidable.onCollision(collider, new PhysicsCalculator().calculatePhysics(collided, collider, prevCollisionPhysicsInfo));
       }
     }
   }

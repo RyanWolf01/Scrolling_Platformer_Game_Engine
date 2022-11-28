@@ -100,6 +100,8 @@ public class BackendContainer {
       collidables.addCollidable(newCollidable);
       newEntity = newCollidable;
     }
+
+    // TODO: This must be fixed below!! If you add an AutomaticMovingEntity this breaks.
     else{
       try {
         newEntity = (StaticEntity) Class.forName(ConnectionContainer.entityClassResources.getString(type)).
