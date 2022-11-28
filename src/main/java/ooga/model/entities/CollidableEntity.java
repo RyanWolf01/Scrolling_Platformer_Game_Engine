@@ -61,16 +61,16 @@ public abstract class CollidableEntity extends Entity implements Collidable {
     return myCollisionChart.getActionDatas(collisionData);
   }
 
-  @Override
-  public CollisionDirection getPreviousCollisionDirection(Entity otherEntity) {
-//    return mySequentialCollisions.get(otherEntity);
-    return null;
-  }
-
-  @Override
-  public boolean wasPreviouslyColliding(Entity otherEntity) {
-    return mySequentialCollisions.containsKey(otherEntity);
-  }
+//  @Override
+//  public CollisionDirection getPreviousCollisionDirection(Entity otherEntity) {
+////    return mySequentialCollisions.get(otherEntity);
+//    return null;
+//  }
+//
+//  @Override
+//  public boolean wasPreviouslyColliding(Entity otherEntity) {
+//    return mySequentialCollisions.containsKey(otherEntity);
+//  }
 
   @Override
   public boolean hasSequentialCollisionWith(Entity otherEntity) {

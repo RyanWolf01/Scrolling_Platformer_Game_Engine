@@ -89,13 +89,13 @@ public abstract class Entity implements ImmutableEntity{
     // TODO: Put methods below in Collidable only and only allow Collidable things
     // as first parameter in PhysicsCalculator
 
-    public CollisionDirection getPreviousCollisionDirection(Entity otherEntity) {
-        return null;
-    }
-
-    public boolean wasPreviouslyColliding(Entity otherEntity) {
-        return false;
-    }
+//    public CollisionDirection getPreviousCollisionDirection(Entity otherEntity) {
+//        return null;
+//    }
+//
+//    public boolean wasPreviouslyColliding(Entity otherEntity) {
+//        return false;
+//    }
 
     public boolean hasSequentialCollisionWith(Entity otherEntity) {
         return false;

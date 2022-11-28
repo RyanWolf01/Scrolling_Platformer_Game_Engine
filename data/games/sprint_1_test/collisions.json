@@ -1,21 +1,10 @@
 {
-  "entity": {
+  "movingEntity": {
     "parent": "",
     "collision_chart": [
       {
         "OPPONENT_TYPE": "static_platform",
-        "COLLISION_DIRECTION": "LEFT",
-        "ACTIONS": [
-          {
-            "classname": "ooga.model.actions.moveractions.Bounce",
-            "action_interface": "MoverAction",
-            "params": []
-          }
-        ]
-      },
-      {
-        "OPPONENT_TYPE": "static_platform",
-        "COLLISION_DIRECTION": "RIGHT",
+        "COLLISION_DIRECTION": "LEFT||RIGHT",
         "ACTIONS": [
           {
             "classname": "ooga.model.actions.moveractions.Bounce",
@@ -42,15 +31,16 @@
         ]
       },
       {
-        "OPPONENT_TYPE": "static_platform",
         "COLLISION_DIRECTION": "NONE",
         "ACTIONS": [
         ]
       }
     ]
   },
+
+
   "mario": {
-    "parent": "entity",
+    "parent": "movingEntity",
     "collision_chart": [
       {
         "OPPONENT_TYPE": "goomba",
@@ -67,11 +57,28 @@
             "params": []
           }
         ]
+      },
+      {
+        "OPPONENT_TYPE": "goomba",
+        "COLLISION_DIRECTION": "LEFT||RIGHT",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.moveractions.StopXMovement",
+            "action_interface": "MoverAction",
+            "params": []
+          },
+          {
+            "classname": "ooga.model.actions.moveractions.Bounce",
+            "action_interface": "MoverAction",
+            "params": []
+          }
+        ]
       }
     ]
   },
+
   "goomba": {
-    "parent": "enemy",
+    "parent": "movingEntity",
     "collision_chart": [
       {
         "OPPONENT_TYPE": "mario",
@@ -86,9 +93,8 @@
       },
       {
         "OPPONENT_TYPE": "MARIO",
-        "COLLISION_DIRECTION": "SIDE",
+        "COLLISION_DIRECTION": "LEFT||RIGHT",
         "ACTIONS": [
-
         ]
       }
     ]

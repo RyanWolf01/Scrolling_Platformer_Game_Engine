@@ -1,5 +1,6 @@
 package ooga.model.collisions.collisionhandling;
 
+import java.util.Arrays;
 import java.util.Map;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 
@@ -12,7 +13,6 @@ import ooga.model.collisions.actiondata.ActionDataContainer;
  */
 public class Criteria {
 
-  private static final String ACTION_PACKAGE_PATH = "ooga.model.actions.";
   private final Map<String, String> myCriteria;
   private final ActionDataContainer myImmutableActionDataContainer;
 
@@ -48,7 +48,8 @@ public class Criteria {
       }
 
       // make sure that all kv-pairs in myCriteria match those in collisionData
-      if (!collisionData.get(key).equals(myCriteria.get(key))) {
+      String[] vals = myCriteria.get(key).split("\\|\\|");
+      if (Arrays.stream(vals).noneMatch((String val) -> collisionData.get(key).equals(val))) {
         return false;
       }
     }

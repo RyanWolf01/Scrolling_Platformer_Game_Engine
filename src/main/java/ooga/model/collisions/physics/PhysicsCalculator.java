@@ -230,8 +230,6 @@ public class PhysicsCalculator {
 
     }
 
-    // TODO: Let this account for rounding errors (trying to compare 3.0 to 3.00000000001 and getting
-    //  false when checking if they're equal)
     public boolean willIntersect(Edge otherEdge) {
       return timeToIntersect(otherEdge) != Double.MAX_VALUE;
     }
