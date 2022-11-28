@@ -14,6 +14,7 @@ import ooga.model.entities.CollidableEntity;
 import ooga.model.entities.Entity;
 import ooga.model.entities.StaticEntity;
 import ooga.model.entities.characters.maincharacters.MainCharacterEntity;
+import ooga.model.entities.containers.exceptions.InvalidTypeException;
 import ooga.model.entities.data.EntityInfo;
 import ooga.model.entities.data.Info;
 import ooga.model.entities.movement.MovementQueue;
@@ -71,7 +72,7 @@ public class BackendContainer {
             .newInstance(chart, xCoordinate,yCoordinate, height, width, info, null);
       } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
                InstantiationException | IllegalAccessException e) {
-        throw new RuntimeException(e);
+        throw new InvalidTypeException("JSON holds invalid type",e);
       }
 
       autoMovers.addMover(newMover);
@@ -94,7 +95,7 @@ public class BackendContainer {
             .newInstance(chart, xCoordinate,yCoordinate, height, width, info);
       } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
                InstantiationException | IllegalAccessException e) {
-        throw new RuntimeException(e);
+        throw new InvalidTypeException("JSON holds invalid type",e);;
       }
 
       collidables.addCollidable(newCollidable);
@@ -107,7 +108,7 @@ public class BackendContainer {
             .newInstance(xCoordinate,yCoordinate, height, width, info);
       } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
                InstantiationException | IllegalAccessException e) {
-        throw new RuntimeException(e);
+        throw new InvalidTypeException("JSON holds invalid type",e);;
       }
     }
 
