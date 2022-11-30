@@ -3,7 +3,7 @@ package ooga.model.entities;
 import java.util.HashMap;
 import java.util.Map;
 import ooga.model.actionparsers.ActionParsingException;
-import ooga.model.collisions.physics.CollisionDirection;
+import ooga.model.collisions.physics.CurrentCollisionContainer;
 import ooga.model.entities.data.ImmutableInfo;
 import ooga.model.entities.data.Info;
 import ooga.model.collisions.Collidable;
@@ -15,13 +15,13 @@ import ooga.model.collisions.actiondata.ActionDataContainer;
 
 public abstract class CollidableEntity extends Entity implements Collidable {
   private final CollisionChart myCollisionChart;
-  private final Map<Entity, CollisionPhysicsInfo> mySequentialCollisions;
+  private final CurrentCollisionContainer myCurrentCollisions;
 
   public CollidableEntity(CollisionChart collisionChart, int initialXCoordinate,
       int initialYCoordinate, double height, double width, Info entityInfo) {
     super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
     myCollisionChart = collisionChart;
-    mySequentialCollisions = new HashMap<>();
+    myCurrentCollisions = new CurrentCollisionContainer();
 
   }
 
@@ -73,19 +73,19 @@ public abstract class CollidableEntity extends Entity implements Collidable {
 //  }
 
   @Override
-  public boolean hasSequentialCollisionWith(Entity otherEntity) {
-    return mySequentialCollisions.containsKey(otherEntity);
+  public boolean hasCurrentCollisionWith(ImmutableEntity otherEntity) {
+    return myCurrentCollisions.containsKey(otherEntity);
   }
 
   @Override
-  public CollisionPhysicsInfo physicsInfoOfSequentialCollisionWith(Entity otherEntity) {
-    return mySequentialCollisions.get(otherEntity);
+  public CollisionPhysicsInfo physicsInfoOfCurrentCollisionWith(ImmutableEntity otherEntity) {
+    return myCurrentCollisions.get(otherEntity);
   }
 
   // TODO: Fix this so that it's not just a getter returning a Map.
   @Override
-  public Map<Entity, CollisionPhysicsInfo> getMySequentialCollisions() {
-    return mySequentialCollisions;
+  public CurrentCollisionContainer getMyCurrentCollisions() {
+    return myCurrentCollisions;
   }
 }
 
