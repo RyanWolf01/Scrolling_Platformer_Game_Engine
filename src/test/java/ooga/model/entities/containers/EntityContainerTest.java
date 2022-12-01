@@ -4,23 +4,33 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ooga.model.entities.Entity;
 import ooga.model.entities.characters.maincharacters.Mario;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class EntityContainerTest {
+  public EntityContainer container;
 
-//  @Test
-//  void testGetEntity() {
-//    Entity entity = new Mario(0, 0, 0, 0, null);
-//    EntityContainer container = new EntityContainer(entity);
-//    assertEquals(entity, container.getEntity(0));
-//  }
-//
-//  @Test
-//  void testAddEntity() {
-//    Entity entity = new Mario(0, 0, 0, 0, null);
-//    EntityContainer container = new EntityContainer();
-//    container.addEntity(entity);
-//    assertEquals(entity, container.getEntity(0));
-//  }
+  @BeforeEach
+  public void setup(){
+    container = new EntityContainer();
+  }
 
+  @Test
+  public void testConstructor() {
+    assertEquals(container.getClass(), EntityContainer.class);
+  }
+
+  @Test
+  public void addTest(){
+    Entity e = new Mario(null, 0, 0, 0, 0 , null);
+    container.addEntity(e);
+
+    assert(container.contains(e));
+  }
+
+  @Test
+  public void iteratorTest(){
+    Entity e = new Mario(null, 0, 0, 0, 0 , null);
+    container.addEntity(e);
+  }
 }

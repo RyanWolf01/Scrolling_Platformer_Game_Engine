@@ -34,29 +34,11 @@ public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
   }
 
   /**
-   * Get ImmutableEntity at index
-   * @param index index in container
-   * @return ImmutableEntity
-   */
-  private AutomaticMover getMover(int index){
-    return movers.get(index);
-  }
-
-  /**
-   *
-   * @return size of container
-   */
-  private int getContainerSize(){
-    return movers.size();
-  }
-
-  /**
    * call move method on all Movers
    */
   public void moveAll(){
-    for (int index = 0; index < getContainerSize(); index++) {
-      AutomaticMover currMover = getMover(index);
-      currMover.automaticMove();
+    for(AutomaticMover mover: this.movers){
+      mover.automaticMove();
     }
   }
 
