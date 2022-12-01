@@ -85,12 +85,6 @@ public class Model {
     }
   }
 
-  /**
-   * Assumes that this Collision is one in a consecutive chain of previous collisions
-   * @param collider
-   * @param collided
-   * @param prevCollisionPhysicsInfo
-   */
   private void handleCollisionHelper(Entity collider, Entity collided, CollisionPhysicsInfo prevCollisionPhysicsInfo) {
     for(CollidableEntity collidable : entities.collidables()){
       if(collidable.equals(collider)){
