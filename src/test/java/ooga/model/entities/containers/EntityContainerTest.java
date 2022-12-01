@@ -8,19 +8,19 @@ import org.junit.jupiter.api.Test;
 
 public class EntityContainerTest {
 
-  @Test
-  void testGetEntity() {
-    Entity entity = new Mario(0, 0, 0, 0, null);
-    EntityContainer container = new EntityContainer(entity);
-    assertEquals(entity, container.getEntity(0));
-  }
-
-  @Test
-  void testAddEntity() {
-    Entity entity = new Mario(0, 0, 0, 0, null);
-    EntityContainer container = new EntityContainer();
-    container.addEntity(entity);
-    assertEquals(entity, container.getEntity(0));
-  }
+//  @Test
+//  void testGetEntity() {
+//    Entity entity = new Mario(0, 0, 0, 0, null);
+//    EntityContainer container = new EntityContainer(entity);
+//    assertEquals(entity, container.getEntity(0));
+//  }
+//
+//  @Test
+//  void testAddEntity() {
+//    Entity entity = new Mario(0, 0, 0, 0, null);
+//    EntityContainer container = new EntityContainer();
+//    container.addEntity(entity);
+//    assertEquals(entity, container.getEntity(0));
+//  }
 
 }
