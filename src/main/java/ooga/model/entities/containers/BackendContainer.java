@@ -95,12 +95,14 @@ public class BackendContainer {
             .newInstance(chart, xCoordinate,yCoordinate, height, width, info);
       } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
                InstantiationException | IllegalAccessException e) {
-        throw new InvalidTypeException("JSON holds invalid type",e);;
+        throw new InvalidTypeException("JSON holds invalid type",e);
       }
 
       collidables.addCollidable(newCollidable);
       newEntity = newCollidable;
     }
+
+    // TODO: This must be fixed below!! If you add an AutomaticMovingEntity this breaks.
     else{
       try {
         newEntity = (StaticEntity) Class.forName(ConnectionContainer.entityClassResources.getString(type)).
@@ -108,7 +110,7 @@ public class BackendContainer {
             .newInstance(xCoordinate,yCoordinate, height, width, info);
       } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
                InstantiationException | IllegalAccessException e) {
-        throw new InvalidTypeException("JSON holds invalid type",e);;
+        throw new InvalidTypeException("JSON holds invalid type",e);
       }
     }
 

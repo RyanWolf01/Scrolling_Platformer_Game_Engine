@@ -4,5 +4,6 @@ public enum CollisionDirection {
     TOP,
     BOTTOM,
     LEFT,
-    RIGHT;
+    RIGHT,
+    NONE;
 }

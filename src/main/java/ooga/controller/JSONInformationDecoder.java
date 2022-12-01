@@ -132,7 +132,7 @@ public class JSONInformationDecoder {
    * @return
    */
   private EntityInfo makeEntityInfoFromJSONObject(JSONObject entityInformation) {
-    EntityInfo entityInfo = new EntityInfo((String) entityInformation.get("type"));
+    EntityInfo entityInfo = new EntityInfo((String) entityInformation.get("character_type"));
     for (Object key : entityInformation.keySet()) {
       if (!REQUIRED_ENTITY_PARAMETERS.contains(key)) {
         entityInfo.set((String) key, (String) entityInformation.get(key));
@@ -141,12 +141,23 @@ public class JSONInformationDecoder {
     return entityInfo;
   }
 
+  public CollisionChart makeCollisionDataFromJSONObject(String type) {
+    return makeCollisionDataFromJSONObject(type, new DefaultCollisionChart());
+  }
+
 
   // TODO: refactor this method to simplify the control flow logic
-  public CollisionChart makeCollisionDataFromJSONObject(String type) {
+  /*
+  Basically, we should get every single file in the collisions folder and combine it into one big
+  JSON object. Then look for the type in here, and fill in type values for when you're checking
+  OPPONENT_TYPE?...
+   */
+  private CollisionChart makeCollisionDataFromJSONObject(String type, CollisionChart collisionChart) {
     JSONObject allJSON;
     JSONArray criteriaListJSON;
-    List<Criteria> criteriaList = new ArrayList<>();
+    String parent;
+//    List<Criteria> criteriaList = new ArrayList<>();
+//    CollisionChart defaultCollisionChart = new DefaultCollisionChart();
 
     // make sure we can open JSON file
     try {
@@ -156,11 +167,16 @@ public class JSONInformationDecoder {
     }
 
     // make sure this type has a corresponding CollisionChart
-    if (! checkJSONArrayValue(allJSON.get(type))) {
+    if (! checkJSONObjectValue(allJSON.get(type))) {
+      throw new RuntimeException("invalid type");
+    }
+    JSONObject entityJSON = (JSONObject) allJSON.get(type);
+    if (! checkJSONArrayValue(entityJSON.get("collision_chart"))) {
       throw new RuntimeException("invalid type");
     }
 
-    criteriaListJSON = (JSONArray) allJSON.get(type);
+    criteriaListJSON = (JSONArray) entityJSON.get("collision_chart");
+    parent = (String) entityJSON.get("parent");
 
     for (Object criteriaJSON : criteriaListJSON) {
       // Items to be loaded into a Criteria object, to be loaded into the criteriaList
@@ -182,10 +198,14 @@ public class JSONInformationDecoder {
       }
 
       Criteria criteria = new Criteria(criteriaMap, actionDataContainer);
-      criteriaList.add(criteria);
+      collisionChart.addCriteria(criteria);
     }
 
-    return new DefaultCollisionChart(criteriaList);
+
+    if (allJSON.containsKey(parent)) {
+      collisionChart = makeCollisionDataFromJSONObject(parent, collisionChart);
+    }
+    return collisionChart;
   }
 
 

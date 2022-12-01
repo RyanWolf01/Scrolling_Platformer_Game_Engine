@@ -17,4 +17,7 @@ public interface CollisionChart {
    * @return Action to be applied on the owner of this CollisionChart
    */
   ActionDataContainer getActionDatas(CollisionData collisionData);
+
+  void addCriteria(Criteria criteria);
+
 }
