@@ -32,6 +32,10 @@ public class Criteria {
   public Criteria(Map<String, String> criteria, ActionDataContainer actionDataContainer) {
     myCriteria = criteria;
     myImmutableActionDataContainer = actionDataContainer;
+
+    if (! criteria.containsKey(COLLISION_PREFIX + NUM_CONSECUTIVE_COLLISIONS_KEY)) {
+      criteria.put(COLLISION_PREFIX + NUM_CONSECUTIVE_COLLISIONS_KEY, "1");
+    }
   }
 
   /**
@@ -43,19 +47,15 @@ public class Criteria {
    * @return whether CollisionData matches with criteria defined
    */
   public boolean matches(CollisionData collisionData) {
-    if (shouldExitBecauseOfNumConsecutiveCollisions(collisionData)) {
-      return false;
-    }
-
     for (String key : myCriteria.keySet()) {
 
       // make sure collisionData has all keys in myCriteria
-      if (!collisionData.hasKey(key) && !key.equals(COLLISION_PREFIX + NUM_CONSECUTIVE_COLLISIONS_KEY)) {
+      if (!collisionData.hasKey(key)) {
         return false;
       }
 
       // * specifies that anything can match
-      if (collisionData.get(key).equals("*")) {
+      if (myCriteria.get(key).equals("*")) {
         continue;
       }
 
@@ -67,19 +67,6 @@ public class Criteria {
     }
 
     return true;
-  }
-
-  private boolean shouldExitBecauseOfNumConsecutiveCollisions(CollisionData collisionData) {
-    String consecutiveCollisionKey = COLLISION_PREFIX + NUM_CONSECUTIVE_COLLISIONS_KEY;
-    if (!collisionData.hasKey(consecutiveCollisionKey)) return false;
-    if (myCriteria.containsKey(consecutiveCollisionKey)) return false;
-
-    try {
-      return Integer.parseInt(collisionData.get(consecutiveCollisionKey)) != 1;
-    } catch (NumberFormatException e) {
-      return false;
-    }
-
   }
 
   /**
