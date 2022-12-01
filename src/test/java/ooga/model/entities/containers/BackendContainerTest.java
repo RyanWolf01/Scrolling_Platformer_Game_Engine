@@ -15,13 +15,10 @@ public class BackendContainerTest {
 
   @BeforeEach
   public void setup(){
-    decoder = new JSONInformationDecoder("uh", "idk", "does it matter");
+    decoder = new JSONInformationDecoder("data/games/sprint_1_test/level.json",
+                                      "data/games/sprint_1_test/collisions.json",
+                                       "data/games/sprint_1_test/controls.json");
     container = new BackendContainer(decoder);
-  }
-
-  @Test
-  public void constructorTest(){
-    assertInstanceOf(container.getClass(), BackendContainer.class);
   }
 
   @Test
@@ -61,9 +58,9 @@ public class BackendContainerTest {
 
   @Test
   public void addStaticEntityTest(){
-    EntityInfo info = new EntityInfo("?1!");
+    EntityInfo info = new EntityInfo("static_entity");
     info.set("texture", "idk");
-    container.addNewEntity(0, 0, 0, 0, "?1!", info);
+    container.addNewEntity(0, 0, 0, 0, "static_entity", info);
 
     int moverCounter = 0;
     for(AutomaticMover c : container.automaticMovers()){

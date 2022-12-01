@@ -19,7 +19,6 @@
 //public class GameControllerTest {
 //
 //    GameController controller;
-//    File levelJSON = new File();
 //
 //    @Test
 //    public void constructorTest(){
