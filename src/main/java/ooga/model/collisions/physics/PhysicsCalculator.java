@@ -62,15 +62,14 @@ public class PhysicsCalculator {
    * @param b the second entity, that is collided with
    */
   public CollisionPhysicsInfo calculatePhysics(Entity a, Entity b) {
-//    if (! entitiesAreColliding(a, b)) {
-//      throw new RuntimeException("Improper usage of this method. Entities aren't colliding, and"
-//          + " this method should only be called when a and b are known to be colliding.");
-//    }
+    if (! entitiesAreColliding(a, b)) {
+      throw new RuntimeException("Improper usage of this method. Entities aren't colliding, and"
+          + " this method should only be called when a and b are known to be colliding.");
+    }
 
     CollisionPhysicsInfo info = new CollisionPhysicsInfo(true, 1, checkDirectionVelocityMethod(a, b));
     a.getMyCurrentCollisions().set(b, info);
     return info;
-//    return new CollisionPhysicsInfo(true, CollisionDirection.BOTTOM);
   }
 
   /**
@@ -81,29 +80,13 @@ public class PhysicsCalculator {
    * @return
    */
   public CollisionPhysicsInfo calculatePhysics(Entity a, Entity b, CollisionPhysicsInfo prevCollisionPhysicsInfo) {
-//    if (! entitiesAreColliding(a, b)) {
-//      throw new RuntimeException("Improper usage of this method. Entities aren't colliding, and"
-//          + " this method should only be called when a and b are known to be colliding.");
-//    }
+    if (! entitiesAreColliding(a, b)) {
+      throw new RuntimeException("Improper usage of this method. Entities aren't colliding, and"
+          + " this method should only be called when a and b are known to be colliding.");
+    }
 
     prevCollisionPhysicsInfo.incrementNumConsecutiveCollisions();
     return prevCollisionPhysicsInfo;
-  }
-
-  public CollisionDirection checkDirection(Entity a, Entity b) {
-    CollisionDirection ret = checkDirectionVelocityMethod(a, b);
-    return ret;
-//    if (ret == null) {
-//      ret = checkDirectionPositionMethod(a, b);
-//    }
-//
-//    if (ret == null) {
-//      throw new RuntimeException("These objects did not collide");
-//    }
-//    else {
-//      return ret;
-//    }
-
   }
 
   private boolean entitiesAreColliding(Entity a, Entity b) {
@@ -113,10 +96,6 @@ public class PhysicsCalculator {
     if (a.getYCoordinate() < b.getYCoordinate() - a.getHeight()) return false;
 
     return true;
-  }
-
-  private CollisionDirection checkDirectionPositionMethod(Entity a, Entity b) {
-    return null;
   }
 
   private CollisionDirection checkDirectionVelocityMethod(Entity a, Entity b) {
@@ -148,9 +127,6 @@ public class PhysicsCalculator {
       }
     }
 
-//    if (minTimeDirection == CollisionDirection.NONE) {
-//      throw new RuntimeException("These objects did not collide");
-//    }
     if (minTimeDirection != CollisionDirection.NONE) {
       double moveBackX = a.getXVelocity() - (a.getXVelocity() * minTime);
       double moveBackY = a.getYVelocity() - (a.getYVelocity() * minTime);
