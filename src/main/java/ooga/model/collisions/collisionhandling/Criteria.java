@@ -1,5 +1,8 @@
 package ooga.model.collisions.collisionhandling;
 
+import static ooga.model.collisions.collisionhandling.CollisionData.COLLISION_PREFIX;
+import static ooga.model.collisions.physics.CollisionPhysicsInfo.NUM_CONSECUTIVE_COLLISIONS_KEY;
+
 import java.util.Arrays;
 import java.util.Map;
 import ooga.model.collisions.actiondata.ActionDataContainer;
@@ -40,11 +43,20 @@ public class Criteria {
    * @return whether CollisionData matches with criteria defined
    */
   public boolean matches(CollisionData collisionData) {
+    if (shouldExitBecauseOfNumConsecutiveCollisions(collisionData)) {
+      return false;
+    }
+
     for (String key : myCriteria.keySet()) {
 
       // make sure collisionData has all keys in myCriteria
-      if (!collisionData.hasKey(key)) {
+      if (!collisionData.hasKey(key) && !key.equals(COLLISION_PREFIX + NUM_CONSECUTIVE_COLLISIONS_KEY)) {
         return false;
+      }
+
+      // * specifies that anything can match
+      if (collisionData.get(key).equals("*")) {
+        continue;
       }
 
       // make sure that all kv-pairs in myCriteria match those in collisionData
@@ -55,6 +67,19 @@ public class Criteria {
     }
 
     return true;
+  }
+
+  private boolean shouldExitBecauseOfNumConsecutiveCollisions(CollisionData collisionData) {
+    String consecutiveCollisionKey = COLLISION_PREFIX + NUM_CONSECUTIVE_COLLISIONS_KEY;
+    if (!collisionData.hasKey(consecutiveCollisionKey)) return false;
+    if (myCriteria.containsKey(consecutiveCollisionKey)) return false;
+
+    try {
+      return Integer.parseInt(collisionData.get(consecutiveCollisionKey)) != 1;
+    } catch (NumberFormatException e) {
+      return false;
+    }
+
   }
 
   /**
