@@ -44,9 +44,6 @@ public class Model {
       if(collidable.equals(collider)){
         collidable.onCollision(collided, new PhysicsCalculator().calculatePhysics(collider, collided));
       }
-      if(collidable.equals(collided)){
-        collidable.onCollision(collider, new PhysicsCalculator().calculatePhysics(collided, collider));
-      }
     }
   }
 
@@ -60,9 +57,6 @@ public class Model {
     for(CollidableEntity collidable : entities.collidables()){
       if(collidable.equals(collider)){
         collidable.onCollision(collided, new PhysicsCalculator().calculatePhysics(collider, collided, prevCollisionPhysicsInfo));
-      }
-      if(collidable.equals(collided)){
-        collidable.onCollision(collider, new PhysicsCalculator().calculatePhysics(collided, collider, prevCollisionPhysicsInfo));
       }
     }
   }

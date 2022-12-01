@@ -17,6 +17,15 @@
       "texture": "/games/mario/assets/mario.png"
     },
     {
+      "type": "mario",
+      "character_type": "mario",
+      "x": "200",
+      "y": "-1",
+      "height": "100",
+      "width": "100",
+      "texture": "/games/mario/assets/mario.png"
+    },
+    {
       "type": "static_platform",
       "character_type": "static_platform",
       "texture": "/games/mario/assets/ground.png",

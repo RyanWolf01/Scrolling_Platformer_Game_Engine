@@ -86,15 +86,8 @@ public class GameController {
         }
 
         removeAllNotFresh(container.viewables());
-        // remove everything that's not fresh
-        // TODO: for every thing in entity a's list of things that it's collided with, remove all the
-        // things that weren't added in this iteration
-        // a's HashMap -->  otherEntity (key) : (isFresh [boolean], prevPhysicsInfo [isFresh, CollisionDirection, numConsecutiveCollisions])
-
-       // here what we want to do is determine whether or not two things are colliding by
     }
 
-    // TODO: Refactor this code
     private void setAllIsFreshFalse(NodeContainer nodeContainer) {
         for (ScrollingNode node : nodeContainer) {
             Entity entity = container.getConnectedEntity(node);

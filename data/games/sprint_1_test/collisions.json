@@ -89,6 +89,16 @@
             "params": []
           }
         ]
+      },
+      {
+        "OPPONENT_TYPE": "mario",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.moveractions.Bounce",
+            "action_interface": "MoverAction",
+            "params": []
+          }
+        ]
       }
     ]
   },
