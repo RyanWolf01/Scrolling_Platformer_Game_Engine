@@ -61,7 +61,6 @@ public class GameController {
 
     /**
      * Check for collisions in the View nodes
-     * TODO: Refactor code (don't use getter for getMySequentialCollisions)
      */
     private void checkForCollisions(){
         model.preCollisionDetectionLoop();
@@ -73,7 +72,6 @@ public class GameController {
                 }
             }
         }
-        model.postCollisionDetectionLoop();
     }
 
 }

@@ -11,10 +11,6 @@ import ooga.model.entities.CollidableEntity;
 import ooga.model.entities.Entity;
 import ooga.model.entities.ImmutableEntity;
 import ooga.model.entities.containers.BackendContainer;
-import ooga.model.entities.containers.EntityContainer;
-import ooga.model.entities.movement.AutomaticMover;
-import ooga.view.nodes.NodeContainer;
-import ooga.view.nodes.ScrollingNode;
 
 /**
  * Backend logic is performed in here,
@@ -56,15 +52,16 @@ public class Model {
   }
 
   public void preCollisionDetectionLoop() {
+    removeNonFreshEntities();
     for (CollidableEntity collidable : entities.collidables()) {
       CurrentCollisionContainer currCollisions = collidable.getMyCurrentCollisions();
-      for (ImmutableEntity otherEntity : currCollisions) {
+      for (ImmutableEntity otherEntity : collidable.getMyCurrentCollisions()) {
         currCollisions.get(otherEntity).setCollisionIsFresh(false);
       }
     }
   }
 
-  public void postCollisionDetectionLoop() {
+  private void removeNonFreshEntities() {
     for (CollidableEntity collidable : entities.collidables()) {
       CurrentCollisionContainer currCollisions = collidable.getMyCurrentCollisions();
 
