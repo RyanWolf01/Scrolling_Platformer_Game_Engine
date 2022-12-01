@@ -62,13 +62,10 @@ public class PhysicsCalculator {
    * @param b the second entity, that is collided with
    */
   public CollisionPhysicsInfo calculatePhysics(Entity a, Entity b) {
-//    if (a.wasPreviouslyColliding(b)) {
-//      return new CollisionPhysicsInfo(true, 1, a.getPreviousCollisionDirection(b));
+//    if (! entitiesAreColliding(a, b)) {
+//      throw new RuntimeException("Improper usage of this method. Entities aren't colliding, and"
+//          + " this method should only be called when a and b are known to be colliding.");
 //    }
-    if (! entitiesAreColliding(a, b)) {
-      throw new RuntimeException("Improper usage of this method. Entities aren't colliding, and"
-          + " this method should only be called when a and b are known to be colliding.");
-    }
 
     CollisionPhysicsInfo info = new CollisionPhysicsInfo(true, 1, checkDirectionVelocityMethod(a, b));
     a.getMyCurrentCollisions().set(b, info);
@@ -84,10 +81,10 @@ public class PhysicsCalculator {
    * @return
    */
   public CollisionPhysicsInfo calculatePhysics(Entity a, Entity b, CollisionPhysicsInfo prevCollisionPhysicsInfo) {
-    if (! entitiesAreColliding(a, b)) {
-      throw new RuntimeException("Improper usage of this method. Entities aren't colliding, and"
-          + " this method should only be called when a and b are known to be colliding.");
-    }
+//    if (! entitiesAreColliding(a, b)) {
+//      throw new RuntimeException("Improper usage of this method. Entities aren't colliding, and"
+//          + " this method should only be called when a and b are known to be colliding.");
+//    }
 
     prevCollisionPhysicsInfo.incrementNumConsecutiveCollisions();
     return prevCollisionPhysicsInfo;

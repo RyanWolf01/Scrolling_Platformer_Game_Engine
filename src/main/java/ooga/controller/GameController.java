@@ -64,54 +64,16 @@ public class GameController {
      * TODO: Refactor code (don't use getter for getMySequentialCollisions)
      */
     private void checkForCollisions(){
-        // make everything not fresh
-        setAllIsFreshFalse(container.viewables());
-
+        model.preCollisionDetectionLoop();
         NodeContainer nodes = container.viewables();
         for(ScrollingNode collider: nodes){
             for(ScrollingNode collided: nodes){
                 if(collider.getBoundsInParent().intersects(collided.getBoundsInParent()) && collided != collider && container.isCollidable(collider)){
-                    // TODO: add entity b to entity a's list of things that it's collided with previously
-                    Entity a = container.getConnectedEntity(collider);
-                    Entity b = container.getConnectedEntity(collided);
-                    if (a.hasCurrentCollisionWith(b)) {
-                        model.handleCollision(a, b, a.physicsInfoOfCurrentCollisionWith(b));
-                        a.getMyCurrentCollisions().get(b).setCollisionIsFresh(true);
-                    }
-                    else {
-                        model.handleCollision(a, b);
-                    }
+                    model.handleCollision(container.getConnectedEntity(collider), container.getConnectedEntity(collided));
                 }
             }
         }
-
-        removeAllNotFresh(container.viewables());
+        model.postCollisionDetectionLoop();
     }
 
-    private void setAllIsFreshFalse(NodeContainer nodeContainer) {
-        for (ScrollingNode node : nodeContainer) {
-            Entity entity = container.getConnectedEntity(node);
-            CurrentCollisionContainer currCollisions = entity.getMyCurrentCollisions();
-            for (ImmutableEntity otherEntity : currCollisions) {
-                currCollisions.get(otherEntity).setCollisionIsFresh(false);
-            }
-        }
-    }
-
-    private void removeAllNotFresh(NodeContainer nodeContainer) {
-        for (ScrollingNode node : nodeContainer) {
-            Entity entity = container.getConnectedEntity(node);
-            CurrentCollisionContainer currCollisions = entity.getMyCurrentCollisions();
-
-            // from https://www.geeksforgeeks.org/convert-an-iterator-to-a-list-in-java/
-            List<ImmutableEntity> keys = new ArrayList<>();
-            currCollisions.iterator().forEachRemaining(keys::add);
-
-            for (ImmutableEntity otherEntity : keys) {
-                if (! currCollisions.get(otherEntity).collisionIsFresh()) {
-                    currCollisions.remove(otherEntity);
-                }
-            }
-        }
-    }
 }
