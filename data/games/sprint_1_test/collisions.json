@@ -15,12 +15,6 @@
       },
       {
         "OPPONENT_TYPE": "static_platform",
-        "COLLISION_DIRECTION": "TOP",
-        "ACTIONS": [
-        ]
-      },
-      {
-        "OPPONENT_TYPE": "static_platform",
         "COLLISION_DIRECTION": "BOTTOM",
         "ACTIONS": [
           {
@@ -31,15 +25,8 @@
         ]
       },
       {
-        "COLLISION_DIRECTION": "NONE",
-        "ACTIONS": [
-        ]
-      },
-      {
         "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
-        "ACTIONS": [
-
-        ]
+        "ACTIONS": []
       }
     ]
   },
@@ -116,12 +103,6 @@
             "action_interface": "AliveAction",
             "params": []
           }
-        ]
-      },
-      {
-        "OPPONENT_TYPE": "MARIO",
-        "COLLISION_DIRECTION": "LEFT||RIGHT",
-        "ACTIONS": [
         ]
       }
     ]
