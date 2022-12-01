@@ -2,8 +2,8 @@ package ooga.model.entities;
 
 import java.util.HashMap;
 import java.util.Map;
-import ooga.model.collisions.physics.CollisionDirection;
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
+import ooga.model.collisions.physics.CurrentCollisionContainer;
 import ooga.model.entities.data.ImmutableInfo;
 import ooga.model.entities.data.Info;
 
@@ -97,16 +97,16 @@ public abstract class Entity implements ImmutableEntity{
 //        return false;
 //    }
 
-    public boolean hasSequentialCollisionWith(Entity otherEntity) {
+    public boolean hasCurrentCollisionWith(ImmutableEntity otherEntity) {
         return false;
     }
 
-    public CollisionPhysicsInfo physicsInfoOfSequentialCollisionWith(Entity otherEntity) {
+    public CollisionPhysicsInfo physicsInfoOfCurrentCollisionWith(ImmutableEntity otherEntity) {
         return null;
     }
 
-    public Map<Entity, CollisionPhysicsInfo> getMySequentialCollisions() {
-        return new HashMap<>();
+    public CurrentCollisionContainer getMyCurrentCollisions() {
+        return new CurrentCollisionContainer();
     }
 
 }

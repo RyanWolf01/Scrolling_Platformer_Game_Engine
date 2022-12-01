@@ -2,7 +2,6 @@ package ooga.model.collisions.physics;
 
 import java.util.ArrayList;
 import java.util.List;
-import ooga.model.entities.CollidableEntity;
 import ooga.model.entities.Entity;
 
 public class PhysicsCalculator {
@@ -67,7 +66,7 @@ public class PhysicsCalculator {
 //      return new CollisionPhysicsInfo(true, 1, a.getPreviousCollisionDirection(b));
 //    }
     CollisionPhysicsInfo info = new CollisionPhysicsInfo(true, 1, checkDirectionVelocityMethod(a, b));
-    a.getMySequentialCollisions().put(b, info);
+    a.getMyCurrentCollisions().set(b, info);
     return info;
 //    return new CollisionPhysicsInfo(true, CollisionDirection.BOTTOM);
   }

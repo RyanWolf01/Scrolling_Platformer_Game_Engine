@@ -1,13 +1,15 @@
 package ooga.controller;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import javafx.scene.input.KeyCode;
 import ooga.model.Model;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
+import ooga.model.collisions.physics.CurrentCollisionContainer;
 import ooga.model.entities.Entity;
+import ooga.model.entities.ImmutableEntity;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
 
@@ -72,9 +74,9 @@ public class GameController {
                     // TODO: add entity b to entity a's list of things that it's collided with previously
                     Entity a = container.getConnectedEntity(collider);
                     Entity b = container.getConnectedEntity(collided);
-                    if (a.hasSequentialCollisionWith(b)) {
-                        model.handleCollision(a, b, a.physicsInfoOfSequentialCollisionWith(b));
-                        a.getMySequentialCollisions().get(b).setCollisionIsFresh(true);
+                    if (a.hasCurrentCollisionWith(b)) {
+                        model.handleCollision(a, b, a.physicsInfoOfCurrentCollisionWith(b));
+                        a.getMyCurrentCollisions().get(b).setCollisionIsFresh(true);
                     }
                     else {
                         model.handleCollision(a, b);
@@ -96,9 +98,9 @@ public class GameController {
     private void setAllIsFreshFalse(NodeContainer nodeContainer) {
         for (ScrollingNode node : nodeContainer) {
             Entity entity = container.getConnectedEntity(node);
-            Map<Entity, CollisionPhysicsInfo> map = entity.getMySequentialCollisions();
-            for (Entity otherEntity : map.keySet()) {
-                map.get(otherEntity).setCollisionIsFresh(false);
+            CurrentCollisionContainer currCollisions = entity.getMyCurrentCollisions();
+            for (ImmutableEntity otherEntity : currCollisions) {
+                currCollisions.get(otherEntity).setCollisionIsFresh(false);
             }
         }
     }
@@ -106,14 +108,17 @@ public class GameController {
     private void removeAllNotFresh(NodeContainer nodeContainer) {
         for (ScrollingNode node : nodeContainer) {
             Entity entity = container.getConnectedEntity(node);
-            Map<Entity, CollisionPhysicsInfo> map = entity.getMySequentialCollisions();
-            Entity[] keys = map.keySet().toArray(new Entity[0]);
-            for (Entity otherEntity : keys) {
-                if (! map.get(otherEntity).collisionIsFresh()) {
-                    map.remove(otherEntity);
+            CurrentCollisionContainer currCollisions = entity.getMyCurrentCollisions();
+
+            // from https://www.geeksforgeeks.org/convert-an-iterator-to-a-list-in-java/
+            List<ImmutableEntity> keys = new ArrayList<>();
+            currCollisions.iterator().forEachRemaining(keys::add);
+
+            for (ImmutableEntity otherEntity : keys) {
+                if (! currCollisions.get(otherEntity).collisionIsFresh()) {
+                    currCollisions.remove(otherEntity);
                 }
             }
         }
     }
-
 }
