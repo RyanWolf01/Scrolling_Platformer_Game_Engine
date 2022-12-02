@@ -11,7 +11,7 @@ import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.collisionhandling.Criteria;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
-import ooga.model.entities.data.EntityInfo;
+import ooga.model.entities.info.EntityInfo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;

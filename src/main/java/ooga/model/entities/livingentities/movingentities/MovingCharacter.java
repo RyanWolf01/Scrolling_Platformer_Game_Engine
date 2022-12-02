@@ -1,9 +1,9 @@
-package ooga.model.entities.characters;
+package ooga.model.entities.livingentities.movingentities;
 
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.entities.MovingEntity;
-import ooga.model.entities.data.Info;
-import ooga.model.entities.alive.Alive;
+import ooga.model.entities.deadmovingentities.MovingEntity;
+import ooga.model.entities.info.Info;
+import ooga.model.entities.livingentities.Alive;
 
 public abstract class MovingCharacter extends MovingEntity implements Alive {
 

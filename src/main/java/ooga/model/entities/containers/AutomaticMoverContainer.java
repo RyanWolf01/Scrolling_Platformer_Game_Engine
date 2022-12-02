@@ -3,9 +3,7 @@ package ooga.model.entities.containers;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import ooga.model.entities.AutomaticMovingEntity;
-import ooga.model.entities.movement.AutomaticMover;
-import ooga.model.entities.movement.Mover;
+import ooga.model.entities.deadmovingentities.AutomaticMover;
 
 public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
 

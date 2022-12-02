@@ -1,14 +1,13 @@
-package ooga.model.entities.characters;
+package ooga.model.entities.livingentities.movingentities;
 
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.entities.data.Info;
+import ooga.model.entities.info.Info;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.MoverActionParser;
-import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.actiondata.ActionDataContainer;
-import ooga.model.entities.movement.AutomaticMover;
-import ooga.model.entities.movement.MovementQueue;
+import ooga.model.entities.deadmovingentities.AutomaticMover;
+import ooga.model.entities.deadmovingentities.MovementQueue;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

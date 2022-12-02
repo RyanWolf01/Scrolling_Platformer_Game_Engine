@@ -1,6 +1,6 @@
 package ooga.model.entities;
 
-import ooga.model.entities.data.Info;
+import ooga.model.entities.info.Info;
 
 public class StaticEntity extends Entity{
 

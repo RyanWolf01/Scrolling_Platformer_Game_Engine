@@ -1,4 +1,4 @@
-package ooga.model.entities.characters;
+package ooga.model.entities.livingentities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
-import ooga.model.entities.data.EntityInfo;
+import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 
 public class BasicStaticCharacterTest {

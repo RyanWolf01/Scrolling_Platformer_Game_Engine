@@ -1,10 +1,9 @@
 package ooga.model.entities.containers;
 
 import ooga.controller.JSONInformationDecoder;
-import ooga.model.entities.AutomaticMovingEntity;
-import ooga.model.entities.CollidableEntity;
-import ooga.model.entities.data.EntityInfo;
-import ooga.model.entities.movement.AutomaticMover;
+import ooga.model.entities.collidable.CollidableEntity;
+import ooga.model.entities.info.EntityInfo;
+import ooga.model.entities.deadmovingentities.AutomaticMover;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

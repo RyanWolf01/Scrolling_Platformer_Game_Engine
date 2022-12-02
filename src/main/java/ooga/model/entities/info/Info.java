@@ -1,4 +1,4 @@
-package ooga.model.entities.data;
+package ooga.model.entities.info;
 
 import java.util.HashMap;
 import java.util.Iterator;

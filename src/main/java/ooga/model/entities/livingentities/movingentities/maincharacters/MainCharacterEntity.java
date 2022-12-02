@@ -1,12 +1,10 @@
-package ooga.model.entities.characters.maincharacters;
+package ooga.model.entities.livingentities.movingentities.maincharacters;
 
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
-import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.entities.UserControllable;
-import ooga.model.entities.characters.MovingCharacter;
-import ooga.model.entities.data.Info;
+import ooga.model.entities.livingentities.movingentities.MovingCharacter;
+import ooga.model.entities.info.Info;
 
 /**
  * Maybe all main character entities

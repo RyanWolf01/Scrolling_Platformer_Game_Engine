@@ -1,4 +1,4 @@
-package ooga.model.collisions;
+package ooga.model.entities.collidable;
 
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.entities.Entity;
