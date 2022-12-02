@@ -13,6 +13,7 @@ import ooga.model.entities.AutomaticMovingEntity;
 import ooga.model.entities.CollidableEntity;
 import ooga.model.entities.Entity;
 import ooga.model.entities.StaticEntity;
+import ooga.model.entities.characters.AutomaticMovingCharacter;
 import ooga.model.entities.characters.maincharacters.MainCharacterEntity;
 import ooga.model.entities.containers.exceptions.InvalidTypeException;
 import ooga.model.entities.data.EntityInfo;
@@ -38,9 +39,19 @@ public class BackendContainer {
     this.decoder = decoder;
   }
 
+  /**
+   * This method uses if-else logic to determine what kind of Entity this will be based on the type.
+   * The reason I think this is valid is that it is very limited and the if tree will not be extended.
+   * The cleanest way to sort the new Entities into their appropriate containers is by checking which
+   * list their 'type' field is in, and multiple if-else statements will have to be used to perform this action.
+   * @return Entity that is described by the parameters
+   */
   public Entity addNewEntity(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
 
     Entity newEntity = null;
+    MainCharacterEntity newMain = null;
+    AutomaticMovingCharacter newAutoMover = null;
+    CollidableEntity newCollidableC = null;
 
     if(isMainCharacterType(type)){ // if it's a main character type entity, overwrite the basic newEntity
       CollisionChartGetter collisionChartGetter = new DefaultCollisionChartGetter();
@@ -64,10 +75,11 @@ public class BackendContainer {
       CollisionChart chart = collisionChartGetter.getCollisionChart(decoder, type);
 
       // TODO: fix this so that there is a movement queue, not just null
+      MovementQueue queue = new MovementQueue();
 
-      AutomaticMovingEntity newMover;
+      AutomaticMovingCharacter newMover;
       try {
-        newMover = (AutomaticMovingEntity) Class.forName(ConnectionContainer.entityClassResources.getString(type)).
+        newMover = (AutomaticMovingCharacter) Class.forName(ConnectionContainer.entityClassResources.getString(type)).
             getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class, MovementQueue.class)
             .newInstance(chart, xCoordinate,yCoordinate, height, width, info, null);
       } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
@@ -104,14 +116,7 @@ public class BackendContainer {
 
     // TODO: This must be fixed below!! If you add an AutomaticMovingEntity this breaks.
     else{
-      try {
-        newEntity = (StaticEntity) Class.forName(ConnectionContainer.entityClassResources.getString(type)).
-            getConstructor(int.class, int.class, double.class, double.class, Info.class)
-            .newInstance(xCoordinate,yCoordinate, height, width, info);
-      } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-               InstantiationException | IllegalAccessException e) {
-        throw new InvalidTypeException("JSON holds invalid type",e);
-      }
+      newEntity = new StaticEntity(xCoordinate,yCoordinate, height, width, info);
     }
 
     entities.addEntity(newEntity);
