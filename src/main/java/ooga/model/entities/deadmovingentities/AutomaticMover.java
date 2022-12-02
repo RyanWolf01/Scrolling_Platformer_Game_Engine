@@ -1,4 +1,4 @@
-package ooga.model.entities.movement;
+package ooga.model.entities.deadmovingentities;
 
 /**
  * Implement automaticMove() in concrete class to automatically move entities that aren't main characters

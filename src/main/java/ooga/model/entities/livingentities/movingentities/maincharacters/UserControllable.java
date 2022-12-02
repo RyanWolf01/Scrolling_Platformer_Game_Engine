@@ -1,9 +1,9 @@
-package ooga.model.entities;
+package ooga.model.entities.livingentities.movingentities.maincharacters;
 
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
-import ooga.model.entities.alive.Alive;
-import ooga.model.entities.movement.Mover;
+import ooga.model.entities.livingentities.Alive;
+import ooga.model.entities.deadmovingentities.Mover;
 
 /**
  * User controllable interface so that a character can receive

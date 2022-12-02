@@ -1,7 +1,7 @@
 package ooga.model.actions.moveractions.basicmovement;
 
 import ooga.model.actions.moveractions.MoverAction;
-import ooga.model.entities.movement.Mover;
+import ooga.model.entities.deadmovingentities.Mover;
 
 public class DownwardMovement implements MoverAction {
 

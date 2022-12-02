@@ -1,12 +1,11 @@
-package ooga.model.entities;
+package ooga.model.entities.collidable;
 
-import java.util.HashMap;
-import java.util.Map;
 import ooga.model.actionparsers.ActionParsingException;
 import ooga.model.collisions.physics.CurrentCollisionContainer;
-import ooga.model.entities.data.ImmutableInfo;
-import ooga.model.entities.data.Info;
-import ooga.model.collisions.Collidable;
+import ooga.model.entities.Entity;
+import ooga.model.entities.ImmutableEntity;
+import ooga.model.entities.info.ImmutableInfo;
+import ooga.model.entities.info.Info;
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.collisionhandling.CollisionData;

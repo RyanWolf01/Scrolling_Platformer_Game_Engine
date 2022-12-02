@@ -2,7 +2,7 @@ package ooga.model.actionparsers;
 
 import java.lang.reflect.InvocationTargetException;
 import ooga.model.actions.aliveactions.AliveAction;
-import ooga.model.entities.alive.Alive;
+import ooga.model.entities.livingentities.Alive;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 

@@ -1,10 +1,8 @@
-package ooga.model.entities.characters;
+package ooga.model.entities.livingentities;
 
-import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.entities.data.Info;
+import ooga.model.entities.info.Info;
 import ooga.model.actionparsers.AliveActionParser;
-import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 
 public class BasicStaticCharacter extends StaticCharacter {

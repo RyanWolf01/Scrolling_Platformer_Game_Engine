@@ -1,6 +1,6 @@
 package ooga.model.actions.aliveactions;
 
-import ooga.model.entities.alive.Alive;
+import ooga.model.entities.livingentities.Alive;
 
 public class Kill implements AliveAction {
 
