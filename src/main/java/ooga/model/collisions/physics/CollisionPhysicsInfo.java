@@ -1,6 +1,6 @@
 package ooga.model.collisions.physics;
 
-import ooga.model.entities.data.Info;
+import ooga.model.entities.info.Info;
 
 public class CollisionPhysicsInfo extends Info {
 

@@ -7,7 +7,7 @@ import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.collisions.physics.CurrentCollisionContainer;
 import ooga.model.collisions.physics.PhysicsCalculator;
-import ooga.model.entities.CollidableEntity;
+import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.Entity;
 import ooga.model.entities.ImmutableEntity;
 import ooga.model.entities.containers.BackendContainer;
