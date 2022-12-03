@@ -146,7 +146,6 @@ public class JSONInformationDecoder {
     return entityInfo;
   }
 
-  // TODO: what the hell
   public CollisionChart makeCollisionDataFromJSONObject(String type) {
     return makeCollisionDataFromJSONObject(type, new DefaultCollisionChart());
   }
@@ -325,15 +324,21 @@ public class JSONInformationDecoder {
       throw new MalformedJSONException("Make sure Entity array in JSON is an array", e);
     }
 
-    // Down-casting here because the entityArray is a JSONArray that contains JSONObjects
-    for(Object entity: entityArray){
-      if(((JSONObject) entity).get("type").equals(type)){
-        JSONArray movements = (JSONArray) ((JSONObject) entity).get("movement_queue");
-        for(Object move: movements){
-          moves.addMove(moverActionGetter.moverActionTranslate((String) move));
-        }
+    try{
+      // Down-casting here because the entityArray is a JSONArray that contains JSONObjects
+      for(Object entity: entityArray){
+        if(((JSONObject) entity).get("type").equals(type)){
+          String movementsCSV = (String) ((JSONObject) entity).get("movement_queue");
 
+          for(String move: movementsCSV.split(",")){
+            moves.addMove(moverActionGetter.moverActionTranslate(move));
+          }
+
+        }
       }
+    }
+    catch (NullPointerException e){
+      throw new MalformedJSONException("Make sure AutomaticMover of type "+type+" are formatted correctly", e);
     }
 
 

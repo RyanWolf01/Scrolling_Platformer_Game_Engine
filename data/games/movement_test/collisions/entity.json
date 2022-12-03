@@ -1,0 +1,10 @@
+{
+  "entity": {
+    "parent": "",
+    "collision_chart": [
+      {
+        "ACTIONS": []
+      }
+    ]
+  }
+}
