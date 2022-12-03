@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import ooga.Main;
+import ooga.model.Model;
 import ooga.model.entities.Entity;
 import ooga.model.entities.containers.BackendContainer;
 import ooga.model.entities.info.EntityInfo;
@@ -17,8 +18,6 @@ import ooga.view.nodes.ScrollingNode;
  * the JSON to the game.
  */
 public class ConnectionContainer {
-  public static final ResourceBundle entityClassResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Entities");
-  public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Containers");
   private BackendContainer entities;
   private JSONInformationDecoder decoder;
   private NodeContainer nodes;
@@ -55,7 +54,7 @@ public class ConnectionContainer {
     ScrollingNode newNode = new ScrollingNode(xCoordinate, yCoordinate, height, width, imageURL);
 
     nodes.addNode(newNode);
-    if(isMainCharacterType(type)){
+    if(entities.isMainCharacterType(type)){
       nodes.setMainCharacter(newNode);
     }
 
@@ -95,9 +94,5 @@ public class ConnectionContainer {
 
   public BackendContainer entities(){
     return entities;
-  }
-
-  private boolean isMainCharacterType(String type){
-    return Arrays.asList(containerResources.getString("main_characters").split(",")).contains(type);
   }
 }

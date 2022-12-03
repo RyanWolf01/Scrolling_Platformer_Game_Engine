@@ -1,5 +1,6 @@
 package ooga.model;
 
+import ooga.Main;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
@@ -8,11 +9,15 @@ import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.Entity;
 import ooga.model.entities.containers.BackendContainer;
 
+import java.util.ResourceBundle;
+
 /**
  * Backend logic is performed in here,
  * methods are called by the controller
  */
 public class Model {
+  public static final ResourceBundle entityClassResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Entities");
+  public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Containers");
   BackendContainer entities;
 
   public Model(BackendContainer entities){

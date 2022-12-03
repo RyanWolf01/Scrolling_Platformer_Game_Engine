@@ -6,11 +6,16 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import ooga.controller.exceptions.MalformedJSONException;
+import ooga.model.actions.moveractions.MoverActionGetter;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.collisionhandling.Criteria;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
+
+import ooga.model.entities.deadmovingentities.MovementQueue;
 import ooga.model.entities.info.EntityInfo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -119,7 +124,7 @@ public class JSONInformationDecoder {
         entityJSONList.add((JSONObject) jsonObject);
       } else {
         // TODO: custom exception here
-        throw new RuntimeException("Not a json object");
+        throw new MalformedJSONException("Not a json object");
       }
     }
   }
@@ -141,6 +146,7 @@ public class JSONInformationDecoder {
     return entityInfo;
   }
 
+  // TODO: what the hell
   public CollisionChart makeCollisionDataFromJSONObject(String type) {
     return makeCollisionDataFromJSONObject(type, new DefaultCollisionChart());
   }
@@ -293,5 +299,44 @@ public class JSONInformationDecoder {
       }
     }
     return true;
+  }
+
+  /**
+   * Returns a MovementQueue of actions from JSON entity with certain types
+   * @param type type of the entity for which we must make a MovementQueue
+   * @return MovementQueue (read above)
+   */
+  public MovementQueue getMovementQueue(String type){
+    MoverActionGetter moverActionGetter = new MoverActionGetter();
+    MovementQueue moves = new MovementQueue();
+
+    JSONObject levelJSONObject = null;
+    try {
+      levelJSONObject = initialJSONInformation(levelJSON);
+    } catch (IOException | ParseException e) {
+      throw new MalformedJSONException("Level JSON unreadable");
+    }
+
+    JSONArray entityArray;
+    try{
+      entityArray = (JSONArray) levelJSONObject.get(ENTITY_JSON_KEY);
+    }
+    catch (RuntimeException e){
+      throw new MalformedJSONException("Make sure Entity array in JSON is an array", e);
+    }
+
+    // Down-casting here because the entityArray is a JSONArray that contains JSONObjects
+    for(Object entity: entityArray){
+      if(((JSONObject) entity).get("type").equals(type)){
+        JSONArray movements = (JSONArray) ((JSONObject) entity).get("movement_queue");
+        for(Object move: movements){
+          moves.addMove(moverActionGetter.moverActionTranslate((String) move));
+        }
+
+      }
+    }
+
+
+    return moves;
   }
 }

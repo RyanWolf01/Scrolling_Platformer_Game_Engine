@@ -2,6 +2,7 @@ package ooga.controller;
 
 import javafx.scene.input.KeyCode;
 import ooga.model.actions.aliveactions.AliveAction;
+import ooga.model.actions.aliveactions.AliveActionGetter;
 import ooga.model.actions.aliveactions.IncreaseLife;
 import ooga.model.actions.aliveactions.Kill;
 import ooga.model.actions.moveractions.*;
@@ -19,13 +20,16 @@ import ooga.model.actions.moveractions.basicmovement.UpwardMovement;
 public class UserControlHandler {
     private Map<KeyCode, MoverAction> moveActionMap;
     private Map<KeyCode, AliveAction> aliveActionMap;
-    private Map<String, AliveAction> allAliveActions;
-    private Map<String, MoverAction> allMoverActions;
+    private AliveActionGetter aliveActionGetter;
+    private MoverActionGetter moverActionGetter;
+    //private Map<String, AliveAction> allAliveActions;
+    //private Map<String, MoverAction> allMoverActions;
 
     public UserControlHandler(){
+        aliveActionGetter = new AliveActionGetter();
+        moverActionGetter = new MoverActionGetter();
         moveActionMap = new HashMap<>();
         aliveActionMap = new HashMap<>();
-        setUpActions();
     }
 
     /**
@@ -35,11 +39,11 @@ public class UserControlHandler {
      */
     public void addControl(String keyCodeName, String action){
         KeyCode code = KeyCode.valueOf(keyCodeName);
-        if(allAliveActions.containsKey(action)){ //check if keyCodeName is an alive action
-            aliveActionMap.put(code, allAliveActions.get(action));
+        if(aliveActionGetter.isAliveAction(action)){ //check if keyCodeName is an alive action
+            aliveActionMap.put(code, aliveActionGetter.aliveActionTranslate(action));
         }
-        else if(allMoverActions.containsKey(action)){ //check if keyCodeName is mover action
-            moveActionMap.put(code, allMoverActions.get(action));
+        else if(moverActionGetter.isMoverAction(action)){ //check if keyCodeName is mover action
+            moveActionMap.put(code, moverActionGetter.moverActionTranslate(action));
         }
         else{
             // throw an exception, not a valid action
@@ -62,21 +66,21 @@ public class UserControlHandler {
         return aliveActionMap.get(code);
     }
 
-    private void setUpActions(){
-        allAliveActions = new HashMap<>();
-        allMoverActions = new HashMap<>();
-
-        allAliveActions.put("kill", new Kill());
-        allAliveActions.put("increase_life", new IncreaseLife());
-
-        allMoverActions.put("bounce", new Bounce());
-        allMoverActions.put("stop_both_directions", new StopBothDirections());
-        allMoverActions.put("stop_x_movement", new StopXMovement());
-        allMoverActions.put("stop_y_movement", new StopYMovement());
-        allMoverActions.put("move_left", new LeftMovement());
-        allMoverActions.put("move_right", new RightMovement());
-        allMoverActions.put("move_down", new DownwardMovement());
-        allMoverActions.put("move_up", new UpwardMovement());
-    }
+//    private void setUpActions(){
+//        allAliveActions = new HashMap<>();
+//        allMoverActions = new HashMap<>();
+//
+//        allAliveActions.put("kill", new Kill());
+//        allAliveActions.put("increase_life", new IncreaseLife());
+//
+//        allMoverActions.put("bounce", new Bounce());
+//        allMoverActions.put("stop_both_directions", new StopBothDirections());
+//        allMoverActions.put("stop_x_movement", new StopXMovement());
+//        allMoverActions.put("stop_y_movement", new StopYMovement());
+//        allMoverActions.put("move_left", new LeftMovement());
+//        allMoverActions.put("move_right", new RightMovement());
+//        allMoverActions.put("move_down", new DownwardMovement());
+//        allMoverActions.put("move_up", new UpwardMovement());
+//    }
 
 }
