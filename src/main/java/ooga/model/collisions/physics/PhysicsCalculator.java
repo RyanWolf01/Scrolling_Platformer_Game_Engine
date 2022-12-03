@@ -1,8 +1,11 @@
 package ooga.model.collisions.physics;
 
+import static ooga.model.collisions.physics.CollisionPhysicsInfo.COLLISION_DIRECTION_KEY;
+
 import java.util.ArrayList;
 import java.util.List;
 import ooga.model.entities.Entity;
+import ooga.model.entities.deadmovingentities.Mover;
 
 public class PhysicsCalculator {
 
@@ -69,6 +72,25 @@ public class PhysicsCalculator {
     a.getMyCurrentCollisions().set(b, info);
     return info;
 //    return new CollisionPhysicsInfo(true, CollisionDirection.BOTTOM);
+  }
+
+  /**
+   * calculates if an Entity is in the Air
+   * @return boolean
+   */
+  public boolean checkInAir(Entity entity){
+
+    Entity collidedEntity = entity.getMyCurrentCollisions().iterator().next(); // get entity with which this entity last collided
+
+    if(collidedEntity == null) // no collision -> must be in air
+      return true;
+
+    CollisionDirection direction = checkDirection(entity, collidedEntity);
+
+    if(direction.equals(CollisionDirection.NONE))
+      return true;
+
+    return false;
   }
 
   /**

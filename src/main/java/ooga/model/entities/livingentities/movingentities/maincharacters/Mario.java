@@ -21,6 +21,7 @@ public class Mario extends MainCharacterEntity {
    */
   @Override
   public void move() {
+    changeVelocities(0, 1);
     setXCoordinate(getXCoordinate() + getXVelocity());
     setYCoordinate(getYCoordinate() + getYVelocity());
     if(getYCoordinate() >= getScreenSize()){

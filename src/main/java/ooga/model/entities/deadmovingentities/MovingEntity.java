@@ -1,6 +1,9 @@
 package ooga.model.entities.deadmovingentities;
 
 import ooga.model.collisions.collisionhandling.CollisionChart;
+import ooga.model.collisions.physics.CollisionPhysicsInfo;
+import ooga.model.collisions.physics.PhysicsCalculator;
+import ooga.model.entities.Entity;
 import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.info.Info;
 
@@ -63,6 +66,12 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   protected int getScreenSize(){
     return SCREEN_SIZE;
+  }
+
+  protected void applyGravity(){
+    PhysicsCalculator physicsCalculator = new PhysicsCalculator();
+    if(physicsCalculator.checkInAir(this))
+      changeVelocities(0, 1);
   }
 
 }
