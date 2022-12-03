@@ -3,6 +3,7 @@ package ooga.model.actions.aliveactions;
 import javafx.scene.input.KeyCode;
 import ooga.model.actions.moveractions.MoverAction;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -12,6 +13,8 @@ public class AliveActionGetter {
     private Map<String, AliveAction> allAliveActions;
 
     public AliveActionGetter(){
+        allAliveActions = new HashMap<>();
+
         allAliveActions.put("kill", new Kill());
         allAliveActions.put("increase_life", new IncreaseLife());
     }

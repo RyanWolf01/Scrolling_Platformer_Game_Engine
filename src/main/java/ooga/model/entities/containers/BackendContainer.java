@@ -1,41 +1,31 @@
 package ooga.model.entities.containers;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
-import java.util.ResourceBundle;
-import ooga.Main;
-import ooga.controller.ConnectionContainer;
 import ooga.controller.JSONInformationDecoder;
-import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.collisions.collisionhandling.CollisionChartGetter;
-import ooga.model.collisions.collisionhandling.DefaultCollisionChartGetter;
-import ooga.model.entities.AutomaticMovingEntity;
-import ooga.model.entities.CollidableEntity;
-import ooga.model.entities.Entity;
-import ooga.model.entities.StaticEntity;
+import ooga.model.Model;
+import ooga.model.entities.*;
 import ooga.model.entities.characters.AutomaticMovingCharacter;
 import ooga.model.entities.characters.maincharacters.MainCharacterEntity;
-import ooga.model.entities.containers.exceptions.InvalidTypeException;
 import ooga.model.entities.data.EntityInfo;
-import ooga.model.entities.data.Info;
-import ooga.model.entities.movement.MovementQueue;
 
 /**
  * This mega container holds all the information the backend needs
  */
 public class BackendContainer {
-  //public static final ResourceBundle entityClassResources = ResourceBundle.getBundle(Main.DEFAULT_RESOURCE_PACKAGE+"Entities");
-  //public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.DEFAULT_RESOURCE_PACKAGE+"Containers");
   private EntityContainer entities;
   private AutomaticMoverContainer autoMovers;
   private CollidableContainer collidables;
   private MainCharacterEntity mainCharacter;
   private JSONInformationDecoder decoder;
+  private EntityFactory factory;
+
+  // TODO: Add EndGoalEntity
 
   public BackendContainer(JSONInformationDecoder decoder){
     entities = new EntityContainer();
     autoMovers = new AutomaticMoverContainer();
     collidables = new CollidableContainer();
+    factory = new EntityFactory(decoder);
     this.decoder = decoder;
   }
 
@@ -49,43 +39,16 @@ public class BackendContainer {
   public Entity addNewEntity(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
 
     Entity newEntity = null;
-    MainCharacterEntity newMain = null;
-    AutomaticMovingCharacter newAutoMover = null;
-    CollidableEntity newCollidableC = null;
 
     if(isMainCharacterType(type)){ // if it's a main character type entity, overwrite the basic newEntity
-      CollisionChartGetter collisionChartGetter = new DefaultCollisionChartGetter();
-      CollisionChart chart = collisionChartGetter.getCollisionChart(decoder, type);
 
-      MainCharacterEntity main;
-      try {
-        main = (MainCharacterEntity) Class.forName(ConnectionContainer.entityClassResources.getString(type)).
-            getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class)
-            .newInstance(chart, xCoordinate,yCoordinate, height, width, info);
-      } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-               InstantiationException | IllegalAccessException e) {
-        throw new RuntimeException(e);
-      }
-      mainCharacter = main;
-      newEntity = main;
-      collidables.addCollidable(main); // all main characters are collidable
+      mainCharacter = factory.makeMainCharacter(xCoordinate,yCoordinate, height, width, type, info);
+
+      newEntity = mainCharacter;
+      collidables.addCollidable(mainCharacter); // all main characters are collidable
     }
     else if(isAutomaticMoverType(type)){
-      CollisionChartGetter collisionChartGetter = new DefaultCollisionChartGetter();
-      CollisionChart chart = collisionChartGetter.getCollisionChart(decoder, type);
-
-      // TODO: fix this so that there is a movement queue, not just null
-      MovementQueue queue = new MovementQueue();
-
-      AutomaticMovingCharacter newMover;
-      try {
-        newMover = (AutomaticMovingCharacter) Class.forName(ConnectionContainer.entityClassResources.getString(type)).
-            getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class, MovementQueue.class)
-            .newInstance(chart, xCoordinate,yCoordinate, height, width, info, null);
-      } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-               InstantiationException | IllegalAccessException e) {
-        throw new InvalidTypeException("JSON holds invalid type",e);
-      }
+      AutomaticMovingCharacter newMover = factory.makeAutomaticMover(xCoordinate,yCoordinate, height, width, type, info);
 
       autoMovers.addMover(newMover);
       newEntity = newMover;
@@ -95,26 +58,12 @@ public class BackendContainer {
       }
     }
     else if(isCollidableType(type)){ // only a collidable
-      CollisionChartGetter collisionChartGetter = new DefaultCollisionChartGetter();
-      CollisionChart chart = collisionChartGetter.getCollisionChart(decoder, type);
 
-      CollidableEntity newCollidable;
-
-      //zz
-      try {
-        newCollidable = (CollidableEntity) Class.forName(ConnectionContainer.entityClassResources.getString(type)).
-            getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class)
-            .newInstance(chart, xCoordinate,yCoordinate, height, width, info);
-      } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-               InstantiationException | IllegalAccessException e) {
-        throw new InvalidTypeException("JSON holds invalid type",e);
-      }
+      CollidableEntity newCollidable = factory.makeCollidable(xCoordinate,yCoordinate, height, width, type, info);
 
       collidables.addCollidable(newCollidable);
       newEntity = newCollidable;
     }
-
-    // TODO: This must be fixed below!! If you add an AutomaticMovingEntity this breaks.
     else{
       newEntity = new StaticEntity(xCoordinate,yCoordinate, height, width, info);
     }
@@ -140,15 +89,15 @@ public class BackendContainer {
     return collidables;
   }
 
-  private boolean isMainCharacterType(String type){
-    return Arrays.asList(ConnectionContainer.containerResources.getString("main_characters").split(",")).contains(type);
+  public boolean isMainCharacterType(String type){
+    return Arrays.asList(Model.containerResources.getString("main_characters").split(",")).contains(type);
   }
 
-  private boolean isAutomaticMoverType(String type){
-    return Arrays.asList(ConnectionContainer.containerResources.getString("automatic_movers").split(",")).contains(type);
+  public boolean isAutomaticMoverType(String type){
+    return Arrays.asList(Model.containerResources.getString("automatic_movers").split(",")).contains(type);
   }
 
-  private boolean isCollidableType(String type){
-    return Arrays.asList(ConnectionContainer.containerResources.getString("collidables").split(",")).contains(type);
+  public boolean isCollidableType(String type){
+    return Arrays.asList(Model.containerResources.getString("collidables").split(",")).contains(type);
   }
 }

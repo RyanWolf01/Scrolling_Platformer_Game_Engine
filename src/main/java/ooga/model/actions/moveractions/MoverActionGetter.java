@@ -8,12 +8,15 @@ import ooga.model.actions.moveractions.basicmovement.LeftMovement;
 import ooga.model.actions.moveractions.basicmovement.RightMovement;
 import ooga.model.actions.moveractions.basicmovement.UpwardMovement;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class MoverActionGetter {
     private Map<String, MoverAction> allMoverActions;
 
     public MoverActionGetter(){
+        allMoverActions = new HashMap<>();
+
         allMoverActions.put("bounce", new Bounce());
         allMoverActions.put("stop_both_directions", new StopBothDirections());
         allMoverActions.put("stop_x_movement", new StopXMovement());

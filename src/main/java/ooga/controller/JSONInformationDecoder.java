@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import ooga.controller.exceptions.MalformedJSONException;
+import ooga.model.actions.moveractions.MoverActionGetter;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
@@ -305,7 +306,7 @@ public class JSONInformationDecoder {
    * @return MovementQueue (read above)
    */
   public MovementQueue getMovementQueue(String type){
-
+    MoverActionGetter moverActionGetter = new MoverActionGetter();
     MovementQueue moves = new MovementQueue();
 
     JSONObject levelJSONObject = null;
@@ -327,7 +328,9 @@ public class JSONInformationDecoder {
     for(Object entity: entityArray){
       if(((JSONObject) entity).get("type").equals(type)){
         JSONArray movements = (JSONArray) ((JSONObject) entity).get("movement_queue");
-
+        for(Object move: movements){
+          moves.addMove(moverActionGetter.moverActionTranslate((String) move));
+        }
 
       }
     }
