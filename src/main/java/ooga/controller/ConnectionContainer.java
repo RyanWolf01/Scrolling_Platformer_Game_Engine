@@ -8,7 +8,7 @@ import ooga.Main;
 import ooga.model.Model;
 import ooga.model.entities.Entity;
 import ooga.model.entities.containers.BackendContainer;
-import ooga.model.entities.data.EntityInfo;
+import ooga.model.entities.info.EntityInfo;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
 

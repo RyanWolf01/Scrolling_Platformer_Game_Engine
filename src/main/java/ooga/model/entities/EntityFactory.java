@@ -5,12 +5,13 @@ import ooga.model.Model;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.collisionhandling.CollisionChartGetter;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChartGetter;
-import ooga.model.entities.characters.AutomaticMovingCharacter;
-import ooga.model.entities.characters.maincharacters.MainCharacterEntity;
+import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.containers.exceptions.InvalidTypeException;
-import ooga.model.entities.data.EntityInfo;
-import ooga.model.entities.data.Info;
-import ooga.model.entities.movement.MovementQueue;
+import ooga.model.entities.deadmovingentities.MovementQueue;
+import ooga.model.entities.info.EntityInfo;
+import ooga.model.entities.info.Info;
+import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
+import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacterEntity;
 
 import java.lang.reflect.InvocationTargetException;
 

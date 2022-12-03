@@ -1,8 +1,8 @@
-package ooga.model.entities;
+package ooga.model.entities.deadmovingentities;
 
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.entities.data.Info;
-import ooga.model.entities.movement.Mover;
+import ooga.model.entities.collidable.CollidableEntity;
+import ooga.model.entities.info.Info;
 
 public abstract class MovingEntity extends CollidableEntity implements Mover {
 

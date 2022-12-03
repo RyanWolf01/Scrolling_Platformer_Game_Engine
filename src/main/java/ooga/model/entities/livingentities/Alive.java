@@ -1,4 +1,4 @@
-package ooga.model.entities.alive;
+package ooga.model.entities.livingentities;
 
 /**
  * The Alive interface is used to distinguish between an entity that holds a concept of being alive (i.e. being

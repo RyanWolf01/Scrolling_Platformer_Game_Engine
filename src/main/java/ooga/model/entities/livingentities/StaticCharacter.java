@@ -1,16 +1,12 @@
-package ooga.model.entities.characters;
+package ooga.model.entities.livingentities;
 
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.entities.CollidableEntity;
-import ooga.model.entities.data.Info;
-import ooga.model.entities.alive.Alive;
+import ooga.model.entities.collidable.CollidableEntity;
+import ooga.model.entities.info.Info;
 
 public abstract class StaticCharacter extends CollidableEntity implements Alive {
 
   private int lives;
-
-  private double xVelocity;
-  private double yVelocity;
 
   public StaticCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {

@@ -1,11 +1,9 @@
 package ooga.model.entities;
 
-import java.util.HashMap;
-import java.util.Map;
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.collisions.physics.CurrentCollisionContainer;
-import ooga.model.entities.data.ImmutableInfo;
-import ooga.model.entities.data.Info;
+import ooga.model.entities.info.ImmutableInfo;
+import ooga.model.entities.info.Info;
 
 /**
  * Everything that can be represented in the game is an Entity of some type.

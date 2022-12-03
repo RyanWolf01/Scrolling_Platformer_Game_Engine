@@ -4,9 +4,13 @@ import java.util.Arrays;
 import ooga.controller.JSONInformationDecoder;
 import ooga.model.Model;
 import ooga.model.entities.*;
-import ooga.model.entities.characters.AutomaticMovingCharacter;
-import ooga.model.entities.characters.maincharacters.MainCharacterEntity;
-import ooga.model.entities.data.EntityInfo;
+import ooga.model.entities.collidable.CollidableEntity;
+import ooga.model.entities.Entity;
+import ooga.model.entities.StaticEntity;
+import ooga.model.entities.info.EntityInfo;
+import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
+import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacterEntity;
+
 
 /**
  * This mega container holds all the information the backend needs

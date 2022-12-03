@@ -8,9 +8,9 @@ import ooga.model.collisions.collisionhandling.CollisionChartGetter;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChartGetter;
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.collisions.physics.PhysicsCalculator;
-import ooga.model.entities.characters.BasicStaticCharacter;
-import ooga.model.entities.characters.maincharacters.Mario;
-import ooga.model.entities.data.EntityInfo;
+import ooga.model.entities.livingentities.BasicStaticCharacter;
+import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
+import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 
 public class CollidableEntityTest {

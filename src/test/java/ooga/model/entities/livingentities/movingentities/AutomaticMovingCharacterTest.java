@@ -1,4 +1,4 @@
-package ooga.model.entities.characters;
+package ooga.model.entities.livingentities.movingentities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,10 @@ import ooga.model.actions.moveractions.basicmovement.RightMovement;
 import ooga.model.actions.moveractions.basicmovement.UpwardMovement;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
-import ooga.model.entities.data.EntityInfo;
-import ooga.model.entities.movement.MovementQueue;
+import ooga.model.entities.info.EntityInfo;
+import ooga.model.entities.deadmovingentities.MovementQueue;
+import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
+import ooga.model.entities.livingentities.movingentities.MovingCharacter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

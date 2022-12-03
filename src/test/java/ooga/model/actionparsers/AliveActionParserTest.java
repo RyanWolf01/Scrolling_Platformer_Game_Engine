@@ -3,14 +3,6 @@ package ooga.model.actionparsers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.ArrayList;
-import ooga.model.collisions.actiondata.ActionData;
-import ooga.model.collisions.actiondata.ActionDataContainer;
-import ooga.model.entities.alive.Alive;
-import ooga.model.entities.characters.maincharacters.Mario;
-import ooga.model.entities.data.EntityInfo;
-import org.junit.jupiter.api.Test;
-
 public class AliveActionParserTest {
 
   public static final String ALIVE_ACTION_PATH = "ooga.model.actions.aliveactions.";

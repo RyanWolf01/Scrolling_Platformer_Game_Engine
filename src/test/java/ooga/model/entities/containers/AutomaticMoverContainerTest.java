@@ -3,8 +3,8 @@ package ooga.model.entities.containers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ooga.model.actions.moveractions.basicmovement.RightMovement;
-import ooga.model.entities.characters.AutomaticMovingCharacter;
-import ooga.model.entities.movement.MovementQueue;
+import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
+import ooga.model.entities.deadmovingentities.MovementQueue;
 import org.junit.jupiter.api.Test;
 
 public class AutomaticMoverContainerTest {

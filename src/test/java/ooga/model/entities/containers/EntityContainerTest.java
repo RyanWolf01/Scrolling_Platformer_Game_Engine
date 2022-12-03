@@ -3,7 +3,7 @@ package ooga.model.entities.containers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ooga.model.entities.Entity;
-import ooga.model.entities.characters.maincharacters.Mario;
+import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
