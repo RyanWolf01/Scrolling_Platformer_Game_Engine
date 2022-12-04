@@ -9,8 +9,8 @@ import ooga.model.entities.ImmutableEntity;
 /**
  * Wrapper class that encapsulates a hashmap of <Entity, CollisionPhysicsInfo>
  */
-public class CurrentCollisionContainer implements Iterable<Entity> {
-  private final Map<Entity, CollisionPhysicsInfo> myCurrentCollisions;
+public class CurrentCollisionContainer implements Iterable<ImmutableEntity> {
+  private final Map<ImmutableEntity, CollisionPhysicsInfo> myCurrentCollisions;
 
   public CurrentCollisionContainer() {
     myCurrentCollisions = new HashMap<>();
@@ -42,7 +42,7 @@ public class CurrentCollisionContainer implements Iterable<Entity> {
     return false;
   }
   @Override
-  public Iterator<Entity> iterator() {
+  public Iterator<ImmutableEntity> iterator() {
     return myCurrentCollisions.keySet().iterator();
   }
 
