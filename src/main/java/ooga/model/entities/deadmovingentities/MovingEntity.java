@@ -1,15 +1,19 @@
 package ooga.model.entities.deadmovingentities;
 
+import java.util.ResourceBundle;
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.collisions.physics.PhysicsCalculator;
-import ooga.model.entities.Entity;
 import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.info.Info;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public abstract class MovingEntity extends CollidableEntity implements Mover {
 
-  private static final int SCREEN_SIZE = 0; // TODO read from Properties file
+  private static final Logger LOG = LogManager.getLogger(MovingEntity.class);
+  private static final int SCREEN_SIZE = Integer.parseInt(
+      ResourceBundle.getBundle("properties/view").getString("screen_size"));
+
   private double xVelocity;
   private double yVelocity;
 
@@ -70,8 +74,10 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
 
   protected void applyGravity(){
     PhysicsCalculator physicsCalculator = new PhysicsCalculator();
-    if(physicsCalculator.checkInAir(this))
+    if(physicsCalculator.checkInAir(this)){
       changeVelocities(0, 1);
+    }
+
   }
 
 }

@@ -6,8 +6,6 @@ import ooga.model.entities.info.Info;
 import ooga.model.entities.livingentities.Alive;
 
 public abstract class MovingCharacter extends MovingEntity implements Alive {
-
-  private static final int SCREEN_SIZE = 500; // TODO read from Properties file
   private int lives;
   private double xVelocity;
   private double yVelocity;
@@ -95,14 +93,6 @@ public abstract class MovingCharacter extends MovingEntity implements Alive {
       } else {
           this.lives = lives;
       }
-  }
-
-  /**
-   *
-   * @return screen size
-   */
-  protected int getScreenSize(){
-    return SCREEN_SIZE;
   }
 
 }
