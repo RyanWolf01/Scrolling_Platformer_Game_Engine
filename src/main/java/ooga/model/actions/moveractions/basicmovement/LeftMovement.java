@@ -17,7 +17,6 @@ public class LeftMovement implements MoverAction {
   public void execute(Mover entity){
     entity.changeVelocities(LEFT_VELOCITY, 0);
     entity.move();
-    entity.resetVelocities(true, false);
   }
 
 }

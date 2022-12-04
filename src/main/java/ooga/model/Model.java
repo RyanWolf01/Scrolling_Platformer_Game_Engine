@@ -19,9 +19,17 @@ public class Model {
     this.entities = entities;
   }
 
-  public void step(){
+  public void moveMovers(){
     entities.automaticMovers().moveAll(); // move all automatic movers
     entities.mainCharacter().move();
+  }
+
+  /**
+   * reset horizontal velocity of all Movers. This needs to be done after every horizontal movement
+   */
+  public void resetHorizontalVelocities(){
+    entities.automaticMovers().resetVelocities(true, false);
+    entities.mainCharacter().resetVelocities(true, false);
   }
 
   public void handleMoveKey(MoverAction action){
