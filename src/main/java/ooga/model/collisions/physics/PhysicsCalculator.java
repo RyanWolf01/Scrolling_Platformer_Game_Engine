@@ -6,8 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import ooga.model.entities.Entity;
 import ooga.model.entities.deadmovingentities.Mover;
+import ooga.model.entities.info.EntityInfo;
+import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class PhysicsCalculator {
+
+  private static final Logger LOG = LogManager.getLogger(Mario.class);
 
   // TODO: Potential bug -- what if you have two entities that shouldn't collide and you feed them
   // into here. If they do collide within trajectory of the entities but outside of the potential
@@ -80,17 +86,16 @@ public class PhysicsCalculator {
    */
   public boolean checkInAir(Entity entity){
 
-    Entity collidedEntity = entity.getMyCurrentCollisions().iterator().next(); // get entity with which this entity last collided
+    while(entity.getMyCurrentCollisions().iterator().hasNext()){
+      Entity collided = entity.getMyCurrentCollisions().iterator().next();
+      CollisionPhysicsInfo collisionPhysicsInfo = entity.getMyCurrentCollisions().get(collided);
+      if(collided.getImmutableEntityInfo().get("TYPE").equals("static_platform") &&
+          collisionPhysicsInfo.getCollisionDirection() == CollisionDirection.BOTTOM){
+          return false;
+      }
+    }
 
-    if(collidedEntity == null) // no collision -> must be in air
-      return true;
-
-    CollisionDirection direction = checkDirection(entity, collidedEntity);
-
-    if(direction.equals(CollisionDirection.NONE))
-      return true;
-
-    return false;
+    return true;
   }
 
   /**
