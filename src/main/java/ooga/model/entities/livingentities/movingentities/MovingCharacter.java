@@ -11,8 +11,6 @@ public abstract class MovingCharacter extends MovingEntity implements Alive {
 
   private static final Logger LOG = LogManager.getLogger(MovingCharacter.class);
   private int lives;
-  private double xVelocity;
-  private double yVelocity;
 
   public MovingCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
@@ -24,48 +22,6 @@ public abstract class MovingCharacter extends MovingEntity implements Alive {
 //          }
 //        }
 
-  }
-
-  /**
-   * Implements Mover interface changeVelocities method that changes object's velocities
-   */
-  @Override
-  public void changeVelocities(double changeXVelocity, double changeYVelocity) {
-    xVelocity += changeXVelocity;
-    yVelocity += changeYVelocity;
-  }
-
-  /**
-   * Reset velocities
-   *
-   * @param resetX tells if should reset xVelocity
-   * @param resetY tells if should reset yVelocity
-   *
-   */
-  @Override
-  public void resetVelocities(boolean resetX, boolean resetY){
-    if(resetX)
-      xVelocity = 0;
-    if(resetY)
-      yVelocity = 0;
-  }
-
-  /**
-   * @return x velocity, implements Mover method This getter is needed for some MoverAction classes,
-   * and for subclasses
-   */
-  @Override
-  public double getXVelocity() {
-    return xVelocity;
-  }
-
-  /**
-   * @return y velocity, implements Mover method This getter is needed for some MoverAction classes,
-   * and for subclasses
-   */
-  @Override
-  public double getYVelocity() {
-    return yVelocity;
   }
 
   /**
