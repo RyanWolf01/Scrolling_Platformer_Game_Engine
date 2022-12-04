@@ -1,8 +1,10 @@
 package ooga.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.model.Model;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
@@ -24,6 +26,7 @@ public class GameController {
     private JSONInformationDecoder jsonDecoder;
     private DefaultCollisionChart collisionChart;
     private Model model;
+    private Queue<KeyCode> keyCodeQueue;
 
     /**
      * The GameController needs to have a mapping of backend to frontend objects
@@ -37,6 +40,7 @@ public class GameController {
         // TODO: integrate new String for controls JSON into this constructor and in related locations in main and controller tests
         jsonDecoder.makeUserControlHandlerFromJSON(controlHandler);
         model = new Model(container.entities());
+        keyCodeQueue = new LinkedList<>();
     }
 
     /**
@@ -44,19 +48,29 @@ public class GameController {
      * @return NodeContainer that the View can
      */
     public NodeContainer step(){
-        model.moveMovers();
         checkForCollisions();
         model.resetHorizontalVelocities();
+        executeKeyInputActions();
+        model.moveMovers();
         container.update();
         return container.viewables();
     }
 
     public void handleKeyInput(KeyCode code){
-        if(controlHandler.isMoveAction(code)){
-            model.handleMoveKey(controlHandler.getMoverAction(code));
+        if (! keyCodeQueue.contains(code)) {
+            keyCodeQueue.add(code);
         }
-        else if(controlHandler.isAliveAction(code)){
-            model.handleAliveKey(controlHandler.getAliveAction(code));
+    }
+
+    private void executeKeyInputActions() {
+        while (! keyCodeQueue.isEmpty()) {
+            KeyCode code = keyCodeQueue.poll();
+            if(controlHandler.isMoveAction(code)){
+                model.handleMoveKey(controlHandler.getMoverAction(code));
+            }
+            else if(controlHandler.isAliveAction(code)){
+                model.handleAliveKey(controlHandler.getAliveAction(code));
+            }
         }
     }
 

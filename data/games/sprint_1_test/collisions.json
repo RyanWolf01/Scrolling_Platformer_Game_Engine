@@ -84,7 +84,7 @@
             "params": []
           },
           {
-            "classname": "ooga.model.actions.moveractions.Bounce",
+            "classname": "ooga.model.actions.moveractions.basicmovement.LeftMovement",
             "action_interface": "MoverAction",
             "params": []
           }
