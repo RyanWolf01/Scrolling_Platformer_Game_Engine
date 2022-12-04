@@ -17,15 +17,21 @@ public class Mario extends MainCharacterEntity {
   }
 
   /**
-   * Implements Mover interface move method that changes object's position
+   * helper method called in move() that handles what happens to this entity when it goes off the screen
    */
   @Override
-  public void move() {
-    setXCoordinate(getXCoordinate() + getXVelocity());
-    setYCoordinate(getYCoordinate() + getYVelocity());
+  protected void handleInvalidCoordinates() {
     if(getYCoordinate() >= getScreenSize()){
       kill();
       LOG.info("Mario was killed.");
+    }
+    if(getXCoordinate() <= 0){
+      setXCoordinate(1);
+      LOG.info("Mario off left of screen.");
+    }
+    if(getXCoordinate() >= getScreenSize()){
+      setXCoordinate(getScreenSize()-1);
+      LOG.info("Mario off right of screen.");
     }
   }
 

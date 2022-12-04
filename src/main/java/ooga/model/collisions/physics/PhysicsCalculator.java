@@ -1,10 +1,20 @@
 package ooga.model.collisions.physics;
 
+import static ooga.model.collisions.physics.CollisionPhysicsInfo.COLLISION_DIRECTION_KEY;
+
 import java.util.ArrayList;
 import java.util.List;
 import ooga.model.entities.Entity;
+import ooga.model.entities.ImmutableEntity;
+import ooga.model.entities.deadmovingentities.Mover;
+import ooga.model.entities.info.EntityInfo;
+import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class PhysicsCalculator {
+
+  private static final Logger LOG = LogManager.getLogger(Mario.class);
 
   // TODO: Potential bug -- what if you have two entities that shouldn't collide and you feed them
   // into here. If they do collide within trajectory of the entities but outside of the potential

@@ -44,8 +44,9 @@ public class GameController {
      * @return NodeContainer that the View can
      */
     public NodeContainer step(){
+        model.moveMovers();
         checkForCollisions();
-        model.step();
+        model.resetHorizontalVelocities();
         container.update();
         return container.viewables();
     }
