@@ -70,26 +70,31 @@
       },
       {
         "OPPONENT_TYPE": "goomba",
-        "COLLISION_DIRECTION": "LEFT||RIGHT",
+        "COLLISION_DIRECTION": "RIGHT",
         "ACTIONS": [
           {
-            "classname": "ooooooooooooooooooooooga.model.actions.moveractions.StopXMovement",
+            "classname": "ooga.model.actions.moveractions.StopXMovement",
             "action_interface": "MoverAction",
             "params": []
           },
           {
-            "classname": "ooga.model.actions.moveractions.Bounce",
+            "classname": "ooga.model.actions.moveractions.basicmovement.LeftMovement",
             "action_interface": "MoverAction",
             "params": []
           }
         ]
       },
       {
-        "OPPONENT_TYPE": "mario",
-        "COLLISION_DIRECTION": "TOP||BOTTOM",
+        "OPPONENT_TYPE": "goomba",
+        "COLLISION_DIRECTION": "LEFT",
         "ACTIONS": [
           {
-            "classname": "ooga.model.actions.moveractions.Bounce",
+            "classname": "ooga.model.actions.moveractions.StopXMovement",
+            "action_interface": "MoverAction",
+            "params": []
+          },
+          {
+            "classname": "ooga.model.actions.moveractions.basicmovement.RightMovement",
             "action_interface": "MoverAction",
             "params": []
           }
@@ -110,6 +115,12 @@
             "action_interface": "AliveAction",
             "params": []
           }
+        ]
+      },
+      {
+        "OPPONENT_TYPE": "MARIO",
+        "COLLISION_DIRECTION": "LEFT||RIGHT",
+        "ACTIONS": [
         ]
       }
     ]

@@ -11,6 +11,15 @@ public class Mario extends MainCharacterEntity {
 
   private static final Logger LOG = LogManager.getLogger(Mario.class);
 
+  /**
+   * Mario has lives, can move, and takes user input. Specific Mario class was created to handle off-screen inputs uniquely
+   * @param chart Collision Chart
+   * @param initialXCoordinate initial x
+   * @param initialYCoordinate initial y
+   * @param height height
+   * @param width width
+   * @param entityInfo entity info
+   */
   public Mario(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
