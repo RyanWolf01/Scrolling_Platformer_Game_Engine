@@ -1,0 +1,35 @@
+{
+  "game": "mario",
+  "name": "Test Level 1",
+  "background": "bliss.jpg",
+  "style": "light",
+  "camera_width": "400",
+  "camera_height": "500",
+  "scrolling_direction": "horizontal",
+  "Entity": [
+    {
+      "type": "mario",
+      "x": "300",
+      "y": "40",
+      "height": "100",
+      "width": "50",
+      "texture": "/games/mario/assets/mario.png"
+    },
+    {
+      "type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "500",
+      "y": "100",
+      "height": "10",
+      "width": "150"
+    },
+    {
+      "type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "500",
+      "y": "91",
+      "height": "10",
+      "width": "100"
+    }
+  ]
+}
