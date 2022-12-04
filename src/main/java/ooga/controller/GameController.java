@@ -37,6 +37,7 @@ public class GameController {
      * @return NodeContainer that the View can
      */
     public NodeContainer step(){
+        handleKeyInput(KeyCode.D);
         model.moveMovers();
         checkForCollisions();
         model.resetHorizontalVelocities();

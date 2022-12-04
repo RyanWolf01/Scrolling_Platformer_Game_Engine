@@ -1,10 +1,12 @@
 {
   "entity": {
     "parent": "",
-    "collision_chart": {
-      "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
-      "ACTIONS": []
-    }
+    "collision_chart": [
+      {
+        "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
+        "ACTIONS": []
+      }
+    ]
   },
 
   "movingEntity": {
@@ -71,7 +73,7 @@
         "COLLISION_DIRECTION": "LEFT||RIGHT",
         "ACTIONS": [
           {
-            "classname": "ooga.model.actions.moveractions.StopXMovement",
+            "classname": "ooooooooooooooooooooooga.model.actions.moveractions.StopXMovement",
             "action_interface": "MoverAction",
             "params": []
           },
