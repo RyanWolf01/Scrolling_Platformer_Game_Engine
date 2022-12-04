@@ -92,10 +92,17 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
   }
 
   protected void applyGravity(){
-    PhysicsCalculator physicsCalculator = new PhysicsCalculator();
-    if(physicsCalculator.checkInAir(this)){
+    if(isInAir())
       changeVelocities(0, GRAVITY_VELOCITY);
-    }
+  }
+
+  /**
+   * returns if entity is in air
+   * @return boolean
+   */
+  private boolean isInAir(){
+    PhysicsCalculator physicsCalculator = new PhysicsCalculator();
+    return physicsCalculator.checkInAir(this);
   }
 
 }
