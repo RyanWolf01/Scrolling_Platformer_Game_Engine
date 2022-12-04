@@ -6,7 +6,7 @@ import ooga.model.entities.deadmovingentities.Mover;
 
 public class DownwardMovement implements MoverAction {
 
-  private static final int DOWNWARD_VELOCITY = Integer.parseInt(ResourceBundle.getBundle("properties/movement").getString("downward_velocity")); // change this to properties file
+  private static final int DOWNWARD_VELOCITY = Integer.parseInt(ResourceBundle.getBundle("properties/movement").getString("downward_velocity"));
 
   /**
    * moves entity up in y direction by a fixed amount
