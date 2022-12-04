@@ -50,10 +50,6 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
     GRAVITY_VELOCITY = tempGravityVelocity;
   }
 
-  private void initializeDefaultScreenSizeValue(){
-
-  }
-
   /**
    * Implements Mover interface move method that changes object's position
    */
