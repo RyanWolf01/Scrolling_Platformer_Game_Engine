@@ -8,6 +8,15 @@ public abstract class StaticCharacter extends CollidableEntity implements Alive 
 
   private int lives;
 
+  /**
+   * Static Entity has lives but can not move.
+   * @param chart Collision Chart
+   * @param initialXCoordinate initial x
+   * @param initialYCoordinate initial y
+   * @param height height
+   * @param width width
+   * @param entityInfo entity info
+   */
   public StaticCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);

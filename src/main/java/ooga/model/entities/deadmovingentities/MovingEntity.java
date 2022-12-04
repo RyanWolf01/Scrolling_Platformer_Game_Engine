@@ -18,13 +18,13 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
   private double yVelocity;
 
   /**
-   * Moving Entity
-   * @param chart
-   * @param initialXCoordinate
-   * @param initialYCoordinate
-   * @param height
-   * @param width
-   * @param entityInfo
+   * Moving Entity has no lives but can move. Constructor initializes gravity velocity and screen size from Properties files.
+   * @param chart Collision Chart
+   * @param initialXCoordinate initial x
+   * @param initialYCoordinate initial y
+   * @param height height
+   * @param width width
+   * @param entityInfo entity info
    */
   public MovingEntity(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
