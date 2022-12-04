@@ -1,11 +1,13 @@
 package ooga.model.actions.moveractions.basicmovement;
 
+import java.util.ResourceBundle;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.entities.deadmovingentities.Mover;
 
 public class RightMovement implements MoverAction {
 
-  private static final int RIGHT_VELOCITY = 5; // change this to properties file
+  private static final int RIGHT_VELOCITY = Integer.parseInt(
+      ResourceBundle.getBundle("properties/movement").getString("right_velocity"));
 
   /**
    * moves entity up in y direction by a fixed amount
@@ -15,7 +17,6 @@ public class RightMovement implements MoverAction {
   public void execute(Mover entity){
     entity.changeVelocities(RIGHT_VELOCITY, 0);
     entity.move();
-    entity.resetVelocities(true, false);
   }
 
 }

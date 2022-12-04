@@ -11,7 +11,7 @@ public abstract class StaticCharacter extends CollidableEntity implements Alive 
   public StaticCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
-//        this.lives = Integer.parseInt(entityInfo.get("lives"));
+    this.lives = setInitialLives(entityInfo);
   }
 
   /**

@@ -1,15 +1,8 @@
 package ooga.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import javafx.scene.input.KeyCode;
 import ooga.model.Model;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
-import ooga.model.collisions.physics.CollisionPhysicsInfo;
-import ooga.model.collisions.physics.CurrentCollisionContainer;
-import ooga.model.entities.Entity;
-import ooga.model.entities.ImmutableEntity;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
 
@@ -44,16 +37,9 @@ public class GameController {
      * @return NodeContainer that the View can
      */
     public NodeContainer step(){
-        // must reset left and right velocities here
-        model.resetMainCharacterHorizontalVelocity();
-//        try {
-//            Thread.sleep(1000);
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-        // check for a and d key inputs and handle those
-        model.step();
+        model.moveMovers();
         checkForCollisions();
+        model.resetHorizontalVelocities();
         container.update();
         return container.viewables();
     }

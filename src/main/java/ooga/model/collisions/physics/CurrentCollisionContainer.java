@@ -3,10 +3,11 @@ package ooga.model.collisions.physics;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import ooga.model.entities.Entity;
 import ooga.model.entities.ImmutableEntity;
 
 /**
- * Wrapper class that encapsulates a hashmap of <ImmutableEntity, CollisionPhysicsInfo>
+ * Wrapper class that encapsulates a hashmap of <Entity, CollisionPhysicsInfo>
  */
 public class CurrentCollisionContainer implements Iterable<ImmutableEntity> {
   private final Map<ImmutableEntity, CollisionPhysicsInfo> myCurrentCollisions;
@@ -19,7 +20,7 @@ public class CurrentCollisionContainer implements Iterable<ImmutableEntity> {
     return myCurrentCollisions.get(entity);
   }
 
-  public CollisionPhysicsInfo set(ImmutableEntity entity, CollisionPhysicsInfo collisionPhysicsInfo) {
+  public CollisionPhysicsInfo set(Entity entity, CollisionPhysicsInfo collisionPhysicsInfo) {
     return myCurrentCollisions.put(entity, collisionPhysicsInfo);
   }
 
@@ -31,6 +32,15 @@ public class CurrentCollisionContainer implements Iterable<ImmutableEntity> {
     myCurrentCollisions.remove(entity);
   }
 
+  /**
+   * check if current collision container contains anything
+   * @return boolean
+   */
+  public boolean hasCollisions(){
+    if(myCurrentCollisions.keySet().size() != 0)
+      return true;
+    return false;
+  }
   @Override
   public Iterator<ImmutableEntity> iterator() {
     return myCurrentCollisions.keySet().iterator();

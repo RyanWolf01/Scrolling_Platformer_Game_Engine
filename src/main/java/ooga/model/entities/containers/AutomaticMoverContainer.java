@@ -32,11 +32,20 @@ public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
   }
 
   /**
-   * call move method on all Movers
+   * call move method on all Automatic Movers
    */
   public void moveAll(){
     for(AutomaticMover mover: this.movers){
       mover.automaticMove();
+    }
+  }
+
+  /**
+   * call reset velocities method on all Automatic Movers
+   */
+  public void resetVelocities(boolean resetXVelocity, boolean resetYVelocity){
+    for(AutomaticMover mover: this.movers){
+      mover.resetVelocities(resetXVelocity, resetYVelocity);
     }
   }
 

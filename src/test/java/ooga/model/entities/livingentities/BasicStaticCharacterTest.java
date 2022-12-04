@@ -10,10 +10,11 @@ import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 
 public class BasicStaticCharacterTest {
-
   @Test
   void testIncrementLivesPositive1() {
-    StaticCharacter character = new BasicStaticCharacter( null,0, 0, 2, 2, new EntityInfo("example"));
+    EntityInfo entityInfo = new EntityInfo("example");
+
+    StaticCharacter character = new BasicStaticCharacter( null,0, 0, 2, 2,entityInfo);
 
     character.changeLives(1);
     assertEquals(1, character.getLives());
