@@ -12,17 +12,46 @@ import org.apache.logging.log4j.Logger;
 public abstract class MovingEntity extends CollidableEntity implements Mover {
 
   private static final Logger LOG = LogManager.getLogger(MovingEntity.class);
-  private static final int SCREEN_SIZE = Integer.parseInt(
-      ResourceBundle.getBundle("properties/view").getString("screen_size"));
-  private static final double GRAVITY_VELOCITY = Double.parseDouble(
-      ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
-
+  private final int SCREEN_SIZE;
+  private final double GRAVITY_VELOCITY;
   private double xVelocity;
   private double yVelocity;
 
+  /**
+   * Moving Entity
+   * @param chart
+   * @param initialXCoordinate
+   * @param initialYCoordinate
+   * @param height
+   * @param width
+   * @param entityInfo
+   */
   public MovingEntity(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
+
+    int tempScreenSize = 850;
+    try{
+      tempScreenSize = Integer.parseInt(
+          ResourceBundle.getBundle("properties/view").getString("screen_size"));
+    } catch(NumberFormatException exception){
+      LOG.error("screen size from properties file formatted incorrectly");
+    }
+
+    double tempGravityVelocity = 0.1;
+    try{
+      tempGravityVelocity = Double.parseDouble(
+          ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
+    } catch(NumberFormatException exception){
+      LOG.error("gravity velocity from properties file formatted incorrectly");
+    }
+
+    SCREEN_SIZE = tempScreenSize;
+    GRAVITY_VELOCITY = tempGravityVelocity;
+  }
+
+  private void initializeDefaultScreenSizeValue(){
+
   }
 
   /**
