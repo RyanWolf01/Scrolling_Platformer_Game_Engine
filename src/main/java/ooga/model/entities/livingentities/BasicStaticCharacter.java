@@ -8,12 +8,12 @@ import ooga.model.collisions.actiondata.ActionDataContainer;
 public class BasicStaticCharacter extends StaticCharacter {
 
   /**
-   * AutomaticMovingCharacter has lives and can move; moves automatically
-   * @param initialXCoordinate
-   * @param initialYCoordinate
-   * @param height
-   * @param width
-   * @param entityInfo
+   * AutomaticMovingCharacter has lives but cannot move
+   * @param initialXCoordinate initial x
+   * @param initialYCoordinate initial y
+   * @param height height
+   * @param width width
+   * @param entityInfo entity info
    */
   public BasicStaticCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
