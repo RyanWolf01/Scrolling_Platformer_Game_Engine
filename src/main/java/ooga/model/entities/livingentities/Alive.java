@@ -2,7 +2,6 @@ package ooga.model.entities.livingentities;
 
 import java.util.ResourceBundle;
 import ooga.model.entities.info.ImmutableInfo;
-import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -41,15 +40,24 @@ public interface Alive {
     Logger LOG = LogManager.getLogger(Alive.class);
 
     ResourceBundle defaultAttributesProperties = ResourceBundle.getBundle("properties/defaultAttributes");
-    int lives = Integer.parseInt(defaultAttributesProperties.getString("lives"));
 
+    int lives = 0;
+
+    // try to get default value from properties
+    try{
+      Integer.parseInt(defaultAttributesProperties.getString("lives"));
+    } catch(NumberFormatException exception){
+      // TODO: do i need to throw something here?
+      LOG.error("lives formatted incorrectly in properties file");
+    }
+
+    // try to get value from entity info
     if(entityInfo.hasKey("lives")){
       try{
         lives = Integer.parseInt(entityInfo.get("lives"));
       }
       catch(NumberFormatException exception){
-        // TODO: do i need to throw something here?
-        LOG.error("lives formatted incorrectly");
+        LOG.error("lives formatted incorrectly in entity info");
       }
     }
 

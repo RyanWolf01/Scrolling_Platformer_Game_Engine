@@ -15,6 +15,15 @@ public abstract class MovingCharacter extends MovingEntity implements Alive {
   private static final Logger LOG = LogManager.getLogger(MovingCharacter.class);
   private int lives;
 
+  /**
+   * Moving Character has lives and can move.
+   * @param chart Collision Chart
+   * @param initialXCoordinate initial x
+   * @param initialYCoordinate initial y
+   * @param height height
+   * @param width width
+   * @param entityInfo entity info
+   */
   public MovingCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);

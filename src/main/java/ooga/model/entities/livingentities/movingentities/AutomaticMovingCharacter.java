@@ -15,13 +15,14 @@ public class AutomaticMovingCharacter extends MovingCharacter implements Automat
 
   private static final Logger LOG = LogManager.getLogger(AutomaticMovingCharacter.class);
   private MovementQueue movementQueue;
+
   /**
    * AutomaticMovingCharacter has lives and can move; moves automatically
-   * @param initialXCoordinate
-   * @param initialYCoordinate
-   * @param height
-   * @param width
-   * @param entityInfo
+   * @param initialXCoordinate initial x
+   * @param initialYCoordinate initial y
+   * @param height height
+   * @param width width
+   * @param entityInfo entity info
    */
   public AutomaticMovingCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo, MovementQueue movementQueue) {
