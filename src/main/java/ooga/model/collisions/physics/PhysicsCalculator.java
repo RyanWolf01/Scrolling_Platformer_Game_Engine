@@ -5,6 +5,7 @@ import static ooga.model.collisions.physics.CollisionPhysicsInfo.COLLISION_DIREC
 import java.util.ArrayList;
 import java.util.List;
 import ooga.model.entities.Entity;
+import ooga.model.entities.ImmutableEntity;
 import ooga.model.entities.deadmovingentities.Mover;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
@@ -78,24 +79,6 @@ public class PhysicsCalculator {
     a.getMyCurrentCollisions().set(b, info);
     return info;
 //    return new CollisionPhysicsInfo(true, CollisionDirection.BOTTOM);
-  }
-
-  /**
-   * calculates if an Entity is in the Air
-   * @return boolean
-   */
-  public boolean checkInAir(Entity entity){
-
-    if(!entity.getMyCurrentCollisions().hasCollisions())
-      return true;
-
-    Entity collided = entity.getMyCurrentCollisions().iterator().next();
-    CollisionPhysicsInfo collisionPhysicsInfo = entity.getMyCurrentCollisions().get(collided);
-    if(collided.getImmutableEntityInfo().get("TYPE").equals("static_platform") &&
-          collisionPhysicsInfo.getCollisionDirection() == CollisionDirection.BOTTOM)
-      return false;
-
-    return true;
   }
 
   /**

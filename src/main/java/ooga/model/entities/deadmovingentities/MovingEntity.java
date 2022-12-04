@@ -2,6 +2,7 @@ package ooga.model.entities.deadmovingentities;
 
 import java.util.ResourceBundle;
 import ooga.model.collisions.collisionhandling.CollisionChart;
+import ooga.model.collisions.physics.GravityCalculator;
 import ooga.model.collisions.physics.PhysicsCalculator;
 import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.info.Info;
@@ -101,8 +102,8 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    * @return boolean
    */
   private boolean isInAir(){
-    PhysicsCalculator physicsCalculator = new PhysicsCalculator();
-    return physicsCalculator.checkInAir(this);
+    GravityCalculator gravityCalculator = new GravityCalculator();
+    return gravityCalculator.checkInAir(this);
   }
 
 }
