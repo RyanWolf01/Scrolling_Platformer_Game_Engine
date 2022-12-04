@@ -1,5 +1,7 @@
 package ooga.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import ooga.Main;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;

@@ -180,7 +180,7 @@ public class JSONInformationDecoder {
     }
     JSONObject entityJSON = (JSONObject) allJSON.get(type);
     if (! checkJSONArrayValue(entityJSON.get("collision_chart"))) {
-      throw new RuntimeException("invalid type");
+      throw new RuntimeException("invalid type: " + type);
     }
 
     criteriaListJSON = (JSONArray) entityJSON.get("collision_chart");
