@@ -23,12 +23,11 @@ public class AutomaticMovingEntity extends MovingEntity implements AutomaticMove
   }
 
   /**
-   * Implements Mover interface move method that changes object's position
+   * helper method called in move() that handles what happens to this entity when it goes off the screen
    */
   @Override
-  public void move() {
-    setXCoordinate(getXCoordinate() + getXVelocity());
-    setYCoordinate(getYCoordinate() + getYVelocity());
+  protected void handleInvalidCoordinates() {
+    // allow entities to move off left, right, top, bottom and never come back
   }
 
   /**

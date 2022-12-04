@@ -23,6 +23,23 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
   }
 
   /**
+   * Implements Mover interface move method that changes object's position
+   */
+  @Override
+  public void move() {
+    applyGravity();
+    setXCoordinate(getXCoordinate() + getXVelocity());
+    setYCoordinate(getYCoordinate() + getYVelocity());
+    handleInvalidCoordinates();
+  }
+
+  /**
+   * helper method for move that makes sure new coordinates are valid. if not, handles cases appropriately.
+   * must be implemented in each concrete class.
+   */
+  protected abstract void handleInvalidCoordinates();
+
+  /**
    * Implements Mover interface changeVelocities method that changes object's velocities
    */
   @Override

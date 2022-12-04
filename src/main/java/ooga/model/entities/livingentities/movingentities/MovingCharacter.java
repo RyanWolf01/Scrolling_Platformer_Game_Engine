@@ -4,8 +4,12 @@ import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.deadmovingentities.MovingEntity;
 import ooga.model.entities.info.Info;
 import ooga.model.entities.livingentities.Alive;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public abstract class MovingCharacter extends MovingEntity implements Alive {
+
+  private static final Logger LOG = LogManager.getLogger(MovingCharacter.class);
   private int lives;
   private double xVelocity;
   private double yVelocity;
