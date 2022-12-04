@@ -76,7 +76,7 @@
       },
       {
         "OPPONENT_TYPE": "goomba",
-        "COLLISION_DIRECTION": "LEFT||RIGHT",
+        "COLLISION_DIRECTION": "RIGHT",
         "ACTIONS": [
           {
             "classname": "ooga.model.actions.moveractions.StopXMovement",
@@ -85,6 +85,22 @@
           },
           {
             "classname": "ooga.model.actions.moveractions.basicmovement.LeftMovement",
+            "action_interface": "MoverAction",
+            "params": []
+          }
+        ]
+      },
+      {
+        "OPPONENT_TYPE": "goomba",
+        "COLLISION_DIRECTION": "LEFT",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.moveractions.StopXMovement",
+            "action_interface": "MoverAction",
+            "params": []
+          },
+          {
+            "classname": "ooga.model.actions.moveractions.basicmovement.RightMovement",
             "action_interface": "MoverAction",
             "params": []
           }
