@@ -1,5 +1,8 @@
 package ooga.model.entities.livingentities.movingentities;
 
+import java.text.ParseException;
+import java.util.Properties;
+import java.util.ResourceBundle;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.deadmovingentities.MovingEntity;
 import ooga.model.entities.info.Info;
@@ -15,13 +18,7 @@ public abstract class MovingCharacter extends MovingEntity implements Alive {
   public MovingCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
-
-//        if(entityInfo.hasKey("lives")){
-//          try {
-//            this.lives = Integer.parseInt();
-//          }
-//        }
-
+    this.lives = setInitialLives(entityInfo);
   }
 
   /**
