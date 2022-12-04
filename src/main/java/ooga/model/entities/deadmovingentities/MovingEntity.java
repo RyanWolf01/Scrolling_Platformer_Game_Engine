@@ -13,6 +13,8 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
   private static final Logger LOG = LogManager.getLogger(MovingEntity.class);
   private static final int SCREEN_SIZE = Integer.parseInt(
       ResourceBundle.getBundle("properties/view").getString("screen_size"));
+  private static final double GRAVITY_VELOCITY = Double.parseDouble(
+      ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
 
   private double xVelocity;
   private double yVelocity;
@@ -92,8 +94,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
   protected void applyGravity(){
     PhysicsCalculator physicsCalculator = new PhysicsCalculator();
     if(physicsCalculator.checkInAir(this)){
-      changeVelocities(0, 0.05);
-      LOG.debug("in air");
+      changeVelocities(0, GRAVITY_VELOCITY);
     }
   }
 

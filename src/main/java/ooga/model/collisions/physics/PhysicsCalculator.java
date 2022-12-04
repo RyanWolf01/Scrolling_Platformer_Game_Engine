@@ -86,14 +86,14 @@ public class PhysicsCalculator {
    */
   public boolean checkInAir(Entity entity){
 
-    while(entity.getMyCurrentCollisions().iterator().hasNext()){
-      Entity collided = entity.getMyCurrentCollisions().iterator().next();
-      CollisionPhysicsInfo collisionPhysicsInfo = entity.getMyCurrentCollisions().get(collided);
-      if(collided.getImmutableEntityInfo().get("TYPE").equals("static_platform") &&
-          collisionPhysicsInfo.getCollisionDirection() == CollisionDirection.BOTTOM){
-          return false;
-      }
-    }
+    if(!entity.getMyCurrentCollisions().hasCollisions())
+      return true;
+
+    Entity collided = entity.getMyCurrentCollisions().iterator().next();
+    CollisionPhysicsInfo collisionPhysicsInfo = entity.getMyCurrentCollisions().get(collided);
+    if(collided.getImmutableEntityInfo().get("TYPE").equals("static_platform") &&
+          collisionPhysicsInfo.getCollisionDirection() == CollisionDirection.BOTTOM)
+      return false;
 
     return true;
   }
