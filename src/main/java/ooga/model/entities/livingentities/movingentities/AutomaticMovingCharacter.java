@@ -76,20 +76,4 @@ public class AutomaticMovingCharacter extends MovingCharacter implements Automat
     return count;
   }
 
-//  private void performMoverAction(ActionDataContainer actionDataContainer) {
-//    MoverActionParser moverActionParser = new MoverActionParser(actionDataContainer);
-//    if (moverActionParser.hasAction()) {
-//      MoverAction moverAction = moverActionParser.getAction();
-//      moverAction.execute(this);
-//    }
-//  }
-//
-//  private void performAliveAction(ActionDataContainer actionDataContainer) {
-//    AliveActionParser aliveActionParser = new AliveActionParser(actionDataContainer);
-//    if (aliveActionParser.hasAction()) {
-//      AliveAction aliveAction = aliveActionParser.getAction();
-//      aliveAction.execute(this);
-//    }
-//  }
-
 }

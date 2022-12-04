@@ -50,14 +50,12 @@ public interface Alive {
       LOG.error("lives formatted incorrectly in properties file");
     }
 
-    // try to get value from entity info
-    if(entityInfo.hasKey("lives")){
-      try{
+    try {
+      // try to get value from entity info
+      if (entityInfo.hasKey("lives"))
         lives = Integer.parseInt(entityInfo.get("lives"));
-      }
-      catch(NumberFormatException exception){
+    } catch(NumberFormatException | NullPointerException exception){
         LOG.error("lives formatted incorrectly in entity info");
-      }
     }
 
     return lives;

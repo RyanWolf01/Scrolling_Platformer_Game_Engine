@@ -32,5 +32,7 @@ public class EntityContainerTest {
   public void iteratorTest(){
     Entity e = new Mario(null, 0, 0, 0, 0 , null);
     container.addEntity(e);
+    Entity testEntity = container.iterator().next();
+    assertEquals(e, testEntity);
   }
 }
