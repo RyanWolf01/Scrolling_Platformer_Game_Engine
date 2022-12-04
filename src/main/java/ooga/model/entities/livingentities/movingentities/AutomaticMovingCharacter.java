@@ -42,18 +42,6 @@ public class AutomaticMovingCharacter extends MovingCharacter implements Automat
   }
 
   /**
-   * Implements Mover interface move method that changes object's position
-   */
-  @Override
-  public void move() {
-    setXCoordinate(getXCoordinate() + getXVelocity());
-    setYCoordinate(getYCoordinate() + getYVelocity());
-    if(getYCoordinate() >= getScreenSize()){
-      kill();
-    }
-  }
-
-  /**
    * Implements method in Alive interface that changes object's lives
    *
    * @param changeInLives is the change in lives

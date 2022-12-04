@@ -141,5 +141,34 @@ public class MarioTest {
     assertEquals(5, character.getYCoordinate());
   }
 
+  @Test
+  void handleInvalidCoordinatesTestOffLeft(){
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
+
+    mario.changeVelocities(-1, 0);
+    mario.move();
+
+    assertEquals(0, mario.getXCoordinate());
+  }
+  @Test
+  void handleInvalidCoordinatesTestOffRight(){
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
+
+    mario.changeVelocities(10000000, 0);
+    mario.move();
+
+    assertEquals(99999.0, mario.getXCoordinate());
+  }
+
+  @Test
+  void handleInvalidCoordinatesTestOffBottom(){
+    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
+
+    mario.changeLives(1);
+    mario.changeVelocities(0, 10000000);
+    mario.move();
+
+    assertEquals(0, mario.getLives());
+  }
 
 }

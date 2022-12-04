@@ -2,6 +2,7 @@ package ooga.model.entities.livingentities.movingentities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import ooga.model.actions.moveractions.basicmovement.LeftMovement;
 import ooga.model.actions.moveractions.basicmovement.RightMovement;
 import ooga.model.actions.moveractions.basicmovement.UpwardMovement;
@@ -11,6 +12,7 @@ import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.deadmovingentities.MovementQueue;
 import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
 import ooga.model.entities.livingentities.movingentities.MovingCharacter;
+import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -210,6 +212,41 @@ public class AutomaticMovingCharacterTest {
     character.performActions(container);
 
     assertEquals(5, character.getYCoordinate());
+  }
+
+  @Test
+  void handleInvalidCoordinatesTestOffBottomPositive1(){
+    AutomaticMovingCharacter automaticMovingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
+
+    automaticMovingCharacter.changeLives(1);
+    automaticMovingCharacter.changeVelocities(0, 10000000);
+    automaticMovingCharacter.move();
+
+    assertEquals(0, automaticMovingCharacter.getLives());
+  }
+
+  @Test
+  void handleInvalidCoordinatesTestOffBottomPositive2(){
+    AutomaticMovingCharacter automaticMovingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
+
+    automaticMovingCharacter.changeLives(3);
+    automaticMovingCharacter.changeVelocities(0, 100000);
+    automaticMovingCharacter.move();
+
+    assertEquals(2, automaticMovingCharacter.getLives());
+  }
+
+  @Test
+  void handleInvalidCoordinatesTestOffBottomNegative(){
+    AutomaticMovingCharacter automaticMovingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
+
+    int screenSize = Integer.parseInt(
+        ResourceBundle.getBundle("properties/view").getString("screen_size"));
+    automaticMovingCharacter.changeLives(3);
+    automaticMovingCharacter.changeVelocities(0, screenSize-1);
+    automaticMovingCharacter.move();
+
+    assertEquals(3, automaticMovingCharacter.getLives());
   }
 
 

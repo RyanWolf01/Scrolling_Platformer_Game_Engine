@@ -47,7 +47,6 @@ public interface Alive {
     try{
       Integer.parseInt(defaultAttributesProperties.getString("lives"));
     } catch(NumberFormatException exception){
-      // TODO: do i need to throw something here?
       LOG.error("lives formatted incorrectly in properties file");
     }
 
