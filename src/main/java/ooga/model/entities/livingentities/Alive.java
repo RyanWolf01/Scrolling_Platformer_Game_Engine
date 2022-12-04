@@ -2,7 +2,6 @@ package ooga.model.entities.livingentities;
 
 import java.util.ResourceBundle;
 import ooga.model.entities.info.ImmutableInfo;
-import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
