@@ -16,6 +16,7 @@ public class BackendContainerTest {
   public void setup(){
     decoder = new JSONInformationDecoder("data/games/sprint_1_test/level.json",
                                       "data/games/sprint_1_test/collisions.json",
+                                "data/games/sprint_1_test/hierarchy.json",
                                        "data/games/sprint_1_test/controls.json");
     container = new BackendContainer(decoder);
   }

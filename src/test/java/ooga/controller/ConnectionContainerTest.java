@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ConnectionContainerTest {
     public ConnectionContainer container;
-    public JSONInformationDecoder decoder = new JSONInformationDecoder("data/games/sprint_1_test/level.json", "data/games/sprint_1_test/collisions.json", "data/games/sprint_1_test/controls.json");
+    public JSONInformationDecoder decoder = new JSONInformationDecoder("data/games/sprint_1_test/level.json", "data/games/sprint_1_test/collisions.json", "data/games/sprint_1_test/hierarchy.json", "data/games/sprint_1_test/controls.json");
 
     @Test
     public void constructorTest(){

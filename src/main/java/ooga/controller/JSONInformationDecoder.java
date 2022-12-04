@@ -9,6 +9,7 @@ import java.util.Map;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
+import ooga.model.collisions.collisionhandling.CollisionChartHierarchy;
 import ooga.model.collisions.collisionhandling.Criteria;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
 import ooga.model.entities.info.EntityInfo;
@@ -22,15 +23,17 @@ public class JSONInformationDecoder {
   private String levelJSON;
   private String collisionsJSON;
   private String controlsJSON;
+  private String collisionHierarchyJSON;
   private static final String ENTITY_JSON_KEY = "Entity";
   private List<JSONObject> entityJSONList;
   private Map<String, Object> generalInfoMap;
   public static final List<String> REQUIRED_ENTITY_PARAMETERS = List.of("type", "x", "y", "width", "height");
 
-  public JSONInformationDecoder(String levelJSON, String collisionsJSON, String controlsJSON){
+  public JSONInformationDecoder(String levelJSON, String collisionsJSON, String collisionHierarchyJSON, String controlsJSON){
     this.levelJSON = levelJSON;
     this.controlsJSON = controlsJSON;
     this.collisionsJSON = collisionsJSON;
+    this.collisionHierarchyJSON = collisionHierarchyJSON;
     this.generalInfoMap = new HashMap<>();
     this.entityJSONList = new ArrayList<>();
   }
@@ -206,6 +209,10 @@ public class JSONInformationDecoder {
       collisionChart = makeCollisionDataFromJSONObject(parent, collisionChart);
     }
     return collisionChart;
+  }
+
+  public CollisionChartHierarchy getCollisionChartHierarchy() {
+
   }
 
 

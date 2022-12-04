@@ -18,7 +18,7 @@ public class CollidableEntityTest {
   @Test
   void test_onCollision() {
     JSONInformationDecoder decoder = new JSONInformationDecoder("sprint_1_test/level.json", "sprint_1_test/collisions.json",
-        "sprint_1_test/controls.json");
+        "data/games/sprint_1_test/hierarchy.json", "sprint_1_test/controls.json");
     CollisionChartGetter ccg = new DefaultCollisionChartGetter();
     CollisionChart marioChart = ccg.getCollisionChart(decoder, "mario");
 
@@ -42,7 +42,7 @@ public class CollidableEntityTest {
   @Test
   void test_onCollision2() {
     JSONInformationDecoder decoder = new JSONInformationDecoder("sprint_1_test/level.json", "sprint_1_test/collisions.json",
-        "sprint_1_test/controls.json");
+        "data/games/sprint_1_test/hierarchy.json", "sprint_1_test/controls.json");
     CollisionChartGetter ccg = new DefaultCollisionChartGetter();
     CollisionChart marioChart = ccg.getCollisionChart(decoder, "mario");
 

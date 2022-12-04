@@ -24,7 +24,7 @@ public class View {
 
   public View(Stage mainStage, String GameTitle, File levelDirectory){
 
-    myController = new GameController(levelDirectory + "/level.json", levelDirectory + "/collisions.json", levelDirectory + "/controls.json");
+    myController = new GameController(levelDirectory + "/level.json", levelDirectory + "/collisions.json", levelDirectory + "/hierarchy.json", levelDirectory + "/controls.json");
     level = new LevelScreen(myController);
     mainStage.setScene(level.initiateLevel(new File(levelDirectory + "/level.json")));
     mainStage.setTitle(GameTitle);

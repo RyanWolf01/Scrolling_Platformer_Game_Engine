@@ -1,0 +1,9 @@
+{
+  "entity": {
+    "livingEntity": {},
+    "movingEntity": {
+      "goomba": {},
+      "mario": {}
+    }
+  }
+}

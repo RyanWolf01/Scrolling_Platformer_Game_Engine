@@ -1,6 +1,14 @@
 {
-  "movingEntity": {
+  "entity": {
     "parent": "",
+    "collision_chart": {
+      "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
+      "ACTIONS": []
+    }
+  },
+
+  "movingEntity": {
+    "parent": "entity",
     "collision_chart": [
       {
         "OPPONENT_TYPE": "static_platform",
@@ -23,10 +31,6 @@
             "params": []
           }
         ]
-      },
-      {
-        "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
-        "ACTIONS": []
       }
     ]
   },
