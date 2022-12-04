@@ -96,4 +96,7 @@ public class Model {
     }
   }
 
+  public void resetMainCharacterHorizontalVelocity() {
+    entities.mainCharacter().resetVelocities(true, false);
+  }
 }

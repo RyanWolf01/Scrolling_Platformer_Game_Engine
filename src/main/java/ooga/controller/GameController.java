@@ -44,8 +44,16 @@ public class GameController {
      * @return NodeContainer that the View can
      */
     public NodeContainer step(){
-        checkForCollisions();
+        // must reset left and right velocities here
+        model.resetMainCharacterHorizontalVelocity();
+//        try {
+//            Thread.sleep(1000);
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+        // check for a and d key inputs and handle those
         model.step();
+        checkForCollisions();
         container.update();
         return container.viewables();
     }
