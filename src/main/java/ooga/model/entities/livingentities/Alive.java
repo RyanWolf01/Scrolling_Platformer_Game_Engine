@@ -45,7 +45,7 @@ public interface Alive {
 
     // try to get default value from properties
     try{
-      Integer.parseInt(defaultAttributesProperties.getString("lives"));
+      lives = Integer.parseInt(defaultAttributesProperties.getString("lives"));
     } catch(NumberFormatException exception){
       LOG.error("lives formatted incorrectly in properties file");
     }
