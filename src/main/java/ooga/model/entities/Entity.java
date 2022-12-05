@@ -1,7 +1,9 @@
 package ooga.model.entities;
 
-import ooga.model.entities.data.ImmutableInfo;
-import ooga.model.entities.data.Info;
+import ooga.model.collisions.physics.CollisionPhysicsInfo;
+import ooga.model.collisions.physics.CurrentCollisionContainer;
+import ooga.model.entities.info.ImmutableInfo;
+import ooga.model.entities.info.Info;
 
 /**
  * Everything that can be represented in the game is an Entity of some type.
@@ -65,5 +67,44 @@ public abstract class Entity implements ImmutableEntity{
     public ImmutableInfo getImmutableEntityInfo() {
         return entityInfo;
     };
+
+    /**
+     * By default, this entity's X velocity is zero
+     * @return 0
+     */
+    public double getXVelocity() {
+        return 0;
+    }
+
+    /**
+     * By default, this entity's Y velocity is zero
+     * @return 0
+     */
+    public double getYVelocity() {
+        return 0;
+    }
+
+    // TODO: Put methods below in Collidable only and only allow Collidable things
+    // as first parameter in PhysicsCalculator
+
+//    public CollisionDirection getPreviousCollisionDirection(Entity otherEntity) {
+//        return null;
+//    }
+//
+//    public boolean wasPreviouslyColliding(Entity otherEntity) {
+//        return false;
+//    }
+
+    public boolean hasCurrentCollisionWith(ImmutableEntity otherEntity) {
+        return false;
+    }
+
+    public CollisionPhysicsInfo physicsInfoOfCurrentCollisionWith(ImmutableEntity otherEntity) {
+        return null;
+    }
+
+    public CurrentCollisionContainer getMyCurrentCollisions() {
+        return new CurrentCollisionContainer();
+    }
 
 }

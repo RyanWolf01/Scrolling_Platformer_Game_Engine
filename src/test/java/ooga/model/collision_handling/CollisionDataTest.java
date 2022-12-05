@@ -6,11 +6,11 @@ import static ooga.model.collisions.collisionhandling.CollisionData.OPPONENT_PRE
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import ooga.model.entities.data.Info;
+import ooga.model.entities.info.Info;
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.collisions.collisionhandling.CollisionData;
 import ooga.model.collisions.physics.CollisionDirection;
-import ooga.model.entities.data.EntityInfo;
+import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 
 public class CollisionDataTest {
@@ -19,7 +19,7 @@ public class CollisionDataTest {
   public void testCollisionData() {
     EntityInfo entityAInfo = new EntityInfo("GOOMBA");
     EntityInfo entityBInfo = new EntityInfo("MARIO");
-    CollisionPhysicsInfo cpi = new CollisionPhysicsInfo(true, CollisionDirection.LEFT);
+    CollisionPhysicsInfo cpi = new CollisionPhysicsInfo(true, 1, CollisionDirection.LEFT);
 
     String[] kvPairsA = new String[]{"powerUp", "NONE", "test", "FOO"};
     String[] kvPairsB = new String[]{"powerUp", "STAR", "BTest", "BAR"};

@@ -3,9 +3,7 @@ package ooga.model.entities.containers;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import ooga.model.entities.AutomaticMovingEntity;
-import ooga.model.entities.movement.AutomaticMover;
-import ooga.model.entities.movement.Mover;
+import ooga.model.entities.deadmovingentities.AutomaticMover;
 
 public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
 
@@ -34,29 +32,20 @@ public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
   }
 
   /**
-   * Get ImmutableEntity at index
-   * @param index index in container
-   * @return ImmutableEntity
-   */
-  private AutomaticMover getMover(int index){
-    return movers.get(index);
-  }
-
-  /**
-   *
-   * @return size of container
-   */
-  private int getContainerSize(){
-    return movers.size();
-  }
-
-  /**
-   * call move method on all Movers
+   * call move method on all Automatic Movers
    */
   public void moveAll(){
-    for (int index = 0; index < getContainerSize(); index++) {
-      AutomaticMover currMover = getMover(index);
-      currMover.automaticMove();
+    for(AutomaticMover mover: this.movers){
+      mover.automaticMove();
+    }
+  }
+
+  /**
+   * call reset velocities method on all Automatic Movers
+   */
+  public void resetVelocities(boolean resetXVelocity, boolean resetYVelocity){
+    for(AutomaticMover mover: this.movers){
+      mover.resetVelocities(resetXVelocity, resetYVelocity);
     }
   }
 

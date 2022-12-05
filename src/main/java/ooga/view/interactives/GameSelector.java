@@ -8,7 +8,7 @@ import ooga.view.screens.StartScreen;
 public class GameSelector extends ComboBox<String> {
 
 
-  private static final String[] GAME_LIST = {"Super Mario Bros", "Doodle Jump", "Geometry Dash", "Duvall Life Simulator"};
+  private static final String[] GAME_LIST = {"Super Mario Bros", "Doodle Jump", "Geometry Dash"};
 
   private static final String CHOOSE_GAME_PROMPT = "Select a Game";
   private String selectedGame;

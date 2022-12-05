@@ -2,20 +2,28 @@ package ooga.model.collision_handling;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import ooga.controller.JSONInformationDecoder;
+import ooga.model.collisions.collisionhandling.CollisionChart;
+import ooga.model.collisions.collisionhandling.CollisionChartGetter;
+import ooga.model.collisions.collisionhandling.DefaultCollisionChartGetter;
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.collisions.physics.PhysicsCalculator;
-import ooga.model.entities.characters.BasicStaticCharacter;
-import ooga.model.entities.characters.maincharacters.Mario;
-import ooga.model.entities.data.EntityInfo;
+import ooga.model.entities.livingentities.BasicStaticCharacter;
+import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
+import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 
 public class CollidableEntityTest {
 
   @Test
   void test_onCollision() {
-    Mario mario = new Mario(0, 0, 50, 20, new EntityInfo("MARIO"));
-    BasicStaticCharacter goomba = new BasicStaticCharacter(30, 0, 50, 20, new EntityInfo("GOOMBA"));
-    mario.setXCoordinate(11);
+    JSONInformationDecoder decoder = new JSONInformationDecoder("sprint_1_test/level.json", "sprint_1_test/collisions.json",
+        "sprint_1_test/controls.json");
+    CollisionChartGetter ccg = new DefaultCollisionChartGetter();
+    CollisionChart marioChart = ccg.getCollisionChart(decoder, "mario");
+
+    Mario mario = new Mario(marioChart,11, 0, 50, 20, new EntityInfo("MARIO"));
+    BasicStaticCharacter goomba = new BasicStaticCharacter(null, 30, 0, 50, 20, new EntityInfo("GOOMBA"));
 
     PhysicsCalculator phyCalc = new PhysicsCalculator();
     CollisionPhysicsInfo cpi = phyCalc.calculatePhysics(mario, goomba);
@@ -33,8 +41,13 @@ public class CollidableEntityTest {
 
   @Test
   void test_onCollision2() {
-    Mario mario = new Mario(0, 45, 50, 20, new EntityInfo("MARIO"));
-    BasicStaticCharacter goomba = new BasicStaticCharacter(0, 0, 51, 22, new EntityInfo("GOOMBA"));
+    JSONInformationDecoder decoder = new JSONInformationDecoder("sprint_1_test/level.json", "sprint_1_test/collisions.json",
+        "sprint_1_test/controls.json");
+    CollisionChartGetter ccg = new DefaultCollisionChartGetter();
+    CollisionChart marioChart = ccg.getCollisionChart(decoder, "mario");
+
+    Mario mario = new Mario(marioChart, 0, 45, 50, 20, new EntityInfo("MARIO"));
+    BasicStaticCharacter goomba = new BasicStaticCharacter(null, 0, 0, 51, 22, new EntityInfo("GOOMBA"));
 
     PhysicsCalculator phyCalc = new PhysicsCalculator();
     CollisionPhysicsInfo cpi = phyCalc.calculatePhysics(mario, goomba);

@@ -1,28 +1,40 @@
 package ooga.model;
 
+import ooga.Main;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
+import ooga.model.collisions.physics.CollisionPhysicsInfo;
 import ooga.model.collisions.physics.PhysicsCalculator;
-import ooga.model.entities.CollidableEntity;
+import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.Entity;
 import ooga.model.entities.containers.BackendContainer;
-import ooga.model.entities.containers.EntityContainer;
-import ooga.model.entities.movement.AutomaticMover;
+
+import java.util.ResourceBundle;
 
 /**
  * Backend logic is performed in here,
  * methods are called by the controller
  */
 public class Model {
+  public static final ResourceBundle entityClassResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Entities");
+  public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Containers");
   BackendContainer entities;
 
   public Model(BackendContainer entities){
     this.entities = entities;
   }
 
-  public void step(){
+  public void moveMovers(){
     entities.automaticMovers().moveAll(); // move all automatic movers
     entities.mainCharacter().move();
+  }
+
+  /**
+   * reset horizontal velocity of all Movers. This needs to be done after every horizontal movement
+   */
+  public void resetHorizontalVelocities(){
+    entities.automaticMovers().resetVelocities(true, false);
+    entities.mainCharacter().resetVelocities(true, false);
   }
 
   public void handleMoveKey(MoverAction action){
@@ -45,6 +57,23 @@ public class Model {
       }
       if(collidable.equals(collided)){
         collidable.onCollision(collider, new PhysicsCalculator().calculatePhysics(collided, collider));
+      }
+    }
+  }
+
+  /**
+   * Assumes that this Collision is one in a consecutive chain of previous collisions
+   * @param collider
+   * @param collided
+   * @param prevCollisionPhysicsInfo
+   */
+  public void handleCollision(Entity collider, Entity collided, CollisionPhysicsInfo prevCollisionPhysicsInfo){
+    for(CollidableEntity collidable : entities.collidables()){
+      if(collidable.equals(collider)){
+        collidable.onCollision(collided, new PhysicsCalculator().calculatePhysics(collider, collided, prevCollisionPhysicsInfo));
+      }
+      if(collidable.equals(collided)){
+        collidable.onCollision(collider, new PhysicsCalculator().calculatePhysics(collided, collider, prevCollisionPhysicsInfo));
       }
     }
   }

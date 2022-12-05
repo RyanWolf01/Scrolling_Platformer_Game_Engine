@@ -2,12 +2,9 @@ package ooga.view;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.Node;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import ooga.controller.GameController;
-import ooga.model.entities.characters.maincharacters.Mario;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.screens.LevelScreen;
 import org.apache.logging.log4j.LogManager;

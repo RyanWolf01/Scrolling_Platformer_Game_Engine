@@ -24,7 +24,7 @@ public class StartScreen {
   private static final String ICON_DIRECTORY = "icongames/";
   private static final String GAMES_DIRECTORY = "games/";
   private static final String LEVEL_DIRECTORY = "levels/";
-  private static final String[] GAME_LIST = {"Super Mario Bros", "Doodle Jump", "Geometry Dash", "Duvall Life Simulator"};
+  private static final String[] GAME_LIST = {"Super Mario Bros", "Doodle Jump", "Geometry Dash"};
   private File levelDirectory;
   private DirectoryChooser directoryChooser;
   private GridPane gameChooser;

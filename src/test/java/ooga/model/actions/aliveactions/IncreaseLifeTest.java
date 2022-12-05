@@ -2,14 +2,14 @@ package ooga.model.actions.aliveactions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import ooga.model.entities.characters.maincharacters.Mario;
+import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.junit.jupiter.api.Test;
 
 public class IncreaseLifeTest {
 
   @Test
   void testIncreaseLifePos1() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     IncreaseLife increaseLife = new IncreaseLife();
     increaseLife.execute(mario);
@@ -22,7 +22,7 @@ public class IncreaseLifeTest {
    */
   @Test
   void testIncreaseLifePos2() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     IncreaseLife increaseLife = new IncreaseLife();
     increaseLife.execute(mario);
@@ -36,7 +36,7 @@ public class IncreaseLifeTest {
    */
   @Test
   void testIncreaseLifeNeg() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null, 0, 0, 2, 2, null);
 
     IncreaseLife increaseLife = new IncreaseLife();
 

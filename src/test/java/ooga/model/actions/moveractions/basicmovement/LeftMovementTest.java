@@ -2,14 +2,14 @@ package ooga.model.actions.moveractions.basicmovement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import ooga.model.entities.characters.maincharacters.Mario;
+import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.junit.jupiter.api.Test;
 
 public class LeftMovementTest {
 
   @Test
   void testMovementPos1() {
-    Mario mario = new Mario(10, 0, 2, 2, null);
+    Mario mario = new Mario(null, 10, 0, 2, 2, null);
 
     LeftMovement move = new LeftMovement();
     move.execute(mario);
@@ -23,7 +23,7 @@ public class LeftMovementTest {
    */
   @Test
   void testMovementPos2() {
-    Mario mario = new Mario(10, 0, 2, 2, null);
+    Mario mario = new Mario(null, 10, 0, 2, 2, null);
 
     LeftMovement move = new LeftMovement();
     move.execute(mario);
@@ -38,7 +38,7 @@ public class LeftMovementTest {
    */
   @Test
   void testMovementNeg() {
-    Mario mario = new Mario(0, 0, 2, 2, null);
+    Mario mario = new Mario(null,0, 0, 2, 2, null);
 
     LeftMovement move = new LeftMovement();
 
