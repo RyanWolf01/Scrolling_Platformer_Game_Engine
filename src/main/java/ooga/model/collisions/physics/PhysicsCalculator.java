@@ -1,13 +1,8 @@
 package ooga.model.collisions.physics;
 
-import static ooga.model.collisions.physics.CollisionPhysicsInfo.COLLISION_DIRECTION_KEY;
-
 import java.util.ArrayList;
 import java.util.List;
 import ooga.model.entities.Entity;
-import ooga.model.entities.ImmutableEntity;
-import ooga.model.entities.deadmovingentities.Mover;
-import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,115 +11,41 @@ public class PhysicsCalculator {
 
   private static final Logger LOG = LogManager.getLogger(Mario.class);
 
-  // TODO: Potential bug -- what if you have two entities that shouldn't collide and you feed them
-  // into here. If they do collide within trajectory of the entities but outside of the potential
-  // distance they could've travelled to hit each other. You need to only allow things that are
-  // within the velocity travelled...
-  // Technically still works since you only call this function if you know a and b have collided
-  // just make sure time is less than 1.0
-
-  // TODO: Another potential bug: If mario is wedged between two things that it collides with at the
-  // same time, Mario will retain its original velocities after colliding with thing1 and this could
-  // mess up collisions with thing2
-
-  // The approach of moving Mario back to its original position right before impact doesn't really
-  // work because if you don't want to do anything if two objects collide (pretend that they can
-  // just move through each other and keep going), that won't work. They'll get stuck on each other,
-  // and it will appear like Entity a is inside of Entity b, because a keeps moving down over and
-  // over again inside of Entity b because its original velocity doesn't change.
-  // This movement should only really be done after you've determined that things should stop when
-  // hitting each other.
-
-  // CollisionPhysics info can contain the number of times these things have sequentially hit each
-  // other. For the first hit, we can move the things right outside of their spaces. Then, if they
-  // hit again, we can use the previous CollisionDirection and allow the things to intersect inside
-  // each other.
-
-  // Also important to have CollisionPhysics contain the number of times things have sequentially
-  // hit because what if you hit something that you want to move through, but do something every
-  // time that thing is hit, like gain a point, you don't necessarily want to gain a point every
-  // 1/60th of a second or every time a collision occurs while the thing is going through another
-  // object. Only once during the sequence of that collision. But you might also want to continually
-  // do something to an object that's being collided with but at a specific rate (e.g. if you're
-  // colliding with water, you might want to decrement your oxygen level by 1 per 3 seconds). This
-  // would require knowing how many times you've collided with the water using
-  // collisioncheckrate and number of collisions.
-  // What you can do is reset the position so things aren't techincally "colliding" after the first
-  // collision, and if the things are colliding in the next round of checks, then don't do that/allow
-  // the things to pass through. Will eliminate movement during 1 frame, which may be visible/look
-  // funny and also mess up perfect trajectories of things...
-
-  // Another bug -- what if you spawn A inside of B, then you'll throw an error because you can't
-  // calculate where the collision comes from... Temporary (?) solution, add a PhysicsDirection.NONE
-  // and in the collisionChart, add a criteria for colliding with platforms with direction of NONE.
-  // Here, make it so that nothing is done when this happens. Because i guess in this situtation, if
-  // something is teleporting into you, you. Want to use hierarchical collision charts so that you
-  // can put the reaction to spawning inside other things under characteristics of Entity, rather
-  // than having to redefine it for goomba, etc.
-
-  // still deal with the issue of stacked platforms, hitting upper_platform before lower_platform
-  // but handling both in the same sequence, so that you move thing inside the upper platform
-  // afterwards since you move it outside of lower platform, which is within upper one.... i think
   /**
    * This will enact the rules on the first entity, Entity a
    *
-   * @param a the first entity, to be acted on
-   * @param b the second entity, that is collided with
+   * @param collider the first entity, to be acted on
+   * @param collided the second entity, that is collided with
    */
-  public CollisionPhysicsInfo calculatePhysics(Entity a, Entity b) {
-//    if (a.wasPreviouslyColliding(b)) {
-//      return new CollisionPhysicsInfo(true, 1, a.getPreviousCollisionDirection(b));
-//    }
-    CollisionPhysicsInfo info = new CollisionPhysicsInfo(true, 1, checkDirectionVelocityMethod(a, b));
-    a.getMyCurrentCollisions().set(b, info);
+  public CollisionPhysicsInfo calculatePhysicsInfoAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
+    CollisionPhysicsInfo info = new CollisionPhysicsInfo(true, 1, checkDirectionAndMoveColliderOutsideOfCollided(collider, collided));
+    collider.getMyCurrentCollisions().set(collided, info);
     return info;
-//    return new CollisionPhysicsInfo(true, CollisionDirection.BOTTOM);
   }
 
   /**
-   * Assumes that a and b have already been colliding. TODO: Should check to make sure this is actually true
-   * @param a
-   * @param b
-   * @param prevCollisionPhysicsInfo
-   * @return
+   * Updates the CollisionPhysicsInfo parameter by incrementing the number of consecutive collisions
+   * that have occurred in it.
+   * @param currCollisionPhysicsInfo the PhysicsInfo object to be updated
+   * @return currCollisionPhysicsInfo the updated PhysicsInfoObject
    */
-  public CollisionPhysicsInfo calculatePhysics(Entity a, Entity b, CollisionPhysicsInfo prevCollisionPhysicsInfo) {
-    prevCollisionPhysicsInfo.incrementNumConsecutiveCollisions();
-    return prevCollisionPhysicsInfo;
+  public CollisionPhysicsInfo updatePhysicsInfoOfCurrentCollision(CollisionPhysicsInfo currCollisionPhysicsInfo) {
+    currCollisionPhysicsInfo.incrementNumConsecutiveCollisions();
+    return currCollisionPhysicsInfo;
   }
 
-  public CollisionDirection checkDirection(Entity a, Entity b) {
-    CollisionDirection ret = checkDirectionVelocityMethod(a, b);
-    return ret;
-//    if (ret == null) {
-//      ret = checkDirectionPositionMethod(a, b);
-//    }
-//
-//    if (ret == null) {
-//      throw new RuntimeException("These objects did not collide");
-//    }
-//    else {
-//      return ret;
-//    }
-
-  }
-
-  private CollisionDirection checkDirectionPositionMethod(Entity a, Entity b) {
-    return null;
-  }
-
-  private CollisionDirection checkDirectionVelocityMethod(Entity a, Entity b) {
+  private CollisionDirection checkDirectionAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
     List<Edge> edgesA = new ArrayList<>();
-    edgesA.add(getTopEdge(a));
-    edgesA.add(getBottomEdge(a));
-    edgesA.add(getLeftEdge(a));
-    edgesA.add(getRightEdge(a));
+    edgesA.add(getTopEdge(collider));
+    edgesA.add(getBottomEdge(collider));
+    edgesA.add(getLeftEdge(collider));
+    edgesA.add(getRightEdge(collider));
 
     List<Edge> edgesB = new ArrayList<>();
-    edgesB.add(getTopEdge(b));
-    edgesB.add(getBottomEdge(b));
-    edgesB.add(getLeftEdge(b));
-    edgesB.add(getRightEdge(b));
+    edgesB.add(getTopEdge(collided));
+    edgesB.add(getBottomEdge(collided));
+    edgesB.add(getLeftEdge(collided));
+    edgesB.add(getRightEdge(collided));
 
     double minTime = Double.MAX_VALUE;
     CollisionDirection minTimeDirection = CollisionDirection.NONE;
@@ -145,28 +66,32 @@ public class PhysicsCalculator {
 //    if (minTimeDirection == CollisionDirection.NONE) {
 //      throw new RuntimeException("These objects did not collide");
 //    }
-    if (minTimeDirection != CollisionDirection.NONE) {
-      double moveBackX = a.getXVelocity() - (a.getXVelocity() * minTime);
-      double moveBackY = a.getYVelocity() - (a.getYVelocity() * minTime);
-      if (minTimeDirection == CollisionDirection.BOTTOM) {
-        a.setYCoordinate(a.getYCoordinate() - moveBackY - 0.25);
-      }
-      else if (minTimeDirection == CollisionDirection.TOP) {
-        a.setYCoordinate(a.getYCoordinate() - moveBackY + 0.25);
-      }
-      else if (minTimeDirection == CollisionDirection.LEFT) {
-        a.setXCoordinate(a.getXCoordinate() - moveBackX + 0.25);
-      }
-      else if (minTimeDirection == CollisionDirection.RIGHT) {
-        a.setXCoordinate(a.getXCoordinate() - moveBackX - 0.25);
-      }
-    }
-
+    moveColliderOutsideOfCollided(collider, minTime, minTimeDirection);
     return minTimeDirection;
 
   }
 
-    private Edge getTopEdge(Entity entity) {
+  private void moveColliderOutsideOfCollided(Entity collider, double minTime,
+      CollisionDirection minTimeDirection) {
+    if (minTimeDirection != CollisionDirection.NONE) {
+      double moveBackX = collider.getXVelocity() - (collider.getXVelocity() * minTime);
+      double moveBackY = collider.getYVelocity() - (collider.getYVelocity() * minTime);
+      if (minTimeDirection == CollisionDirection.BOTTOM) {
+        collider.setYCoordinate(collider.getYCoordinate() - moveBackY - 0.25);
+      }
+      else if (minTimeDirection == CollisionDirection.TOP) {
+        collider.setYCoordinate(collider.getYCoordinate() - moveBackY + 0.25);
+      }
+      else if (minTimeDirection == CollisionDirection.LEFT) {
+        collider.setXCoordinate(collider.getXCoordinate() - moveBackX + 0.25);
+      }
+      else if (minTimeDirection == CollisionDirection.RIGHT) {
+        collider.setXCoordinate(collider.getXCoordinate() - moveBackX - 0.25);
+      }
+    }
+  }
+
+  private Edge getTopEdge(Entity entity) {
     double xvel = entity.getXVelocity();
     double yvel = entity.getYVelocity();
 
@@ -206,7 +131,6 @@ public class PhysicsCalculator {
         xvel, yvel);
   }
 
-
   private class Coordinate {
     double x, y;
     public Coordinate(double x, double y) {
@@ -214,6 +138,7 @@ public class PhysicsCalculator {
       this.y = y;
     }
   }
+
   private class Edge {
     CollisionDirection direction;
     Coordinate vertex1;
