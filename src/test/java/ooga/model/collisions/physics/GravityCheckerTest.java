@@ -11,7 +11,7 @@ import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class GravityCalculatorTest {
+public class GravityCheckerTest {
 
   private Mario mario;
 
@@ -23,25 +23,30 @@ public class GravityCalculatorTest {
 
   @Test
   void testEnforceGravityPos1(){
-    GravityCalculator gravityCalculator = new GravityCalculator();
-    assertTrue(gravityCalculator.checkInAir(mario));
+    GravityChecker gravityChecker = new GravityChecker();
+    assertTrue(gravityChecker.checkInAir(mario));
   }
 
   @Test
   void testEnforceGravityPos2(){
-    GravityCalculator gravityCalculator = new GravityCalculator();
-    assertTrue(gravityCalculator.checkInAir(mario));
+    GravityChecker gravityChecker = new GravityChecker();
+
+    Entity platform = new StaticEntity(0,0,100,100, new EntityInfo("platform"));
+    CollisionPhysicsInfo physicsInfo = new CollisionPhysicsInfo(true, 0, CollisionDirection.TOP);
+    mario.getMyCurrentCollisions().set(platform, physicsInfo);
+
+    assertTrue(gravityChecker.checkInAir(mario));
   }
 
   @Test
   void testEnforceGravityNegative(){
-    GravityCalculator gravityCalculator = new GravityCalculator();
+    GravityChecker gravityChecker = new GravityChecker();
 
     Entity platform = new StaticEntity(0,0,100,100, new EntityInfo("platform"));
-
-    CollisionPhysicsInfo physicsInfo = new CollisionPhysicsInfo(true, 0, CollisionDirection.LEFT);
+    CollisionPhysicsInfo physicsInfo = new CollisionPhysicsInfo(true, 0, CollisionDirection.BOTTOM);
     mario.getMyCurrentCollisions().set(platform, physicsInfo);
-    assertFalse(gravityCalculator.checkInAir(mario));
+
+    assertFalse(gravityChecker.checkInAir(mario));
   }
 
 }

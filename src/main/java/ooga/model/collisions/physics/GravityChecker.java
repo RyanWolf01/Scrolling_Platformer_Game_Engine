@@ -3,13 +3,12 @@ package ooga.model.collisions.physics;
 import java.util.ResourceBundle;
 import ooga.model.entities.Entity;
 import ooga.model.entities.ImmutableEntity;
-import org.apache.commons.lang3.ObjectUtils.Null;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class GravityCalculator {
+public class GravityChecker {
 
-  Logger LOG = LogManager.getLogger(GravityCalculator.class);
+  Logger LOG = LogManager.getLogger(GravityChecker.class);
 
   ResourceBundle entityInfoResources = ResourceBundle.getBundle("properties/entityInfo");
 
@@ -19,7 +18,7 @@ public class GravityCalculator {
   /**
    * Gravity Calculator checks if Entity is in the air
    */
-  public GravityCalculator(){
+  public GravityChecker(){
 
     try{
       STATIC_PLATFORM = entityInfoResources.getString("default_static_platform");
@@ -48,7 +47,20 @@ public class GravityCalculator {
 
     ImmutableEntity collided = entity.getMyCurrentCollisions().iterator().next();
     CollisionPhysicsInfo collisionPhysicsInfo = entity.getMyCurrentCollisions().get(collided);
-    if(collided.getImmutableEntityInfo().get(TYPE).equals(STATIC_PLATFORM) &&
+
+    String entityType;
+    try{
+      entityType = collided.getImmutableEntityInfo().get(TYPE);
+    }catch (NullPointerException exception){
+      LOG.error("no type in entity info");
+      throw exception;
+    }
+
+    if(entityInfoResources.containsKey(entityType)){
+      entityType = entityInfoResources.getString(entityType);
+    }
+
+    if(entityType.equals(STATIC_PLATFORM) &&
         collisionPhysicsInfo.getCollisionDirection() == CollisionDirection.BOTTOM)
       return false;
 
