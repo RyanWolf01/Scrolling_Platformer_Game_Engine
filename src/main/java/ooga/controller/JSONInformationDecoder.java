@@ -234,11 +234,6 @@ public class JSONInformationDecoder {
   }
 
 
-  // method to handle JSON Object, and check is the value is another JSON object
-  // adapting from https://www.baeldung.com/jsonobject-iteration
-  // just have to do it for JSON.simple instead og just org.JSON
-
-
   /**
    * Method that takes in String for the controls JSON and the UserControlHandler and populates the handler with the
    * key value pairs of controls and actions
