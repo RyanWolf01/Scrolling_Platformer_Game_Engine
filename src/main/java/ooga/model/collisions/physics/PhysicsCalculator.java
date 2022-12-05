@@ -14,39 +14,38 @@ public class PhysicsCalculator {
   /**
    * This will enact the rules on the first entity, Entity a
    *
-   * @param a the first entity, to be acted on
-   * @param b the second entity, that is collided with
+   * @param collider the first entity, to be acted on
+   * @param collided the second entity, that is collided with
    */
-  public CollisionPhysicsInfo calculatePhysicsInfo(Entity a, Entity b) {
-    CollisionPhysicsInfo info = new CollisionPhysicsInfo(true, 1, checkDirection(a, b));
-    a.getMyCurrentCollisions().set(b, info);
+  public CollisionPhysicsInfo calculatePhysicsInfoAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
+    CollisionPhysicsInfo info = new CollisionPhysicsInfo(true, 1, checkDirectionAndMoveColliderOutsideOfCollided(collider, collided));
+    collider.getMyCurrentCollisions().set(collided, info);
     return info;
   }
 
   /**
-   * Assumes that a and b have already been colliding. TODO: Should check to make sure this is actually true
-   * @param a
-   * @param b
-   * @param prevCollisionPhysicsInfo
-   * @return
+   * Updates the CollisionPhysicsInfo parameter by incrementing the number of consecutive collisions
+   * that have occurred in it.
+   * @param currCollisionPhysicsInfo the PhysicsInfo object to be updated
+   * @return currCollisionPhysicsInfo the updated PhysicsInfoObject
    */
-  public CollisionPhysicsInfo updatePhysicsInfoOfCurrentCollision(CollisionPhysicsInfo prevCollisionPhysicsInfo) {
-    prevCollisionPhysicsInfo.incrementNumConsecutiveCollisions();
-    return prevCollisionPhysicsInfo;
+  public CollisionPhysicsInfo updatePhysicsInfoOfCurrentCollision(CollisionPhysicsInfo currCollisionPhysicsInfo) {
+    currCollisionPhysicsInfo.incrementNumConsecutiveCollisions();
+    return currCollisionPhysicsInfo;
   }
 
-  private CollisionDirection checkDirection(Entity a, Entity b) {
+  private CollisionDirection checkDirectionAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
     List<Edge> edgesA = new ArrayList<>();
-    edgesA.add(getTopEdge(a));
-    edgesA.add(getBottomEdge(a));
-    edgesA.add(getLeftEdge(a));
-    edgesA.add(getRightEdge(a));
+    edgesA.add(getTopEdge(collider));
+    edgesA.add(getBottomEdge(collider));
+    edgesA.add(getLeftEdge(collider));
+    edgesA.add(getRightEdge(collider));
 
     List<Edge> edgesB = new ArrayList<>();
-    edgesB.add(getTopEdge(b));
-    edgesB.add(getBottomEdge(b));
-    edgesB.add(getLeftEdge(b));
-    edgesB.add(getRightEdge(b));
+    edgesB.add(getTopEdge(collided));
+    edgesB.add(getBottomEdge(collided));
+    edgesB.add(getLeftEdge(collided));
+    edgesB.add(getRightEdge(collided));
 
     double minTime = Double.MAX_VALUE;
     CollisionDirection minTimeDirection = CollisionDirection.NONE;
@@ -67,28 +66,36 @@ public class PhysicsCalculator {
 //    if (minTimeDirection == CollisionDirection.NONE) {
 //      throw new RuntimeException("These objects did not collide");
 //    }
-    if (minTimeDirection != CollisionDirection.NONE) {
-      double moveBackX = a.getXVelocity() - (a.getXVelocity() * minTime);
-      double moveBackY = a.getYVelocity() - (a.getYVelocity() * minTime);
-      if (minTimeDirection == CollisionDirection.BOTTOM) {
-        a.setYCoordinate(a.getYCoordinate() - moveBackY - 0.25);
-      }
-      else if (minTimeDirection == CollisionDirection.TOP) {
-        a.setYCoordinate(a.getYCoordinate() - moveBackY + 0.25);
-      }
-      else if (minTimeDirection == CollisionDirection.LEFT) {
-        a.setXCoordinate(a.getXCoordinate() - moveBackX + 0.25);
-      }
-      else if (minTimeDirection == CollisionDirection.RIGHT) {
-        a.setXCoordinate(a.getXCoordinate() - moveBackX - 0.25);
-      }
-    }
-
+    moveAOutsideOfB(collider, minTimeDirection, minTime);
     return minTimeDirection;
 
   }
 
-    private Edge getTopEdge(Entity entity) {
+  private void moveAOutsideOfB(Entity a, CollisionDirection direction, double time) {
+
+    if (direction != CollisionDirection.NONE) {
+      double moveBackX = a.getXVelocity() - (a.getXVelocity() * time);
+      double moveBackY = a.getYVelocity() - (a.getYVelocity() * time);
+      if (direction == CollisionDirection.BOTTOM) {
+        moveBackY -= 0.25;
+        a.setYCoordinate(a.getYCoordinate() - moveBackY);
+      } else if (direction == CollisionDirection.TOP) {
+        moveBackY += 0.25;
+        a.setYCoordinate(a.getYCoordinate() - moveBackY);
+      } else if (direction == CollisionDirection.LEFT) {
+        moveBackX += 0.25;
+        a.setYCoordinate(a.getXCoordinate() - moveBackX);
+      } else if (direction == CollisionDirection.RIGHT) {
+        moveBackX -= 0.25;
+        a.setYCoordinate(a.getXCoordinate() - moveBackX);
+      }
+//      a.setYCoordinate(a.getXCoordinate() - moveBackX);
+//      a.setYCoordinate(a.getYCoordinate() - moveBackY);
+    }
+  }
+
+
+  private Edge getTopEdge(Entity entity) {
     double xvel = entity.getXVelocity();
     double yvel = entity.getYVelocity();
 
@@ -128,7 +135,6 @@ public class PhysicsCalculator {
         xvel, yvel);
   }
 
-
   private class Coordinate {
     double x, y;
     public Coordinate(double x, double y) {
@@ -136,6 +142,7 @@ public class PhysicsCalculator {
       this.y = y;
     }
   }
+
   private class Edge {
     CollisionDirection direction;
     Coordinate vertex1;

@@ -97,7 +97,7 @@ public class Model {
   private void handleCollisionHelper(Entity collider, Entity collided) {
     for(CollidableEntity collidable : entities.collidables()){
       if(collidable.equals(collider)){
-        collidable.onCollision(collided, new PhysicsCalculator().calculatePhysicsInfo(collider, collided));
+        collidable.onCollision(collided, new PhysicsCalculator().calculatePhysicsInfoAndMoveColliderOutsideOfCollided(collider, collided));
       }
     }
   }
