@@ -2,9 +2,12 @@ package ooga.model.entities.livingentities.movingentities.maincharacters;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
+import ooga.model.entities.containers.EntityContainer;
 import ooga.model.entities.info.EntityInfo;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,7 +29,7 @@ public class MarioTest {
 
     mario.changeVelocities(-100,0);
     mario.move();
-    assertEquals(-100, mario.getXCoordinate());
+    assertEquals(0, mario.getXCoordinate());
   }
 
   @Test
@@ -42,27 +45,36 @@ public class MarioTest {
   void testIncrementYVelocityPositive1() {
     Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
+    double gravityVelocity = Double.parseDouble(
+        ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
+
     mario.changeVelocities(0,5);
     mario.move();
-    assertEquals(5, mario.getYCoordinate());
+    assertEquals(5 + gravityVelocity, mario.getYCoordinate());
   }
 
   @Test
   void testIncrementYVelocityPositive2() {
     Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
+    double gravityVelocity = Double.parseDouble(
+        ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
+
     mario.changeVelocities(0,10000);
     mario.move();
-    assertEquals(10000, mario.getYCoordinate());
+    assertEquals(10000 +gravityVelocity , mario.getYCoordinate());
   }
 
   @Test
   void testIncrementYVelocityNegative() {
     Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
+    double gravityVelocity = Double.parseDouble(
+        ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
+
     mario.changeVelocities(0,0);
     mario.move();
-    assertEquals(0, mario.getYCoordinate());
+    assertEquals(gravityVelocity, mario.getYCoordinate());
   }
 
   @Test
@@ -131,6 +143,12 @@ public class MarioTest {
   void testPerformActionsPos2(){
     Mario character = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
+    double gravityVelocity = Double.parseDouble(
+        ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
+
+    double bounceVelocity = Double.parseDouble(
+        ResourceBundle.getBundle("properties/movement").getString("bounce_velocity"));
+
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();
     ActionData data = new ActionData("ooga.model.actions.moveractions.Bounce", "MoverAction", params);
@@ -138,7 +156,7 @@ public class MarioTest {
     ActionDataContainer container = new ActionDataContainer(actionList);
     character.performActions(container);
 
-    assertEquals(5, character.getYCoordinate());
+    assertEquals(bounceVelocity + gravityVelocity, character.getYCoordinate());
   }
 
   @Test

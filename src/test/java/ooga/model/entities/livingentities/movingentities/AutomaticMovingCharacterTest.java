@@ -19,6 +19,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AutomaticMovingCharacterTest {
 
+  private final double gravityVelocity = Double.parseDouble(
+      ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
+
+  private final double bounceVelocity = Double.parseDouble(
+      ResourceBundle.getBundle("properties/movement").getString("bounce_velocity"));
+
+  private final double rightVelocity = Double.parseDouble(
+      ResourceBundle.getBundle("properties/movement").getString("right_velocity"));
+  private final double upwardVelocity = Double.parseDouble(
+      ResourceBundle.getBundle("properties/movement").getString("upward_velocity"));
   @Test
   void testIncrementXVelocityPositive1() {
 
@@ -69,7 +79,7 @@ public class AutomaticMovingCharacterTest {
 
     movingCharacter.changeVelocities(0,5);
     movingCharacter.move();
-    assertEquals(5, movingCharacter.getYCoordinate());
+    assertEquals(5 + gravityVelocity, movingCharacter.getYCoordinate());
   }
 
   @Test
@@ -82,7 +92,7 @@ public class AutomaticMovingCharacterTest {
 
     movingCharacter.changeVelocities(0,-100);
     movingCharacter.move();
-    assertEquals(-100, movingCharacter.getYCoordinate());
+    assertEquals(-100 + gravityVelocity, movingCharacter.getYCoordinate());
   }
 
   @Test
@@ -95,7 +105,7 @@ public class AutomaticMovingCharacterTest {
 
     movingCharacter.changeVelocities(0,0);
     movingCharacter.move();
-    assertEquals(0, movingCharacter.getYCoordinate());
+    assertEquals(gravityVelocity, movingCharacter.getYCoordinate());
   }
 
   @Test
@@ -167,7 +177,7 @@ public class AutomaticMovingCharacterTest {
 
     AutomaticMovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
     movingCharacter.automaticMove();
-    assertEquals(5, movingCharacter.getXCoordinate());
+    assertEquals(rightVelocity, movingCharacter.getXCoordinate());
   }
 
   @Test
@@ -180,8 +190,8 @@ public class AutomaticMovingCharacterTest {
     movingCharacter.automaticMove();
     movingCharacter.automaticMove();
     movingCharacter.automaticMove();
-    assertEquals(10, movingCharacter.getXCoordinate());
-    assertEquals(5, movingCharacter.getYCoordinate());
+    assertEquals(rightVelocity * 4, movingCharacter.getXCoordinate());
+    assertEquals(upwardVelocity * 2 + gravityVelocity * 6, movingCharacter.getYCoordinate());
   }
 
   @Test
@@ -211,7 +221,7 @@ public class AutomaticMovingCharacterTest {
     ActionDataContainer container = new ActionDataContainer(actionList);
     character.performActions(container);
 
-    assertEquals(5, character.getYCoordinate());
+    assertEquals(bounceVelocity + gravityVelocity, character.getYCoordinate());
   }
 
   @Test
