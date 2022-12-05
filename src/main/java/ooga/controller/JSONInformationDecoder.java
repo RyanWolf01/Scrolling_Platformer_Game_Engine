@@ -225,18 +225,13 @@ public class JSONInformationDecoder {
         throw new RuntimeException("not an object");
       }
 
-      //TODO: handle exception here**
+      // TODO: handle exception here**
       parameters = (Collection<String>) action.get("params");
       ActionData actionData = new ActionData((String) action.get("classname"), (String) action.get("action_interface"),
           parameters);
       actionDataContainer.addActionData(actionData);
     }
   }
-
-
-  // method to handle JSON Object, and check is the value is another JSON object
-  // adapting from https://www.baeldung.com/jsonobject-iteration
-  // just have to do it for JSON.simple instead og just org.JSON
 
 
   /**

@@ -1,8 +1,5 @@
 package ooga.model.entities.livingentities.movingentities;
 
-import java.text.ParseException;
-import java.util.Properties;
-import java.util.ResourceBundle;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.deadmovingentities.MovingEntity;
 import ooga.model.entities.info.Info;
@@ -31,7 +28,7 @@ public abstract class MovingCharacter extends MovingEntity implements Alive {
   }
 
   /**
-   * Returns number of lives of the current entity is alive. Extended by other interfaces.
+   * Returns number of lives of the current entity is alive.
    */
   @Override
   public int getLives() {
