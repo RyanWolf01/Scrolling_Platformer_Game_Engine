@@ -19,9 +19,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AutomaticMovingCharacterTest {
 
-  private final double gravityVelocity = Double.parseDouble(
-      ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
-
   private final double bounceVelocity = Double.parseDouble(
       ResourceBundle.getBundle("properties/movement").getString("bounce_velocity"));
 
@@ -79,7 +76,7 @@ public class AutomaticMovingCharacterTest {
 
     movingCharacter.changeVelocities(0,5);
     movingCharacter.move();
-    assertEquals(5 + gravityVelocity, movingCharacter.getYCoordinate());
+    assertEquals(5 , movingCharacter.getYCoordinate());
   }
 
   @Test
@@ -92,7 +89,7 @@ public class AutomaticMovingCharacterTest {
 
     movingCharacter.changeVelocities(0,-100);
     movingCharacter.move();
-    assertEquals(-100 + gravityVelocity, movingCharacter.getYCoordinate());
+    assertEquals(-100 , movingCharacter.getYCoordinate());
   }
 
   @Test
@@ -105,7 +102,7 @@ public class AutomaticMovingCharacterTest {
 
     movingCharacter.changeVelocities(0,0);
     movingCharacter.move();
-    assertEquals(gravityVelocity, movingCharacter.getYCoordinate());
+    assertEquals(0, movingCharacter.getYCoordinate());
   }
 
   @Test
@@ -191,7 +188,7 @@ public class AutomaticMovingCharacterTest {
     movingCharacter.automaticMove();
     movingCharacter.automaticMove();
     assertEquals(rightVelocity * 4, movingCharacter.getXCoordinate());
-    assertEquals(upwardVelocity * 2 + gravityVelocity * 6, movingCharacter.getYCoordinate());
+    assertEquals(upwardVelocity * 2 , movingCharacter.getYCoordinate());
   }
 
   @Test
@@ -221,7 +218,7 @@ public class AutomaticMovingCharacterTest {
     ActionDataContainer container = new ActionDataContainer(actionList);
     character.performActions(container);
 
-    assertEquals(bounceVelocity + gravityVelocity, character.getYCoordinate());
+    assertEquals(bounceVelocity, character.getYCoordinate());
   }
 
   @Test

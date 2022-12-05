@@ -45,36 +45,28 @@ public class MarioTest {
   void testIncrementYVelocityPositive1() {
     Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    double gravityVelocity = Double.parseDouble(
-        ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
-
     mario.changeVelocities(0,5);
     mario.move();
-    assertEquals(5 + gravityVelocity, mario.getYCoordinate());
+    assertEquals(5, mario.getYCoordinate());
   }
 
   @Test
   void testIncrementYVelocityPositive2() {
     Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    double gravityVelocity = Double.parseDouble(
-        ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
 
     mario.changeVelocities(0,10000);
     mario.move();
-    assertEquals(10000 +gravityVelocity , mario.getYCoordinate());
+    assertEquals(10000  , mario.getYCoordinate());
   }
 
   @Test
   void testIncrementYVelocityNegative() {
     Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    double gravityVelocity = Double.parseDouble(
-        ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
-
     mario.changeVelocities(0,0);
     mario.move();
-    assertEquals(gravityVelocity, mario.getYCoordinate());
+    assertEquals(0, mario.getYCoordinate());
   }
 
   @Test
@@ -143,9 +135,6 @@ public class MarioTest {
   void testPerformActionsPos2(){
     Mario character = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    double gravityVelocity = Double.parseDouble(
-        ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
-
     double bounceVelocity = Double.parseDouble(
         ResourceBundle.getBundle("properties/movement").getString("bounce_velocity"));
 
@@ -156,7 +145,7 @@ public class MarioTest {
     ActionDataContainer container = new ActionDataContainer(actionList);
     character.performActions(container);
 
-    assertEquals(bounceVelocity + gravityVelocity, character.getYCoordinate());
+    assertEquals(bounceVelocity, character.getYCoordinate());
   }
 
   @Test

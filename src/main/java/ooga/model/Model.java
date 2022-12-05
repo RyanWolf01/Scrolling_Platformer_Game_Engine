@@ -4,6 +4,7 @@ import ooga.Main;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.physics.CollisionPhysicsInfo;
+import ooga.model.collisions.physics.GravityEnforcer;
 import ooga.model.collisions.physics.PhysicsCalculator;
 import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.Entity;
@@ -16,15 +17,18 @@ import java.util.ResourceBundle;
  * methods are called by the controller
  */
 public class Model {
+  private final GravityEnforcer gravityEnforcer;
   public static final ResourceBundle entityClassResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Entities");
   public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Containers");
   BackendContainer entities;
 
   public Model(BackendContainer entities){
     this.entities = entities;
+    gravityEnforcer = new GravityEnforcer(entities);
   }
 
   public void moveMovers(){
+    gravityEnforcer.applyGravityToAllMovers();
     entities.automaticMovers().moveAll(); // move all automatic movers
     entities.mainCharacter().move();
   }
