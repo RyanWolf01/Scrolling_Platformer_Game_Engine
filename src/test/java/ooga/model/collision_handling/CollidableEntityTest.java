@@ -6,7 +6,7 @@ import ooga.controller.JSONInformationDecoder;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.collisionhandling.CollisionChartGetter;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChartGetter;
-import ooga.model.collisions.physics.CollisionPhysicsInfo;
+import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.physics.PhysicsCalculator;
 import ooga.model.entities.livingentities.BasicStaticCharacter;
 import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
@@ -26,7 +26,7 @@ public class CollidableEntityTest {
     BasicStaticCharacter goomba = new BasicStaticCharacter(null, 30, 0, 50, 20, new EntityInfo("GOOMBA"));
 
     PhysicsCalculator phyCalc = new PhysicsCalculator();
-    CollisionPhysicsInfo cpi = phyCalc.calculatePhysicsInfoAndMoveColliderOutsideOfCollided(mario, goomba);
+    CollisionPhysicsData cpi = phyCalc.calculatePhysicsInfoAndMoveColliderOutsideOfCollided(mario, goomba);
 
     int numLives = mario.getLives();
     mario.changeVelocities(18, 7);
@@ -50,7 +50,7 @@ public class CollidableEntityTest {
     BasicStaticCharacter goomba = new BasicStaticCharacter(null, 0, 0, 51, 22, new EntityInfo("GOOMBA"));
 
     PhysicsCalculator phyCalc = new PhysicsCalculator();
-    CollisionPhysicsInfo cpi = phyCalc.calculatePhysicsInfoAndMoveColliderOutsideOfCollided(mario, goomba);
+    CollisionPhysicsData cpi = phyCalc.calculatePhysicsInfoAndMoveColliderOutsideOfCollided(mario, goomba);
 
     int goombaLives = goomba.getLives();
     double yVel = mario.getYVelocity();

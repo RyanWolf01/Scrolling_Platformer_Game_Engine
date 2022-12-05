@@ -1,6 +1,6 @@
 package ooga.model.entities.collidable;
 
-import ooga.model.collisions.physics.CollisionPhysicsInfo;
+import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.entities.Entity;
 
 /**
@@ -12,6 +12,6 @@ public interface Collidable {
    * reads from CollisionChart and performs resulting actions necessary to handle the collision
    * @param other Entity this object is colliding with
    */
-  void onCollision(Entity other, CollisionPhysicsInfo physicsInfo);
+  void onCollision(Entity other, CollisionPhysicsData physicsInfo);
 
 }

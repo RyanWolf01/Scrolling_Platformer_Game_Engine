@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import ooga.model.entities.info.Info;
-import ooga.model.collisions.physics.CollisionPhysicsInfo;
+import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.collisionhandling.CollisionData;
 import ooga.model.collisions.physics.CollisionDirection;
 import ooga.model.entities.info.EntityInfo;
@@ -19,7 +19,7 @@ public class CollisionDataTest {
   public void testCollisionData() {
     EntityInfo entityAInfo = new EntityInfo("GOOMBA");
     EntityInfo entityBInfo = new EntityInfo("MARIO");
-    CollisionPhysicsInfo cpi = new CollisionPhysicsInfo(true, 1, CollisionDirection.LEFT);
+    CollisionPhysicsData cpi = new CollisionPhysicsData(true, 1, CollisionDirection.LEFT);
 
     String[] kvPairsA = new String[]{"powerUp", "NONE", "test", "FOO"};
     String[] kvPairsB = new String[]{"powerUp", "STAR", "BTest", "BAR"};
@@ -27,7 +27,9 @@ public class CollisionDataTest {
 
     setInfo(entityAInfo, kvPairsA);
     setInfo(entityBInfo, kvPairsB);
-    setInfo(cpi, cpiKvPairs);
+
+    // Downcast! Alert:
+    setInfo((Info) cpi.toImmutableInfoObject(), cpiKvPairs);
 
     CollisionData collisionData = new CollisionData(entityAInfo, entityBInfo, cpi);
 

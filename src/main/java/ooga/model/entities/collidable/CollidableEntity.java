@@ -6,7 +6,7 @@ import ooga.model.entities.Entity;
 import ooga.model.entities.ImmutableEntity;
 import ooga.model.entities.info.ImmutableInfo;
 import ooga.model.entities.info.Info;
-import ooga.model.collisions.physics.CollisionPhysicsInfo;
+import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.collisionhandling.CollisionData;
 import ooga.model.collisions.collisionhandling.exceptions.CollisionChartParsingException;
@@ -31,7 +31,7 @@ public abstract class CollidableEntity extends Entity implements Collidable {
 //  }
 
   @Override
-  public void onCollision(Entity other, CollisionPhysicsInfo physicsInfo) {
+  public void onCollision(Entity other, CollisionPhysicsData physicsInfo) {
     ActionDataContainer adc = getActionDatas(this.getImmutableEntityInfo(), other.getImmutableEntityInfo(), physicsInfo);
 
     int numActionsPerformed = performActions(adc);
@@ -47,7 +47,7 @@ public abstract class CollidableEntity extends Entity implements Collidable {
   //TODO: Come up with a better name (to express getting a "collection" of ActionData)
   protected ActionDataContainer getActionDatas(
       ImmutableInfo targetEntityInfo, ImmutableInfo otherEntityInfo,
-      CollisionPhysicsInfo collisionPhysicsInfo) {
+      CollisionPhysicsData collisionPhysicsData) {
 
     if (!targetEntityInfo.hasKey(ImmutableInfo.TYPE_KEY)) {
       throw new CollisionChartParsingException("Target Entity's type isn't specified");
@@ -56,7 +56,7 @@ public abstract class CollidableEntity extends Entity implements Collidable {
 //    CollisionChart collisionChart = myCollisionChartGetter.getCollisionChart(targetEntityInfo.get(
 //        ImmutableInfo.TYPE_KEY));
     CollisionData collisionData = new CollisionData(targetEntityInfo, otherEntityInfo,
-        collisionPhysicsInfo);
+        collisionPhysicsData);
     return myCollisionChart.getActionDatas(collisionData);
   }
 
@@ -77,7 +77,7 @@ public abstract class CollidableEntity extends Entity implements Collidable {
   }
 
   @Override
-  public CollisionPhysicsInfo physicsInfoOfCurrentCollisionWith(ImmutableEntity otherEntity) {
+  public CollisionPhysicsData physicsInfoOfCurrentCollisionWith(ImmutableEntity otherEntity) {
     return myCurrentCollisions.get(otherEntity);
   }
 
