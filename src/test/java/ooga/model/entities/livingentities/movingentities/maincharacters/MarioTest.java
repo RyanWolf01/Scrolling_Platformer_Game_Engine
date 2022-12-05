@@ -106,7 +106,7 @@ public class MarioTest {
     Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeLives(101);
-    assertEquals(101, mario.getLives());
+    assertEquals(102, mario.getLives());
   }
 
   @Test
@@ -114,7 +114,7 @@ public class MarioTest {
     Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeLives(0);
-    assertEquals(0, mario.getLives());
+    assertEquals(1, mario.getLives());
   }
 
   @Test
@@ -128,7 +128,7 @@ public class MarioTest {
     ActionDataContainer container = new ActionDataContainer(actionList);
     character.performActions(container);
 
-    assertEquals(1, character.getLives());
+    assertEquals(2, character.getLives());
   }
 
   @Test

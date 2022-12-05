@@ -46,7 +46,7 @@ public class GravityChecker {
       return true;
 
     ImmutableEntity collided = entity.getMyCurrentCollisions().iterator().next();
-    CollisionPhysicsInfo collisionPhysicsInfo = entity.getMyCurrentCollisions().get(collided);
+    CollisionPhysicsData collisionPhysicsInfo = entity.getMyCurrentCollisions().get(collided);
 
     String entityType;
     try{

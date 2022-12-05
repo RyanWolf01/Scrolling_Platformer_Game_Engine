@@ -8,11 +8,13 @@ import ooga.model.entities.deadmovingentities.AutomaticMover;
 public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
 
   private List<AutomaticMover> movers;
+  private int stepCounter;
   /**
    * default constructor
    */
   public AutomaticMoverContainer(){
     movers = new ArrayList<>();
+    stepCounter = 0;
   }
 
   /**
@@ -26,9 +28,15 @@ public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
    * call move method on all Automatic Movers
    */
   public void moveAll(){
+
+    if(stepCounter % 10 != 0)
+      return;
+
     for(AutomaticMover mover: this.movers){
       mover.automaticMove();
     }
+
+    stepCounter++;
   }
 
   /**
