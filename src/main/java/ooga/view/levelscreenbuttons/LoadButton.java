@@ -28,7 +28,7 @@ public class LoadButton extends GUIBasicButton {
    * Method to open to directory chooser when the user clicks on the load button
    * @param e
    */
-  private void openDirectoryChooser(ActionEvent e) {
+  private void openDirectoryChooser(ActionEvent actionEvent) {
     // TODO: need this method to perform opening with right stage (game stage)
     File levelDirectory = directoryChooser.showDialog(stage);
     System.out.println(levelDirectory);
