@@ -31,7 +31,7 @@ public class LoadButton extends GUIBasicButton {
   private void openDirectoryChooser(ActionEvent e) {
     // TODO: need this method to perform opening with right stage (game stage)
     File levelDirectory = directoryChooser.showDialog(stage);
-    // System.out.println(levelDirectory);
+    System.out.println(levelDirectory);
     // LOG.debug(this.levelDirectory);
   }
 }
