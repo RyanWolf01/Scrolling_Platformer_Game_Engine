@@ -41,13 +41,14 @@ public interface Alive {
 
     ResourceBundle defaultAttributesProperties = ResourceBundle.getBundle("properties/defaultAttributes");
 
-    int lives = 0;
+    int lives;
 
     // try to get default value from properties
     try{
       lives = Integer.parseInt(defaultAttributesProperties.getString("lives"));
     } catch(NumberFormatException exception){
       LOG.error("lives formatted incorrectly in properties file");
+      throw exception;
     }
 
     try {
@@ -56,6 +57,7 @@ public interface Alive {
         lives = Integer.parseInt(entityInfo.get("lives"));
     } catch(NumberFormatException | NullPointerException exception){
         LOG.error("lives formatted incorrectly in entity info");
+        throw exception;
     }
 
     return lives;

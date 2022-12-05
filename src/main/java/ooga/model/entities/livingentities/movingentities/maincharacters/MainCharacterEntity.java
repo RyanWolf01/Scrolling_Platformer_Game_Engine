@@ -25,9 +25,8 @@ public abstract class MainCharacterEntity extends MovingCharacter implements Use
     try {
       action.execute(this);
     }catch(NullPointerException exception){
-      // do nothing if invalid MoverAction
       LOG.error("MoverAction is null");
-      // TODO: maybe should throw something?
+      throw exception;
     }
   }
 
@@ -36,8 +35,8 @@ public abstract class MainCharacterEntity extends MovingCharacter implements Use
     try {
       action.execute(this);
     }catch(NullPointerException exception){
-      // do nothing if invalid AliveAction
       LOG.error("AliveAction is null");
+      throw exception;
     }
   }
 }
