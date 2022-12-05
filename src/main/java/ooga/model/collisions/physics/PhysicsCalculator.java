@@ -78,16 +78,23 @@ public class PhysicsCalculator {
       double moveBackX = collider.getXVelocity() - (collider.getXVelocity() * minTime);
       double moveBackY = collider.getYVelocity() - (collider.getYVelocity() * minTime);
       if (minTimeDirection == CollisionDirection.BOTTOM) {
-        collider.setYCoordinate(collider.getYCoordinate() - moveBackY - 0.25);
+//        collider.setYCoordinate(collider.getYCoordinate() - moveBackY - 0.25);
+        collider.setYCoordinate(collider.getYCoordinate() - moveBackY);
+
       }
       else if (minTimeDirection == CollisionDirection.TOP) {
-        collider.setYCoordinate(collider.getYCoordinate() - moveBackY + 0.25);
+//        collider.setYCoordinate(collider.getYCoordinate() - moveBackY + 0.25);
+        collider.setYCoordinate(collider.getYCoordinate() - moveBackY);
+
       }
       else if (minTimeDirection == CollisionDirection.LEFT) {
-        collider.setXCoordinate(collider.getXCoordinate() - moveBackX + 0.25);
+//        collider.setXCoordinate(collider.getXCoordinate() - moveBackX + 0.25);
+        collider.setXCoordinate(collider.getXCoordinate() - moveBackX);
+
       }
       else if (minTimeDirection == CollisionDirection.RIGHT) {
-        collider.setXCoordinate(collider.getXCoordinate() - moveBackX - 0.25);
+//        collider.setXCoordinate(collider.getXCoordinate() - moveBackX - 0.25);
+        collider.setXCoordinate(collider.getXCoordinate() - moveBackX);
       }
     }
   }

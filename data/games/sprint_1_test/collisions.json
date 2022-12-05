@@ -22,6 +22,7 @@
       {
         "OPPONENT_TYPE": "static_platform",
         "COLLISION_DIRECTION": "BOTTOM",
+        "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
         "ACTIONS": [
           {
             "classname": "ooga.model.actions.moveractions.StopYMovement",
@@ -31,7 +32,7 @@
         ]
       },
       {
-        "NUM_CONSECUTIVE_COLLISIONS": "*",
+        "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
         "ACTIONS": [
 
         ]
