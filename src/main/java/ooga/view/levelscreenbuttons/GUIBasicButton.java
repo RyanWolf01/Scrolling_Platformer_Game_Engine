@@ -12,6 +12,7 @@ import javafx.scene.text.*;
 
 import java.io.InputStream;
 import java.util.ResourceBundle;
+import ooga.Main;
 
 
 public abstract class GUIBasicButton {
