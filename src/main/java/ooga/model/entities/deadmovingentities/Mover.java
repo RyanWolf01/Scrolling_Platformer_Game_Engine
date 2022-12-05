@@ -28,13 +28,19 @@ public interface Mover {
      *
      * @return double x velocity
      */
-    public double getXVelocity();
+    double getXVelocity();
 
     /**
      *
      * @return double y velocity
      */
-    public double getYVelocity();
+    double getYVelocity();
+
+    /**
+     *
+     * @return boolean if Mover is in air
+     */
+    boolean isInAir();
 
 
 

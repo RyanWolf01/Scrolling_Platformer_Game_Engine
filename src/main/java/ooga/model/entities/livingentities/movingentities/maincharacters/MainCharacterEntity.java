@@ -3,14 +3,18 @@ package ooga.model.entities.livingentities.movingentities.maincharacters;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.collisionhandling.CollisionChart;
+import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
 import ooga.model.entities.livingentities.movingentities.MovingCharacter;
 import ooga.model.entities.info.Info;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Maybe all main character entities
  */
 public abstract class MainCharacterEntity extends MovingCharacter implements UserControllable {
 
+  private static final Logger LOG = LogManager.getLogger(MainCharacterEntity.class);
   public MainCharacterEntity(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height,
       double width, Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
@@ -18,11 +22,22 @@ public abstract class MainCharacterEntity extends MovingCharacter implements Use
 
   @Override
   public void acceptMoveAction(MoverAction action) {
-    action.execute(this);
+    try {
+      action.execute(this);
+    }catch(NullPointerException exception){
+      // do nothing if invalid MoverAction
+      LOG.error("MoverAction is null");
+      // TODO: maybe should throw something?
+    }
   }
 
   @Override
   public void acceptAliveAction(AliveAction action) {
-    action.execute(this);
+    try {
+      action.execute(this);
+    }catch(NullPointerException exception){
+      // do nothing if invalid AliveAction
+      LOG.error("AliveAction is null");
+    }
   }
 }

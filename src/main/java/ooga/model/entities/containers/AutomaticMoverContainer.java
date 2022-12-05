@@ -16,15 +16,6 @@ public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
   }
 
   /**
-   * If you want to add an entity upon creation of the container
-   * @param mover
-   */
-  public AutomaticMoverContainer(AutomaticMover mover){
-    movers = new ArrayList<>();
-    movers.add(mover);
-  }
-
-  /**
    * Add Mover
    */
   public void addMover(AutomaticMover mover){

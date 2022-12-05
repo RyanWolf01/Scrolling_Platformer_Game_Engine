@@ -2,6 +2,7 @@ package ooga.model.entities.livingentities.movingentities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import ooga.model.actions.moveractions.basicmovement.LeftMovement;
 import ooga.model.actions.moveractions.basicmovement.RightMovement;
 import ooga.model.actions.moveractions.basicmovement.UpwardMovement;
@@ -11,12 +12,20 @@ import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.deadmovingentities.MovementQueue;
 import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
 import ooga.model.entities.livingentities.movingentities.MovingCharacter;
+import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AutomaticMovingCharacterTest {
 
+  private final double bounceVelocity = Double.parseDouble(
+      ResourceBundle.getBundle("properties/movement").getString("bounce_velocity"));
+
+  private final double rightVelocity = Double.parseDouble(
+      ResourceBundle.getBundle("properties/movement").getString("right_velocity"));
+  private final double upwardVelocity = Double.parseDouble(
+      ResourceBundle.getBundle("properties/movement").getString("upward_velocity"));
   @Test
   void testIncrementXVelocityPositive1() {
 
@@ -67,7 +76,7 @@ public class AutomaticMovingCharacterTest {
 
     movingCharacter.changeVelocities(0,5);
     movingCharacter.move();
-    assertEquals(5, movingCharacter.getYCoordinate());
+    assertEquals(5 , movingCharacter.getYCoordinate());
   }
 
   @Test
@@ -80,7 +89,7 @@ public class AutomaticMovingCharacterTest {
 
     movingCharacter.changeVelocities(0,-100);
     movingCharacter.move();
-    assertEquals(-100, movingCharacter.getYCoordinate());
+    assertEquals(-100 , movingCharacter.getYCoordinate());
   }
 
   @Test
@@ -165,7 +174,7 @@ public class AutomaticMovingCharacterTest {
 
     AutomaticMovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
     movingCharacter.automaticMove();
-    assertEquals(5, movingCharacter.getXCoordinate());
+    assertEquals(rightVelocity, movingCharacter.getXCoordinate());
   }
 
   @Test
@@ -178,8 +187,8 @@ public class AutomaticMovingCharacterTest {
     movingCharacter.automaticMove();
     movingCharacter.automaticMove();
     movingCharacter.automaticMove();
-    assertEquals(10, movingCharacter.getXCoordinate());
-    assertEquals(5, movingCharacter.getYCoordinate());
+    assertEquals(rightVelocity * 4, movingCharacter.getXCoordinate());
+    assertEquals(upwardVelocity * 2 , movingCharacter.getYCoordinate());
   }
 
   @Test
@@ -209,7 +218,42 @@ public class AutomaticMovingCharacterTest {
     ActionDataContainer container = new ActionDataContainer(actionList);
     character.performActions(container);
 
-    assertEquals(5, character.getYCoordinate());
+    assertEquals(bounceVelocity, character.getYCoordinate());
+  }
+
+  @Test
+  void handleInvalidCoordinatesTestOffBottomPositive1(){
+    AutomaticMovingCharacter automaticMovingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
+
+    automaticMovingCharacter.changeLives(1);
+    automaticMovingCharacter.changeVelocities(0, 10000000);
+    automaticMovingCharacter.move();
+
+    assertEquals(0, automaticMovingCharacter.getLives());
+  }
+
+  @Test
+  void handleInvalidCoordinatesTestOffBottomPositive2(){
+    AutomaticMovingCharacter automaticMovingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
+
+    automaticMovingCharacter.changeLives(3);
+    automaticMovingCharacter.changeVelocities(0, 100000);
+    automaticMovingCharacter.move();
+
+    assertEquals(2, automaticMovingCharacter.getLives());
+  }
+
+  @Test
+  void handleInvalidCoordinatesTestOffBottomNegative(){
+    AutomaticMovingCharacter automaticMovingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
+
+    int screenSize = Integer.parseInt(
+        ResourceBundle.getBundle("properties/view").getString("screen_size"));
+    automaticMovingCharacter.changeLives(3);
+    automaticMovingCharacter.changeVelocities(0, screenSize-1);
+    automaticMovingCharacter.move();
+
+    assertEquals(3, automaticMovingCharacter.getLives());
   }
 
 

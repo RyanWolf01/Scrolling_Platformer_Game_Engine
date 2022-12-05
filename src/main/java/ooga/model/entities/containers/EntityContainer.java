@@ -18,15 +18,6 @@ public class EntityContainer implements Iterable<Entity> {
     entities = new ArrayList<>();
   }
 
-  /**
-   * If you want to add an entity upon creation of the container
-   * @param entity automatically add this entity to newly created list entities
-   */
-  public EntityContainer(Entity entity){
-    this();
-    entities.add(entity);
-  }
-
   public void addEntity(Entity entity){
     entities.add(entity);
   }

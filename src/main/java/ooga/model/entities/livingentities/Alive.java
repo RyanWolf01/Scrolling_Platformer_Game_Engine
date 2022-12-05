@@ -45,20 +45,17 @@ public interface Alive {
 
     // try to get default value from properties
     try{
-      Integer.parseInt(defaultAttributesProperties.getString("lives"));
+      lives = Integer.parseInt(defaultAttributesProperties.getString("lives"));
     } catch(NumberFormatException exception){
-      // TODO: do i need to throw something here?
       LOG.error("lives formatted incorrectly in properties file");
     }
 
-    // try to get value from entity info
-    if(entityInfo.hasKey("lives")){
-      try{
+    try {
+      // try to get value from entity info
+      if (entityInfo.hasKey("lives"))
         lives = Integer.parseInt(entityInfo.get("lives"));
-      }
-      catch(NumberFormatException exception){
+    } catch(NumberFormatException | NullPointerException exception){
         LOG.error("lives formatted incorrectly in entity info");
-      }
     }
 
     return lives;
