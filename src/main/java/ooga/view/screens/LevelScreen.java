@@ -71,8 +71,10 @@ public class LevelScreen {
  * @param nextNodes is the list of nodes that the level needs to display for the frame
 */
   public void step(NodeContainer nextNodes){
-    LOG.debug("Camera X: " + myGameCamera.getCameraX());
-    LOG.debug("Camera Y: " + myGameCamera.getCameraY());
+
+//    LOG.debug("Camera X: " + myGameCamera.getCameraX());
+//    LOG.debug("Camera Y: " + myGameCamera.getCameraY());
+
 
     if(myNodes != null){
       for (Node a : myNodes) {

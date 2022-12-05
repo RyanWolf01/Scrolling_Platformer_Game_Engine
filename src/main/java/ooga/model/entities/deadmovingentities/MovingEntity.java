@@ -2,7 +2,7 @@ package ooga.model.entities.deadmovingentities;
 
 import java.util.ResourceBundle;
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.collisions.physics.GravityCalculator;
+import ooga.model.collisions.physics.GravityChecker;
 import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.info.Info;
 import org.apache.logging.log4j.LogManager;
@@ -28,12 +28,13 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
       Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
 
-    int tempScreenSize = 850;
+    int tempScreenSize;
     try{
       tempScreenSize = Integer.parseInt(
           ResourceBundle.getBundle("properties/view").getString("screen_size"));
     } catch(NumberFormatException exception){
       LOG.error("screen size from properties file formatted incorrectly");
+      throw exception;
     }
 
     SCREEN_SIZE = tempScreenSize;
@@ -111,8 +112,8 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    * @return boolean
    */
   public boolean isInAir(){
-    GravityCalculator gravityCalculator = new GravityCalculator();
-    return gravityCalculator.checkInAir(this);
+    GravityChecker gravityChecker = new GravityChecker();
+    return gravityChecker.checkInAir(this);
   }
 
 }

@@ -3,6 +3,7 @@ package ooga.model.collisions.collisionhandling;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.entities.info.ImmutableInfo;
 
 /**
@@ -26,16 +27,16 @@ public class CollisionData implements Iterable<String> {
    *
    * @param entityAInfo          entityA's info
    * @param entityBInfo          entityB's info
-   * @param collisionPhysicsInfo data representing collision's physics (e.g. which side was hit,
+   * @param collisionPhysicsData data representing collision's physics (e.g. which side was hit,
    *                             from the perspective of Entity A).
    */
 
   public CollisionData(ImmutableInfo entityAInfo, ImmutableInfo entityBInfo,
-      ImmutableInfo collisionPhysicsInfo) {
+      CollisionPhysicsData collisionPhysicsData) {
     data = new HashMap<>();
     addKeys(data, entityAInfo, MY_PREFIX);
     addKeys(data, entityBInfo, OPPONENT_PREFIX);
-    addKeys(data, collisionPhysicsInfo, COLLISION_PREFIX);
+    addKeys(data, collisionPhysicsData.toImmutableInfoObject(), COLLISION_PREFIX);
   }
 
   /**

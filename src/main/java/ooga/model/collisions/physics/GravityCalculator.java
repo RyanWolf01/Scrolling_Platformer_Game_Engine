@@ -15,9 +15,9 @@ public class GravityCalculator {
       return true;
 
     ImmutableEntity collided = entity.getMyCurrentCollisions().iterator().next();
-    CollisionPhysicsInfo collisionPhysicsInfo = entity.getMyCurrentCollisions().get(collided);
+    CollisionPhysicsData collisionPhysicsData = entity.getMyCurrentCollisions().get(collided);
     if(collided.getImmutableEntityInfo().get("TYPE").equals("static_platform") &&
-        collisionPhysicsInfo.getCollisionDirection() == CollisionDirection.BOTTOM)
+        collisionPhysicsData.getCollisionDirection() == CollisionDirection.BOTTOM)
       return false;
 
     return true;

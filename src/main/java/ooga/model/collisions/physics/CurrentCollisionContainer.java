@@ -10,18 +10,18 @@ import ooga.model.entities.ImmutableEntity;
  * Wrapper class that encapsulates a hashmap of <Entity, CollisionPhysicsInfo>
  */
 public class CurrentCollisionContainer implements Iterable<ImmutableEntity> {
-  private final Map<ImmutableEntity, CollisionPhysicsInfo> myCurrentCollisions;
+  private final Map<ImmutableEntity, CollisionPhysicsData> myCurrentCollisions;
 
   public CurrentCollisionContainer() {
     myCurrentCollisions = new HashMap<>();
   }
 
-  public CollisionPhysicsInfo get(ImmutableEntity entity) {
+  public CollisionPhysicsData get(ImmutableEntity entity) {
     return myCurrentCollisions.get(entity);
   }
 
-  public CollisionPhysicsInfo set(Entity entity, CollisionPhysicsInfo collisionPhysicsInfo) {
-    return myCurrentCollisions.put(entity, collisionPhysicsInfo);
+  public CollisionPhysicsData set(Entity entity, CollisionPhysicsData collisionPhysicsData) {
+    return myCurrentCollisions.put(entity, collisionPhysicsData);
   }
 
   public boolean containsKey(ImmutableEntity entity) {
