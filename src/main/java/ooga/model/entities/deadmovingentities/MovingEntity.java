@@ -34,6 +34,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
           ResourceBundle.getBundle("properties/view").getString("screen_size"));
     } catch(NumberFormatException exception){
       LOG.error("screen size from properties file formatted incorrectly");
+      throw exception;
     }
 
     SCREEN_SIZE = tempScreenSize;
