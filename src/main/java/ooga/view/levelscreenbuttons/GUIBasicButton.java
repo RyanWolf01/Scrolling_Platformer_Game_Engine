@@ -22,29 +22,28 @@ public abstract class GUIBasicButton {
   private Button button;
   private Text buttonText;
   private VBox buttonContainer;
+  private ImageView buttonIcon;
 
 
+  public GUIBasicButton(String buttonText, String iconString) {
 
-
-  public GUIBasicButton(String buttonText, String iconID) {
-
-    // load the graphic using resources
-    ResourceBundle iconResources = ResourceBundle.getBundle(GUI.GUI_ICON_PROPERTIES);
-    InputStream iconPath = GUIButton.class.getClassLoader().getResourceAsStream(
-        iconResources.getString(iconID));
+    InputStream iconPath = GUIBasicButton.class.getClassLoader().getResourceAsStream(
+        ICON_PROPERTIES.getString(iconString));
     buttonContainer = new VBox();
 
     // set icon graphic appearances
     if (iconPath == null) {
       throw new NullPointerException("Invalid button icon path");
     }
-    icon = new ImageView(new Image(iconPath));
-    icon.setFitWidth(properties.getButtonProperty("defaultGraphicWidth"));
-    icon.setFitHeight(properties.getButtonProperty("defaultGraphicHeight"));
+
+    // TODO: fix magic values**
+    buttonIcon = new ImageView(new Image(iconPath));
+    buttonIcon.setFitWidth(50);
+    buttonIcon.setFitHeight(50);
 
     // set up button
     button = new Button();
-    button.setGraphic(icon);
+    button.setGraphic(buttonIcon);
 
     this.buttonText = new Text(buttonText);
     this.buttonText.setFont(Font.font("Helvetica", FontWeight.BOLD, 14));
@@ -52,5 +51,13 @@ public abstract class GUIBasicButton {
     buttonContainer.setAlignment(Pos.CENTER);
   }
 
+  /**
+   * Sets the event to occur when the button is clicked on
+   *
+   * @param actionEvent method to run when the button is pressed
+   */
+  protected void setOnClickEvent(EventHandler<ActionEvent> actionEvent) {
+    button.setOnAction(actionEvent);
+  }
 
 }
