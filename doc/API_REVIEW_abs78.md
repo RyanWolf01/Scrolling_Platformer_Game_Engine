@@ -2,7 +2,7 @@
 
 ### Names
 
-Arman Shekarriz (abs78), Jared Bank (jsb102)
+* Arman Shekarriz (abs78), Jared Bank (jsb102)
 
 In this discussion, I talked to Jared about specific APIs each of us have developed for the controller
 side of our respective projects. While the APIs we discussed held a collection of public methods different
