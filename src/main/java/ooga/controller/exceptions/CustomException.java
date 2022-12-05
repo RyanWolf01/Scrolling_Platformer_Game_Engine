@@ -1,2 +1,5 @@
-package ooga.controller.exceptions;public class CustomException {
+package ooga.controller.exceptions;
+
+public abstract class CustomException extends RuntimeException {
+
 }
