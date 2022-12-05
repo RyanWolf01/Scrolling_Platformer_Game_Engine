@@ -1,6 +1,5 @@
 package ooga.controller.tests;
 
-
 import org.junit.jupiter.api.Test;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
@@ -11,17 +10,31 @@ public class JSONDecodingTest {
 
   // make some sample JSON array and object here to use to test methods
   JSONArray sampleArray = new JSONArray();
-  ;
-
-  JSONObject sampleEntity1 = new JSONObject();
-  JSONObject sampleEntity2 = new JSONObject();
-  JSONObject sampleEntity3 = new JSONObject();
-
+  JSONObject sampleObject = new JSONObject();
+  JSONObject bigObject = new JSONObject();
 
 
   @Test
-  void testJSONObjectCreation() {
+  void testJSONUserControlHandler() {
+    sampleObject.put("Canteloupe", 7);
+    sampleObject.put("Watermelon", 12);
+    sampleObject.put("Honeydew", 5);
+    sampleArray.add(sampleObject);
+    bigObject.put("Melons", sampleArray);
+
 
   }
+
+  @Test
+  void testJSONCollisionChartMaking() {
+
+  }
+
+  @Test
+  void testJSONConnectionContainer() {
+
+  }
+
+
 
 }

@@ -1,5 +1,8 @@
 package ooga.model.collisions.collisionhandling;
 
+import static ooga.model.collisions.collisionhandling.CollisionData.COLLISION_PREFIX;
+import static ooga.model.collisions.physics.CollisionPhysicsData.NUM_CONSECUTIVE_COLLISIONS_KEY;
+
 import java.util.Arrays;
 import java.util.Map;
 import ooga.model.collisions.actiondata.ActionDataContainer;
@@ -29,6 +32,10 @@ public class Criteria {
   public Criteria(Map<String, String> criteria, ActionDataContainer actionDataContainer) {
     myCriteria = criteria;
     myImmutableActionDataContainer = actionDataContainer;
+
+    if (! criteria.containsKey(COLLISION_PREFIX + NUM_CONSECUTIVE_COLLISIONS_KEY)) {
+      criteria.put(COLLISION_PREFIX + NUM_CONSECUTIVE_COLLISIONS_KEY, "1");
+    }
   }
 
   /**
@@ -45,6 +52,11 @@ public class Criteria {
       // make sure collisionData has all keys in myCriteria
       if (!collisionData.hasKey(key)) {
         return false;
+      }
+
+      // * specifies that anything can match
+      if (myCriteria.get(key).equals("*")) {
+        continue;
       }
 
       // make sure that all kv-pairs in myCriteria match those in collisionData

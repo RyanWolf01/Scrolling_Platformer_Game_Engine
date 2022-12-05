@@ -1,17 +1,10 @@
 package ooga.controller;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.model.Model;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
-import ooga.model.collisions.physics.CollisionPhysicsInfo;
-import ooga.model.collisions.physics.CurrentCollisionContainer;
-import ooga.model.entities.Entity;
-import ooga.model.entities.ImmutableEntity;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
 

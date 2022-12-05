@@ -22,6 +22,7 @@
       {
         "OPPONENT_TYPE": "static_platform",
         "COLLISION_DIRECTION": "BOTTOM",
+        "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
         "ACTIONS": [
           {
             "classname": "ooga.model.actions.moveractions.StopYMovement",
@@ -31,11 +32,7 @@
         ]
       },
       {
-        "COLLISION_DIRECTION": "NONE",
-        "ACTIONS": [
-        ]
-      },
-      {
+        "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
         "ACTIONS": [
 
         ]
@@ -47,17 +44,6 @@
   "mario": {
     "parent": "movingEntity",
     "collision_chart": [
-      {
-        "OPPONENT_TYPE": "static_platform",
-        "COLLISION_DIRECTION": "BOTTOM",
-        "ACTIONS": [
-          {
-            "classname": "ooga.model.actions.moveractions.StopYMovement",
-            "action_interface": "MoverAction",
-            "params": []
-          }
-        ]
-      },
       {
         "OPPONENT_TYPE": "goomba",
         "COLLISION_DIRECTION": "BOTTOM",
@@ -78,32 +64,14 @@
         "OPPONENT_TYPE": "goomba",
         "COLLISION_DIRECTION": "RIGHT",
         "ACTIONS": [
-          {
-            "classname": "ooga.model.actions.moveractions.StopXMovement",
-            "action_interface": "MoverAction",
-            "params": []
-          },
-          {
-            "classname": "ooga.model.actions.moveractions.basicmovement.LeftMovement",
-            "action_interface": "MoverAction",
-            "params": []
-          }
+
         ]
       },
       {
         "OPPONENT_TYPE": "goomba",
         "COLLISION_DIRECTION": "LEFT",
         "ACTIONS": [
-          {
-            "classname": "ooga.model.actions.moveractions.StopXMovement",
-            "action_interface": "MoverAction",
-            "params": []
-          },
-          {
-            "classname": "ooga.model.actions.moveractions.basicmovement.RightMovement",
-            "action_interface": "MoverAction",
-            "params": []
-          }
+
         ]
       }
     ]
