@@ -28,6 +28,10 @@ public class SaveButton extends GUIBasicButton {
     // TODO: switch out string to be read from props
     directoryNameInput.setPromptText("Enter Name for Saved File");
 
+    /*
+    TBD, add to the screen here, idk if we want to just add it to where the button is or add
+    it using a popup
+     */
   }
 
   /**
@@ -36,7 +40,12 @@ public class SaveButton extends GUIBasicButton {
    * @param saveName
    */
   private void handleTextInput(String saveName) {
-
+    /*
+    createSavedDirectory(saveName)
+    MAKE THIS METHOD WHEREVER IS MOST SENSIBLE IN THE CONTROLLER TO USE THE
+    BACKEND CONTAINER TO MAKE THE NEW JSON AND PASS THE OTHER JSON OBJECTS
+    TO THE DIRECTORY
+     */
   }
 
 }

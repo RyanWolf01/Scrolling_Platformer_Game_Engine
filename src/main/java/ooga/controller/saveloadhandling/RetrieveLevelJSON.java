@@ -4,6 +4,8 @@ import org.json.simple.JSONObject;
 
 public class RetrieveLevelJSON {
 
-  public JSONObject
+  public JSONObject updatedLevelJSON() {
+
+  }
 
 }
