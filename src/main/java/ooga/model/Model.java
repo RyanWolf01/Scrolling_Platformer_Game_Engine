@@ -97,15 +97,15 @@ public class Model {
   private void handleCollisionHelper(Entity collider, Entity collided) {
     for(CollidableEntity collidable : entities.collidables()){
       if(collidable.equals(collider)){
-        collidable.onCollision(collided, new PhysicsCalculator().calculatePhysics(collider, collided));
+        collidable.onCollision(collided, new PhysicsCalculator().calculatePhysicsInfo(collider, collided));
       }
     }
   }
 
-  private void handleCollisionHelper(Entity collider, Entity collided, CollisionPhysicsInfo prevCollisionPhysicsInfo) {
+  private void handleCollisionHelper(Entity collider, Entity collided, CollisionPhysicsInfo currCollisionPhysicsInfo) {
     for(CollidableEntity collidable : entities.collidables()){
       if(collidable.equals(collider)){
-        collidable.onCollision(collided, new PhysicsCalculator().calculatePhysics(collider, collided, prevCollisionPhysicsInfo));
+        collidable.onCollision(collided, new PhysicsCalculator().updatePhysicsInfoOfCurrentCollision(currCollisionPhysicsInfo));
       }
     }
   }

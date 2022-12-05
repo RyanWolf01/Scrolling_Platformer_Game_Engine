@@ -26,7 +26,7 @@ public class CollidableEntityTest {
     BasicStaticCharacter goomba = new BasicStaticCharacter(null, 30, 0, 50, 20, new EntityInfo("GOOMBA"));
 
     PhysicsCalculator phyCalc = new PhysicsCalculator();
-    CollisionPhysicsInfo cpi = phyCalc.calculatePhysics(mario, goomba);
+    CollisionPhysicsInfo cpi = phyCalc.calculatePhysicsInfo(mario, goomba);
 
     int numLives = mario.getLives();
     mario.changeVelocities(18, 7);
@@ -50,7 +50,7 @@ public class CollidableEntityTest {
     BasicStaticCharacter goomba = new BasicStaticCharacter(null, 0, 0, 51, 22, new EntityInfo("GOOMBA"));
 
     PhysicsCalculator phyCalc = new PhysicsCalculator();
-    CollisionPhysicsInfo cpi = phyCalc.calculatePhysics(mario, goomba);
+    CollisionPhysicsInfo cpi = phyCalc.calculatePhysicsInfo(mario, goomba);
 
     int goombaLives = goomba.getLives();
     double yVel = mario.getYVelocity();
