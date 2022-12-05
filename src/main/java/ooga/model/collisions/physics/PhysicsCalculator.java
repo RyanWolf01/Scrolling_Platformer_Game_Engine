@@ -66,34 +66,30 @@ public class PhysicsCalculator {
 //    if (minTimeDirection == CollisionDirection.NONE) {
 //      throw new RuntimeException("These objects did not collide");
 //    }
-    moveAOutsideOfB(collider, minTimeDirection, minTime);
+    moveColliderOutsideOfCollided(collider, minTime, minTimeDirection);
     return minTimeDirection;
 
   }
 
-  private void moveAOutsideOfB(Entity a, CollisionDirection direction, double time) {
-
-    if (direction != CollisionDirection.NONE) {
-      double moveBackX = a.getXVelocity() - (a.getXVelocity() * time);
-      double moveBackY = a.getYVelocity() - (a.getYVelocity() * time);
-      if (direction == CollisionDirection.BOTTOM) {
-        moveBackY -= 0.25;
-        a.setYCoordinate(a.getYCoordinate() - moveBackY);
-      } else if (direction == CollisionDirection.TOP) {
-        moveBackY += 0.25;
-        a.setYCoordinate(a.getYCoordinate() - moveBackY);
-      } else if (direction == CollisionDirection.LEFT) {
-        moveBackX += 0.25;
-        a.setYCoordinate(a.getXCoordinate() - moveBackX);
-      } else if (direction == CollisionDirection.RIGHT) {
-        moveBackX -= 0.25;
-        a.setYCoordinate(a.getXCoordinate() - moveBackX);
+  private void moveColliderOutsideOfCollided(Entity collider, double minTime,
+      CollisionDirection minTimeDirection) {
+    if (minTimeDirection != CollisionDirection.NONE) {
+      double moveBackX = collider.getXVelocity() - (collider.getXVelocity() * minTime);
+      double moveBackY = collider.getYVelocity() - (collider.getYVelocity() * minTime);
+      if (minTimeDirection == CollisionDirection.BOTTOM) {
+        collider.setYCoordinate(collider.getYCoordinate() - moveBackY - 0.25);
       }
-//      a.setYCoordinate(a.getXCoordinate() - moveBackX);
-//      a.setYCoordinate(a.getYCoordinate() - moveBackY);
+      else if (minTimeDirection == CollisionDirection.TOP) {
+        collider.setYCoordinate(collider.getYCoordinate() - moveBackY + 0.25);
+      }
+      else if (minTimeDirection == CollisionDirection.LEFT) {
+        collider.setXCoordinate(collider.getXCoordinate() - moveBackX + 0.25);
+      }
+      else if (minTimeDirection == CollisionDirection.RIGHT) {
+        collider.setXCoordinate(collider.getXCoordinate() - moveBackX - 0.25);
+      }
     }
   }
-
 
   private Edge getTopEdge(Entity entity) {
     double xvel = entity.getXVelocity();
