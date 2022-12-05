@@ -17,8 +17,8 @@ public class PhysicsCalculator {
    * @param collider the first entity, to be acted on
    * @param collided the second entity, that is collided with
    */
-  public CollisionPhysicsInfo calculatePhysicsInfoAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
-    CollisionPhysicsInfo info = new CollisionPhysicsInfo(true, 1, checkDirectionAndMoveColliderOutsideOfCollided(collider, collided));
+  public CollisionPhysicsData calculatePhysicsInfoAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
+    CollisionPhysicsData info = new CollisionPhysicsData(true, 1, checkDirectionAndMoveColliderOutsideOfCollided(collider, collided));
     collider.getMyCurrentCollisions().set(collided, info);
     return info;
   }
@@ -26,12 +26,13 @@ public class PhysicsCalculator {
   /**
    * Updates the CollisionPhysicsInfo parameter by incrementing the number of consecutive collisions
    * that have occurred in it.
-   * @param currCollisionPhysicsInfo the PhysicsInfo object to be updated
+   * @param currCollisionPhysicsData the PhysicsInfo object to be updated
    * @return currCollisionPhysicsInfo the updated PhysicsInfoObject
    */
-  public CollisionPhysicsInfo updatePhysicsInfoOfCurrentCollision(CollisionPhysicsInfo currCollisionPhysicsInfo) {
-    currCollisionPhysicsInfo.incrementNumConsecutiveCollisions();
-    return currCollisionPhysicsInfo;
+  public CollisionPhysicsData updatePhysicsDataOfCurrentCollision(
+      CollisionPhysicsData currCollisionPhysicsData) {
+    currCollisionPhysicsData.incrementNumConsecutiveCollisions();
+    return currCollisionPhysicsData;
   }
 
   private CollisionDirection checkDirectionAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {

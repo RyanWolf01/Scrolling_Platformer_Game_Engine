@@ -5,7 +5,7 @@ import java.util.List;
 import ooga.Main;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
-import ooga.model.collisions.physics.CollisionPhysicsInfo;
+import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.physics.CurrentCollisionContainer;
 import ooga.model.collisions.physics.GravityEnforcer;
 import ooga.model.collisions.physics.PhysicsCalculator;
@@ -102,10 +102,11 @@ public class Model {
     }
   }
 
-  private void handleCollisionHelper(Entity collider, Entity collided, CollisionPhysicsInfo currCollisionPhysicsInfo) {
+  private void handleCollisionHelper(Entity collider, Entity collided, CollisionPhysicsData currCollisionPhysicsData) {
     for(CollidableEntity collidable : entities.collidables()){
       if(collidable.equals(collider)){
-        collidable.onCollision(collided, new PhysicsCalculator().updatePhysicsInfoOfCurrentCollision(currCollisionPhysicsInfo));
+        collidable.onCollision(collided, new PhysicsCalculator().updatePhysicsDataOfCurrentCollision(
+            currCollisionPhysicsData));
       }
     }
   }

@@ -1,6 +1,6 @@
 package ooga.model.entities;
 
-import ooga.model.collisions.physics.CollisionPhysicsInfo;
+import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.physics.CurrentCollisionContainer;
 import ooga.model.entities.info.ImmutableInfo;
 import ooga.model.entities.info.Info;
@@ -99,7 +99,7 @@ public abstract class Entity implements ImmutableEntity{
         return false;
     }
 
-    public CollisionPhysicsInfo physicsInfoOfCurrentCollisionWith(ImmutableEntity otherEntity) {
+    public CollisionPhysicsData physicsInfoOfCurrentCollisionWith(ImmutableEntity otherEntity) {
         return null;
     }
 

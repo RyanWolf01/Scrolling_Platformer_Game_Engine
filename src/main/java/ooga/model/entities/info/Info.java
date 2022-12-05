@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public abstract class Info implements ImmutableInfo {
+public class Info implements ImmutableInfo {
   private Map<String, String> map = new HashMap<>();
 
   @Override
