@@ -225,7 +225,7 @@ public class JSONInformationDecoder {
         throw new RuntimeException("not an object");
       }
 
-      //TODO: handle exception here**
+      // TODO: handle exception here**
       parameters = (Collection<String>) action.get("params");
       ActionData actionData = new ActionData((String) action.get("classname"), (String) action.get("action_interface"),
           parameters);

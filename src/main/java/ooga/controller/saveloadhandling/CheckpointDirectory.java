@@ -20,7 +20,7 @@ public class CheckpointDirectory {
     try {
       FileWriter levelFile = new FileWriter(RESOURCE_DIRECTORY+SAVED_GAMES+directoryName+"/level.json");
       levelFile.write(level.toJSONString());
-      FileWriter controlFile = new FileWriter(RESOURCE_DIRECTORY+SAVED_GAMES+directoryName+"/controls.json")
+      FileWriter controlFile = new FileWriter(RESOURCE_DIRECTORY+SAVED_GAMES+directoryName+"/controls.json");
       controlFile.write(level.toJSONString());
       FileWriter collisionFile = new FileWriter(RESOURCE_DIRECTORY+SAVED_GAMES+directoryName+"/collision.json");
       collisionFile.write(level.toJSONString());
@@ -29,9 +29,6 @@ public class CheckpointDirectory {
       throw new RuntimeException(e);
     }
   }
-
-
-
 
 
 }

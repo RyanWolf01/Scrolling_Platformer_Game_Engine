@@ -10,13 +10,31 @@ public class JSONDecodingTest {
 
   // make some sample JSON array and object here to use to test methods
   JSONArray sampleArray = new JSONArray();
+  JSONObject sampleObject = new JSONObject();
+  JSONObject bigObject = new JSONObject();
 
-  JSONObject obj1 = new JSONObject();
-  JSONObject obj2 = new JSONObject();
-  JSONObject obj3 = new JSONObject();
 
   @Test
-  void testJSONObjectCreation() {
+  void testJSONUserControlHandler() {
+    sampleObject.put("Canteloupe", 7);
+    sampleObject.put("Watermelon", 12);
+    sampleObject.put("Honeydew", 5);
+    sampleArray.add(sampleObject);
+    bigObject.put("Melons", sampleArray);
+
+
   }
+
+  @Test
+  void testJSONCollisionChartMaking() {
+
+  }
+
+  @Test
+  void testJSONConnectionContainer() {
+
+  }
+
+
 
 }
