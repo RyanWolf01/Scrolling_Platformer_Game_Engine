@@ -3,7 +3,6 @@ package ooga.model.entities.deadmovingentities;
 import java.util.ResourceBundle;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.physics.GravityCalculator;
-import ooga.model.collisions.physics.PhysicsCalculator;
 import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.info.Info;
 import org.apache.logging.log4j.LogManager;
@@ -13,12 +12,11 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
 
   private static final Logger LOG = LogManager.getLogger(MovingEntity.class);
   private final int SCREEN_SIZE;
-  private final double GRAVITY_VELOCITY;
   private double xVelocity;
   private double yVelocity;
 
   /**
-   * Moving Entity has no lives but can move. Constructor initializes gravity velocity and screen size from Properties files.
+   * Moving Entity has no lives but can move. Constructor initializes screen size from Properties files.
    * @param chart Collision Chart
    * @param initialXCoordinate initial x
    * @param initialYCoordinate initial y
@@ -38,19 +36,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
       LOG.error("screen size from properties file formatted incorrectly");
     }
 
-    double tempGravityVelocity = 0.1;
-    try{
-      tempGravityVelocity = Double.parseDouble(
-          ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
-    } catch(NumberFormatException exception){
-      LOG.error("gravity velocity from properties file formatted incorrectly");
-    }
-
     SCREEN_SIZE = tempScreenSize;
-    GRAVITY_VELOCITY = tempGravityVelocity;
-  }
-
-  private void initializeDefaultScreenSizeValue(){
 
   }
 
@@ -59,7 +45,6 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public void move() {
-    applyGravity();
     setXCoordinate(getXCoordinate() + getXVelocity());
     setYCoordinate(getYCoordinate() + getYVelocity());
     handleInvalidCoordinates();
@@ -121,16 +106,11 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
     return SCREEN_SIZE;
   }
 
-  protected void applyGravity(){
-    if(isInAir())
-      changeVelocities(0, GRAVITY_VELOCITY);
-  }
-
   /**
    * returns if entity is in air
    * @return boolean
    */
-  private boolean isInAir(){
+  public boolean isInAir(){
     GravityCalculator gravityCalculator = new GravityCalculator();
     return gravityCalculator.checkInAir(this);
   }

@@ -38,7 +38,7 @@ public class EntityFactory {
                     .newInstance(chart, xCoordinate,yCoordinate, height, width, info, queue);
         } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
                  InstantiationException | IllegalAccessException e) {
-            throw new InvalidTypeException("JSON holds invalid type",e);
+            throw new InvalidTypeException("JSON holds invalid type of type " + type, e);
         }
 
         return newMover;

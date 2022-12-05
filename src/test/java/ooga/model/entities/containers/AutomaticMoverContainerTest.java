@@ -2,7 +2,9 @@ package ooga.model.entities.containers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ResourceBundle;
 import ooga.model.actions.moveractions.basicmovement.RightMovement;
+import ooga.model.actions.moveractions.basicmovement.UpwardMovement;
 import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
 import ooga.model.entities.deadmovingentities.MovementQueue;
 import org.junit.jupiter.api.Test;
@@ -16,11 +18,13 @@ public class AutomaticMoverContainerTest {
     movementQueue.addMove(new RightMovement());
 
     AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
-    AutomaticMoverContainer container = new AutomaticMoverContainer(mover1);
+    AutomaticMoverContainer container = new AutomaticMoverContainer();
+    container.addMover(mover1);
 
     container.moveAll();
 
-    assertEquals(5, mover1.getXCoordinate());
+    assertEquals( Integer.parseInt(ResourceBundle.getBundle("properties/movement").getString("right_velocity"))
+        , mover1.getXCoordinate());
   }
 
   @Test
@@ -37,8 +41,10 @@ public class AutomaticMoverContainerTest {
 
     container.moveAll();
 
-    assertEquals(5, mover1.getXCoordinate());
-    assertEquals(5, mover2.getXCoordinate());
+    assertEquals( Integer.parseInt(ResourceBundle.getBundle("properties/movement").getString("right_velocity"))
+        , mover1.getXCoordinate());
+    assertEquals( Integer.parseInt(ResourceBundle.getBundle("properties/movement").getString("right_velocity"))
+        , mover2.getXCoordinate());
   }
 
   @Test
@@ -53,6 +59,73 @@ public class AutomaticMoverContainerTest {
 
     assertEquals(0, mover1.getXCoordinate());
   }
+
+  @Test
+  void testResetVelocitiesPos1(){
+
+    MovementQueue movementQueue = new MovementQueue();
+    movementQueue.addMove(new RightMovement());
+
+    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
+    AutomaticMoverContainer container = new AutomaticMoverContainer();
+    container.addMover(mover1);
+
+    container.moveAll();
+
+    container.resetVelocities(true, false);
+
+    double gravityVelocity = Double.parseDouble(
+        ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
+
+    assertEquals(0 , mover1.getXVelocity());
+    assertEquals(gravityVelocity , mover1.getYVelocity());
+  }
+
+  @Test
+  void testResetVelocitiesPos2(){
+    AutomaticMoverContainer container = new AutomaticMoverContainer();
+
+    MovementQueue movementQueue = new MovementQueue();
+    movementQueue.addMove(new RightMovement());
+
+    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
+    container.addMover(mover1);
+    AutomaticMovingCharacter mover2 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
+    container.addMover(mover2);
+
+    container.moveAll();
+
+    container.resetVelocities(true, false);
+
+    double gravityVelocity = Double.parseDouble(
+        ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
+
+    assertEquals(0 , mover1.getXVelocity());
+    assertEquals(0 , mover2.getXVelocity());
+    assertEquals(gravityVelocity , mover1.getYVelocity());
+    assertEquals(gravityVelocity , mover2.getYVelocity());
+  }
+
+  @Test
+  void testResetVelocitiesNegative(){
+    AutomaticMoverContainer container = new AutomaticMoverContainer();
+
+    MovementQueue movementQueue = new MovementQueue();
+    movementQueue.addMove(new RightMovement());
+
+    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
+    container.addMover(mover1);
+    container.moveAll();
+    container.resetVelocities(false,false);
+
+    double gravityVelocity = Double.parseDouble(
+        ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
+
+    assertEquals(Integer.parseInt(ResourceBundle.getBundle("properties/movement").getString("right_velocity")), mover1.getXCoordinate());
+    assertEquals(gravityVelocity, mover1.getYCoordinate());
+  }
+
+
 
 
 }

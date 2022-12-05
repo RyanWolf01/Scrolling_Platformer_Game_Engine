@@ -35,7 +35,7 @@ public class Mario extends MainCharacterEntity {
       LOG.info("Mario was killed.");
     }
     if(getXCoordinate() <= 0){
-      setXCoordinate(1);
+      setXCoordinate(0);
       LOG.info("Mario off left of screen.");
     }
     if(getXCoordinate() >= getScreenSize()){
