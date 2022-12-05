@@ -28,7 +28,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
       Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
 
-    int tempScreenSize = 850;
+    int tempScreenSize;
     try{
       tempScreenSize = Integer.parseInt(
           ResourceBundle.getBundle("properties/view").getString("screen_size"));

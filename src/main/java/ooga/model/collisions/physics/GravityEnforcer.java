@@ -18,12 +18,13 @@ public class GravityEnforcer {
 
     this.entityContainer = entityContainer;
 
-    double tempGravityVelocity = 0.1;
+    double tempGravityVelocity;
     try{
       tempGravityVelocity = Double.parseDouble(
           ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
     } catch(NumberFormatException exception){
       LOG.error("gravity velocity from properties file formatted incorrectly");
+      throw exception;
     }
     GRAVITY_VELOCITY = tempGravityVelocity;
   }
