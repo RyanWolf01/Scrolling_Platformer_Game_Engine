@@ -10,7 +10,7 @@
     {
       "type": "mario",
       "character_type": "mario",
-      "x": "500",
+      "x": "700",
       "y": "-1",
       "height": "100",
       "width": "50",
@@ -31,7 +31,7 @@
       "texture": "/games/mario/assets/goomba.png",
       "x": "800",
       "y": "49",
-      "movement_queue": "move_right,move_right,move_right,move_right,move_right,move_right,move_right,move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_left,move_left,move_left,move_left,move_left,move_left",
+      "movement_queue": "move_right,move_right,move_right,move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_left,move_left",
       "height": "50",
       "width": "40"
     }

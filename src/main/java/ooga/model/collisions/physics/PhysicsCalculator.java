@@ -67,7 +67,7 @@ public class PhysicsCalculator {
 //    if (minTimeDirection == CollisionDirection.NONE) {
 //      throw new RuntimeException("These objects did not collide");
 //    }
-    moveColliderOutsideOfCollided(collider, minTime, minTimeDirection);
+//    moveColliderOutsideOfCollided(collider, minTime, minTimeDirection);
     return minTimeDirection;
 
   }
