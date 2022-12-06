@@ -138,7 +138,7 @@ public class StartScreen {
     a.show();
   }
 
-  public void changeLevelSelectionButtonVisibile(){
+  public void changeLevelSelectionButtonVisible(){
     levelSelection.setVisible(true);
   }
 
