@@ -1,0 +1,45 @@
+{
+  "scores":
+  [
+    {
+      "player": "John",
+      "score": 1000
+    },
+    {
+      "player": "Dexter",
+      "score": 900
+    },
+    {
+      "player": "Kevin Hart",
+      "score": 800
+    },
+    {
+      "player": "Lebron James",
+      "score": 700
+    },
+    {
+      "player": "Stacy",
+      "score": 600
+    },
+    {
+      "player": "Chad",
+      "score": 500
+    },
+    {
+      "player": "Stephen Petersburg",
+      "score": 400
+    },
+    {
+      "player": "Sonic",
+      "score": 300
+    },
+    {
+      "player": "The Goat From Goat Simulator",
+      "score": 200
+    },
+    {
+      "player": "Scrub Man",
+      "score": 100
+    }
+  ]
+}

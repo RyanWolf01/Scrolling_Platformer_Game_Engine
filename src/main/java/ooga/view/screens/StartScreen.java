@@ -32,6 +32,7 @@ public class StartScreen {
   private GameSelector gameSelector;
   private Button startGame;
   private Button levelSelection;
+  private String slash = System.getProperty("file.separator");
   private static final Logger LOG = LogManager.getLogger(StartScreen.class);
 
   Stage mainStage;
@@ -95,7 +96,7 @@ public class StartScreen {
 
   private Map getLevelDirectoryMap(){
     gameToGame = new HashMap<>();
-    String[] games = {"mario", "doodle" + System.getProperty("file.separator"), "dash" + System.getProperty("file.separator")};
+    String[] games = {"mario", "doodle" + slash, "dash" + slash};
     for (int i = 0; i < games.length; i++) {
         gameToGame.put(GAME_LIST[i], games[i]);
     }
@@ -103,7 +104,7 @@ public class StartScreen {
   }
 
   private String chooseLevel(String prompt){
-    String fileDirectory = System.getProperty("user.dir") + System.getProperty("file.separator") + "data" + System.getProperty("file.separator")+ "games" + System.getProperty("file.separator") + gameToGame.get(gameSelector.getValue());
+    String fileDirectory = System.getProperty("user.dir") + slash + "data" + slash+ "games" + slash + gameToGame.get(gameSelector.getValue());
     LOG.debug(fileDirectory);
     directoryChooser = new DirectoryChooser();
     try{
