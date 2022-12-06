@@ -1,6 +1,6 @@
 {
-  "W": "move_down",
+  "W": "move_up",
   "A": "move_left",
   "D": "move_right",
-  "S": "move_up"
+  "S": "move_down"
 }
