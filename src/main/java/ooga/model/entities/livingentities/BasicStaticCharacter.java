@@ -35,12 +35,4 @@ public class BasicStaticCharacter extends StaticCharacter {
     return new AliveActionParser(actionDataContainer).parseAndApplyActions(this);
   }
 
-//  private void performAliveAction(ActionDataContainer actionDataContainer) {
-//    AliveActionParser aliveActionParser = new AliveActionParser(actionDataContainer);
-//    if (aliveActionParser.hasAction()) {
-//      AliveAction aliveAction = aliveActionParser.getAction();
-//      aliveAction.execute(this);
-//    }
-//  }
-
 }

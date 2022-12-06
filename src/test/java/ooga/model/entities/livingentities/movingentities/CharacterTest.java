@@ -19,7 +19,7 @@ public class CharacterTest {
     increaseLife.execute(mario);
 
     mario.kill();
-    assertEquals(1, mario.getLives());
+    assertEquals(2, mario.getLives());
   }
 
   @Test
@@ -33,7 +33,7 @@ public class CharacterTest {
 
     mario.kill();
     mario.kill();
-    assertEquals(1, mario.getLives());
+    assertEquals(2, mario.getLives());
   }
 
   @Test
