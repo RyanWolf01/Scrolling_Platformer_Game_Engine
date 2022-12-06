@@ -52,7 +52,6 @@ public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
       mover.automaticMove();
     }
 
-
   }
 
   /**
@@ -61,7 +60,7 @@ public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
   private boolean shouldMove(){
     stepCounter++;
 
-    if(stepCounter % MOVEMENT_RATE != 0)
+    if(stepCounter % MOVEMENT_RATE == 0)
       return true;
     return false;
   }
