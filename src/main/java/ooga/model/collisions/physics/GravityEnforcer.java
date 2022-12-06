@@ -1,6 +1,7 @@
 package ooga.model.collisions.physics;
 
 import java.util.ResourceBundle;
+import ooga.model.actions.moveractions.Gravity;
 import ooga.model.entities.containers.BackendContainer;
 import ooga.model.entities.deadmovingentities.Mover;
 import org.apache.logging.log4j.LogManager;
@@ -43,8 +44,10 @@ public class GravityEnforcer {
    * apply gravity to single mover
    */
   private void applyGravity(Mover mover){
-    if(mover.isInAir())
-      mover.changeVelocities(0, GRAVITY_VELOCITY);
+    if(mover.isInAir()){
+      Gravity gravity = new Gravity();
+      gravity.execute(mover);
+    }
   }
 
 }
