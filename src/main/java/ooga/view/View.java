@@ -46,7 +46,7 @@ public class View {
   public void finishLevel(){
     levelAnimation.stop();
     EndScreen endScreen = new EndScreen();
-    myStage.setScene(endScreen.initiateScene(new File(myController.getLevelDirectory() + Main.slash + "scores.json")));
+    myStage.setScene(endScreen.initiateScene(myController.getLevelDirectory() + Main.slash + "scores.json"));
     myStage.setTitle("You Won!");
   }
 
