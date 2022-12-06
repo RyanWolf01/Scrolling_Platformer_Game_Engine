@@ -90,6 +90,14 @@ public class StartScreen {
     String fileDirectory = System.getProperty("user.dir") + System.getProperty("file.separator") + "data" + System.getProperty("file.separator")+ "games" + System.getProperty("file.separator") + gameToGame.get(gameSelector.getValue());
     LOG.debug(fileDirectory);
     directoryChooser = new DirectoryChooser();
+    try{
+      directoryChooser.setInitialDirectory(new File(fileDirectory));
+      LOG.debug("Found the Initial Directory Successfully");
+    }
+    catch(Exception e){
+      directoryChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+      LOG.error("Did not find Initial Directory Successfully. Will now go to Default Directory");
+    }
     directoryChooser.setInitialDirectory(new File(fileDirectory));
     directoryChooser.getInitialDirectory();
     levelDirectory = directoryChooser.showDialog(mainStage);
