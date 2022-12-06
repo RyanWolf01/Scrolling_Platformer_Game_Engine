@@ -1,11 +1,15 @@
 package ooga.model.actions.moveractions;
 
 
+import java.util.ResourceBundle;
 import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BounceTest {
+
+  private final double bounceVelocity = Double.parseDouble(
+      ResourceBundle.getBundle("properties/movement").getString("bounce_velocity"));
 
   @Test
   void testBouncePos1() {
@@ -14,7 +18,7 @@ public class BounceTest {
     Bounce bounce = new Bounce();
     bounce.execute(mario);
 
-    assertEquals(5, mario.getYVelocity());
+    assertEquals(bounceVelocity, mario.getYVelocity());
     assertEquals(0, mario.getXVelocity());
   }
 
@@ -31,7 +35,7 @@ public class BounceTest {
     Bounce bounce2 = new Bounce();
     bounce2.execute(mario);
 
-    assertEquals(10, mario.getYVelocity());
+    assertEquals(bounceVelocity * 2, mario.getYVelocity());
     assertEquals(0, mario.getXVelocity());
   }
 

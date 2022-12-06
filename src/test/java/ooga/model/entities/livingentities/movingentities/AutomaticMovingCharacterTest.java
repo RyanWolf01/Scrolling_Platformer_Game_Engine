@@ -114,7 +114,7 @@ public class AutomaticMovingCharacterTest {
     MovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     movingCharacter.changeLives(1);
-    assertEquals(1, movingCharacter.getLives());
+    assertEquals(2, movingCharacter.getLives());
   }
 
   @Test
@@ -126,7 +126,7 @@ public class AutomaticMovingCharacterTest {
     MovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     movingCharacter.changeLives(100);
-    assertEquals(100, movingCharacter.getLives());
+    assertEquals(101, movingCharacter.getLives());
   }
 
   @Test
@@ -138,7 +138,7 @@ public class AutomaticMovingCharacterTest {
     MovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     movingCharacter.changeLives(0);
-    assertEquals(0, movingCharacter.getLives());
+    assertEquals(1, movingCharacter.getLives());
   }
 
   @Test
@@ -163,7 +163,7 @@ public class AutomaticMovingCharacterTest {
 
     movingCharacter.changeLives(100);
     movingCharacter.changeLives(-1);
-    assertEquals(99, movingCharacter.getLives());
+    assertEquals(100, movingCharacter.getLives());
   }
 
   @Test
@@ -203,7 +203,7 @@ public class AutomaticMovingCharacterTest {
     ActionDataContainer container = new ActionDataContainer(actionList);
     character.performActions(container);
 
-    assertEquals(1, character.getLives());
+    assertEquals(2, character.getLives());
   }
 
   @Test
@@ -229,7 +229,7 @@ public class AutomaticMovingCharacterTest {
     automaticMovingCharacter.changeVelocities(0, 10000000);
     automaticMovingCharacter.move();
 
-    assertEquals(0, automaticMovingCharacter.getLives());
+    assertEquals(1, automaticMovingCharacter.getLives());
   }
 
   @Test
@@ -240,7 +240,7 @@ public class AutomaticMovingCharacterTest {
     automaticMovingCharacter.changeVelocities(0, 100000);
     automaticMovingCharacter.move();
 
-    assertEquals(2, automaticMovingCharacter.getLives());
+    assertEquals(3, automaticMovingCharacter.getLives());
   }
 
   @Test
@@ -253,7 +253,7 @@ public class AutomaticMovingCharacterTest {
     automaticMovingCharacter.changeVelocities(0, screenSize-1);
     automaticMovingCharacter.move();
 
-    assertEquals(3, automaticMovingCharacter.getLives());
+    assertEquals(4, automaticMovingCharacter.getLives());
   }
 
 

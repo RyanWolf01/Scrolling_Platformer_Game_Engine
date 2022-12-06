@@ -14,8 +14,7 @@ import org.apache.logging.log4j.Logger;
 public interface Alive {
 
   /**
-   * Returns number of lives of the current entity is alive. Extended by other
-   * interfaces.
+   * Returns number of lives of the current entity is alive.
    */
   int getLives();
 

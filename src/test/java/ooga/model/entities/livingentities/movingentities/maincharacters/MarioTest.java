@@ -74,7 +74,7 @@ public class MarioTest {
     Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeLives(1);
-    assertEquals(1, mario.getLives());
+    assertEquals(2, mario.getLives());
   }
 
   @Test
@@ -82,7 +82,7 @@ public class MarioTest {
     Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeLives(100);
-    assertEquals(100, mario.getLives());
+    assertEquals(101, mario.getLives());
   }
 
   @Test
@@ -90,15 +90,15 @@ public class MarioTest {
     Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
     mario.changeLives(0);
-    assertEquals(0, mario.getLives());
+    assertEquals(1, mario.getLives());
   }
 
   @Test
   void testDecrementLivesPositive1() {
     Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.changeLives(1);
-    assertEquals(1, mario.getLives());
+    mario.changeLives(-1);
+    assertEquals(0, mario.getLives());
   }
 
   @Test
@@ -175,7 +175,7 @@ public class MarioTest {
     mario.changeVelocities(0, 10000000);
     mario.move();
 
-    assertEquals(0, mario.getLives());
+    assertEquals(1, mario.getLives());
   }
 
 }
