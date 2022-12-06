@@ -2,11 +2,15 @@ package ooga.model.actions.moveractions.basicmovement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ResourceBundle;
 import ooga.model.actions.moveractions.StopXMovement;
 import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.junit.jupiter.api.Test;
 
 public class UpwardMovementTest {
+
+  private final double upVelocity = Double.parseDouble(
+      ResourceBundle.getBundle("properties/movement").getString("upward_velocity"));
 
   @Test
   void testUpwardMovementPos1() {
@@ -16,7 +20,7 @@ public class UpwardMovementTest {
     move.execute(mario);
 
     assertEquals(0, mario.getXCoordinate());
-    assertEquals(5, mario.getYCoordinate());
+    assertEquals(upVelocity, mario.getYCoordinate());
   }
 
   /**
@@ -31,7 +35,7 @@ public class UpwardMovementTest {
     move.execute(mario);
 
     assertEquals(0, mario.getXCoordinate());
-    assertEquals(15, mario.getYCoordinate());
+    assertEquals(upVelocity * 2, mario.getYVelocity());
   }
 
   /**

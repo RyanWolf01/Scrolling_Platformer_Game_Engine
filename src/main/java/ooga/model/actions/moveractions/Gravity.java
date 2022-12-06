@@ -6,26 +6,26 @@ import ooga.model.entities.livingentities.Alive;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Bounce implements MoverAction{
+public class Gravity implements MoverAction{
 
-  private static final Logger LOG = LogManager.getLogger(Bounce.class);
-  private final int BOUNCE_VELOCITY;
+  private static final Logger LOG = LogManager.getLogger(Gravity.class);
+  private final double GRAVITY_VELOCITY;
 
   /**
    * Bounce constructor initializes default Bounce velocity value
    */
-  public Bounce(){
+  public Gravity(){
 
-    int tempBounceVelocity;
+    double tempVelocity;
     try{
-      tempBounceVelocity = Integer.parseInt(
-          ResourceBundle.getBundle("properties/movement").getString("bounce_velocity"));
+      tempVelocity = Double.parseDouble(
+          ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
     }
     catch(NumberFormatException exception){
       LOG.error("incorrect velocity format");
       throw exception;
     }
-    BOUNCE_VELOCITY = tempBounceVelocity;
+    GRAVITY_VELOCITY = tempVelocity;
   }
 
   /**
@@ -34,8 +34,8 @@ public class Bounce implements MoverAction{
    */
   @Override
   public void execute(Mover entity){
-    entity.changeVelocities(0, BOUNCE_VELOCITY);
-    entity.move();
+    entity.changeVelocities(0, GRAVITY_VELOCITY);
   }
 
 }
+

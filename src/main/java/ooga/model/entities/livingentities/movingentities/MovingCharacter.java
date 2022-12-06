@@ -4,13 +4,14 @@ import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.deadmovingentities.MovingEntity;
 import ooga.model.entities.info.Info;
 import ooga.model.entities.livingentities.Alive;
+import ooga.model.entities.livingentities.AliveBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public abstract class MovingCharacter extends MovingEntity implements Alive {
 
   private static final Logger LOG = LogManager.getLogger(MovingCharacter.class);
-  private int lives;
+  private AliveBehavior aliveBehavior;
 
   /**
    * Moving Character has lives and can move.
@@ -24,7 +25,17 @@ public abstract class MovingCharacter extends MovingEntity implements Alive {
   public MovingCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
-    this.lives = setInitialLives(entityInfo);
+    aliveBehavior = new AliveBehavior(entityInfo);
+  }
+
+  /**
+   * Implements method in Alive interface that changes object's lives
+   *
+   * @param changeInLives is the change in lives
+   */
+  @Override
+  public void changeLives(int changeInLives) {
+    aliveBehavior.changeLives(changeInLives);
   }
 
   /**
@@ -32,30 +43,15 @@ public abstract class MovingCharacter extends MovingEntity implements Alive {
    */
   @Override
   public int getLives() {
-    return lives;
+    return aliveBehavior.getLives();
   }
 
   /**
-   * This method should perform all actions necessary to kill the entity. This is specific to a
-   * given entity, but for Mario this may include setting its velocities to 0 and disabling
-   * abilities.
+   * This method should perform all actions necessary to kill the entity.
    */
   @Override
   public void kill() {
-    lives--;
-  }
-
-  /**
-   * allow characters to set their lives. Make sure lives cannot be negative
-   *
-   * @param lives value to which lives will now be set
-   */
-  protected void setLives(int lives) {
-      if (lives <= 0) {
-          this.lives = 0;
-      } else {
-          this.lives = lives;
-      }
+    aliveBehavior.kill();
   }
 
 }

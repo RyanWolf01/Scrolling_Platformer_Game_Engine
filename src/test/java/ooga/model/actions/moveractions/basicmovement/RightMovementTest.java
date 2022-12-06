@@ -2,10 +2,14 @@ package ooga.model.actions.moveractions.basicmovement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ResourceBundle;
 import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.junit.jupiter.api.Test;
 
 public class RightMovementTest {
+
+  private final double rightVelocity = Double.parseDouble(
+      ResourceBundle.getBundle("properties/movement").getString("right_velocity"));
 
   @Test
   void testMovementPos1() {
@@ -14,7 +18,7 @@ public class RightMovementTest {
     RightMovement move = new RightMovement();
     move.execute(mario);
 
-    assertEquals(5, mario.getXCoordinate());
+    assertEquals(rightVelocity, mario.getXCoordinate());
     assertEquals(0, mario.getYCoordinate());
   }
 
@@ -29,7 +33,7 @@ public class RightMovementTest {
     move.execute(mario);
     move.execute(mario);
 
-    assertEquals(10, mario.getXCoordinate());
+    assertEquals(rightVelocity * 2, mario.getXVelocity());
     assertEquals(0, mario.getYCoordinate());
   }
 
