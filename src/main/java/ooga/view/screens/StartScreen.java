@@ -7,7 +7,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.GridPane;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ooga.view.View;
 import ooga.view.interactives.GameSelector;
@@ -16,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Map;
 
 public class StartScreen {
 
@@ -43,7 +43,7 @@ public class StartScreen {
     gameSelector = new GameSelector(this);
     gameChooser.add(gameSelector, 0, 0);
 
-    createLevelDirectoryMap();
+    getLevelDirectoryMap();
     Button levelSelection = createLevelButton();
     gameChooser.add(levelSelection, 0, 1);
 
@@ -77,17 +77,18 @@ public class StartScreen {
     return levelButton;
   }
 
-  private void createLevelDirectoryMap(){
+  private Map getLevelDirectoryMap(){
     gameToGame = new HashMap<>();
-    String[] games = {"mario/", "doodle/", "dash/"};
+    String[] games = {"mario", "doodle" + System.getProperty("file.separator"), "dash" + System.getProperty("file.separator")};
     for (int i = 0; i < games.length; i++) {
         gameToGame.put(GAME_LIST[i], games[i]);
     }
+    return gameToGame;
   }
 
   private String chooseLevel(){
-    String fileDirectory = System.getProperty("user.dir") + "/data/";
-    //String levelDirectory = RESOURCE_DIRECTORY + GAMES_DIRECTORY + gameToGame.get(gameSelector.getValue()) + LEVEL_DIRECTORY;
+    String fileDirectory = System.getProperty("user.dir") + System.getProperty("file.separator") + "data" + System.getProperty("file.separator")+ "games" + System.getProperty("file.separator") + gameToGame.get(gameSelector.getValue());
+    LOG.debug(fileDirectory);
     directoryChooser = new DirectoryChooser();
     directoryChooser.setInitialDirectory(new File(fileDirectory));
     directoryChooser.getInitialDirectory();

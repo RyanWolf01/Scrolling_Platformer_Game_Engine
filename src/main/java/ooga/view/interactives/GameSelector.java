@@ -11,6 +11,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GameSelector extends ComboBox<String> {
@@ -18,10 +19,13 @@ public class GameSelector extends ComboBox<String> {
 
   private static final String GAMES_FILE = "games.json";
   private static final String[] DEFAULT_GAME_LIST = {"Super Mario Bros", "Doodle Jump", "Geometry Dash"};
+  private static final String[] DEFAULT_FOLDER_LIST = {"\\mario", "\\doodle", "\\dash"};
   private static final String CHOOSE_GAME_PROMPT = "Select a Game";
   private String selectedGame;
   private StartScreen myStartScreen;
   private static final Logger LOG = LogManager.getLogger(GameSelector.class);
+  private ArrayList<String> gamesArray = new ArrayList<>();
+  private HashMap<String, String> gameToDirectory = new HashMap<>();
 
 
   public GameSelector(StartScreen startScreen){
@@ -34,7 +38,6 @@ public class GameSelector extends ComboBox<String> {
     //TODO: Get list of games from a json
 
     JSONObject levelsJson;
-    ArrayList<String> gamesArray = new ArrayList<>();
     try {
       File gamesListFile = new File(this.getClass().getClassLoader().getResource(GAMES_FILE).getFile());
       LOG.debug("Games List Loaded Successfully");
@@ -43,16 +46,19 @@ public class GameSelector extends ComboBox<String> {
       for (int i = 0; i < games.size(); ++i) {
         JSONObject rec = (JSONObject) games.get(i);
         String name = (String) rec.get("name");
+        String folder = (String) rec.get("folder");
         gamesArray.add(name);
+        gameToDirectory.put(name, folder);
       }
     } catch (Exception e) {
       LOG.error("No gamesList File");
       gamesArray = new ArrayList<>(List.of(DEFAULT_GAME_LIST));
     }
-    addGamesToPrompt(gamesArray);
+    createLevelDirectoryMap();
+    addGamesToPrompt();
   }
 
-  private void addGamesToPrompt(List<String> gamesArray){
+  private void addGamesToPrompt(){
     this.setPromptText(CHOOSE_GAME_PROMPT);
     this.getItems().addAll(gamesArray);
     this.setOnAction(event ->{
@@ -60,5 +66,12 @@ public class GameSelector extends ComboBox<String> {
       myStartScreen.changeBackground(selectedGame + ".png");
       this.setPromptText(selectedGame);
     });
+  }
+
+  private void createLevelDirectoryMap(){
+    String[] games = {"mario/", "doodle/", "dash/"};
+    for (int i = 0; i < games.length; i++) {
+      gameToDirectory.put(gamesArray.get(i), games[i]);
+    }
   }
 }
