@@ -10,22 +10,34 @@ public class Gravity implements MoverAction{
 
   private static final Logger LOG = LogManager.getLogger(Gravity.class);
   private final double GRAVITY_VELOCITY;
+  private final double TERMINAL_VELOCITY;
 
   /**
    * Bounce constructor initializes default Bounce velocity value
    */
   public Gravity(){
 
-    double tempVelocity;
+    double tempGravityVelocity;
     try{
-      tempVelocity = Double.parseDouble(
+      tempGravityVelocity = Double.parseDouble(
           ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
     }
     catch(NumberFormatException exception){
       LOG.error("incorrect velocity format");
       throw exception;
     }
-    GRAVITY_VELOCITY = tempVelocity;
+    GRAVITY_VELOCITY = tempGravityVelocity;
+
+    double tempTerminalVelocity;
+    try{
+      tempTerminalVelocity = Double.parseDouble(
+          ResourceBundle.getBundle("properties/movement").getString("terminal_velocity"));
+    }
+    catch(NumberFormatException exception){
+      LOG.error("incorrect velocity format");
+      throw exception;
+    }
+    TERMINAL_VELOCITY = tempTerminalVelocity;
   }
 
   /**
@@ -34,7 +46,8 @@ public class Gravity implements MoverAction{
    */
   @Override
   public void execute(Mover entity){
-    entity.changeVelocities(0, GRAVITY_VELOCITY);
+    if(entity.getYVelocity() + GRAVITY_VELOCITY <= TERMINAL_VELOCITY)
+      entity.changeVelocities(0, GRAVITY_VELOCITY);
   }
 
 }
