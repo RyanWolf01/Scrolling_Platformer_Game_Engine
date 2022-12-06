@@ -63,9 +63,9 @@ public class BasicStaticCharacterTest {
   @Test
   void testKill() {
     StaticCharacter character = new BasicStaticCharacter( null,0, 0, 2, 2, new EntityInfo("example"));
-    character.setLives(2);
+    character.changeLives(2);
     character.kill();
-    assertEquals(1, character.getLives());
+    assertEquals(2, character.getLives());
   }
 
   @Test
@@ -85,7 +85,7 @@ public class BasicStaticCharacterTest {
   @Test
   void testPerformActionsPos2(){
     BasicStaticCharacter character = new BasicStaticCharacter(null,0, 0, 2, 2, new EntityInfo("example"));
-    character.setLives(2);
+    character.changeLives(2);
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();
     ActionData data = new ActionData("ooga.model.actions.aliveactions.Kill", "AliveAction", params);
@@ -93,7 +93,7 @@ public class BasicStaticCharacterTest {
     ActionDataContainer container = new ActionDataContainer(actionList);
     character.performActions(container);
 
-    assertEquals(1, character.getLives());
+    assertEquals(2, character.getLives());
   }
 
 }

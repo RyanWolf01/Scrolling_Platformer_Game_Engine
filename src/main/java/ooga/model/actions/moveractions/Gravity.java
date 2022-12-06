@@ -9,16 +9,16 @@ import org.apache.logging.log4j.Logger;
 public class Gravity implements MoverAction{
 
   private static final Logger LOG = LogManager.getLogger(Gravity.class);
-  private final int GRAVITY_VELOCITY;
+  private final double GRAVITY_VELOCITY;
 
   /**
    * Bounce constructor initializes default Bounce velocity value
    */
   public Gravity(){
 
-    int tempVelocity;
+    double tempVelocity;
     try{
-      tempVelocity = Integer.parseInt(
+      tempVelocity = Double.parseDouble(
           ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
     }
     catch(NumberFormatException exception){
