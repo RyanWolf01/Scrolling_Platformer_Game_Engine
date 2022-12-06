@@ -69,13 +69,12 @@ public class StartScreen {
 
 
     levelButton.setText("Choose Level");
-    levelButton.setOnAction(event -> chooseLevel());
-
+    levelButton.setOnAction(e -> {
+      String levelFile = chooseLevel();
+      levelButton.setText(levelFile);
+    });
 
     return levelButton;
-  }
-  private void createGameList(){
-
   }
 
   private void createLevelDirectoryMap(){
@@ -86,15 +85,16 @@ public class StartScreen {
     }
   }
 
-  private void chooseLevel(){
-    FileChooser fileChooser = new FileChooser();
-    String fileDirectory = System.getProperty("user.dir");
+  private String chooseLevel(){
+    String fileDirectory = System.getProperty("user.dir") + "/data/";
     //String levelDirectory = RESOURCE_DIRECTORY + GAMES_DIRECTORY + gameToGame.get(gameSelector.getValue()) + LEVEL_DIRECTORY;
     directoryChooser = new DirectoryChooser();
     directoryChooser.setInitialDirectory(new File(fileDirectory));
+    directoryChooser.getInitialDirectory();
     levelDirectory = directoryChooser.showDialog(mainStage);
     System.out.println(levelDirectory);
     LOG.debug(this.levelDirectory);
+    return levelDirectory.getName();
   }
 
 }

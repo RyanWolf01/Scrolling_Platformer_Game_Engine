@@ -58,6 +58,7 @@ public class GameSelector extends ComboBox<String> {
     this.setOnAction(event ->{
       selectedGame = this.getValue();
       myStartScreen.changeBackground(selectedGame + ".png");
+      this.setPromptText(selectedGame);
     });
   }
 }
