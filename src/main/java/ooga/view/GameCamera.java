@@ -35,13 +35,11 @@ public class GameCamera implements Camera {
 
     if(! inHorizontalSpace(playerX)){
       double delta = generateDeltaX(playerX);
-//      LOG.debug("Move Camera Horizontal" + delta);
       translateHorizontal(delta);
     }
 
     if(! inVerticalSpace(playerY)){
       double delta = generateDeltaY(playerY);
-//      LOG.debug("Move Camera Horizontal" + delta);
       translateVertical(delta);
     }
 

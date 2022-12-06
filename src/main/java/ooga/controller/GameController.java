@@ -21,12 +21,14 @@ public class GameController {
     private DefaultCollisionChart collisionChart;
     private Model model;
     private Queue<KeyCode> keyCodeQueue;
+    private String myLevel;
 
     /**
      * The GameController needs to have a mapping of backend to frontend objects
      *
      */
     public GameController(String levelJSON, String collisionJSON, String controlsJSON) {
+        myLevel = levelJSON;
         controlHandler = new UserControlHandler();
         jsonDecoder = new JSONInformationDecoder(levelJSON, collisionJSON, controlsJSON);
         container = new ConnectionContainer(jsonDecoder);
@@ -89,5 +91,9 @@ public class GameController {
                 }
             }
         }
+    }
+
+    public String getLevelDirectory(){
+        return myLevel.replace("level.json", "");
     }
 }

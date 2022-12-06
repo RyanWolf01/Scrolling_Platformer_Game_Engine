@@ -42,16 +42,6 @@ public class AutomaticMovingCharacter extends MovingCharacter implements Automat
   }
 
   /**
-   * Implements method in Alive interface that changes object's lives
-   *
-   * @param changeInLives is the change in lives
-   */
-  @Override
-  public void changeLives(int changeInLives) {
-    setLives(getLives() + changeInLives);
-  }
-
-  /**
    * This will move the entity automatically based on the configured MoverActions in the MoveQueue
    */
   @Override
