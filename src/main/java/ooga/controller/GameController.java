@@ -5,6 +5,7 @@ import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.model.Model;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
+import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
 
@@ -53,6 +54,14 @@ public class GameController {
         if (! keyCodeQueue.contains(code)) {
             keyCodeQueue.add(code);
         }
+    }
+
+    /**
+     * Gets information from the JSON about the
+     * @return
+     */
+    public ViewInfo getViewInfo(){
+        return jsonDecoder.viewInfo();
     }
 
     private void executeKeyInputActions() {
