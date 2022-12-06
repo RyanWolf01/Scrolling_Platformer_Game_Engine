@@ -47,9 +47,6 @@ public class Model {
   }
 
   public void handleMoveKey(MoverAction action){
-    if (! entities.mainCharacter().isInAir() && action instanceof DownwardMovement) {
-      return;
-    }
     entities.mainCharacter().acceptMoveAction(action);
   }
 

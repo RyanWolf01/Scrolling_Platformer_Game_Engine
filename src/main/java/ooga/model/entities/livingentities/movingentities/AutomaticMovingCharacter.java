@@ -58,6 +58,16 @@ public class AutomaticMovingCharacter extends MovingCharacter implements Automat
   }
 
   @Override
+  public boolean canMoveLeft() {
+    return !isInAir();
+  }
+
+  @Override
+  public boolean canMoveRight() {
+    return !isInAir();
+  }
+
+  @Override
   protected int performActions(ActionDataContainer actionDataContainer) {
     int count = 0;
     count += new MoverActionParser(actionDataContainer).parseAndApplyActions(this);

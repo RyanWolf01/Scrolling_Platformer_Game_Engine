@@ -34,6 +34,7 @@ public final class DownwardMovement implements MoverAction {
    */
   @Override
   public void execute(Mover entity){
+    if (! entity.canMoveDown()) return;
     entity.changeVelocities(0, DOWNWARD_VELOCITY);
     entity.move();
   }

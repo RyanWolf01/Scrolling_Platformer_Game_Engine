@@ -42,6 +42,19 @@ public interface Mover {
      */
     boolean isInAir();
 
+    default boolean canMoveLeft() {
+        return true;
+    }
+    default boolean canMoveRight() {
+        return true;
+    }
+    default boolean canMoveUp() {
+        return !isInAir();
+    }
+    default boolean canMoveDown() {
+        return isInAir();
+    }
+
 
 
 }
