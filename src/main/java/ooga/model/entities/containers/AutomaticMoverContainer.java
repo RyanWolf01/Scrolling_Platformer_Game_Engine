@@ -3,10 +3,19 @@ package ooga.model.entities.containers;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ResourceBundle;
+import ooga.model.collisions.physics.GravityChecker;
 import ooga.model.entities.deadmovingentities.AutomaticMover;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
 
+  Logger LOG = LogManager.getLogger(GravityChecker.class);
+
+  ResourceBundle entityInfoResources = ResourceBundle.getBundle("properties/movement");
+
+  private final int MOVEMENT_RATE;
   private List<AutomaticMover> movers;
   private int stepCounter;
   /**
@@ -15,6 +24,13 @@ public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
   public AutomaticMoverContainer(){
     movers = new ArrayList<>();
     stepCounter = 0;
+
+    try{
+      MOVEMENT_RATE = Integer.parseInt(entityInfoResources.getString("automatic_movement_rate"));
+    } catch(NullPointerException | NumberFormatException exception){
+      LOG.error("no value provided for automatic movement rate in resources");
+      throw exception;
+    }
   }
 
   /**
@@ -29,15 +45,27 @@ public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
    */
   public void moveAll(){
 
-    if(stepCounter % 10 != 0)
+    if(!shouldMove())
       return;
 
     for(AutomaticMover mover: this.movers){
       mover.automaticMove();
     }
 
-    stepCounter++;
+
   }
+
+  /**
+   * helper method to determine if should move automatic movers
+   */
+  private boolean shouldMove(){
+    stepCounter++;
+
+    if(stepCounter % MOVEMENT_RATE != 0)
+      return true;
+    return false;
+  }
+
 
   /**
    * call reset velocities method on all Automatic Movers
