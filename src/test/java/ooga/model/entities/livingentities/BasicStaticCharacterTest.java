@@ -17,7 +17,7 @@ public class BasicStaticCharacterTest {
     StaticCharacter character = new BasicStaticCharacter( null,0, 0, 2, 2,entityInfo);
 
     character.changeLives(1);
-    assertEquals(1, character.getLives());
+    assertEquals(2, character.getLives());
   }
 
   @Test
@@ -25,7 +25,7 @@ public class BasicStaticCharacterTest {
     BasicStaticCharacter character = new BasicStaticCharacter(null,0, 0, 2, 2, new EntityInfo("example"));
 
     character.changeLives(100);
-    assertEquals(100, character.getLives());
+    assertEquals(101, character.getLives());
   }
 
   @Test
@@ -33,7 +33,7 @@ public class BasicStaticCharacterTest {
     BasicStaticCharacter character = new BasicStaticCharacter(null,0, 0, 2, 2, new EntityInfo("example"));
 
     character.changeLives(0);
-    assertEquals(0, character.getLives());
+    assertEquals(1, character.getLives());
   }
 
   @Test
@@ -41,7 +41,7 @@ public class BasicStaticCharacterTest {
     BasicStaticCharacter character = new BasicStaticCharacter(null,0, 0, 2, 2, new EntityInfo("example"));
 
     character.changeLives(1);
-    assertEquals(1, character.getLives());
+    assertEquals(2, character.getLives());
   }
 
   @Test
@@ -49,7 +49,7 @@ public class BasicStaticCharacterTest {
     BasicStaticCharacter character = new BasicStaticCharacter(null,0, 0, 2, 2, new EntityInfo("example"));
 
     character.changeLives(101);
-    assertEquals(101, character.getLives());
+    assertEquals(102, character.getLives());
   }
 
   @Test
@@ -57,15 +57,15 @@ public class BasicStaticCharacterTest {
     BasicStaticCharacter character = new BasicStaticCharacter(null,0, 0, 2, 2, new EntityInfo("example"));
 
     character.changeLives(0);
-    assertEquals(0, character.getLives());
+    assertEquals(1, character.getLives());
   }
 
   @Test
   void testKill() {
     StaticCharacter character = new BasicStaticCharacter( null,0, 0, 2, 2, new EntityInfo("example"));
-    character.setLives(2);
+    character.changeLives(2);
     character.kill();
-    assertEquals(1, character.getLives());
+    assertEquals(2, character.getLives());
   }
 
   @Test
@@ -79,13 +79,13 @@ public class BasicStaticCharacterTest {
     ActionDataContainer container = new ActionDataContainer(actionList);
     character.performActions(container);
 
-    assertEquals(1, character.getLives());
+    assertEquals(2, character.getLives());
   }
 
   @Test
   void testPerformActionsPos2(){
     BasicStaticCharacter character = new BasicStaticCharacter(null,0, 0, 2, 2, new EntityInfo("example"));
-    character.setLives(2);
+    character.changeLives(2);
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();
     ActionData data = new ActionData("ooga.model.actions.aliveactions.Kill", "AliveAction", params);
@@ -93,7 +93,7 @@ public class BasicStaticCharacterTest {
     ActionDataContainer container = new ActionDataContainer(actionList);
     character.performActions(container);
 
-    assertEquals(1, character.getLives());
+    assertEquals(2, character.getLives());
   }
 
 }

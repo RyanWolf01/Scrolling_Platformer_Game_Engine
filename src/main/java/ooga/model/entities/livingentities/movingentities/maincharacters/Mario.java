@@ -45,16 +45,6 @@ public class Mario extends MainCharacterEntity {
   }
 
   /**
-   * Implements method in Alive interface that changes object's lives
-   *
-   * @param changeInLives is the change in lives
-   */
-  @Override
-  public void changeLives(int changeInLives) {
-    setLives(getLives() + changeInLives);
-  }
-
-  /**
    * reads from CollisionChart and performs resulting actions necessary to handle the collision
    *
    * @param actionDataContainer

@@ -6,7 +6,7 @@ import ooga.model.entities.info.Info;
 
 public abstract class StaticCharacter extends CollidableEntity implements Alive {
 
-  private int lives;
+  private AliveBehavior aliveBehavior;
 
   /**
    * Static Entity has lives but can not move.
@@ -20,7 +20,17 @@ public abstract class StaticCharacter extends CollidableEntity implements Alive 
   public StaticCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
-    this.lives = setInitialLives(entityInfo);
+    aliveBehavior = new AliveBehavior(entityInfo);
+  }
+
+  /**
+   * Implements method in Alive interface that changes object's lives
+   *
+   * @param changeInLives is the change in lives
+   */
+  @Override
+  public void changeLives(int changeInLives) {
+    aliveBehavior.changeLives(changeInLives);
   }
 
   /**
@@ -28,7 +38,7 @@ public abstract class StaticCharacter extends CollidableEntity implements Alive 
    */
   @Override
   public int getLives() {
-    return lives;
+    return aliveBehavior.getLives();
   }
 
   /**
@@ -38,20 +48,7 @@ public abstract class StaticCharacter extends CollidableEntity implements Alive 
    */
   @Override
   public void kill() {
-    lives--;
-  }
-
-  /**
-   * allow characters to set their lives. Make sure lives cannot be negative
-   *
-   * @param lives value to which lives will now be set
-   */
-  protected void setLives(int lives) {
-    if (lives <= 0) {
-      this.lives = 0;
-    } else {
-      this.lives = lives;
-    }
+    aliveBehavior.kill();
   }
 
 }

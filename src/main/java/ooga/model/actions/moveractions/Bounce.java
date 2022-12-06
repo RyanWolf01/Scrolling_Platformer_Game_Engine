@@ -22,8 +22,8 @@ public class Bounce implements MoverAction{
           ResourceBundle.getBundle("properties/movement").getString("bounce_velocity"));
     }
     catch(NumberFormatException exception){
-      tempBounceVelocity = 5;
       LOG.error("incorrect velocity format");
+      throw exception;
     }
     BOUNCE_VELOCITY = tempBounceVelocity;
   }

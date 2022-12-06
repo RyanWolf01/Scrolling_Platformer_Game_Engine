@@ -14,7 +14,7 @@ public class IncreaseLifeTest {
     IncreaseLife increaseLife = new IncreaseLife();
     increaseLife.execute(mario);
 
-    assertEquals(1, mario.getLives());
+    assertEquals(2, mario.getLives());
   }
 
   /**
@@ -28,7 +28,7 @@ public class IncreaseLifeTest {
     increaseLife.execute(mario);
     increaseLife.execute(mario);
 
-    assertEquals(2, mario.getLives());
+    assertEquals(3, mario.getLives());
   }
 
   /**
@@ -40,7 +40,7 @@ public class IncreaseLifeTest {
 
     IncreaseLife increaseLife = new IncreaseLife();
 
-    assertEquals(0, mario.getLives());
+    assertEquals(1, mario.getLives());
   }
 
 }

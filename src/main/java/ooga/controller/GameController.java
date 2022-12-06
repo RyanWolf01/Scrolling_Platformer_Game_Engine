@@ -5,6 +5,7 @@ import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.model.Model;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
+import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
 
@@ -20,12 +21,14 @@ public class GameController {
     private DefaultCollisionChart collisionChart;
     private Model model;
     private Queue<KeyCode> keyCodeQueue;
+    private String myLevel;
 
     /**
      * The GameController needs to have a mapping of backend to frontend objects
      *
      */
     public GameController(String levelJSON, String collisionJSON, String controlsJSON) {
+        myLevel = levelJSON;
         controlHandler = new UserControlHandler();
         jsonDecoder = new JSONInformationDecoder(levelJSON, collisionJSON, controlsJSON);
         container = new ConnectionContainer(jsonDecoder);
@@ -55,6 +58,14 @@ public class GameController {
         }
     }
 
+    /**
+     * Gets information from the JSON about the
+     * @return
+     */
+    public ViewInfo getViewInfo(){
+        return jsonDecoder.viewInfo();
+    }
+
     private void executeKeyInputActions() {
         while (! keyCodeQueue.isEmpty()) {
             KeyCode code = keyCodeQueue.poll();
@@ -80,5 +91,9 @@ public class GameController {
                 }
             }
         }
+    }
+
+    public String getLevelDirectory(){
+        return myLevel.replace("level.json", "");
     }
 }
