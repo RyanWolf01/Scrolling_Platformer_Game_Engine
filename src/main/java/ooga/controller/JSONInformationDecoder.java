@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javafx.scene.image.Image;
 import ooga.controller.exceptions.MalformedJSONException;
 import ooga.model.actions.moveractions.MoverActionGetter;
 import ooga.model.collisions.actiondata.ActionData;
@@ -17,6 +18,8 @@ import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
 
 import ooga.model.entities.deadmovingentities.MovementQueue;
 import ooga.model.entities.info.EntityInfo;
+import ooga.view.View;
+import ooga.view.ViewInfo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -339,4 +342,38 @@ public class JSONInformationDecoder {
 
     return moves;
   }
+
+  public ViewInfo viewInfo(){
+    ViewInfo info;
+
+    JSONObject levelJSONObject = null;
+    try {
+      levelJSONObject = initialJSONInformation(levelJSON);
+    } catch (IOException | ParseException e) {
+      throw new MalformedJSONException("Level JSON unreadable");
+    }
+
+    String name;
+    String backgroundURL;
+    int cameraHeight;
+    int cameraWidth;
+    String style;
+    String scrollingDirection;
+    try{
+      name = (String) levelJSONObject.get("name");
+      backgroundURL = (String) levelJSONObject.get("background");
+      cameraHeight = Integer.parseInt((String) levelJSONObject.get("camera_height"));
+      cameraWidth = Integer.parseInt((String) levelJSONObject.get("camera_width"));
+      style = (String) levelJSONObject.get("style");
+      scrollingDirection = (String) levelJSONObject.get("scrolling_direction");
+
+    } catch (RuntimeException e){
+      throw new MalformedJSONException("level.json missing required key(s)", e);
+    }
+
+    info = new ViewInfo(name, backgroundURL, cameraHeight, cameraWidth, style, scrollingDirection);
+
+    return info;
+  }
+
 }
