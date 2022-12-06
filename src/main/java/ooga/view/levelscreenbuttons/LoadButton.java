@@ -26,7 +26,7 @@ public class LoadButton extends GUIBasicButton {
 
   /**
    * Method to open to directory chooser when the user clicks on the load button
-   * @param e
+   * @param actionEvent
    */
   private void openDirectoryChooser(ActionEvent actionEvent) {
     // TODO: need this method to perform opening with right stage (game stage)
