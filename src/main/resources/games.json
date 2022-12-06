@@ -1,0 +1,17 @@
+{
+  "games":
+    [
+      {
+        "name": "Super Mario Bros",
+        "folder": "mario"
+      },
+      {
+        "name": "Doodle Jump",
+        "folder": "doodle"
+      },
+      {
+        "name": "Geometry Dash",
+        "folder": "dash"
+      }
+    ]
+}
