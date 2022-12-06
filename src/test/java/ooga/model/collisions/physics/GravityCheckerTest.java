@@ -32,7 +32,7 @@ public class GravityCheckerTest {
     GravityChecker gravityChecker = new GravityChecker();
 
     Entity platform = new StaticEntity(0,0,100,100, new EntityInfo("platform"));
-    CollisionPhysicsInfo physicsInfo = new CollisionPhysicsInfo(true, 0, CollisionDirection.TOP);
+    CollisionPhysicsData physicsInfo = new CollisionPhysicsData(true, 0, CollisionDirection.TOP);
     mario.getMyCurrentCollisions().set(platform, physicsInfo);
 
     assertTrue(gravityChecker.checkInAir(mario));
@@ -43,7 +43,7 @@ public class GravityCheckerTest {
     GravityChecker gravityChecker = new GravityChecker();
 
     Entity platform = new StaticEntity(0,0,100,100, new EntityInfo("platform"));
-    CollisionPhysicsInfo physicsInfo = new CollisionPhysicsInfo(true, 0, CollisionDirection.BOTTOM);
+    CollisionPhysicsData physicsInfo = new CollisionPhysicsData(true, 0, CollisionDirection.BOTTOM);
     mario.getMyCurrentCollisions().set(platform, physicsInfo);
 
     assertFalse(gravityChecker.checkInAir(mario));

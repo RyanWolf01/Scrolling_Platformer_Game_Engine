@@ -45,24 +45,26 @@ public class GravityChecker {
     if(!entity.getMyCurrentCollisions().hasCollisions())
       return true;
 
-    ImmutableEntity collided = entity.getMyCurrentCollisions().iterator().next();
-    CollisionPhysicsInfo collisionPhysicsInfo = entity.getMyCurrentCollisions().get(collided);
+    for(ImmutableEntity collided : entity.getMyCurrentCollisions()){
+      CollisionPhysicsData collisionPhysicsInfo = entity.getMyCurrentCollisions().get(collided);
 
-    String entityType;
-    try{
-      entityType = collided.getImmutableEntityInfo().get(TYPE);
-    }catch (NullPointerException exception){
-      LOG.error("no type in entity info");
-      throw exception;
+      String entityType;
+      try{
+        entityType = collided.getImmutableEntityInfo().get(TYPE);
+      }catch (NullPointerException exception){
+        LOG.error("no type in entity info");
+        throw exception;
+      }
+
+      if(entityInfoResources.containsKey(entityType)){
+        entityType = entityInfoResources.getString(entityType);
+      }
+
+      if(entityType.equals(STATIC_PLATFORM) &&
+          collisionPhysicsInfo.getCollisionDirection() == CollisionDirection.BOTTOM)
+        return false;
     }
 
-    if(entityInfoResources.containsKey(entityType)){
-      entityType = entityInfoResources.getString(entityType);
-    }
-
-    if(entityType.equals(STATIC_PLATFORM) &&
-        collisionPhysicsInfo.getCollisionDirection() == CollisionDirection.BOTTOM)
-      return false;
 
     return true;
   }
