@@ -72,8 +72,6 @@ public class LevelScreen {
 */
   public void step(NodeContainer nextNodes){
 
-//    LOG.debug("Camera X: " + myGameCamera.getCameraX());
-//    LOG.debug("Camera Y: " + myGameCamera.getCameraY());
 
 
     if(myNodes != null){

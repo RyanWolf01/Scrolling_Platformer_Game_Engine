@@ -35,8 +35,6 @@ public class GameSelector extends ComboBox<String> {
   }
 
   private void getGamesListFile(){
-    //TODO: Get list of games from a json
-
     JSONObject levelsJson;
     try {
       File gamesListFile = new File(this.getClass().getClassLoader().getResource(GAMES_FILE).getFile());
@@ -65,6 +63,7 @@ public class GameSelector extends ComboBox<String> {
       selectedGame = this.getValue();
       myStartScreen.changeBackground(selectedGame + ".png");
       this.setPromptText(selectedGame);
+      myStartScreen.changeLevelSelectionButtonVisibile();
     });
   }
 

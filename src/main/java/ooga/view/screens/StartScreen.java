@@ -1,11 +1,13 @@
 package ooga.view.screens;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import ooga.view.View;
@@ -23,10 +25,13 @@ public class StartScreen {
   private static final String RESOURCE_DIRECTORY = "/";
   private static final String ICON_DIRECTORY = "icongames/";
   private static final String[] GAME_LIST = {"Super Mario Bros", "Doodle Jump", "Geometry Dash"};
+  private static final String NO_GAME_DIRECTORY = "Cannot Find Initial Game Directory";
   private File levelDirectory;
   private DirectoryChooser directoryChooser;
   private GridPane gameChooser;
   private GameSelector gameSelector;
+  private Button startGame;
+  private Button levelSelection;
   private static final Logger LOG = LogManager.getLogger(StartScreen.class);
 
   Stage mainStage;
@@ -39,21 +44,23 @@ public class StartScreen {
 
   private Scene makeScene(){
     gameChooser = new GridPane();
-
-    gameSelector = new GameSelector(this);
-    gameChooser.add(gameSelector, 0, 0);
-
     getLevelDirectoryMap();
-    Button levelSelection = createLevelButton();
-    gameChooser.add(levelSelection, 0, 1);
 
-    Button startGame = new Button();
+    startGame = new Button();
     startGame.setText("Start Game");
 
     startGame.setOnAction(event -> {
       new View(mainStage, gameSelector.getValue(), levelDirectory);
     });
     gameChooser.add(startGame, 0, 2);
+    startGame.setVisible(false);
+
+    levelSelection = createLevelButton();
+    gameChooser.add(levelSelection, 0, 1);
+    levelSelection.setVisible(false);
+
+    gameSelector = new GameSelector(this);
+    gameChooser.add(gameSelector, 0, 0);
 
 
     return new Scene(gameChooser, 400, 400);
@@ -70,8 +77,17 @@ public class StartScreen {
 
     levelButton.setText("Choose Level");
     levelButton.setOnAction(e -> {
-      String levelFile = chooseLevel();
-      levelButton.setText(levelFile);
+      String levelFile = chooseLevel("Choose a Level Directory");
+      if(levelFile != null){
+        levelButton.setText(levelFile);
+        startGame.setVisible(true);
+        LOG.info("Got Level Directory Successfully");
+      } else {
+        levelButton.setTextFill(Color.RED);
+        levelButton.setText("Not a Valid Level Directory");
+        startGame.setVisible(false);
+        LOG.error("Did not get Level Directory");
+      }
     });
 
     return levelButton;
@@ -86,7 +102,7 @@ public class StartScreen {
     return gameToGame;
   }
 
-  private String chooseLevel(){
+  private String chooseLevel(String prompt){
     String fileDirectory = System.getProperty("user.dir") + System.getProperty("file.separator") + "data" + System.getProperty("file.separator")+ "games" + System.getProperty("file.separator") + gameToGame.get(gameSelector.getValue());
     LOG.debug(fileDirectory);
     directoryChooser = new DirectoryChooser();
@@ -96,14 +112,34 @@ public class StartScreen {
     }
     catch(Exception e){
       directoryChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-      LOG.error("Did not find Initial Directory Successfully. Will now go to Default Directory");
+      LOG.error("Did not find Initial Directory Successfully.");
+      createWarning(NO_GAME_DIRECTORY);
     }
     directoryChooser.setInitialDirectory(new File(fileDirectory));
     directoryChooser.getInitialDirectory();
+    directoryChooser.setTitle(prompt);
     levelDirectory = directoryChooser.showDialog(mainStage);
     System.out.println(levelDirectory);
     LOG.debug(this.levelDirectory);
-    return levelDirectory.getName();
+    String directoryName;
+    try{
+      directoryName = levelDirectory.getName();
+    } catch (NullPointerException e){
+      createWarning("Please Choose a Valid Level Directory");
+      directoryName = null;
+    }
+    return directoryName;
+  }
+
+
+  public void createWarning(String context){
+    Alert a = new Alert(Alert.AlertType.WARNING);
+    a.setContentText(context);
+    a.show();
+  }
+
+  public void changeLevelSelectionButtonVisibile(){
+    levelSelection.setVisible(true);
   }
 
 }
