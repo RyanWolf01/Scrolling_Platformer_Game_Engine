@@ -99,7 +99,7 @@ public abstract class Entity implements ImmutableEntity{
         return false;
     }
 
-    public CollisionPhysicsData physicsInfoOfCurrentCollisionWith(ImmutableEntity otherEntity) {
+    public CollisionPhysicsData physicsDataOfCurrentCollisionWith(ImmutableEntity otherEntity) {
         return null;
     }
 

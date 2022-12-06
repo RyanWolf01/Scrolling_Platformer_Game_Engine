@@ -1,7 +1,10 @@
 package ooga.model.collisions.physics;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import ooga.model.entities.Entity;
 import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.apache.logging.log4j.LogManager;
@@ -36,6 +39,27 @@ public class PhysicsCalculator {
   }
 
   private CollisionDirection checkDirectionAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
+//    CollisionDirection collisionDirection = velocityApproach(collider, collided);
+//    if (collisionDirection.equals(CollisionDirection.NONE)) {
+//      collisionDirection = positionApproach(collider, collided);
+//    }
+//    return collisionDirection;
+    return positionApproach(collider, collided);
+  }
+
+  // TODO: Check to make sure these things are actually colliding
+  private CollisionDirection positionApproach(Entity collider, Entity collided) {
+    Map<Double, CollisionDirection> distanceForDirection = new HashMap<>();
+    distanceForDirection.put(Math.abs(collider.getYCoordinate() - (collided.getYCoordinate() + collided.getHeight())), CollisionDirection.TOP);
+    distanceForDirection.put(Math.abs((collider.getYCoordinate() + collider.getHeight()) - collided.getYCoordinate()), CollisionDirection.BOTTOM);
+    distanceForDirection.put(Math.abs(collider.getXCoordinate() - (collided.getXCoordinate() + collided.getWidth())), CollisionDirection.LEFT);
+    distanceForDirection.put(Math.abs((collider.getXCoordinate() + collider.getWidth()) - collided.getXCoordinate()), CollisionDirection.RIGHT);
+
+    Double minDist = Collections.min(distanceForDirection.keySet());
+    return distanceForDirection.get(minDist);
+  }
+
+  private CollisionDirection velocityApproach(Entity collider, Entity collided) {
     List<Edge> edgesA = new ArrayList<>();
     edgesA.add(getTopEdge(collider));
     edgesA.add(getBottomEdge(collider));
@@ -69,7 +93,6 @@ public class PhysicsCalculator {
 //    }
 //    moveColliderOutsideOfCollided(collider, minTime, minTimeDirection);
     return minTimeDirection;
-
   }
 
   private void moveColliderOutsideOfCollided(Entity collider, double minTime,

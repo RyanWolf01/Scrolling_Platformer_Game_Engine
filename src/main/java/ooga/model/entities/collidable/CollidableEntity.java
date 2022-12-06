@@ -77,7 +77,7 @@ public abstract class CollidableEntity extends Entity implements Collidable {
   }
 
   @Override
-  public CollisionPhysicsData physicsInfoOfCurrentCollisionWith(ImmutableEntity otherEntity) {
+  public CollisionPhysicsData physicsDataOfCurrentCollisionWith(ImmutableEntity otherEntity) {
     return myCurrentCollisions.get(otherEntity);
   }
 

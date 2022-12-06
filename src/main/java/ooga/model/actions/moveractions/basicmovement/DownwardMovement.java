@@ -6,7 +6,7 @@ import ooga.model.entities.deadmovingentities.Mover;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class DownwardMovement implements MoverAction {
+public final class DownwardMovement implements MoverAction {
 
   private static final Logger LOG = LogManager.getLogger(DownwardMovement.class);
   private final int DOWNWARD_VELOCITY;
