@@ -45,11 +45,10 @@ public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
    */
   public void moveAll(){
 
-    if(!shouldMove())
-      return;
-
     for(AutomaticMover mover: this.movers){
-      mover.automaticMove();
+      if(shouldAutomaticMove())
+        mover.automaticMove();
+      mover.move();
     }
 
   }
@@ -57,7 +56,7 @@ public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
   /**
    * helper method to determine if should move automatic movers
    */
-  private boolean shouldMove(){
+  private boolean shouldAutomaticMove(){
     stepCounter++;
 
     if(stepCounter % MOVEMENT_RATE == 0)

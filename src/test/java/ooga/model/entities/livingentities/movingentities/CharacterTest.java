@@ -19,7 +19,7 @@ public class CharacterTest {
     increaseLife.execute(mario);
 
     mario.kill();
-    assertEquals(1, mario.getLives());
+    assertEquals(2, mario.getLives());
   }
 
   @Test
@@ -33,22 +33,22 @@ public class CharacterTest {
 
     mario.kill();
     mario.kill();
-    assertEquals(1, mario.getLives());
+    assertEquals(2, mario.getLives());
   }
 
   @Test
   void testSetLivesPos1() {
     MovingCharacter mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.setLives(100);
-    assertEquals(100, mario.getLives());
+    mario.changeLives(100);
+    assertEquals(101, mario.getLives());
   }
 
   @Test
   void testSetLivesPos2() {
     MovingCharacter mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.setLives(-100);
+    mario.changeLives(-100);
     assertEquals(0, mario.getLives());
   }
 
@@ -56,8 +56,8 @@ public class CharacterTest {
   void testSetLivesNeg() {
     MovingCharacter mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
 
-    mario.setLives(0);
-    assertEquals(0, mario.getLives());
+    mario.changeLives(0);
+    assertEquals(1, mario.getLives());
   }
 
   @Test
