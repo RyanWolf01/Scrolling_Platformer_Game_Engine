@@ -8,7 +8,6 @@ public class ExceptionAlert {
 
   private Alert alert;
 
-  // TBD ONCE WE HAVE ABSTRACT EXCEPTION CLASS AND EXCEPTIONS
   public ExceptionAlert (CustomException exception) {
     alert = new Alert(AlertType.ERROR);
     alert.setTitle(exception.getErrorType());
