@@ -41,9 +41,20 @@ public class GravityChecker {
    * @return boolean
    */
   public boolean checkInAir(Entity entity){
+    return !checkCollisionWithStaticPlatformFromDirection(entity, CollisionDirection.BOTTOM);
+  }
 
+  public boolean checkHittingLeftOfPlatform(Entity entity) {
+    return checkCollisionWithStaticPlatformFromDirection(entity, CollisionDirection.LEFT);
+  }
+
+  public boolean checkHittingRightOfPlatform(Entity entity) {
+    return checkCollisionWithStaticPlatformFromDirection(entity, CollisionDirection.RIGHT);
+  }
+
+  private boolean checkCollisionWithStaticPlatformFromDirection(Entity entity, CollisionDirection collisionDirection) {
     if(!entity.getMyCurrentCollisions().hasCollisions())
-      return true;
+      return false;
 
     for(ImmutableEntity collided : entity.getMyCurrentCollisions()){
       CollisionPhysicsData collisionPhysicsInfo = entity.getMyCurrentCollisions().get(collided);
@@ -61,12 +72,11 @@ public class GravityChecker {
       }
 
       if(entityType.equals(STATIC_PLATFORM) &&
-          collisionPhysicsInfo.getCollisionDirection() == CollisionDirection.BOTTOM)
-        return false;
+          collisionPhysicsInfo.getCollisionDirection() == collisionDirection)
+        return true;
     }
 
-
-    return true;
+    return false;
   }
 
 }

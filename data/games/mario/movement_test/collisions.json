@@ -7,7 +7,7 @@
         "COLLISION_DIRECTION": "LEFT||RIGHT",
         "ACTIONS": [
           {
-            "classname": "ooga.model.actions.moveractions.Bounce",
+            "classname": "ooga.model.actions.moveractions.StopXMovement",
             "action_interface": "MoverAction",
             "params": []
           }

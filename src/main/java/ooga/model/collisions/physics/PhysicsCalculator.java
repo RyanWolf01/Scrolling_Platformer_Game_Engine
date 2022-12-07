@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javafx.scene.control.skin.TextInputControlSkin.Direction;
 import ooga.model.entities.Entity;
 import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.apache.logging.log4j.LogManager;
@@ -21,7 +22,8 @@ public class PhysicsCalculator {
    * @param collided the second entity, that is collided with
    */
   public CollisionPhysicsData calculatePhysicsInfoAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
-    CollisionPhysicsData info = new CollisionPhysicsData(true, 1, checkDirectionAndMoveColliderOutsideOfCollided(collider, collided));
+    DirectionDistancePair ddp = checkDirectionAndMoveColliderOutsideOfCollided(collider, collided);
+    CollisionPhysicsData info = new CollisionPhysicsData(true, 1, ddp.direction);
     collider.getMyCurrentCollisions().set(collided, info);
     return info;
   }
@@ -38,7 +40,7 @@ public class PhysicsCalculator {
     return currCollisionPhysicsData;
   }
 
-  private CollisionDirection checkDirectionAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
+  private DirectionDistancePair checkDirectionAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
 //    CollisionDirection collisionDirection = velocityApproach(collider, collided);
 //    if (collisionDirection.equals(CollisionDirection.NONE)) {
 //      collisionDirection = positionApproach(collider, collided);
@@ -48,15 +50,31 @@ public class PhysicsCalculator {
   }
 
   // TODO: Check to make sure these things are actually colliding
-  private CollisionDirection positionApproach(Entity collider, Entity collided) {
-    Map<Double, CollisionDirection> distanceForDirection = new HashMap<>();
-    distanceForDirection.put(Math.abs(collider.getYCoordinate() - (collided.getYCoordinate() + collided.getHeight())), CollisionDirection.TOP);
-    distanceForDirection.put(Math.abs((collider.getYCoordinate() + collider.getHeight()) - collided.getYCoordinate()), CollisionDirection.BOTTOM);
-    distanceForDirection.put(Math.abs(collider.getXCoordinate() - (collided.getXCoordinate() + collided.getWidth())), CollisionDirection.LEFT);
-    distanceForDirection.put(Math.abs((collider.getXCoordinate() + collider.getWidth()) - collided.getXCoordinate()), CollisionDirection.RIGHT);
+  private DirectionDistancePair positionApproach(Entity collider, Entity collided) {
+    List<DirectionDistancePair> directionDistancePairs = new ArrayList<>();
+    directionDistancePairs.add(new DirectionDistancePair(CollisionDirection.TOP, collider.getYCoordinate() - (collided.getYCoordinate() + collided.getHeight())));
+    directionDistancePairs.add(new DirectionDistancePair(CollisionDirection.BOTTOM, (collider.getYCoordinate() + collider.getHeight()) - collided.getYCoordinate()));
+    directionDistancePairs.add(new DirectionDistancePair(CollisionDirection.LEFT, collider.getXCoordinate() - (collided.getXCoordinate() + collided.getWidth())));
+    directionDistancePairs.add(new DirectionDistancePair(CollisionDirection.RIGHT, (collider.getXCoordinate() + collider.getWidth()) - collided.getXCoordinate()));
 
-    Double minDist = Collections.min(distanceForDirection.keySet());
-    return distanceForDirection.get(minDist);
+
+    DirectionDistancePair minddp = directionDistancePairs.remove(0);
+    for (DirectionDistancePair ddp : directionDistancePairs) {
+      if (Math.abs(ddp.distance) < Math.abs(minddp.distance)) {
+        minddp = ddp;
+      }
+    }
+    return minddp;
+
+  }
+
+  private class DirectionDistancePair {
+    private CollisionDirection direction;
+    private Double distance;
+    private DirectionDistancePair(CollisionDirection direction, Double distance) {
+      this.direction = direction;
+      this.distance = distance;
+    }
   }
 
   private CollisionDirection velocityApproach(Entity collider, Entity collided) {
