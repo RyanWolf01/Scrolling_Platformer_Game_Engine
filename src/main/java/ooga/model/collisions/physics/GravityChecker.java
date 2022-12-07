@@ -40,6 +40,7 @@ public class GravityChecker {
    * calculates if an Entity is in the Air
    * @return boolean
    */
+  // entity.getImmutableEntityInfo().get(ImmutableInfo.COLLIDABLE_TYPE_KEY).equalsIgnoreCase("mario") && !checkCollisionWithStaticPlatformFromDirection(entity, CollisionDirection.BOTTOM) == true && entity.yCoordinate + entity.getHeight() >= 100
   public boolean checkInAir(Entity entity){
     return !checkCollisionWithStaticPlatformFromDirection(entity, CollisionDirection.BOTTOM);
   }

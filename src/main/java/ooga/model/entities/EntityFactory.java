@@ -9,6 +9,7 @@ import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.containers.exceptions.InvalidTypeException;
 import ooga.model.entities.deadmovingentities.MovementQueue;
 import ooga.model.entities.info.EntityInfo;
+import ooga.model.entities.info.ImmutableInfo;
 import ooga.model.entities.info.Info;
 import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
 import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacterEntity;
@@ -27,7 +28,7 @@ public class EntityFactory {
     }
 
     public AutomaticMovingCharacter makeAutomaticMover(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
-        CollisionChart chart = collisionChart(type);
+        CollisionChart chart = collisionChart(info.get(ImmutableInfo.COLLIDABLE_TYPE_KEY));
 
         MovementQueue queue = decoder.getMovementQueue(type);
 

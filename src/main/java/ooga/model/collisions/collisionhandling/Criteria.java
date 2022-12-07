@@ -50,7 +50,7 @@ public class Criteria {
     for (String key : myCriteria.keySet()) {
 
       // make sure collisionData has all keys in myCriteria
-      if (!collisionData.hasKey(key)) {
+      if (!collisionData.hasKey(key) || collisionData.get(key) == null) {
         return false;
       }
 
@@ -61,7 +61,7 @@ public class Criteria {
 
       // make sure that all kv-pairs in myCriteria match those in collisionData
       String[] vals = myCriteria.get(key).split("\\|\\|");
-      if (Arrays.stream(vals).noneMatch((String val) -> collisionData.get(key).equals(val))) {
+      if (Arrays.stream(vals).noneMatch((String val) -> collisionData.get(key).equalsIgnoreCase(val))) {
         return false;
       }
     }
@@ -83,6 +83,11 @@ public class Criteria {
       throw new RuntimeException("Cannot return action for collisionData that doesn't match"
           + "with the criteria defined by this Criteria object. Improper usage of getAction");
     }
+  }
+
+  @Override
+  public String toString() {
+    return myCriteria.toString();
   }
 
 }
