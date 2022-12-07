@@ -9,7 +9,7 @@
   "Entity": [
     {
       "type": "mario",
-      "character_type": "mario",
+      "collidable_type": "mario",
       "x": "735",
       "y": "-1",
       "height": "100",
@@ -18,7 +18,7 @@
     },
     {
       "type": "static_platform",
-      "character_type": "static_platform",
+      "collidable_type": "static_platform",
       "texture": "/games/mario/assets/ground.png",
       "x": "200",
       "y": "100",
@@ -27,7 +27,7 @@
     },
     {
       "type": "static_entity",
-      "character_type": "goomba",
+      "collidable_type": "goomba",
       "texture": "/games/mario/assets/goomba.png",
       "x": "800",
       "y": "50",
