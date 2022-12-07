@@ -44,6 +44,12 @@ public class GameController {
      * @return NodeContainer that the View can
      */
     public NodeContainer step(){
+        if(model.checkGameOver()){
+            System.out.println("hi");
+            return null;
+        }
+
+
         checkForCollisions();
         model.resetHorizontalVelocities();
         executeKeyInputActions();

@@ -36,6 +36,7 @@ public class BackendContainer {
   }
 
   public boolean wonGame(){
+    System.out.println(endGoal.getLives());
     return endGoal.getLives() == 0;
   }
 
@@ -52,6 +53,7 @@ public class BackendContainer {
 
     if(isEndGoalType(type)){
       endGoal = factory.makeLivingStaticCharacter(xCoordinate,yCoordinate, height, width, type, info);
+      newEntity = endGoal;
 
       // TODO: add to living container
     }
