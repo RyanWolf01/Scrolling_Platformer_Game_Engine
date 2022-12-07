@@ -24,12 +24,6 @@ public abstract class CollidableEntity extends Entity implements Collidable {
 
   }
 
-//  public CollidableEntity(int initialXCoordinate, int initialYCoordinate, double height,
-//      double width, Info entityInfo) {
-//    this(new DefaultCollisionChartGetter(), initialXCoordinate, initialYCoordinate, height, width,
-//        entityInfo);
-//  }
-
   @Override
   public void onCollision(Entity other, CollisionPhysicsData physicsInfo) {
     ActionDataContainer adc = getActionDatas(this.getImmutableEntityInfo(), other.getImmutableEntityInfo(), physicsInfo);
@@ -53,23 +47,10 @@ public abstract class CollidableEntity extends Entity implements Collidable {
       throw new CollisionChartParsingException("Target Entity's type isn't specified");
     }
 
-//    CollisionChart collisionChart = myCollisionChartGetter.getCollisionChart(targetEntityInfo.get(
-//        ImmutableInfo.TYPE_KEY));
     CollisionData collisionData = new CollisionData(targetEntityInfo, otherEntityInfo,
         collisionPhysicsData);
     return myCollisionChart.getActionDatas(collisionData);
   }
-
-//  @Override
-//  public CollisionDirection getPreviousCollisionDirection(Entity otherEntity) {
-////    return mySequentialCollisions.get(otherEntity);
-//    return null;
-//  }
-//
-//  @Override
-//  public boolean wasPreviouslyColliding(Entity otherEntity) {
-//    return mySequentialCollisions.containsKey(otherEntity);
-//  }
 
   @Override
   public boolean hasCurrentCollisionWith(ImmutableEntity otherEntity) {
@@ -81,7 +62,6 @@ public abstract class CollidableEntity extends Entity implements Collidable {
     return myCurrentCollisions.get(otherEntity);
   }
 
-  // TODO: Fix this so that it's not just a getter returning a Map.
   @Override
   public CurrentCollisionContainer getMyCurrentCollisions() {
     return myCurrentCollisions;
