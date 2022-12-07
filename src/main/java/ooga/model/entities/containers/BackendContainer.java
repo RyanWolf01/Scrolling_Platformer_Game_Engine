@@ -35,6 +35,10 @@ public class BackendContainer {
     this.decoder = decoder;
   }
 
+  public boolean wonGame(){
+    return endGoal.getLives() == 0;
+  }
+
   /**
    * This method uses if-else logic to determine what kind of Entity this will be based on the type.
    * The reason I think this is valid is that it is very limited and the if tree will not be extended.
