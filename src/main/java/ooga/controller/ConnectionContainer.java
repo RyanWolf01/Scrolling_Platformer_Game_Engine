@@ -5,12 +5,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import ooga.Main;
+import ooga.controller.exceptions.MalformedJSONException;
 import ooga.model.Model;
 import ooga.model.entities.Entity;
 import ooga.model.entities.containers.BackendContainer;
 import ooga.model.entities.info.EntityInfo;
+import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
+import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * This container holds all the objects for the frontend and backend. There is a mapping between the frontend
@@ -22,12 +27,15 @@ public class ConnectionContainer {
   private JSONInformationDecoder decoder;
   private NodeContainer nodes;
   private Map<ScrollingNode, Entity> connectorMap;
+  private CoordinateTranslator translator;
+  private static final Logger LOG = LogManager.getLogger(ConnectionContainer.class);
 
   public ConnectionContainer(JSONInformationDecoder decoder){
+    this.decoder = decoder;
     entities = new BackendContainer(decoder);
     nodes = new NodeContainer();
     connectorMap = new HashMap<>();
-    decoder = this.decoder;
+    makeCoordinateTranslator();
   }
 
   /**
@@ -44,14 +52,12 @@ public class ConnectionContainer {
     String imageURL = null;
     try{
       imageURL = info.get("texture");
-    }
-    catch(IllegalArgumentException e){
-      // TODO: Fix this
-      //imageURL = something from default_images resource file
+    } catch(IllegalArgumentException e){
+      throw new MalformedJSONException("Texture field missing in entity");
     }
 
     Entity newEntity = entities.addNewEntity(xCoordinate, yCoordinate, height, width, type, info);
-    ScrollingNode newNode = new ScrollingNode(xCoordinate, yCoordinate, height, width, imageURL);
+    ScrollingNode newNode = new ScrollingNode(xCoordinate, translator.translateY(yCoordinate, height), height, width, imageURL);
 
     nodes.addNode(newNode);
     if(entities.isMainCharacterType(type)){
@@ -84,7 +90,7 @@ public class ConnectionContainer {
   public void update(){
     for(ScrollingNode node : connectorMap.keySet()){
       Entity entity = connectorMap.get(node);
-      node.update(entity.getXCoordinate(), entity.getYCoordinate());
+      node.update(entity.getXCoordinate(), translator.translateY((int) entity.getYCoordinate(), entity.getHeight()));
     }
   }
 
@@ -94,5 +100,10 @@ public class ConnectionContainer {
 
   public BackendContainer entities(){
     return entities;
+  }
+
+  private void makeCoordinateTranslator(){
+    ViewInfo info = decoder.viewInfo();
+    this.translator = new CoordinateTranslator(info.cameraHeight(), info.cameraWidth());
   }
 }

@@ -15,7 +15,7 @@ public class UpwardMoveOut implements MoverAction {
    */
   @Override
   public void execute(Mover entity){
-    entity.changeVelocities(0, -0.5);
+    entity.changeVelocities(0, 0.5);
     entity.move();
   }
 

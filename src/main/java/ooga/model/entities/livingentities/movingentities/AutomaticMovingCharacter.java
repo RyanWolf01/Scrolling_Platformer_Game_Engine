@@ -37,7 +37,7 @@ public class AutomaticMovingCharacter extends MovingCharacter implements Automat
   protected void handleInvalidCoordinates() { // allow characters to move off left, right, top and never come back
     if(getYCoordinate() >= getScreenSize()){
       kill();
-      LOG.info("Character was killed.");
+      //LOG.info("Character was killed.");
     }
   }
 
