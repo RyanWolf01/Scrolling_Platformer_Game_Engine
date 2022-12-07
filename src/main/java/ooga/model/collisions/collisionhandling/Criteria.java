@@ -61,7 +61,7 @@ public class Criteria {
 
       // make sure that all kv-pairs in myCriteria match those in collisionData
       String[] vals = myCriteria.get(key).split("\\|\\|");
-      if (Arrays.stream(vals).noneMatch((String val) -> collisionData.get(key).equalsIgnoreCase(val))) {
+      if (Arrays.stream(vals).noneMatch((String val) -> match(collisionData.get(key), val))) {
         return false;
       }
     }
@@ -90,4 +90,12 @@ public class Criteria {
     return myCriteria.toString();
   }
 
+  // use the not operator if "!" present
+  private boolean match(String collisionDataVal, String criteriaVal) {
+    if (criteriaVal.indexOf("!") == 0) {
+      return !criteriaVal.substring(1).equalsIgnoreCase(criteriaVal);
+    }
+
+    return criteriaVal.equalsIgnoreCase(collisionDataVal);
+  }
 }

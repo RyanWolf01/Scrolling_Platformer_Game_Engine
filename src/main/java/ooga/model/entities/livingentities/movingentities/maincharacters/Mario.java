@@ -58,4 +58,13 @@ public class Mario extends MainCharacterEntity {
     return count;
   }
 
+  @Override
+  public boolean canMoveUp() {
+    if (getImmutableEntityInfo().hasKey("powerup") && getImmutableEntityInfo().get("powerup").equals("fly")) {
+      return true;
+    } else {
+      return super.canMoveUp();
+    }
+  }
+
 }
