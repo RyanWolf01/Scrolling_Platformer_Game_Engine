@@ -2,6 +2,7 @@ package ooga.view;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import ooga.Main;
@@ -36,6 +37,7 @@ public class View {
     levelAnimation.setCycleCount(Timeline.INDEFINITE);
     levelAnimation.getKeyFrames().add(new KeyFrame(Duration.seconds(FRAME_DELAY), e -> this.step(FRAME_DELAY)));
     levelAnimation.play();
+    myStage.getScene().setOnKeyPressed(e -> handleKeyInput(e.getCode()));
   }
 
   private void step(double frameTime){
@@ -48,6 +50,37 @@ public class View {
     EndScreen endScreen = new EndScreen();
     myStage.setScene(endScreen.initiateScene(myController.getLevelDirectory() + Main.slash + "scores.json"));
     myStage.setTitle("You Won!");
+  }
+
+
+/**
+* Handles Key Codes that are input by the user. Intercepts the view-oriented controls like pausing, but sends all others to controller
+ * @param code
+*/
+  private void handleKeyInput(KeyCode code){
+    //TODO: Use a JSON in the controller that states the "view-oriented" controls instead of an if tree
+    if(code == KeyCode.P){
+      pause();
+    } else if(code == KeyCode.R){
+      play();
+    }
+    else {
+      myController.handleKeyInput(code);
+    }
+  }
+
+
+  private void pause(){
+    LOG.info("Pause Game");
+    levelAnimation.pause();
+    //Pause all stepping and animations
+    //Display Resume, Save, Load, and Quit Buttons
+    //On Resume,
+  }
+
+  private void play(){
+    LOG.info("Play Game");
+    levelAnimation.play();
   }
 
 }
