@@ -40,7 +40,7 @@
             "params": []
           },
           {
-            "classname": "ooga.model.actions.moveractions.moveout.DownwardMoveOut",
+            "classname": "ooga.model.actions.moveractions.moveout.UpwardMoveOut",
             "action_interface": "MoverAction",
             "params": []
           }

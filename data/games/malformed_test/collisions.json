@@ -15,13 +15,14 @@
       },
       {
         "OPPONENT_TYPE": "static_platform",
-        "COLLISION_DIRECTION": "TOP",
+        "COLLISION_DIRECTION": "BOTTOM",
         "ACTIONS": [
+
         ]
       },
       {
         "OPPONENT_TYPE": "static_platform",
-        "COLLISION_DIRECTION": "BOTTOM",
+        "COLLISION_DIRECTION": "TOP",
         "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
         "ACTIONS": [
           {

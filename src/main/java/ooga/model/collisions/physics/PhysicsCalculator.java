@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 public class PhysicsCalculator {
 
-  private static final Logger LOG = LogManager.getLogger(Mario.class);
+  private static final Logger LOG = LogManager.getLogger(PhysicsCalculator.class);
 
   /**
    * This will enact the rules on the first entity, Entity a
@@ -20,6 +20,7 @@ public class PhysicsCalculator {
   public CollisionPhysicsData calculatePhysicsInfoAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
     CollisionPhysicsData info = new CollisionPhysicsData(true, 1, checkDirectionAndMoveColliderOutsideOfCollided(collider, collided));
     collider.getMyCurrentCollisions().set(collided, info);
+    LOG.debug(info.getCollisionDirection());
     return info;
   }
 
