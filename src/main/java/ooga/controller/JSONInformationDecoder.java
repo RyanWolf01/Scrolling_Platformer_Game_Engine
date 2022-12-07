@@ -1,4 +1,6 @@
 package ooga.controller;
+import static ooga.model.entities.info.ImmutableInfo.COLLIDABLE_TYPE_KEY;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -140,7 +142,7 @@ public class JSONInformationDecoder {
    * @return
    */
   private EntityInfo makeEntityInfoFromJSONObject(JSONObject entityInformation) {
-    EntityInfo entityInfo = new EntityInfo((String) entityInformation.get("character_type"));
+    EntityInfo entityInfo = new EntityInfo((String) entityInformation.get(COLLIDABLE_TYPE_KEY));
     for (Object key : entityInformation.keySet()) {
       if (!REQUIRED_ENTITY_PARAMETERS.contains(key)) {
         entityInfo.set((String) key, (String) entityInformation.get(key));

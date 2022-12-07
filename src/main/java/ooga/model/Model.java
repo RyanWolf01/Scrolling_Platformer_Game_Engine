@@ -5,6 +5,7 @@ import java.util.List;
 import ooga.Main;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
+import ooga.model.actions.moveractions.basicmovement.DownwardMovement;
 import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.physics.CurrentCollisionContainer;
 import ooga.model.collisions.physics.GravityEnforcer;
@@ -58,9 +59,11 @@ public class Model {
    * @param collider first entity that collides
    * @param collided second entity that is collided with
    */
+  // for breakpoint:
+  // collider.getImmutableEntityInfo().get(ImmutableInfo.TYPE_KEY).equals("goomba") && collided.getImmutableEntityInfo().get(ImmutableInfo.TYPE_KEY).equals("mario")
   public void handleCollision(Entity collider, Entity collided) {
     if (collider.hasCurrentCollisionWith(collided)) {
-      handleCollisionHelper(collider, collided, collider.physicsInfoOfCurrentCollisionWith(collided));
+      handleCollisionHelper(collider, collided, collider.physicsDataOfCurrentCollisionWith(collided));
     }
     else {
       handleCollisionHelper(collider, collided);

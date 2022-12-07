@@ -34,6 +34,7 @@ public class RightMovement implements MoverAction {
    */
   @Override
   public void execute(Mover entity){
+    if (! entity.canMoveRight()) return;
     entity.changeVelocities(RIGHT_VELOCITY, 0);
     entity.move();
   }

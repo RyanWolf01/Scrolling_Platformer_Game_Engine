@@ -3,24 +3,24 @@
     "parent": "",
     "collision_chart": [
       {
-        "OPPONENT_TYPE": "static_platform",
+        "OPPONENT_COLLIDABLE_TYPE": "static_platform",
         "COLLISION_DIRECTION": "LEFT||RIGHT",
         "ACTIONS": [
           {
-            "classname": "ooga.model.actions.moveractions.Bounce",
+            "classname": "ooga.model.actions.moveractions.StopXMovement",
             "action_interface": "MoverAction",
             "params": []
           }
         ]
       },
       {
-        "OPPONENT_TYPE": "static_platform",
+        "OPPONENT_COLLIDABLE_TYPE": "static_platform",
         "COLLISION_DIRECTION": "TOP",
         "ACTIONS": [
         ]
       },
       {
-        "OPPONENT_TYPE": "static_platform",
+        "OPPONENT_COLLIDABLE_TYPE": "static_platform",
         "COLLISION_DIRECTION": "BOTTOM",
         "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
         "ACTIONS": [
@@ -28,18 +28,12 @@
             "classname": "ooga.model.actions.moveractions.StopYMovement",
             "action_interface": "MoverAction",
             "params": []
-          },
-          {
-            "classname": "ooga.model.actions.moveractions.moveout.UpwardMoveOut",
-            "action_interface": "MoverAction",
-            "params": []
           }
         ]
       },
       {
         "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
         "ACTIONS": [
-
         ]
       }
     ]
@@ -50,7 +44,7 @@
     "parent": "movingEntity",
     "collision_chart": [
       {
-        "OPPONENT_TYPE": "goomba",
+        "OPPONENT_COLLIDABLE_TYPE": "goomba",
         "COLLISION_DIRECTION": "BOTTOM",
         "ACTIONS": [
           {
@@ -66,7 +60,7 @@
         ]
       },
       {
-        "OPPONENT_TYPE": "goomba",
+        "OPPONENT_COLLIDABLE_TYPE": "goomba",
         "COLLISION_DIRECTION": "RIGHT",
         "ACTIONS": [
           {
@@ -77,7 +71,7 @@
         ]
       },
       {
-        "OPPONENT_TYPE": "goomba",
+        "OPPONENT_COLLIDABLE_TYPE": "goomba",
         "COLLISION_DIRECTION": "LEFT",
         "ACTIONS": [
 
@@ -90,7 +84,7 @@
     "parent": "movingEntity",
     "collision_chart": [
       {
-        "OPPONENT_TYPE": "mario",
+        "OPPONENT_COLLIDABLE_TYPE": "mario",
         "COLLISION_DIRECTION": "TOP",
         "ACTIONS": [
           {
@@ -101,9 +95,26 @@
         ]
       },
       {
-        "OPPONENT_TYPE": "MARIO",
+        "OPPONENT_COLLIDABLE_TYPE": "MARIO",
         "COLLISION_DIRECTION": "LEFT||RIGHT",
         "ACTIONS": [
+        ]
+      }
+    ]
+  },
+
+  "powerup": {
+    "parent": "movingEntity",
+    "collision_chart": [
+      {
+        "OPPONENT_COLLIDABLE_TYPE": "mario",
+        "COLLISION_DIRECTION": "*",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.aliveactions.Kill",
+            "action_interface": "AliveAction",
+            "params": []
+          }
         ]
       }
     ]

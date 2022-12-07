@@ -84,22 +84,11 @@ public abstract class Entity implements ImmutableEntity{
         return 0;
     }
 
-    // TODO: Put methods below in Collidable only and only allow Collidable things
-    // as first parameter in PhysicsCalculator
-
-//    public CollisionDirection getPreviousCollisionDirection(Entity otherEntity) {
-//        return null;
-//    }
-//
-//    public boolean wasPreviouslyColliding(Entity otherEntity) {
-//        return false;
-//    }
-
     public boolean hasCurrentCollisionWith(ImmutableEntity otherEntity) {
         return false;
     }
 
-    public CollisionPhysicsData physicsInfoOfCurrentCollisionWith(ImmutableEntity otherEntity) {
+    public CollisionPhysicsData physicsDataOfCurrentCollisionWith(ImmutableEntity otherEntity) {
         return null;
     }
 

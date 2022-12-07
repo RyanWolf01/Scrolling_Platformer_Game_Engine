@@ -49,27 +49,6 @@ public class Mario extends MainCharacterEntity {
    *
    * @param actionDataContainer
    */
-  /*
-    TODO: Right now this only works if there is one Action of each type (Alive and Mover). Make
-    TODO: it so that if there are multiple MoverActions, it will perform all the actions. Also,
-    TODO: make sure that the system throws an error if there are actions that can't be parsed by
-    TODO: either of these parsers (e.g. of type FooAction, where Mario doesn't implement the
-    TODO: interface Foo).
-
-    TODO: Also, this code seems pretty general and probably shouldn't be implemented by Mario.
-    TODO: It would be ideal if Mario inherited methods to perform AliveActions and MoverActions
-    TODO: from somewhere else, like AliveAction and MoverAction abstract classes. But of course,
-    TODO: Mario can't implement multiple abstract classes. So perhaps MainCharacter could implement
-    TODO: these? Not really sure.
-
-    TODO: Also, some of the code is duplicated in the ActionParser classes, which should be addressed
-    TODO: Perhaps they could inherit from a shared abstract ActionParser class, but we just couldn't
-    TODO: refer to the them in here as ActionParsers because their .getAction() classes would return
-    TODO: different types (regarding those changes, nothing would change from the perspective of
-    TODO: this file).
-
-    Also need to add testing and javadoc of course.
-   */
   @Override
   public int performActions(ActionDataContainer actionDataContainer) {
     int count = 0;
@@ -79,5 +58,13 @@ public class Mario extends MainCharacterEntity {
     return count;
   }
 
+  @Override
+  public boolean canMoveUp() {
+    if (getImmutableEntityInfo().hasKey("powerup") && getImmutableEntityInfo().get("powerup").equals("fly")) {
+      return true;
+    } else {
+      return super.canMoveUp();
+    }
+  }
 
 }

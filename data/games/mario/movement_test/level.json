@@ -9,16 +9,16 @@
   "Entity": [
     {
       "type": "mario",
-      "character_type": "mario",
-      "x": "700",
-      "y": "-1",
+      "collidable_type": "mario",
+      "x": "250",
+      "y": "1",
       "height": "100",
       "width": "50",
       "texture": "/games/mario/assets/mario.png"
     },
     {
       "type": "static_platform",
-      "character_type": "static_platform",
+      "collidable_type": "static_platform",
       "texture": "/games/mario/assets/ground.png",
       "x": "200",
       "y": "100",
@@ -26,11 +26,30 @@
       "width": "1000"
     },
     {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redplatform.png",
+      "x": "600",
+      "y": "-50",
+      "height": "50",
+      "width": "200"
+    },
+    {
+      "type": "automatic_moving_character",
+      "collidable_type": "powerup",
+      "texture": "/games/mario/assets/powerupMushroom.png",
+      "x": "700",
+      "y": "61",
+      "movement_queue": "move_right,move_right,move_right,move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_left,move_left",
+      "height": "40",
+      "width": "40"
+    },
+    {
       "type": "goomba",
-      "character_type": "goomba",
+      "collidable_type": "goomba",
       "texture": "/games/mario/assets/goomba.png",
       "x": "800",
-      "y": "49",
+      "y": "51",
       "movement_queue": "move_right,move_right,move_right,move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_left,move_left",
       "height": "50",
       "width": "40"

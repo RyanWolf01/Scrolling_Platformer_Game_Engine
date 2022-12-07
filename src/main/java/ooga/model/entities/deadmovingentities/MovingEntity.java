@@ -111,9 +111,22 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    * returns if entity is in air
    * @return boolean
    */
+  @Override
   public boolean isInAir(){
     GravityChecker gravityChecker = new GravityChecker();
     return gravityChecker.checkInAir(this);
+  }
+
+  @Override
+  public boolean isHittingLeftOfPlatform() {
+    GravityChecker gravityChecker = new GravityChecker();
+    return gravityChecker.checkHittingLeftOfPlatform(this);
+  }
+
+  @Override
+  public boolean isHittingRightOfPlatform() {
+    GravityChecker gravityChecker = new GravityChecker();
+    return gravityChecker.checkHittingRightOfPlatform(this);
   }
 
 }
