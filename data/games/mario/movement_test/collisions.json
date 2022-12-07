@@ -4,10 +4,31 @@
     "collision_chart": [
       {
         "OPPONENT_TYPE": "static_platform",
-        "COLLISION_DIRECTION": "LEFT||RIGHT",
+        "COLLISION_DIRECTION": "LEFT",
         "ACTIONS": [
           {
-            "classname": "ooga.model.actions.moveractions.Bounce",
+            "classname": "ooga.model.actions.moveractions.StopXMovement",
+            "action_interface": "MoverAction",
+            "params": []
+          },
+          {
+            "classname": "ooga.model.actions.moveractions.moveout.RightwardMoveOut",
+            "action_interface": "MoverAction",
+            "params": []
+          }
+        ]
+      },
+      {
+        "OPPONENT_TYPE": "static_platform",
+        "COLLISION_DIRECTION": "RIGHT",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.moveractions.StopXMovement",
+            "action_interface": "MoverAction",
+            "params": []
+          },
+          {
+            "classname": "ooga.model.actions.moveractions.moveout.LeftwardMoveOut",
             "action_interface": "MoverAction",
             "params": []
           }
