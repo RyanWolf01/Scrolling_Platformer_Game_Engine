@@ -8,6 +8,7 @@ import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.Entity;
 import ooga.model.entities.StaticEntity;
 import ooga.model.entities.info.EntityInfo;
+import ooga.model.entities.livingentities.BasicStaticCharacter;
 import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
 import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacterEntity;
 
@@ -21,6 +22,7 @@ public class BackendContainer {
   private CollidableContainer collidables;
   private MainCharacterEntity mainCharacter;
   private JSONInformationDecoder decoder;
+  private BasicStaticCharacter endGoal;
   private EntityFactory factory;
 
   // TODO: Add EndGoalEntity
@@ -44,12 +46,19 @@ public class BackendContainer {
 
     Entity newEntity = null;
 
-    if(isMainCharacterType(type)){ // if it's a main character type entity, overwrite the basic newEntity
+    if(isEndGoalType(type)){
+      endGoal = factory.makeLivingStaticCharacter(xCoordinate,yCoordinate, height, width, type, info);
+
+      // TODO: add to living container
+    }
+    else if(isMainCharacterType(type)){ // if it's a main character type entity, overwrite the basic newEntity
 
       mainCharacter = factory.makeMainCharacter(xCoordinate,yCoordinate, height, width, type, info);
 
       newEntity = mainCharacter;
       collidables.addCollidable(mainCharacter); // all main characters are collidable
+
+      // TODO: add to living container
     }
     else if(isAutomaticMoverType(type)){
       AutomaticMovingCharacter newMover = factory.makeAutomaticMover(xCoordinate,yCoordinate, height, width, type, info);
@@ -60,6 +69,7 @@ public class BackendContainer {
       if(isCollidableType(type)){ // an automatic mover that is also a collidable
         collidables.addCollidable(newMover);
       }
+      // TODO: if(isLivingType)
     }
     else if(isCollidableType(type)){ // only a collidable
 
@@ -103,5 +113,9 @@ public class BackendContainer {
 
   public boolean isCollidableType(String type){
     return Arrays.asList(Model.containerResources.getString("collidables").split(",")).contains(type);
+  }
+
+  public boolean isEndGoalType(String type){
+    return Arrays.asList(Model.containerResources.getString("end_goals").split(",")).contains(type);
   }
 }
