@@ -18,7 +18,6 @@ public class GameController {
     private ConnectionContainer container;
     private UserControlHandler controlHandler;
     private JSONInformationDecoder jsonDecoder;
-    private DefaultCollisionChart collisionChart;
     private Model model;
     private Queue<KeyCode> keyCodeQueue;
     private String myLevel;

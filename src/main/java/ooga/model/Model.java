@@ -71,6 +71,10 @@ public class Model {
     collider.getMyCurrentCollisions().get(collided).setCollisionIsFresh(true);
   }
 
+  /**
+   * To be called in the GameController before every time the Collision detection loop is
+   * executed
+   */
   public void preCollisionDetectionLoop() {
     removeNonFreshEntities();
     for (CollidableEntity collidable : entities.collidables()) {

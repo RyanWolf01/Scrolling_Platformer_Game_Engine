@@ -12,6 +12,7 @@ public class GameEnderStaticEntity extends StaticEntity implements GameEnder {
     super(initialXCoordinate, initialYCoordinate, height, width, entityInfo);
     this.endGameMethod = endGameMethod;
   }
+
   @Override
   public void endGame() {
     endGameMethod.execute();
