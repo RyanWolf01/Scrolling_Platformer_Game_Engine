@@ -9,7 +9,7 @@ import ooga.model.collisions.collisionhandling.DefaultCollisionChartGetter;
 import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.physics.PhysicsCalculator;
 import ooga.model.entities.livingentities.BasicStaticCharacter;
-import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
+import ooga.model.entities.livingentities.movingentities.maincharacters.marios.Mario;
 import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 

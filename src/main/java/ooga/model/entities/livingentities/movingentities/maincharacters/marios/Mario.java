@@ -1,15 +1,20 @@
-package ooga.model.entities.livingentities.movingentities.maincharacters;
+package ooga.model.entities.livingentities.movingentities.maincharacters.marios;
+import ooga.model.actionparsers.EndGameActionParser;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.info.Info;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.collisions.actiondata.ActionDataContainer;
+import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacterEntity;
+import ooga.model.entities.modelcallers.GameEnder;
+import ooga.model.entities.modelcallers.functionalinterfaces.EndGameCallable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Mario extends MainCharacterEntity {
+public class Mario extends MainCharacterEntity implements GameEnder {
 
   private static final Logger LOG = LogManager.getLogger(Mario.class);
+  private EndGameCallable endGameMethod;
 
   /**
    * Mario has lives, can move, and takes user input. Specific Mario class was created to handle off-screen inputs uniquely
@@ -21,8 +26,9 @@ public class Mario extends MainCharacterEntity {
    * @param entityInfo entity info
    */
   public Mario(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
-      Info entityInfo) {
+      Info entityInfo, EndGameCallable endGameMethod) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
+    this.endGameMethod = endGameMethod;
   }
 
   /**
@@ -54,17 +60,13 @@ public class Mario extends MainCharacterEntity {
     int count = 0;
     count += new MoverActionParser(actionDataContainer).parseAndApplyActions(this);
     count += new AliveActionParser(actionDataContainer).parseAndApplyActions(this);
+    count += new EndGameActionParser(actionDataContainer).parseAndApplyActions(this);
 
     return count;
   }
 
-  @Override
-  public boolean canMoveUp() {
-    if (getImmutableEntityInfo().hasKey("powerup") && getImmutableEntityInfo().get("powerup").equals("fly")) {
-      return true;
-    } else {
-      return super.canMoveUp();
-    }
+  public void endGame() {
+    endGameMethod.execute();
   }
 
 }

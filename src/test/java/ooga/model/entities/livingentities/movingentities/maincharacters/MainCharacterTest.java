@@ -8,6 +8,7 @@ import ooga.model.actions.aliveactions.Kill;
 import ooga.model.actions.moveractions.basicmovement.LeftMovement;
 import ooga.model.actions.moveractions.basicmovement.RightMovement;
 import ooga.model.entities.info.EntityInfo;
+import ooga.model.entities.livingentities.movingentities.maincharacters.marios.Mario;
 import org.junit.jupiter.api.Test;
 
 public class MainCharacterTest {

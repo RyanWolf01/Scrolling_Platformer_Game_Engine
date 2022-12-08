@@ -2,7 +2,7 @@ package ooga.model.actions.moveractions;
 
 
 import java.util.ResourceBundle;
-import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
+import ooga.model.entities.livingentities.movingentities.maincharacters.marios.Mario;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

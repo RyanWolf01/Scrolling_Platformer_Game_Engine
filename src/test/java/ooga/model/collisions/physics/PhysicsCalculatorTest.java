@@ -7,7 +7,7 @@ import ooga.model.entities.Entity;
 import ooga.model.entities.StaticEntity;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.info.Info;
-import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
+import ooga.model.entities.livingentities.movingentities.maincharacters.marios.Mario;
 import org.junit.jupiter.api.Test;
 
 public class PhysicsCalculatorTest {
