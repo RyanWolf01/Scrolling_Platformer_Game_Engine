@@ -9,6 +9,8 @@ import ooga.model.entities.Entity;
 import ooga.model.entities.StaticEntity;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.livingentities.BasicStaticCharacter;
+import ooga.model.entities.livingentities.LivingStaticCollidable;
+import ooga.model.entities.livingentities.StaticCharacter;
 import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
 import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacterEntity;
 
@@ -18,6 +20,7 @@ import ooga.model.entities.livingentities.movingentities.maincharacters.MainChar
  */
 public class BackendContainer {
   private EntityContainer entities;
+  private LivingContainer livers;
   private AutomaticMoverContainer autoMovers;
   private CollidableContainer collidables;
   private MainCharacterEntity mainCharacter;
@@ -25,7 +28,6 @@ public class BackendContainer {
   private BasicStaticCharacter endGoal;
   private EntityFactory factory;
 
-  // TODO: Add EndGoalEntity
 
   public BackendContainer(JSONInformationDecoder decoder){
     entities = new EntityContainer();
@@ -55,7 +57,7 @@ public class BackendContainer {
       endGoal = factory.makeLivingStaticCharacter(xCoordinate,yCoordinate, height, width, type, info);
       newEntity = endGoal;
 
-      // TODO: add to living container
+      livers.addLiver(endGoal);
     }
     else if(isMainCharacterType(type)){ // if it's a main character type entity, overwrite the basic newEntity
 
@@ -64,7 +66,7 @@ public class BackendContainer {
       newEntity = mainCharacter;
       collidables.addCollidable(mainCharacter); // all main characters are collidable
 
-      // TODO: add to living container
+      livers.addLiver(mainCharacter);
     }
     else if(isAutomaticMoverType(type)){
       AutomaticMovingCharacter newMover = factory.makeAutomaticMover(xCoordinate,yCoordinate, height, width, type, info);
@@ -75,17 +77,34 @@ public class BackendContainer {
       if(isCollidableType(type)){ // an automatic mover that is also a collidable
         collidables.addCollidable(newMover);
       }
-      // TODO: if(isLivingType)
+
+      if(isAliveType(type)){
+        livers.addLiver(newMover);
+      }
     }
     else if(isCollidableType(type)){ // only a collidable
+      if(isAliveType(type)){
+        LivingStaticCollidable newLivingCollidable = factory.makeLivingStaticCollidable(xCoordinate,yCoordinate, height, width, type, info);
+        livers.addLiver(newLivingCollidable);
+        collidables.addCollidable(newLivingCollidable);
+        newEntity = newLivingCollidable;
+      }
+      else{
+        CollidableEntity newCollidable = factory.makeCollidable(xCoordinate,yCoordinate, height, width, type, info);
 
-      CollidableEntity newCollidable = factory.makeCollidable(xCoordinate,yCoordinate, height, width, type, info);
-
-      collidables.addCollidable(newCollidable);
-      newEntity = newCollidable;
+        collidables.addCollidable(newCollidable);
+        newEntity = newCollidable;
+      }
     }
     else{
-      newEntity = new StaticEntity(xCoordinate,yCoordinate, height, width, info);
+      if(isAliveType(type)){
+        BasicStaticCharacter newLivingCharacter = factory.makeLivingStaticCharacter(xCoordinate,yCoordinate, height, width, type, info);
+        livers.addLiver(newLivingCharacter);
+        newEntity = newLivingCharacter;
+      }
+      else{
+        newEntity = new StaticEntity(xCoordinate,yCoordinate, height, width, info);
+      }
     }
 
     entities.addEntity(newEntity);
@@ -109,6 +128,10 @@ public class BackendContainer {
     return collidables;
   }
 
+  public LivingContainer livers(){
+    return livers;
+  }
+
   public boolean isMainCharacterType(String type){
     return Arrays.asList(Model.containerResources.getString("main_characters").split(",")).contains(type);
   }
@@ -123,5 +146,9 @@ public class BackendContainer {
 
   public boolean isEndGoalType(String type){
     return Arrays.asList(Model.containerResources.getString("end_goals").split(",")).contains(type);
+  }
+
+  public boolean isAliveType(String type){
+    return Arrays.asList(Model.containerResources.getString("living").split(",")).contains(type);
   }
 }
