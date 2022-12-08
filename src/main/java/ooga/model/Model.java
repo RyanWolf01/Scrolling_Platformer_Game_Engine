@@ -30,6 +30,7 @@ public class Model {
   public Model(BackendContainer entities){
     this.entities = entities;
     gravityEnforcer = new GravityEnforcer(entities);
+    setEndGameMethods();
   }
 
   public void moveMovers(){
@@ -52,6 +53,13 @@ public class Model {
 
   public void handleAliveKey(AliveAction action){
     entities.mainCharacter().acceptAliveAction(action);
+  }
+
+  /**
+   * End the game
+   */
+  public void endGame() {
+    throw new RuntimeException("You just ended the game!!! (I lost the game)");
   }
 
   /**
@@ -118,4 +126,7 @@ public class Model {
     }
   }
 
+  private void setEndGameMethods() {
+    entities.mainCharacter().setEndGameCallable(this::endGame);
+  }
 }

@@ -59,7 +59,7 @@ public class GameController {
 
     /**
      * Gets information from the JSON about the
-     * @return
+     * @return viewInfo
      */
     public ViewInfo getViewInfo(){
         return jsonDecoder.viewInfo();

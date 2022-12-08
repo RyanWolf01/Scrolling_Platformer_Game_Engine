@@ -11,7 +11,7 @@ import ooga.model.entities.modelcallers.functionalinterfaces.EndGameCallable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Mario extends MainCharacterEntity implements GameEnder {
+public class Mario extends MainCharacterEntity {
 
   private static final Logger LOG = LogManager.getLogger(Mario.class);
   private EndGameCallable endGameMethod;
@@ -26,9 +26,8 @@ public class Mario extends MainCharacterEntity implements GameEnder {
    * @param entityInfo entity info
    */
   public Mario(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
-      Info entityInfo, EndGameCallable endGameMethod) {
+      Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
-    this.endGameMethod = endGameMethod;
   }
 
   /**
@@ -63,10 +62,6 @@ public class Mario extends MainCharacterEntity implements GameEnder {
     count += new EndGameActionParser(actionDataContainer).parseAndApplyActions(this);
 
     return count;
-  }
-
-  public void endGame() {
-    endGameMethod.execute();
   }
 
 }

@@ -15,6 +15,13 @@ public class GameEnderStaticEntity extends StaticEntity implements GameEnder {
 
   @Override
   public void endGame() {
+    if (endGameMethod == null) throw new RuntimeException("The end game method for mario hasn't"
+        + "been set!");
     endGameMethod.execute();
+  }
+
+  @Override
+  public void setEndGameCallable(EndGameCallable endGameCallable) {
+    endGameMethod = endGameCallable;
   }
 }
