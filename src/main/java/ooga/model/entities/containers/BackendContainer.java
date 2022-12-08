@@ -30,6 +30,7 @@ public class BackendContainer {
 
 
   public BackendContainer(JSONInformationDecoder decoder){
+    livers = new LivingContainer();
     entities = new EntityContainer();
     autoMovers = new AutomaticMoverContainer();
     collidables = new CollidableContainer();
@@ -58,6 +59,10 @@ public class BackendContainer {
       newEntity = endGoal;
 
       livers.addLiver(endGoal);
+
+      if(isCollidableType(type)){ // an automatic mover that is also a collidable
+        collidables.addCollidable(endGoal);
+      }
     }
     else if(isMainCharacterType(type)){ // if it's a main character type entity, overwrite the basic newEntity
 
@@ -130,6 +135,10 @@ public class BackendContainer {
 
   public LivingContainer livers(){
     return livers;
+  }
+
+  public EntityContainer entities(){
+    return entities;
   }
 
   public boolean isMainCharacterType(String type){
