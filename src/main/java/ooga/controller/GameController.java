@@ -5,9 +5,12 @@ import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.model.Model;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
+import ooga.model.collisions.collisionhandling.exceptions.NoCollisionCriteriaMatchException;
 import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 /**
@@ -15,12 +18,14 @@ import ooga.view.nodes.ScrollingNode;
  * will be running during the gameplay.
  */
 public class GameController {
+    private static final Logger LOG = LogManager.getLogger(GameController.class);
     private ConnectionContainer container;
     private UserControlHandler controlHandler;
     private JSONInformationDecoder jsonDecoder;
     private Model model;
     private Queue<KeyCode> keyCodeQueue;
     private String myLevel;
+    private boolean gameRunning = true;
 
     /**
      * The GameController needs to have a mapping of backend to frontend objects
@@ -34,7 +39,7 @@ public class GameController {
         jsonDecoder.makeEntityContainerFromLevelJSON(container);
         // TODO: integrate new String for controls JSON into this constructor and in related locations in main and controller tests
         jsonDecoder.makeUserControlHandlerFromJSON(controlHandler);
-        model = new Model(container.entities());
+        model = new Model(container.entities(), this::endGame);
         keyCodeQueue = new LinkedList<>();
     }
 
@@ -43,6 +48,7 @@ public class GameController {
      * @return NodeContainer that the View can
      */
     public NodeContainer step(){
+        if (! gameRunning) return container.viewables();
         checkForCollisions();
         model.resetHorizontalVelocities();
         executeKeyInputActions();
@@ -75,6 +81,11 @@ public class GameController {
                 model.handleAliveKey(controlHandler.getAliveAction(code));
             }
         }
+    }
+
+    private void endGame() {
+        gameRunning = false;
+        LOG.info("The game is over (and you lost the game)!");
     }
 
     /**

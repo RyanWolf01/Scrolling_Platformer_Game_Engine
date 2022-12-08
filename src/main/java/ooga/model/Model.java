@@ -16,6 +16,7 @@ import ooga.model.entities.Entity;
 import ooga.model.entities.containers.BackendContainer;
 
 import java.util.ResourceBundle;
+import ooga.model.entities.modelcallers.functionalinterfaces.EndGameCallable;
 
 /**
  * Backend logic is performed in here,
@@ -27,10 +28,10 @@ public class Model {
   public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Containers");
   BackendContainer entities;
 
-  public Model(BackendContainer entities){
+  public Model(BackendContainer entities, EndGameCallable endGameMethod){
     this.entities = entities;
     gravityEnforcer = new GravityEnforcer(entities);
-    setEndGameMethods();
+    setEndGameMethods(endGameMethod);
   }
 
   public void moveMovers(){
@@ -53,13 +54,6 @@ public class Model {
 
   public void handleAliveKey(AliveAction action){
     entities.mainCharacter().acceptAliveAction(action);
-  }
-
-  /**
-   * End the game
-   */
-  public void endGame() {
-    throw new RuntimeException("You just ended the game!!! (I lost the game)");
   }
 
   /**
@@ -126,7 +120,7 @@ public class Model {
     }
   }
 
-  private void setEndGameMethods() {
-    entities.mainCharacter().setEndGameCallable(this::endGame);
+  private void setEndGameMethods(EndGameCallable endGameMethod) {
+    entities.mainCharacter().setEndGameCallable(endGameMethod);
   }
 }

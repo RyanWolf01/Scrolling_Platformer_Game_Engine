@@ -68,6 +68,10 @@ public abstract class MainCharacterEntity extends MovingCharacter implements Use
   }
 
   public void setEndGameCallable(EndGameCallable endGameCallable) {
-    this.endGameMethod = endGameMethod;
+    this.endGameMethod = endGameCallable;
+  }
+
+  private boolean isEndGameMethodSet() {
+    return endGameMethod != null;
   }
 }
