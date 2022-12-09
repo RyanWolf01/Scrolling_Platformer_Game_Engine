@@ -1,13 +1,9 @@
 package ooga.model.collisions.physics;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import javafx.scene.control.skin.TextInputControlSkin.Direction;
 import ooga.model.entities.Entity;
-import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
+import ooga.model.entities.livingentities.movingentities.maincharacters.marios.Mario;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

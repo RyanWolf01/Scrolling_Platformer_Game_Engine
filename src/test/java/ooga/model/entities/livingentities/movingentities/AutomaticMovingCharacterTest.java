@@ -10,9 +10,6 @@ import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.deadmovingentities.MovementQueue;
-import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
-import ooga.model.entities.livingentities.movingentities.MovingCharacter;
-import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

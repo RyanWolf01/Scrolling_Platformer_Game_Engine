@@ -5,9 +5,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
-import ooga.model.entities.containers.EntityContainer;
 import ooga.model.entities.info.EntityInfo;
-import org.junit.jupiter.api.BeforeEach;
+import ooga.model.entities.livingentities.movingentities.maincharacters.marios.Mario;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

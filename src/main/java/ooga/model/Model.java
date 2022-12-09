@@ -16,6 +16,8 @@ import ooga.model.entities.Entity;
 import ooga.model.entities.containers.BackendContainer;
 
 import java.util.ResourceBundle;
+import ooga.model.entities.modelcallers.GameEnder;
+import ooga.model.entities.modelcallers.functionalinterfaces.EndGameCallable;
 
 /**
  * Backend logic is performed in here,
@@ -27,9 +29,10 @@ public class Model {
   public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Containers");
   BackendContainer entities;
 
-  public Model(BackendContainer entities){
+  public Model(BackendContainer entities, EndGameCallable endGameMethod){
     this.entities = entities;
     gravityEnforcer = new GravityEnforcer(entities);
+    setEndGameMethods(endGameMethod);
   }
 
   public void moveMovers(){
@@ -71,6 +74,10 @@ public class Model {
     collider.getMyCurrentCollisions().get(collided).setCollisionIsFresh(true);
   }
 
+  /**
+   * To be called in the GameController before every time the Collision detection loop is
+   * executed
+   */
   public void preCollisionDetectionLoop() {
     removeNonFreshEntities();
     for (CollidableEntity collidable : entities.collidables()) {
@@ -114,4 +121,8 @@ public class Model {
     }
   }
 
+  private void setEndGameMethods(EndGameCallable endGameMethod) {
+    entities.mainCharacter().setEndGameCallable(endGameMethod);
+    entities.gameEnders().forEach((GameEnder gameEnder) -> gameEnder.setEndGameCallable(endGameMethod));
+  }
 }
