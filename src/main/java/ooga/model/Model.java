@@ -16,6 +16,7 @@ import ooga.model.entities.Entity;
 import ooga.model.entities.containers.BackendContainer;
 
 import java.util.ResourceBundle;
+import ooga.model.entities.modelcallers.GameEnder;
 import ooga.model.entities.modelcallers.functionalinterfaces.EndGameCallable;
 
 /**
@@ -122,5 +123,6 @@ public class Model {
 
   private void setEndGameMethods(EndGameCallable endGameMethod) {
     entities.mainCharacter().setEndGameCallable(endGameMethod);
+    entities.gameEnders().forEach((GameEnder gameEnder) -> gameEnder.setEndGameCallable(endGameMethod));
   }
 }

@@ -11,9 +11,8 @@ public class GameEnderCollidableEntity extends CollidableEntity implements GameE
   EndGameCallable endGameMethod;
 
   public GameEnderCollidableEntity(CollisionChart collisionChart, int initialXCoordinate, int initialYCoordinate, double height, double width,
-      Info entityInfo, EndGameCallable endGameMethod) {
+      Info entityInfo) {
     super(collisionChart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
-    this.endGameMethod = endGameMethod;
   }
 
   @Override

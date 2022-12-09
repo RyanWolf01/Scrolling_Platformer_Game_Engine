@@ -1,6 +1,17 @@
 {
-  "movingEntity": {
+  "entity": {
     "parent": "",
+    "collision_chart": [
+      {
+        "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
+        "ACTIONS": [
+        ]
+      }
+    ]
+  },
+
+  "movingEntity": {
+    "parent": "entity",
     "collision_chart": [
       {
         "OPPONENT_COLLIDABLE_TYPE": "static_platform",
@@ -29,11 +40,6 @@
             "action_interface": "MoverAction",
             "params": []
           }
-        ]
-      },
-      {
-        "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
-        "ACTIONS": [
         ]
       }
     ]
@@ -66,11 +72,6 @@
           {
             "classname": "ooga.model.actions.aliveactions.Kill",
             "action_interface": "AliveAction",
-            "params": []
-          },
-          {
-            "classname": "ooga.model.actions.modelactions.EndGameAction",
-            "action_interface": "EndGameAction",
             "params": []
           }
         ]
@@ -109,6 +110,23 @@
         "COLLISION_DIRECTION": "*",
         "ACTIONS": [
 
+        ]
+      }
+    ]
+  },
+
+  "game_ender": {
+    "parent": "entity",
+    "collision_chart": [
+      {
+        "OPPONENT_COLLIDABLE_TYPE": "mario",
+        "COLLISION_DIRECTION": "*",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.modelactions.EndGameAction",
+            "action_interface": "EndGameAction",
+            "params": []
+          }
         ]
       }
     ]
