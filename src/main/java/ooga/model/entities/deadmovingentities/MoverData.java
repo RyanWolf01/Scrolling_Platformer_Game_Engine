@@ -142,8 +142,8 @@ public class MoverData implements ImmutableMoverData {
    * @param downwardActionVelocity
    */
   public void setDownwardActionVelocity(int downwardActionVelocity) {
-    if(downwardActionVelocity > 0){
-      throw new MovementDataException("tried to change downward action velocity to positive value");
+    if(downwardActionVelocity < 0){
+      throw new MovementDataException("tried to change downward action velocity to negative value");
     }
     this.downwardActionVelocity = downwardActionVelocity;
   }
@@ -161,8 +161,8 @@ public class MoverData implements ImmutableMoverData {
    * @param upwardActionVelocity
    */
   public void setUpwardActionVelocity(int upwardActionVelocity) {
-    if(upwardActionVelocity < 0){
-      throw new MovementDataException("tried to change upward action velocity to negative value");
+    if(upwardActionVelocity > 0){
+      throw new MovementDataException("tried to change upward action velocity to positive value");
     }
     this.upwardActionVelocity = upwardActionVelocity;
   }

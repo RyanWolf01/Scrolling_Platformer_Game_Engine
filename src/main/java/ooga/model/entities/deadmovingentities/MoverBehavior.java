@@ -1,7 +1,5 @@
 package ooga.model.entities.deadmovingentities;
 
-import ooga.model.collisions.physics.GravityChecker;
-
 public class MoverBehavior {
 
   private double xVelocity;

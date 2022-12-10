@@ -25,7 +25,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
   public MovingEntity(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
-
+    moverBehavior = new MoverBehavior(new MoverData(entityInfo));
   }
 
   /**
