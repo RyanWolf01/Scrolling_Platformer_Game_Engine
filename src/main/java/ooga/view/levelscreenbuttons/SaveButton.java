@@ -28,10 +28,6 @@ public class SaveButton extends GUIBasicButton {
     // TODO: switch out string to be read from props
     directoryNameInput.setPromptText("Enter Name for Saved File");
 
-    /*
-    TBD, add to the screen here, idk if we want to just add it to where the button is or add
-    it using a popup
-     */
   }
 
   /**

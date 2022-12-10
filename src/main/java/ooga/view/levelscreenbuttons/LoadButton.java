@@ -10,6 +10,7 @@ public class LoadButton extends GUIBasicButton {
   private DirectoryChooser directoryChooser;
   private Stage stage;
 
+
   /**
    * Constructor
    * @param buttonText
