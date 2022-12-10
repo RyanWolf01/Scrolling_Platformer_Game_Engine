@@ -1,13 +1,47 @@
 package ooga.model.entities.livingentities;
 
+import java.util.ResourceBundle;
 import ooga.model.entities.info.ImmutableInfo;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class AliveBehavior implements Alive{
+public class AliveBehavior implements ImmutableAliveBehavior{
 
   private int lives;
 
   public AliveBehavior(ImmutableInfo entityInfo){
     lives = setInitialLives(entityInfo);;
+  }
+
+  /**
+   * gets initial lives from entity info
+   * @param entityInfo entity info
+   * @return lives
+   */
+  private int setInitialLives(ImmutableInfo entityInfo){
+
+    Logger LOG = LogManager.getLogger(Alive.class);
+
+    ResourceBundle defaultAttributesProperties = ResourceBundle.getBundle("properties/defaultAttributes");
+
+    int lives;
+
+    try {
+
+      lives = Integer.parseInt(entityInfo.get("lives"));
+
+    } catch(NumberFormatException | NullPointerException exception){
+      LOG.error("lives formatted incorrectly in entity info");
+      // try to get default value from properties
+      try{
+        lives = Integer.parseInt(defaultAttributesProperties.getString("lives"));
+      } catch(NumberFormatException propertiesException){
+        LOG.error("lives formatted incorrectly in properties file");
+        throw propertiesException;
+      }
+    }
+
+    return lives;
   }
 
   /**

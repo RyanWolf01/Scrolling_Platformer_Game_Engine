@@ -38,9 +38,9 @@ public interface Mover {
 
     /**
      *
-     * @return immutable version of MoverData
+     * @return version of MoverData
      */
-    ImmutableMoverData getMoverData();
+    MoverData getMoverData();
 
     /**
      *

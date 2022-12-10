@@ -51,4 +51,21 @@ public abstract class StaticCharacter extends CollidableEntity implements Alive 
     aliveBehavior.kill();
   }
 
+  /**
+   * returns immutable version of alive behavior
+   */
+  @Override
+  public ImmutableAliveBehavior getAliveBehavior(){
+    return aliveBehavior;
+  }
+
+  /**
+   * set new AliveBehavior
+   */
+  @Override
+  public void setAliveBehavior(AliveBehavior aliveBehavior){
+    this.aliveBehavior = aliveBehavior;
+  }
+
+
 }

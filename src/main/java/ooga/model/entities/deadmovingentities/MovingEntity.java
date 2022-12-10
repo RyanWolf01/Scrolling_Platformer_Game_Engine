@@ -104,7 +104,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    * @return immutable version of MoverData
    */
   @Override
-  public ImmutableMoverData getMoverData(){
+  public MoverData getMoverData(){
     return moverData;
   }
 
