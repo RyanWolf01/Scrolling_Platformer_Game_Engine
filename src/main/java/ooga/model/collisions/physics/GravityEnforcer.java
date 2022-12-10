@@ -10,12 +10,14 @@ import org.apache.logging.log4j.Logger;
 public class GravityEnforcer {
   private static final Logger LOG = LogManager.getLogger(GravityEnforcer.class);
   private final BackendContainer entityContainer;
+  Gravity gravity;
 
   /**
    * Enforces gravity on a mover.
    */
   public GravityEnforcer(BackendContainer entityContainer){
     this.entityContainer = entityContainer;
+    this.gravity = new Gravity();
   }
 
   /**
@@ -33,7 +35,6 @@ public class GravityEnforcer {
    */
   private void applyGravity(Mover mover){
     if(mover.isInAir()){
-      Gravity gravity = new Gravity();
       gravity.execute(mover);
     }
   }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import ooga.Main;
+import ooga.controller.exceptions.MalformedJSONException;
 import ooga.model.Model;
 import ooga.model.entities.Entity;
 import ooga.model.entities.containers.BackendContainer;
@@ -46,8 +47,7 @@ public class ConnectionContainer {
       imageURL = info.get("texture");
     }
     catch(IllegalArgumentException e){
-      // TODO: Fix this
-      //imageURL = something from default_images resource file
+      throw new MalformedJSONException("Malformed 'texture' field", e);
     }
 
     Entity newEntity = entities.addNewEntity(xCoordinate, yCoordinate, height, width, type, info);

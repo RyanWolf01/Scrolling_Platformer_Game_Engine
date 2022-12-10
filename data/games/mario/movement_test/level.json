@@ -20,10 +20,10 @@
       "type": "static_platform",
       "collidable_type": "static_platform",
       "texture": "/games/mario/assets/ground.png",
-      "x": "200",
-      "y": "100",
-      "height": "10",
-      "width": "1000"
+      "x": "0",
+      "y": "500",
+      "height": "100",
+      "width": "1000000"
     },
     {
       "type": "static_platform",
@@ -78,6 +78,24 @@
       "x": "800",
       "y": "51",
       "movement_queue": "move_right,move_right,move_right,move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_left,move_left",
+      "height": "50",
+      "width": "40"
+    },
+    {
+      "type": "static_platform",
+      "character_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "200",
+      "y": "450",
+      "height": "30",
+      "width": "100"
+    }
+    ,{
+      "type": "end",
+      "character_type": "end",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "1000",
+      "y": "49",
       "height": "50",
       "width": "40"
     }

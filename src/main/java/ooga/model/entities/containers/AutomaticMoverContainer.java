@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 public class AutomaticMoverContainer implements Iterable<AutomaticMover>{
 
-  Logger LOG = LogManager.getLogger(GravityChecker.class);
+  Logger LOG = LogManager.getLogger(AutomaticMoverContainer.class);
 
   ResourceBundle entityInfoResources = ResourceBundle.getBundle("properties/movement");
 
