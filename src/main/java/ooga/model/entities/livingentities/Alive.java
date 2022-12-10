@@ -39,8 +39,9 @@ public interface Alive {
 
   /**
    * set new AliveBehavior
+   * @param oldAliveBehavior is old alive behavior
    */
-  void setAliveBehavior(AliveBehavior aliveBehavior);
+  void setAliveBehavior(AliveBehavior oldAliveBehavior);
 
 
 

@@ -61,10 +61,11 @@ public abstract class StaticCharacter extends CollidableEntity implements Alive 
 
   /**
    * set new AliveBehavior
+   * @param oldAliveBehavior is old alive behavior
    */
   @Override
-  public void setAliveBehavior(AliveBehavior aliveBehavior){
-    this.aliveBehavior = aliveBehavior;
+  public void setAliveBehavior(AliveBehavior oldAliveBehavior){
+    this.aliveBehavior = oldAliveBehavior;
   }
 
 

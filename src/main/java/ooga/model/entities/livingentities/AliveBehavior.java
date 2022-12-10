@@ -9,8 +9,20 @@ public class AliveBehavior implements ImmutableAliveBehavior{
 
   private int lives;
 
+  /**
+   * make initial alive behavior
+   * @param entityInfo used to set initialize lives
+   */
   public AliveBehavior(ImmutableInfo entityInfo){
     lives = setInitialLives(entityInfo);;
+  }
+
+  /**
+   * make new Alive Behavior.
+   * @param oldAliveBehavior old alive behavior used to set lives
+   */
+  public AliveBehavior(ImmutableAliveBehavior oldAliveBehavior){
+    lives = oldAliveBehavior.getLives();
   }
 
   /**
@@ -47,7 +59,6 @@ public class AliveBehavior implements ImmutableAliveBehavior{
   /**
    * Returns number of lives of the current entity is alive.
    */
-  @Override
   public int getLives() {
     return lives;
   }
@@ -57,7 +68,6 @@ public class AliveBehavior implements ImmutableAliveBehavior{
    * given entity, but for Mario this may include setting its velocities to 0 and disabling
    * abilities.
    */
-  @Override
   public void kill() {
     changeLives(-1);
   }
@@ -67,7 +77,6 @@ public class AliveBehavior implements ImmutableAliveBehavior{
    *
    * @param changeInLives is the change in lives
    */
-  @Override
   public void changeLives(int changeInLives) {
     setLives(getLives() + changeInLives);
   }
