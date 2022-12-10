@@ -5,6 +5,7 @@ import ooga.model.entities.deadmovingentities.MovingEntity;
 import ooga.model.entities.info.Info;
 import ooga.model.entities.livingentities.Alive;
 import ooga.model.entities.livingentities.AliveBehavior;
+import ooga.model.entities.livingentities.ImmutableAliveBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -52,6 +53,20 @@ public abstract class MovingCharacter extends MovingEntity implements Alive {
   @Override
   public void kill() {
     aliveBehavior.kill();
+  }
+
+  @Override
+  public ImmutableAliveBehavior getAliveBehavior(){
+    return aliveBehavior;
+  }
+
+  /**
+   * set new AliveBehavior
+   * @param oldAliveBehavior is old alive behavior
+   */
+  @Override
+  public void setAliveBehavior(AliveBehavior oldAliveBehavior){
+    this.aliveBehavior = oldAliveBehavior;
   }
 
 }

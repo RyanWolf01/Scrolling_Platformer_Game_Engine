@@ -31,17 +31,6 @@ public class AutomaticMovingCharacter extends MovingCharacter implements Automat
   }
 
   /**
-   * helper method called in move() that handles what happens to this entity when it goes off the screen
-   */
-  @Override
-  protected void handleInvalidCoordinates() { // allow characters to move off left, right, top and never come back
-    if(getYCoordinate() >= getScreenSize()){
-      kill();
-      LOG.info("Character was killed.");
-    }
-  }
-
-  /**
    * This will move the entity automatically based on the configured MoverActions in the MoveQueue
    */
   @Override

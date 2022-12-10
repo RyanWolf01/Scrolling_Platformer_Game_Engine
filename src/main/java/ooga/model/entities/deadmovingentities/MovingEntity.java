@@ -1,6 +1,5 @@
 package ooga.model.entities.deadmovingentities;
 
-import java.util.ResourceBundle;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.physics.GravityChecker;
 import ooga.model.entities.collidable.CollidableEntity;
@@ -11,9 +10,9 @@ import org.apache.logging.log4j.Logger;
 public abstract class MovingEntity extends CollidableEntity implements Mover {
 
   private static final Logger LOG = LogManager.getLogger(MovingEntity.class);
-  private final int SCREEN_SIZE;
-  private double xVelocity;
-  private double yVelocity;
+
+  private MoverBehavior moverBehavior;
+  private MoverData moverData;
 
   /**
    * Moving Entity has no lives but can move. Constructor initializes screen size from Properties files.
@@ -27,18 +26,8 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
   public MovingEntity(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
-
-    int tempScreenSize;
-    try{
-      tempScreenSize = Integer.parseInt(
-          ResourceBundle.getBundle("properties/view").getString("screen_size"));
-    } catch(NumberFormatException exception){
-      LOG.error("screen size from properties file formatted incorrectly");
-      throw exception;
-    }
-
-    SCREEN_SIZE = tempScreenSize;
-
+    this.moverData = new MoverData(entityInfo);
+    moverBehavior = new MoverBehavior(moverData);
   }
 
   /**
@@ -46,24 +35,16 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public void move() {
-    setXCoordinate(getXCoordinate() + getXVelocity());
-    setYCoordinate(getYCoordinate() + getYVelocity());
-    handleInvalidCoordinates();
+    setXCoordinate(getXCoordinate() + moverBehavior.getXVelocity());
+    setYCoordinate(getYCoordinate() + moverBehavior.getYVelocity());
   }
-
-  /**
-   * helper method for move that makes sure new coordinates are valid. if not, handles cases appropriately.
-   * must be implemented in each concrete class.
-   */
-  protected abstract void handleInvalidCoordinates();
 
   /**
    * Implements Mover interface changeVelocities method that changes object's velocities
    */
   @Override
   public void changeVelocities(double changeXVelocity, double changeYVelocity) {
-    xVelocity += changeXVelocity;
-    yVelocity += changeYVelocity;
+    moverBehavior.changeVelocities(changeXVelocity, changeYVelocity);
   }
 
   /**
@@ -75,10 +56,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public void resetVelocities(boolean resetX, boolean resetY){
-    if(resetX)
-      xVelocity = 0;
-    if(resetY)
-      yVelocity = 0;
+    moverBehavior.resetVelocities(resetX, resetY);
   }
 
   /**
@@ -87,7 +65,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public double getXVelocity() {
-    return xVelocity;
+    return moverBehavior.getXVelocity();
   }
 
   /**
@@ -96,15 +74,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public double getYVelocity() {
-    return yVelocity;
-  }
-
-  /**
-   *
-   * @return screen size
-   */
-  protected int getScreenSize(){
-    return SCREEN_SIZE;
+    return moverBehavior.getYVelocity();
   }
 
   /**
@@ -128,5 +98,24 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
     GravityChecker gravityChecker = new GravityChecker();
     return gravityChecker.checkHittingRightOfPlatform(this);
   }
+
+  /**
+   *
+   * @return immutable version of MoverData
+   */
+  @Override
+  public MoverData getMoverData(){
+    return moverData;
+  }
+
+  /**
+   *
+   * @param moverBehavior new mover behavior
+   */
+  @Override
+  public void setMoverBehavior(MoverBehavior moverBehavior){
+    setMoverBehavior(moverBehavior);
+  }
+
 
 }

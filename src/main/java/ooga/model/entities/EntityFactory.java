@@ -6,7 +6,6 @@ import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.collisionhandling.CollisionChartGetter;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChartGetter;
 import ooga.model.entities.collidable.CollidableEntity;
-import ooga.model.entities.containers.GameEnderContainer;
 import ooga.model.entities.containers.exceptions.InvalidTypeException;
 import ooga.model.entities.deadmovingentities.MovementQueue;
 import ooga.model.entities.info.EntityInfo;
@@ -15,10 +14,9 @@ import ooga.model.entities.info.Info;
 import ooga.model.entities.livingentities.BasicStaticCharacter;
 import ooga.model.entities.livingentities.LivingStaticCollidable;
 import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
-import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacterEntity;
 
 import java.lang.reflect.InvocationTargetException;
-import ooga.model.entities.modelcallers.GameEnder;
+import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import ooga.model.entities.modelcallers.GameEnderCollidableEntity;
 
 /**
@@ -50,12 +48,12 @@ public class EntityFactory {
         return newMover;
     }
 
-    public MainCharacterEntity makeMainCharacter(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
+    public MainCharacter makeMainCharacter(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
         CollisionChart chart = collisionChart(type);
 
-        MainCharacterEntity main;
+        MainCharacter main;
         try {
-            main = (MainCharacterEntity) Class.forName(Model.entityClassResources.getString(type)).
+            main = (MainCharacter) Class.forName(Model.entityClassResources.getString(type)).
                     getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class)
                     .newInstance(chart, xCoordinate,yCoordinate, height, width, info);
         } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |

@@ -38,6 +38,18 @@ public interface Mover {
 
     /**
      *
+     * @return version of MoverData
+     */
+    MoverData getMoverData();
+
+    /**
+     *
+     * @param moverBehavior new mover behavior
+     */
+    void setMoverBehavior(MoverBehavior moverBehavior);
+
+    /**
+     *
      * @return boolean if Mover is in air
      */
     boolean isInAir();

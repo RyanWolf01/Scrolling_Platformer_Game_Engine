@@ -1,19 +1,64 @@
 package ooga.model.entities.livingentities;
 
+import java.util.ResourceBundle;
 import ooga.model.entities.info.ImmutableInfo;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class AliveBehavior implements Alive{
+public class AliveBehavior implements ImmutableAliveBehavior{
 
   private int lives;
 
+  /**
+   * make initial alive behavior
+   * @param entityInfo used to set initialize lives
+   */
   public AliveBehavior(ImmutableInfo entityInfo){
     lives = setInitialLives(entityInfo);;
   }
 
   /**
+   * make new Alive Behavior.
+   * @param oldAliveBehavior old alive behavior used to set lives
+   */
+  public AliveBehavior(ImmutableAliveBehavior oldAliveBehavior){
+    lives = oldAliveBehavior.getLives();
+  }
+
+  /**
+   * gets initial lives from entity info
+   * @param entityInfo entity info
+   * @return lives
+   */
+  private int setInitialLives(ImmutableInfo entityInfo){
+
+    Logger LOG = LogManager.getLogger(Alive.class);
+
+    ResourceBundle defaultAttributesProperties = ResourceBundle.getBundle("properties/defaultAttributes");
+
+    int lives;
+
+    try {
+
+      lives = Integer.parseInt(entityInfo.get("lives"));
+
+    } catch(NumberFormatException | NullPointerException exception){
+      LOG.error("lives formatted incorrectly in entity info");
+      // try to get default value from properties
+      try{
+        lives = Integer.parseInt(defaultAttributesProperties.getString("lives"));
+      } catch(NumberFormatException propertiesException){
+        LOG.error("lives formatted incorrectly in properties file");
+        throw propertiesException;
+      }
+    }
+
+    return lives;
+  }
+
+  /**
    * Returns number of lives of the current entity is alive.
    */
-  @Override
   public int getLives() {
     return lives;
   }
@@ -23,9 +68,8 @@ public class AliveBehavior implements Alive{
    * given entity, but for Mario this may include setting its velocities to 0 and disabling
    * abilities.
    */
-  @Override
   public void kill() {
-    lives--;
+    changeLives(-1);
   }
 
   /**
@@ -33,7 +77,6 @@ public class AliveBehavior implements Alive{
    *
    * @param changeInLives is the change in lives
    */
-  @Override
   public void changeLives(int changeInLives) {
     setLives(getLives() + changeInLives);
   }
