@@ -2,6 +2,8 @@ package ooga.model.entities.deadmovingentities;
 
 import java.lang.reflect.Field;
 import java.util.ResourceBundle;
+import ooga.controller.exceptions.MiscellaneousPropertiesException;
+import ooga.controller.exceptions.MovementDataException;
 import ooga.model.entities.info.ImmutableInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +16,6 @@ public class MoverData implements ImmutableMoverData {
   private int leftActionVelocity;
   private int downwardActionVelocity;
   private int upwardActionVelocity;
-
   private final String RIGHT_VELOCITY_KEY;
   private final String LEFT_VELOCITY_KEY;
   private final String UPWARD_VELOCITY_KEY;
@@ -30,8 +31,7 @@ public class MoverData implements ImmutableMoverData {
       tempScreenSize = Integer.parseInt(
           ResourceBundle.getBundle("properties/view").getString("screen_size"));
     } catch(NumberFormatException exception){
-      LOG.error("screen size from properties file formatted incorrectly");
-      throw exception;
+      throw new MiscellaneousPropertiesException("screen size from properties file formatted incorrectly", exception);
     }
 
     SCREEN_SIZE = tempScreenSize;
@@ -43,8 +43,7 @@ public class MoverData implements ImmutableMoverData {
       UPWARD_VELOCITY_KEY = (ResourceBundle.getBundle("properties/movement").getString("upward_velocity_key"));
     }
     catch(NumberFormatException propertiesException){
-      LOG.error("incorrect velocity key format in properties file");
-      throw propertiesException;
+      throw new MovementDataException("incorrect velocity key format in properties file", propertiesException);
     }
 
     initializeVelocities(entityInfo);
@@ -73,8 +72,7 @@ public class MoverData implements ImmutableMoverData {
             ResourceBundle.getBundle("properties/movement").getString(key));
       }
       catch(NumberFormatException propertiesException){
-        LOG.error("incorrect velocity format in properties file");
-        throw propertiesException;
+        throw new MovementDataException("incorrect velocity format in properties file", propertiesException);
       }
     }
 
@@ -83,11 +81,13 @@ public class MoverData implements ImmutableMoverData {
     try {
       for(Field field : thisClassFields) {
         field.setAccessible(true);
-        if(field.getName().equals(key))
+        if(field.getName().equals(key)) {
           field.set(this, tempVelocity);
+          break;
+        }
       }
     } catch (IllegalAccessException e) {
-      throw new RuntimeException(e);
+      throw new MovementDataException("error using reflection in MoverData", e);
     }
   }
 
@@ -99,7 +99,14 @@ public class MoverData implements ImmutableMoverData {
     return rightActionVelocity;
   }
 
+  /**
+   * set right action velocity
+   * @param rightActionVelocity
+   */
   public void setRightActionVelocity(int rightActionVelocity) {
+    if(rightActionVelocity < 0){
+      throw new MovementDataException("tried to change right action velocity to negative value");
+    }
     this.rightActionVelocity = rightActionVelocity;
   }
 
@@ -111,7 +118,14 @@ public class MoverData implements ImmutableMoverData {
     return leftActionVelocity;
   }
 
+  /**
+   * set left action velocity
+   * @param leftActionVelocity
+   */
   public void setLeftActionVelocity(int leftActionVelocity) {
+    if(leftActionVelocity > 0){
+      throw new MovementDataException("tried to change left action velocity to positive value");
+    }
     this.leftActionVelocity = leftActionVelocity;
   }
 
@@ -123,7 +137,14 @@ public class MoverData implements ImmutableMoverData {
     return downwardActionVelocity;
   }
 
+  /**
+   * set downward action velocity
+   * @param downwardActionVelocity
+   */
   public void setDownwardActionVelocity(int downwardActionVelocity) {
+    if(downwardActionVelocity > 0){
+      throw new MovementDataException("tried to change downward action velocity to positive value");
+    }
     this.downwardActionVelocity = downwardActionVelocity;
   }
 
@@ -135,7 +156,14 @@ public class MoverData implements ImmutableMoverData {
     return upwardActionVelocity;
   }
 
+  /**
+   * set upward action velocity
+   * @param upwardActionVelocity
+   */
   public void setUpwardActionVelocity(int upwardActionVelocity) {
+    if(upwardActionVelocity < 0){
+      throw new MovementDataException("tried to change upward action velocity to negative value");
+    }
     this.upwardActionVelocity = upwardActionVelocity;
   }
 }
