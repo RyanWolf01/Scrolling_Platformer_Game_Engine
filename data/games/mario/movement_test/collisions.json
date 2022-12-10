@@ -78,7 +78,22 @@
       }
     ]
   },
-
+  "end": {
+    "parent": "",
+    "collision_chart": [
+      {
+        "OPPONENT_TYPE": "mario",
+        "COLLISION_DIRECTION": "LEFT || RIGHT || TOP || BOTTOM",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.aliveactions.Kill",
+            "action_interface": "AliveAction",
+            "params": []
+          }
+        ]
+      }
+    ]
+  },
   "goomba": {
     "parent": "movingEntity",
     "collision_chart": [

@@ -12,6 +12,7 @@ public class Main extends Application {
   public static final String COLLISION_CHART_PATH = System.getProperty("user.dir") + "data/games/sprint_1_test/collisions.json";
   public static final String DEFAULT_RESOURCE_PACKAGE = System.getProperty("user.dir") + "/src/main/resources/";
   public static final String PROPERTIES_PACKAGE = "properties.";
+  public static final String DEFAULT_LANGUAGE_RESOURCE_PACKAGE = "properties.languages.";
   public static final String slash = System.getProperty("file.separator");
 
 
