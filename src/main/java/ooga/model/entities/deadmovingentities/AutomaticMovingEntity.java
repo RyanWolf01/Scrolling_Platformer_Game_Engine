@@ -44,12 +44,14 @@ public class AutomaticMovingEntity extends MovingEntity implements AutomaticMove
     return new MoverActionParser(actionDataContainer).parseAndApplyActions(this);
   }
 
-//  private void performMoverAction(ActionDataContainer actionDataContainer) {
-//    MoverActionParser moverActionParser = new MoverActionParser(actionDataContainer);
-//    if (moverActionParser.hasAction()) {
-//      MoverAction moverAction = moverActionParser.getAction();
-//      moverAction.execute(this);
-//    }
-//  }
+  @Override
+  public boolean canMoveLeft() {
+    return !isInAir();
+  }
+
+  @Override
+  public boolean canMoveRight() {
+    return !isInAir();
+  }
 
 }

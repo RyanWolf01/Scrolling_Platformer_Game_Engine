@@ -34,6 +34,7 @@ public class UpwardMovement implements MoverAction {
    */
   @Override
   public void execute(Mover entity){
+    if (! entity.canMoveUp()) return;
     entity.changeVelocities(0, UPWARD_VELOCITY);
     entity.move();
   }

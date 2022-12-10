@@ -34,6 +34,7 @@ public class LeftMovement implements MoverAction {
    */
   @Override
   public void execute(Mover entity){
+    if (! entity.canMoveLeft()) return;
     entity.changeVelocities(LEFT_VELOCITY, 0);
     entity.move();
   }

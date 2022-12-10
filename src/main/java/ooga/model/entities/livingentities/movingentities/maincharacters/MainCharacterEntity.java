@@ -5,15 +5,19 @@ import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.livingentities.movingentities.MovingCharacter;
 import ooga.model.entities.info.Info;
+import ooga.model.entities.modelcallers.GameEnder;
+import ooga.model.entities.modelcallers.functionalinterfaces.EndGameCallable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
  * Maybe all main character entities
  */
-public abstract class MainCharacterEntity extends MovingCharacter implements UserControllable {
+public abstract class MainCharacterEntity extends MovingCharacter implements UserControllable,
+    GameEnder {
 
   private static final Logger LOG = LogManager.getLogger(MainCharacterEntity.class);
+  private EndGameCallable endGameMethod;
 
   /**
    * MainCharacterEntity takes user input and is alive, collidable, and moveable
@@ -55,5 +59,19 @@ public abstract class MainCharacterEntity extends MovingCharacter implements Use
       LOG.error("AliveAction is null");
       throw exception;
     }
+  }
+
+  public void endGame() {
+    if (endGameMethod == null) throw new RuntimeException("The end game method for mario hasn't"
+        + "been set!");
+    endGameMethod.execute();
+  }
+
+  public void setEndGameCallable(EndGameCallable endGameCallable) {
+    this.endGameMethod = endGameCallable;
+  }
+
+  private boolean isEndGameMethodSet() {
+    return endGameMethod != null;
   }
 }

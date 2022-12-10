@@ -1,7 +1,10 @@
 package ooga.model.entities.info;
 
+import java.util.ResourceBundle;
+
 public interface ImmutableInfo extends Iterable<String>{
-  String TYPE_KEY = "TYPE";
+  ResourceBundle entityInfoResources = ResourceBundle.getBundle("properties/entityInfo");
+  String COLLIDABLE_TYPE_KEY = entityInfoResources.getString("type");
   String COLLISION_CHART_KEY = "COLLISION_CHART";
 
   String get(String key);

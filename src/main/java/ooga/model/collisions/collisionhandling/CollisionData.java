@@ -46,7 +46,7 @@ public class CollisionData implements Iterable<String> {
    * @return String value
    */
   public String get(String key) {
-    return data.get(key);
+    return data.get(key.toLowerCase());
   }
 
   /**
@@ -56,7 +56,7 @@ public class CollisionData implements Iterable<String> {
    * @return if the CollisionData contains this String
    */
   public boolean hasKey(String key) {
-    return data.containsKey(key);
+    return data.containsKey(key.toLowerCase());
   }
 
   /**
@@ -81,7 +81,7 @@ public class CollisionData implements Iterable<String> {
   // Add the keys in ImmutableEntityInfo to data
   private void addKeys(Map<String, String> data, ImmutableInfo entityInfo, String prefix) {
     for (String key : entityInfo) {
-      data.put(prefix + key, entityInfo.get(key));
+      data.put((prefix + key).toLowerCase(), entityInfo.get(key));
     }
   }
 
