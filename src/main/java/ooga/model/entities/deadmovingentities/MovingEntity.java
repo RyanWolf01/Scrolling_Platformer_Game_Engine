@@ -1,6 +1,5 @@
 package ooga.model.entities.deadmovingentities;
 
-import java.util.ResourceBundle;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.physics.GravityChecker;
 import ooga.model.entities.collidable.CollidableEntity;
@@ -97,5 +96,6 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
     GravityChecker gravityChecker = new GravityChecker();
     return gravityChecker.checkHittingRightOfPlatform(this);
   }
+
 
 }

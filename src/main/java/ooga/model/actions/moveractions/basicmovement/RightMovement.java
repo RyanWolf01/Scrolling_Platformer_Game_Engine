@@ -22,8 +22,8 @@ public class RightMovement implements MoverAction {
           ResourceBundle.getBundle("properties/movement").getString("right_velocity"));
     }
     catch(NumberFormatException exception){
-      tempVelocity = 5;
       LOG.error("incorrect velocity format");
+      throw exception;
     }
     RIGHT_VELOCITY = tempVelocity;
   }

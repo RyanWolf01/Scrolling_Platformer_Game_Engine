@@ -31,25 +31,6 @@ public class Mario extends MainCharacterEntity {
   }
 
   /**
-   * helper method called in move() that handles what happens to this entity when it goes off the screen
-   */
-  @Override
-  protected void handleInvalidCoordinates() {
-    if(getYCoordinate() >= getScreenSize()){
-      kill();
-      LOG.info("Mario was killed.");
-    }
-    if(getXCoordinate() <= 0){
-      setXCoordinate(0);
-      LOG.info("Mario off left of screen.");
-    }
-    if(getXCoordinate() >= getScreenSize()){
-      setXCoordinate(getScreenSize()-1);
-      LOG.info("Mario off right of screen.");
-    }
-  }
-
-  /**
    * reads from CollisionChart and performs resulting actions necessary to handle the collision
    *
    * @param actionDataContainer

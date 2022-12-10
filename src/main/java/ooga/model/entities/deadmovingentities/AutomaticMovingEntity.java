@@ -23,14 +23,6 @@ public class AutomaticMovingEntity extends MovingEntity implements AutomaticMove
   }
 
   /**
-   * helper method called in move() that handles what happens to this entity when it goes off the screen
-   */
-  @Override
-  protected void handleInvalidCoordinates() {
-    // allow entities to move off left, right, top, bottom and never come back
-  }
-
-  /**
    * This will move the entity automatically based on the configured MoverActions in the MoveQueue
    */
   @Override
