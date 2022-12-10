@@ -63,7 +63,9 @@ public class PhysicsCalculator {
   }
 
   private void throwExceptionIfNotColliding(Entity collider, Entity collided) {
-    if (areColliding(collider, collided)) throw new RuntimeException("These Entities aren't colliding!");
+    if (!areColliding(collider, collided)) {
+      throw new RuntimeException("These Entities aren't colliding!");
+    }
   }
 
   private boolean areColliding(Entity collider, Entity collided) {
