@@ -1,13 +1,12 @@
 package ooga.model.entities.deadmovingentities;
 
 import java.lang.reflect.Field;
-import java.util.Properties;
 import java.util.ResourceBundle;
 import ooga.model.entities.info.ImmutableInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class MoverData {
+public class MoverData implements ImmutableMoverData {
 
   private static final Logger LOG = LogManager.getLogger(MoverData.class);
   private final int SCREEN_SIZE;
@@ -92,6 +91,10 @@ public class MoverData {
     }
   }
 
+  /**
+   * get velocity to use on a right action
+   * @return right action velocity
+   */
   public int getRightActionVelocity() {
     return rightActionVelocity;
   }
@@ -100,6 +103,10 @@ public class MoverData {
     this.rightActionVelocity = rightActionVelocity;
   }
 
+  /**
+   * get velocity to use on a left action
+   * @return left action velocity
+   */
   public int getLeftActionVelocity() {
     return leftActionVelocity;
   }
@@ -108,6 +115,10 @@ public class MoverData {
     this.leftActionVelocity = leftActionVelocity;
   }
 
+  /**
+   * get velocity to use on a downward action
+   * @return downward action velocity
+   */
   public int getDownwardActionVelocity() {
     return downwardActionVelocity;
   }
@@ -116,6 +127,10 @@ public class MoverData {
     this.downwardActionVelocity = downwardActionVelocity;
   }
 
+  /**
+   * get velocity to use on an upward action
+   * @return upward action velocity
+   */
   public int getUpwardActionVelocity() {
     return upwardActionVelocity;
   }
