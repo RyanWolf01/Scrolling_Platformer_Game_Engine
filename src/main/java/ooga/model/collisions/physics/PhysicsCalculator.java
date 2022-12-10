@@ -18,6 +18,7 @@ public class PhysicsCalculator {
    * @param collided the second entity, that is collided with
    */
   public CollisionPhysicsData calculatePhysicsData(Entity collider, Entity collided) {
+    throwExceptionIfNotColliding(collider, collided);
     DirectionDistancePair ddp = checkDirection(collider, collided);
     CollisionPhysicsData info = new CollisionPhysicsData(true, 1, ddp.direction);
     collider.getMyCurrentCollisions().set(collided, info);
@@ -40,7 +41,9 @@ public class PhysicsCalculator {
     return positionApproach(collider, collided);
   }
 
-  // TODO: Check to make sure these things are actually colliding
+  // Return a DistanceDirectionPair that contains the direction (from the perspective of collider)
+  // in which this collision is occurring, along with the distance that collider has moved inside
+  // of collided.
   private DirectionDistancePair positionApproach(Entity collider, Entity collided) {
     List<DirectionDistancePair> directionDistancePairs = new ArrayList<>();
     directionDistancePairs.add(new DirectionDistancePair(CollisionDirection.TOP, collider.getYCoordinate() - (collided.getYCoordinate() + collided.getHeight())));
@@ -57,6 +60,19 @@ public class PhysicsCalculator {
     }
     return minddp;
 
+  }
+
+  private void throwExceptionIfNotColliding(Entity collider, Entity collided) {
+    if (areColliding(collider, collided)) throw new RuntimeException("These Entities aren't colliding!");
+  }
+
+  private boolean areColliding(Entity collider, Entity collided) {
+    if (collider.getXCoordinate() + collider.getWidth() < collided.getXCoordinate()) return false;
+    if (collider.getXCoordinate() > collided.getXCoordinate() + collided.getWidth()) return false;
+    if (collider.getYCoordinate() + collider.getHeight() < collided.getYCoordinate()) return false;
+    if (collider.getYCoordinate() > collided.getYCoordinate() + collided.getHeight()) return false;
+
+    return true;
   }
 
   private class DirectionDistancePair {
