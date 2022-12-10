@@ -33,7 +33,6 @@ public class GameController {
         jsonDecoder = new JSONInformationDecoder(levelJSON, collisionJSON, controlsJSON);
         container = new ConnectionContainer(jsonDecoder);
         jsonDecoder.makeEntityContainerFromLevelJSON(container);
-        // TODO: integrate new String for controls JSON into this constructor and in related locations in main and controller tests
         jsonDecoder.makeUserControlHandlerFromJSON(controlHandler);
         model = new Model(container.entities());
         keyCodeQueue = new LinkedList<>();
@@ -44,12 +43,6 @@ public class GameController {
      * @return NodeContainer that the View can
      */
     public NodeContainer step(){
-        if(model.checkGameOver()){
-            System.out.println("hi");
-            return null;
-        }
-
-
         checkForCollisions();
         model.resetHorizontalVelocities();
         executeKeyInputActions();

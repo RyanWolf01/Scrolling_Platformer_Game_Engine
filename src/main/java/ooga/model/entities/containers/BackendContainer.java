@@ -10,7 +10,6 @@ import ooga.model.entities.StaticEntity;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.livingentities.BasicStaticCharacter;
 import ooga.model.entities.livingentities.LivingStaticCollidable;
-import ooga.model.entities.livingentities.StaticCharacter;
 import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
 import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacterEntity;
 
@@ -25,7 +24,6 @@ public class BackendContainer {
   private CollidableContainer collidables;
   private MainCharacterEntity mainCharacter;
   private JSONInformationDecoder decoder;
-  private BasicStaticCharacter endGoal;
   private EntityFactory factory;
 
 
@@ -36,11 +34,6 @@ public class BackendContainer {
     collidables = new CollidableContainer();
     factory = new EntityFactory(decoder);
     this.decoder = decoder;
-  }
-
-  public boolean wonGame(){
-    System.out.println(endGoal.getLives());
-    return endGoal.getLives() == 0;
   }
 
   /**
@@ -54,17 +47,7 @@ public class BackendContainer {
 
     Entity newEntity = null;
 
-    if(isEndGoalType(type)){
-      endGoal = factory.makeLivingStaticCharacter(xCoordinate,yCoordinate, height, width, type, info);
-      newEntity = endGoal;
-
-      livers.addLiver(endGoal);
-
-      if(isCollidableType(type)){ // an automatic mover that is also a collidable
-        collidables.addCollidable(endGoal);
-      }
-    }
-    else if(isMainCharacterType(type)){ // if it's a main character type entity, overwrite the basic newEntity
+    if(isMainCharacterType(type)){ // if it's a main character type entity, overwrite the basic newEntity
 
       mainCharacter = factory.makeMainCharacter(xCoordinate,yCoordinate, height, width, type, info);
 
@@ -151,10 +134,6 @@ public class BackendContainer {
 
   public boolean isCollidableType(String type){
     return Arrays.asList(Model.containerResources.getString("collidables").split(",")).contains(type);
-  }
-
-  public boolean isEndGoalType(String type){
-    return Arrays.asList(Model.containerResources.getString("end_goals").split(",")).contains(type);
   }
 
   public boolean isAliveType(String type){

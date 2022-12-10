@@ -31,10 +31,6 @@ public class Model {
     gravityEnforcer = new GravityEnforcer(entities);
   }
 
-  public boolean checkGameOver(){
-    return entities.wonGame();
-  }
-
   public void moveMovers(){
     gravityEnforcer.applyGravityToAllMovers();
     entities.automaticMovers().moveAll(); // move all automatic movers

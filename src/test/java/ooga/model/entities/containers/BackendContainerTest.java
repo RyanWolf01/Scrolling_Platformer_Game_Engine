@@ -1,12 +1,12 @@
 package ooga.model.entities.containers;
 
 import ooga.controller.JSONInformationDecoder;
+import ooga.model.collisions.collisionhandling.exceptions.CollisionChartParsingException;
 import ooga.model.entities.Entity;
 import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.deadmovingentities.AutomaticMover;
 import ooga.model.entities.livingentities.Alive;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -141,5 +141,19 @@ public class BackendContainerTest {
     assertEquals(3, collidableCounter);
     assertEquals(4, entityCounter);
     assertEquals(3, liverCounter);
+  }
+
+  @Test
+  public void badTest(){
+    decoder = new JSONInformationDecoder("data/games/malformed_test/level.json",
+            "data/games/malformed_test/collisions.json",
+            "data/games/malformed_test/controls.json");
+    container = new BackendContainer(decoder);
+
+    EntityInfo info = new EntityInfo("mario");
+    info.set("texture", "idk");
+    container.addNewEntity(0, 0, 0, 0, "mario", info);
+
+    //assertThrows(CollisionChartParsingException.class, () -> container.addNewEntity(0, 0, 0, 0, "static_entity", info));
   }
 }
