@@ -12,6 +12,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
   private static final Logger LOG = LogManager.getLogger(MovingEntity.class);
 
   private MoverBehavior moverBehavior;
+  private MoverData moverData;
 
   /**
    * Moving Entity has no lives but can move. Constructor initializes screen size from Properties files.
@@ -25,7 +26,8 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
   public MovingEntity(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
-    moverBehavior = new MoverBehavior(new MoverData(entityInfo));
+    this.moverData = new MoverData(entityInfo);
+    moverBehavior = new MoverBehavior(moverData);
   }
 
   /**
@@ -95,6 +97,24 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
   public boolean isHittingRightOfPlatform() {
     GravityChecker gravityChecker = new GravityChecker();
     return gravityChecker.checkHittingRightOfPlatform(this);
+  }
+
+  /**
+   *
+   * @return immutable version of MoverData
+   */
+  @Override
+  public ImmutableMoverData getMoverData(){
+    return moverData;
+  }
+
+  /**
+   *
+   * @param moverBehavior new mover behavior
+   */
+  @Override
+  public void setMoverBehavior(MoverBehavior moverBehavior){
+    setMoverBehavior(moverBehavior);
   }
 
 

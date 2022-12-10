@@ -9,8 +9,7 @@ import ooga.model.entities.Entity;
 import ooga.model.entities.StaticEntity;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
-import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacterEntity;
-import ooga.model.entities.modelcallers.GameEnder;
+import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import ooga.model.entities.modelcallers.GameEnderCollidableEntity;
 
 
@@ -23,7 +22,7 @@ public class BackendContainer {
   private CollidableContainer collidables;
   private GameEnderContainer gameEnders;
 
-  private MainCharacterEntity mainCharacter;
+  private MainCharacter mainCharacter;
   private JSONInformationDecoder decoder;
   private EntityFactory factory;
 
@@ -93,7 +92,7 @@ public class BackendContainer {
     return autoMovers;
   }
 
-  public MainCharacterEntity mainCharacter(){
+  public MainCharacter mainCharacter(){
     return mainCharacter;
   }
 

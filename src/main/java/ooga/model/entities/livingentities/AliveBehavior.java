@@ -25,7 +25,7 @@ public class AliveBehavior implements Alive{
    */
   @Override
   public void kill() {
-    lives--;
+    changeLives(-1);
   }
 
   /**
