@@ -46,6 +46,7 @@ public class Gravity implements MoverAction{
    */
   @Override
   public void execute(Mover entity){
+    if (!entity.canMoveDown()) return;
     if(entity.getYVelocity() + GRAVITY_VELOCITY <= TERMINAL_VELOCITY)
       entity.changeVelocities(0, GRAVITY_VELOCITY);
   }

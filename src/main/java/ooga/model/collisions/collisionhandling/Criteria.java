@@ -50,7 +50,7 @@ public class Criteria {
     for (String key : myCriteria.keySet()) {
 
       // make sure collisionData has all keys in myCriteria
-      if (!collisionData.hasKey(key)) {
+      if (!collisionData.hasKey(key) || collisionData.get(key) == null) {
         return false;
       }
 
@@ -61,7 +61,7 @@ public class Criteria {
 
       // make sure that all kv-pairs in myCriteria match those in collisionData
       String[] vals = myCriteria.get(key).split("\\|\\|");
-      if (Arrays.stream(vals).noneMatch((String val) -> collisionData.get(key).equals(val))) {
+      if (Arrays.stream(vals).noneMatch((String val) -> match(collisionData.get(key), val))) {
         return false;
       }
     }
@@ -85,4 +85,17 @@ public class Criteria {
     }
   }
 
+  @Override
+  public String toString() {
+    return myCriteria.toString();
+  }
+
+  // use the not operator if "!" present
+  private boolean match(String collisionDataVal, String criteriaVal) {
+    if (criteriaVal.indexOf("!") == 0) {
+      return !criteriaVal.substring(1).equalsIgnoreCase(criteriaVal);
+    }
+
+    return criteriaVal.equalsIgnoreCase(collisionDataVal);
+  }
 }

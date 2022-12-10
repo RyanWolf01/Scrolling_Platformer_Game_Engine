@@ -3,7 +3,7 @@ package ooga.model.collisions.physics;
 import java.util.ArrayList;
 import java.util.List;
 import ooga.model.entities.Entity;
-import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
+import ooga.model.entities.livingentities.movingentities.maincharacters.marios.Mario;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,7 +18,8 @@ public class PhysicsCalculator {
    * @param collided the second entity, that is collided with
    */
   public CollisionPhysicsData calculatePhysicsInfoAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
-    CollisionPhysicsData info = new CollisionPhysicsData(true, 1, checkDirectionAndMoveColliderOutsideOfCollided(collider, collided));
+    DirectionDistancePair ddp = checkDirectionAndMoveColliderOutsideOfCollided(collider, collided);
+    CollisionPhysicsData info = new CollisionPhysicsData(true, 1, ddp.direction);
     collider.getMyCurrentCollisions().set(collided, info);
     return info;
   }
@@ -35,7 +36,44 @@ public class PhysicsCalculator {
     return currCollisionPhysicsData;
   }
 
-  private CollisionDirection checkDirectionAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
+  private DirectionDistancePair checkDirectionAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
+//    CollisionDirection collisionDirection = velocityApproach(collider, collided);
+//    if (collisionDirection.equals(CollisionDirection.NONE)) {
+//      collisionDirection = positionApproach(collider, collided);
+//    }
+//    return collisionDirection;
+    return positionApproach(collider, collided);
+  }
+
+  // TODO: Check to make sure these things are actually colliding
+  private DirectionDistancePair positionApproach(Entity collider, Entity collided) {
+    List<DirectionDistancePair> directionDistancePairs = new ArrayList<>();
+    directionDistancePairs.add(new DirectionDistancePair(CollisionDirection.TOP, collider.getYCoordinate() - (collided.getYCoordinate() + collided.getHeight())));
+    directionDistancePairs.add(new DirectionDistancePair(CollisionDirection.BOTTOM, (collider.getYCoordinate() + collider.getHeight()) - collided.getYCoordinate()));
+    directionDistancePairs.add(new DirectionDistancePair(CollisionDirection.LEFT, collider.getXCoordinate() - (collided.getXCoordinate() + collided.getWidth())));
+    directionDistancePairs.add(new DirectionDistancePair(CollisionDirection.RIGHT, (collider.getXCoordinate() + collider.getWidth()) - collided.getXCoordinate()));
+
+
+    DirectionDistancePair minddp = directionDistancePairs.remove(0);
+    for (DirectionDistancePair ddp : directionDistancePairs) {
+      if (Math.abs(ddp.distance) < Math.abs(minddp.distance)) {
+        minddp = ddp;
+      }
+    }
+    return minddp;
+
+  }
+
+  private class DirectionDistancePair {
+    private CollisionDirection direction;
+    private Double distance;
+    private DirectionDistancePair(CollisionDirection direction, Double distance) {
+      this.direction = direction;
+      this.distance = distance;
+    }
+  }
+
+  private CollisionDirection velocityApproach(Entity collider, Entity collided) {
     List<Edge> edgesA = new ArrayList<>();
     edgesA.add(getTopEdge(collider));
     edgesA.add(getBottomEdge(collider));
@@ -69,7 +107,6 @@ public class PhysicsCalculator {
 //    }
 //    moveColliderOutsideOfCollided(collider, minTime, minTimeDirection);
     return minTimeDirection;
-
   }
 
   private void moveColliderOutsideOfCollided(Entity collider, double minTime,
