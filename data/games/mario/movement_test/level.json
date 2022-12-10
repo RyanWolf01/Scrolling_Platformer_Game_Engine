@@ -83,7 +83,7 @@
     },
     {
       "type": "static_platform",
-      "character_type": "static_platform",
+      "collidable_type": "static_platform",
       "texture": "/games/mario/assets/redPlatform.png",
       "x": "200",
       "y": "450",
@@ -92,7 +92,7 @@
     }
     ,{
       "type": "end",
-      "character_type": "end",
+      "collidable_type": "goomba",
       "texture": "/games/mario/assets/goomba.png",
       "x": "1000",
       "y": "49",
