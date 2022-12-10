@@ -9,7 +9,6 @@ import ooga.model.entities.Entity;
 import ooga.model.entities.StaticEntity;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.livingentities.BasicStaticCharacter;
-import ooga.model.entities.livingentities.LivingStaticCollidable;
 import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
 import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import ooga.model.entities.modelcallers.GameEnderCollidableEntity;
@@ -23,13 +22,8 @@ public class BackendContainer {
   private AutomaticMoverContainer autoMovers;
   private CollidableContainer collidables;
   private GameEnderContainer gameEnders;
-<<<<<<< src/main/java/ooga/model/entities/containers/BackendContainer.java
-
-
-=======
   private LivingContainer livers;
   private MainCharacter mainCharacter;
->>>>>>> src/main/java/ooga/model/entities/containers/BackendContainer.java
   private JSONInformationDecoder decoder;
   private EntityFactory factory;
 
@@ -80,7 +74,7 @@ public class BackendContainer {
     }
     else if(isCollidableType(type)){ // only a collidable
       if(isAliveType(type)){
-        LivingStaticCollidable newLivingCollidable = factory.makeLivingStaticCollidable(xCoordinate,yCoordinate, height, width, type, info);
+        BasicStaticCharacter newLivingCollidable = factory.makeLivingStaticCharacter(xCoordinate,yCoordinate, height, width, type, info);
         livers.addLiver(newLivingCollidable);
         collidables.addCollidable(newLivingCollidable);
         newEntity = newLivingCollidable;

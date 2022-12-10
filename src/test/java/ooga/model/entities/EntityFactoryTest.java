@@ -3,7 +3,7 @@ package ooga.model.entities;
 import ooga.controller.JSONInformationDecoder;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
-import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacterEntity;
+import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,7 +42,7 @@ public class EntityFactoryTest {
         info.set("lives","1");
         info.set("character_type", "automatic_mover");
 
-        MainCharacterEntity character =  factory.makeMainCharacter(0,0,0,0,"mario", info);
+        MainCharacter character =  factory.makeMainCharacter(0,0,0,0,"mario", info);
 
         assertEquals(0, character.getXCoordinate());
         assertEquals(0, character.getYCoordinate());

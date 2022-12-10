@@ -21,7 +21,7 @@
       "collidable_type": "static_platform",
       "texture": "/games/mario/assets/ground.png",
       "x": "0",
-      "y": "500",
+      "y": "100",
       "height": "100",
       "width": "1000000"
     },

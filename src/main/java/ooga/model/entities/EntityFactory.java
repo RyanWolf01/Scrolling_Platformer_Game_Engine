@@ -12,7 +12,6 @@ import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.info.ImmutableInfo;
 import ooga.model.entities.info.Info;
 import ooga.model.entities.livingentities.BasicStaticCharacter;
-import ooga.model.entities.livingentities.LivingStaticCollidable;
 import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
 
 import java.lang.reflect.InvocationTargetException;
@@ -62,22 +61,6 @@ public class EntityFactory {
         }
 
         return main;
-    }
-
-    public LivingStaticCollidable makeLivingStaticCollidable(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
-        CollisionChart chart = collisionChart(type);
-
-        LivingStaticCollidable newStaticLiver;
-        try {
-            newStaticLiver = (LivingStaticCollidable) Class.forName(Model.entityClassResources.getString(type)).
-                    getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class)
-                    .newInstance(chart, xCoordinate,yCoordinate, height, width, info);
-        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
-                 InstantiationException | IllegalAccessException e) {
-            throw new InvalidTypeException("JSON holds invalid type",e);
-        }
-
-        return newStaticLiver;
     }
 
     public BasicStaticCharacter makeLivingStaticCharacter(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
