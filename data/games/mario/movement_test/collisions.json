@@ -75,6 +75,17 @@
             "params": []
           }
         ]
+      },
+      {
+        "OPPONENT_COLLIDABLE_TYPE": "powerup",
+        "COLLISION_DIRECTION": "*",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.moveractions.FlyPowerUp",
+            "action_interface": "MoverAction",
+            "params": []
+          }
+        ]
       }
     ]
   },
@@ -109,7 +120,11 @@
         "OPPONENT_COLLIDABLE_TYPE": "mario",
         "COLLISION_DIRECTION": "*",
         "ACTIONS": [
-
+          {
+            "classname": "ooga.model.actions.aliveactions.Kill",
+            "action_interface": "AliveAction",
+            "params": []
+          }
         ]
       }
     ]
