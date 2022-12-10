@@ -19,7 +19,7 @@ public class PhysicsCalculatorTest {
     Entity collided = new StaticEntity(150, 0, 100, 50, new Info());
     collider.setXCoordinate(50);
 
-    CollisionPhysicsData res = physicsCalculator.calculatePhysicsInfoAndMoveColliderOutsideOfCollided(collider, collided);
+    CollisionPhysicsData res = physicsCalculator.calculatePhysicsData(collider, collided);
     assertEquals(CollisionDirection.RIGHT, res.getCollisionDirection());
     assertEquals(true, res.collisionIsFresh());
     assertEquals(1, res.getNumConsecutiveCollisions());
@@ -32,7 +32,7 @@ public class PhysicsCalculatorTest {
     Entity collider = new StaticEntity(150, 0, 100, 50, new Info());
     collider.setXCoordinate(100);
 
-    CollisionPhysicsData res = physicsCalculator.calculatePhysicsInfoAndMoveColliderOutsideOfCollided(collider, collided);
+    CollisionPhysicsData res = physicsCalculator.calculatePhysicsData(collider, collided);
     assertEquals(CollisionDirection.LEFT, res.getCollisionDirection());
     assertEquals(true, res.collisionIsFresh());
     assertEquals(1, res.getNumConsecutiveCollisions());
@@ -44,7 +44,7 @@ public class PhysicsCalculatorTest {
     Entity collider = new MainCharacter(new DefaultCollisionChart(), 50, 100, 100, 50, new EntityInfo("MARIO"));
     Entity collided = new StaticEntity(50, 0, 100, 50, new Info());
 
-    CollisionPhysicsData res = physicsCalculator.calculatePhysicsInfoAndMoveColliderOutsideOfCollided(collider, collided);
+    CollisionPhysicsData res = physicsCalculator.calculatePhysicsData(collider, collided);
     assertEquals(CollisionDirection.BOTTOM, res.getCollisionDirection());
     assertEquals(true, res.collisionIsFresh());
     assertEquals(1, res.getNumConsecutiveCollisions());

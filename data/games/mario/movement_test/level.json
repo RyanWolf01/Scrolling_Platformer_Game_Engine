@@ -89,8 +89,8 @@
       "y": "450",
       "height": "30",
       "width": "100"
-    }
-    ,{
+    },
+    {
       "type": "end",
       "collidable_type": "goomba",
       "texture": "/games/mario/assets/goomba.png",

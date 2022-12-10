@@ -17,8 +17,8 @@ public class PhysicsCalculator {
    * @param collider the first entity, to be acted on
    * @param collided the second entity, that is collided with
    */
-  public CollisionPhysicsData calculatePhysicsInfoAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
-    DirectionDistancePair ddp = checkDirectionAndMoveColliderOutsideOfCollided(collider, collided);
+  public CollisionPhysicsData calculatePhysicsData(Entity collider, Entity collided) {
+    DirectionDistancePair ddp = checkDirection(collider, collided);
     CollisionPhysicsData info = new CollisionPhysicsData(true, 1, ddp.direction);
     collider.getMyCurrentCollisions().set(collided, info);
     return info;
@@ -36,12 +36,7 @@ public class PhysicsCalculator {
     return currCollisionPhysicsData;
   }
 
-  private DirectionDistancePair checkDirectionAndMoveColliderOutsideOfCollided(Entity collider, Entity collided) {
-//    CollisionDirection collisionDirection = velocityApproach(collider, collided);
-//    if (collisionDirection.equals(CollisionDirection.NONE)) {
-//      collisionDirection = positionApproach(collider, collided);
-//    }
-//    return collisionDirection;
+  private DirectionDistancePair checkDirection(Entity collider, Entity collided) {
     return positionApproach(collider, collided);
   }
 
