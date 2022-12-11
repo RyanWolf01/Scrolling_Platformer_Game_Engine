@@ -21,8 +21,8 @@ public class Criteria {
 
   /**
    * Initialize a new Criteria class. Takes a hashmap representing the criteria for this collision
-   * and a String representing the Action class that will, via reflection, be turned into a class to
-   * be called on the Entity that owns this chart containing this Criteria
+   * and an ActionDataContainer representing the Action classes that will, via reflection, be
+   * turned into a class to be called on the Entity that owns this chart containing this Criteria
    *
    * @param criteria          represents each of the attributes that must be satisfied for an Action
    *                          to be applied
