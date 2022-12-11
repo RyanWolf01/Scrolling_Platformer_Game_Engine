@@ -2,6 +2,7 @@ package ooga.controller.tests;
 
 import java.io.IOException;
 import ooga.controller.JSONInformationDecoder;
+import ooga.controller.UserControlHandler;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
@@ -9,10 +10,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class JSONDecodingTest {
 
-  private String slash = System.getProperty("file.separator");
-  public static final String TEST_SAMPLE = "testJSONsample";
-  JSONInformationDecoder decoder = new JSONInformationDecoder(TEST_SAMPLE + "/level.json",
-      TEST_SAMPLE + "/collisions.json", TEST_SAMPLE + "/controls.json");
+  public static final String SLASH = System.getProperty("file.separator");
+  public static final String TEST_SAMPLE = System.getProperty("user.dir") + SLASH + "src" + SLASH + "test" + SLASH
+      + "resources" + SLASH + "testJSONsample" + SLASH;
+  JSONInformationDecoder decoder = new JSONInformationDecoder(TEST_SAMPLE + "level.json",
+      TEST_SAMPLE + "collisions.json", TEST_SAMPLE + "controls.json");
 
   @Test
   void testStringToJSONObject() {
@@ -21,8 +23,8 @@ public class JSONDecodingTest {
     sampleControls.put("A", "move_left");
     sampleControls.put("D", "move_right");
     sampleControls.put("S", "move_down");
-    String controlsPath = System.getProperty("user.dir") + slash + "src" + slash + "test" + slash +
-        "resources" + slash + "testJSONsample" + slash + "controls.json";
+    String controlsPath = System.getProperty("user.dir") + SLASH + "src" + SLASH + "test" + SLASH +
+        "resources" + SLASH + "testJSONsample" + SLASH + "controls.json";
     try {
       JSONObject actualControls = decoder.initialJSONInformation(controlsPath);
       assertEquals(sampleControls, actualControls);
@@ -33,10 +35,16 @@ public class JSONDecodingTest {
     }
   }
 
-
   @Test
   void testJSONUserControlHandler() {
-    return;
+    UserControlHandler realUserControls = new UserControlHandler();
+    realUserControls.addControl("W", "move_up");
+    realUserControls.addControl("A", "move_left");
+    realUserControls.addControl("D", "move_right");
+    realUserControls.addControl("S", "move_down");
+    UserControlHandler sampleUserControls = new UserControlHandler();
+    sampleUserControls = decoder.makeUserControlHandlerFromJSON(sampleUserControls);
+    assertEquals(sampleUserControls, realUserControls);
   }
 
   @Test
