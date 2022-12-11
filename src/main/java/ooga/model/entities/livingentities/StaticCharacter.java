@@ -6,7 +6,7 @@ import ooga.model.entities.info.Info;
 
 public abstract class StaticCharacter extends CollidableEntity implements Alive {
 
-  private AliveBehavior aliveBehavior;
+  private BasicAliveBehavior basicAliveBehavior;
 
   /**
    * Static Entity has lives but can not move.
@@ -20,7 +20,7 @@ public abstract class StaticCharacter extends CollidableEntity implements Alive 
   public StaticCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
       Info entityInfo) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
-    aliveBehavior = new AliveBehavior(entityInfo);
+    basicAliveBehavior = new BasicAliveBehavior(entityInfo);
   }
 
   /**
@@ -30,7 +30,7 @@ public abstract class StaticCharacter extends CollidableEntity implements Alive 
    */
   @Override
   public void changeLives(int changeInLives) {
-    aliveBehavior.changeLives(changeInLives);
+    basicAliveBehavior.changeLives(changeInLives);
   }
 
   /**
@@ -38,7 +38,7 @@ public abstract class StaticCharacter extends CollidableEntity implements Alive 
    */
   @Override
   public int getLives() {
-    return aliveBehavior.getLives();
+    return basicAliveBehavior.getLives();
   }
 
   /**
@@ -48,7 +48,7 @@ public abstract class StaticCharacter extends CollidableEntity implements Alive 
    */
   @Override
   public void kill() {
-    aliveBehavior.kill();
+    basicAliveBehavior.kill();
   }
 
   /**
@@ -56,16 +56,16 @@ public abstract class StaticCharacter extends CollidableEntity implements Alive 
    */
   @Override
   public ImmutableAliveBehavior getAliveBehavior(){
-    return aliveBehavior;
+    return basicAliveBehavior;
   }
 
   /**
    * set new AliveBehavior
-   * @param oldAliveBehavior is old alive behavior
+   * @param oldBasicAliveBehavior is old alive behavior
    */
   @Override
-  public void setAliveBehavior(AliveBehavior oldAliveBehavior){
-    this.aliveBehavior = oldAliveBehavior;
+  public void setAliveBehavior(BasicAliveBehavior oldBasicAliveBehavior){
+    this.basicAliveBehavior = oldBasicAliveBehavior;
   }
 
 

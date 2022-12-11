@@ -4,12 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ResourceBundle;
 import ooga.model.actions.moveractions.basicmovement.RightMovement;
-import ooga.model.actions.moveractions.basicmovement.UpwardMovement;
-import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
 import ooga.model.entities.deadmovingentities.MovementQueue;
 import org.junit.jupiter.api.Test;
 
-public class AutomaticMoverContainerTest {
+public class MoverContainerTest {
 
   @Test
   void testMoveAllPos1(){
@@ -18,7 +16,7 @@ public class AutomaticMoverContainerTest {
     movementQueue.addMove(new RightMovement());
 
     AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
-    AutomaticMoverContainer container = new AutomaticMoverContainer();
+    MoverContainer container = new MoverContainer();
     container.addMover(mover1);
 
     container.moveAll();
@@ -29,7 +27,7 @@ public class AutomaticMoverContainerTest {
 
   @Test
   void testMoveAllPos2(){
-    AutomaticMoverContainer container = new AutomaticMoverContainer();
+    MoverContainer container = new MoverContainer();
 
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());
@@ -49,7 +47,7 @@ public class AutomaticMoverContainerTest {
 
   @Test
   void testMoveAllNeg(){
-    AutomaticMoverContainer container = new AutomaticMoverContainer();
+    MoverContainer container = new MoverContainer();
 
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());
@@ -67,7 +65,7 @@ public class AutomaticMoverContainerTest {
     movementQueue.addMove(new RightMovement());
 
     AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
-    AutomaticMoverContainer container = new AutomaticMoverContainer();
+    MoverContainer container = new MoverContainer();
     container.addMover(mover1);
 
     container.moveAll();
@@ -83,7 +81,7 @@ public class AutomaticMoverContainerTest {
 
   @Test
   void testResetVelocitiesPos2(){
-    AutomaticMoverContainer container = new AutomaticMoverContainer();
+    MoverContainer container = new MoverContainer();
 
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());
@@ -108,7 +106,7 @@ public class AutomaticMoverContainerTest {
 
   @Test
   void testResetVelocitiesNegative(){
-    AutomaticMoverContainer container = new AutomaticMoverContainer();
+    MoverContainer container = new MoverContainer();
 
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());

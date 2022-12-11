@@ -7,6 +7,7 @@ import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
+import ooga.model.entities.deadmovingentities.MovementQueue;
 import ooga.model.entities.livingentities.movingentities.MovingCharacter;
 import ooga.model.entities.info.Info;
 import ooga.model.entities.modelcallers.GameEnder;
@@ -33,8 +34,8 @@ public class MainCharacter extends MovingCharacter implements UserControllable,
    * @param entityInfo entity info
    */
   public MainCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height,
-      double width, Info entityInfo) {
-    super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
+      double width, Info entityInfo, MovementQueue movementQueue) {
+    super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo, movementQueue);
   }
 
   /**

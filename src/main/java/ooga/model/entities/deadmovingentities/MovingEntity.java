@@ -11,7 +11,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
 
   private static final Logger LOG = LogManager.getLogger(MovingEntity.class);
 
-  private MoverBehavior moverBehavior;
+  private BasicMoverBehavior basicMoverBehavior;
   private MoverData moverData;
 
   /**
@@ -24,10 +24,22 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    * @param entityInfo entity info
    */
   public MovingEntity(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
-      Info entityInfo) {
+      Info entityInfo, MovementQueue movementQueue) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
     this.moverData = new MoverData(entityInfo);
-    moverBehavior = new MoverBehavior(moverData);
+
+    initializeMoverBehavior(movementQueue);
+  }
+
+  /**
+   * initialize mover behavior based on movement queue existence
+   * @param movementQueue movement queue
+   */
+  private void initializeMoverBehavior(MovementQueue movementQueue){
+    if(movementQueue == null || movementQueue.nextMove() == null)
+      basicMoverBehavior = new BasicMoverBehavior();
+    else
+      basicMoverBehavior = new AutomaticMoverBehavior(movementQueue, this);
   }
 
   /**
@@ -35,8 +47,9 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public void move() {
-    setXCoordinate(getXCoordinate() + moverBehavior.getXVelocity());
-    setYCoordinate(getYCoordinate() + moverBehavior.getYVelocity());
+    basicMoverBehavior.move();
+    setXCoordinate(getXCoordinate() + basicMoverBehavior.getXVelocity());
+    setYCoordinate(getYCoordinate() + basicMoverBehavior.getYVelocity());
   }
 
   /**
@@ -44,7 +57,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public void changeVelocities(double changeXVelocity, double changeYVelocity) {
-    moverBehavior.changeVelocities(changeXVelocity, changeYVelocity);
+    basicMoverBehavior.changeVelocities(changeXVelocity, changeYVelocity);
   }
 
   /**
@@ -56,7 +69,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public void resetVelocities(boolean resetX, boolean resetY){
-    moverBehavior.resetVelocities(resetX, resetY);
+    basicMoverBehavior.resetVelocities(resetX, resetY);
   }
 
   /**
@@ -65,7 +78,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public double getXVelocity() {
-    return moverBehavior.getXVelocity();
+    return basicMoverBehavior.getXVelocity();
   }
 
   /**
@@ -74,7 +87,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public double getYVelocity() {
-    return moverBehavior.getYVelocity();
+    return basicMoverBehavior.getYVelocity();
   }
 
   /**
@@ -110,11 +123,11 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
 
   /**
    *
-   * @param moverBehavior new mover behavior
+   * @param basicMoverBehavior new mover behavior
    */
   @Override
-  public void setMoverBehavior(MoverBehavior moverBehavior){
-    setMoverBehavior(moverBehavior);
+  public void setMoverBehavior(BasicMoverBehavior basicMoverBehavior){
+    setMoverBehavior(basicMoverBehavior);
   }
 
 

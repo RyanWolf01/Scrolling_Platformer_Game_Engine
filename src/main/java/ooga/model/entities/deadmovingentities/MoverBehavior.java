@@ -1,22 +1,17 @@
 package ooga.model.entities.deadmovingentities;
 
-public class MoverBehavior {
-
-  private double xVelocity;
-  private double yVelocity;
-  private MoverData moverData;
-
-  public MoverBehavior(MoverData moverData){
-    this.moverData = moverData;
-  }
+public interface MoverBehavior {
 
   /**
-   * Implements Mover interface changeVelocities method that changes object's velocities
+   * This will move the Mover entity by its current velocity in whichever direction it should
    */
-  public void changeVelocities(double changeXVelocity, double changeYVelocity) {
-    xVelocity += changeXVelocity;
-    yVelocity += changeYVelocity;
-  }
+  void move();
+
+  /**
+   * @param changeYVelocity changes Mover's y velocity and updates position
+   * @param changeXVelocity changes Mover's x velocity and updates position
+   */
+  void changeVelocities(double changeXVelocity, double changeYVelocity);
 
   /**
    * Reset velocities
@@ -25,28 +20,19 @@ public class MoverBehavior {
    * @param resetY tells if should reset yVelocity
    *
    */
-  public void resetVelocities(boolean resetX, boolean resetY){
-    if(resetX)
-      xVelocity = 0;
-    if(resetY)
-      yVelocity = 0;
-  }
+  void resetVelocities(boolean resetX, boolean resetY);
 
   /**
-   * @return x velocity, implements Mover method This getter is needed for some MoverAction classes,
-   * and for subclasses
+   *
+   * @return double x velocity
    */
-  public double getXVelocity() {
-    return xVelocity;
-  }
+  double getXVelocity();
 
   /**
-   * @return y velocity, implements Mover method This getter is needed for some MoverAction classes,
-   * and for subclasses
+   *
+   * @return double y velocity
    */
-  public double getYVelocity() {
-    return yVelocity;
-  }
+  double getYVelocity();
 
 
 }

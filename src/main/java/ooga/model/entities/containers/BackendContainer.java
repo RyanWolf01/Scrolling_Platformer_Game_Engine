@@ -9,7 +9,7 @@ import ooga.model.entities.Entity;
 import ooga.model.entities.StaticEntity;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.livingentities.BasicStaticCharacter;
-import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
+import ooga.model.entities.livingentities.movingentities.MovingCharacter;
 import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import ooga.model.entities.modelcallers.GameEnderCollidableEntity;
 
@@ -19,7 +19,7 @@ import ooga.model.entities.modelcallers.GameEnderCollidableEntity;
  */
 public class BackendContainer {
   private EntityContainer entities;
-  private AutomaticMoverContainer autoMovers;
+  private MoverContainer movers;
   private CollidableContainer collidables;
   private GameEnderContainer gameEnders;
   private LivingContainer livers;
@@ -31,7 +31,7 @@ public class BackendContainer {
   public BackendContainer(JSONInformationDecoder decoder){
     livers = new LivingContainer();
     entities = new EntityContainer();
-    autoMovers = new AutomaticMoverContainer();
+    movers = new MoverContainer();
     collidables = new CollidableContainer();
     gameEnders = new GameEnderContainer();
     factory = new EntityFactory(decoder);
@@ -57,10 +57,10 @@ public class BackendContainer {
       newEntity = mainCharacter;
       collidables.addCollidable(mainCharacter); // all main characters are collidable
     }
-    else if(isAutomaticMoverType(type)){
-      AutomaticMovingCharacter newMover = factory.makeAutomaticMover(xCoordinate,yCoordinate, height, width, type, info);
+    else if(isMoverType(type)){
+      MovingCharacter newMover = factory.makeMover(xCoordinate,yCoordinate, height, width, type, info);
 
-      autoMovers.addMover(newMover);
+      movers.addMover(newMover);
       newEntity = newMover;
 
       if(isCollidableType(type)){ // an automatic mover that is also a collidable
@@ -111,8 +111,8 @@ public class BackendContainer {
     return newEntity;
   }
 
-  public AutomaticMoverContainer automaticMovers(){
-    return autoMovers;
+  public MoverContainer movers(){
+    return movers;
   }
 
   public MainCharacter mainCharacter(){
@@ -142,8 +142,8 @@ public class BackendContainer {
     return Arrays.asList(Model.containerResources.getString("main_characters").split(",")).contains(type);
   }
 
-  public boolean isAutomaticMoverType(String type){
-    return Arrays.asList(Model.containerResources.getString("automatic_movers").split(",")).contains(type);
+  public boolean isMoverType(String type){
+    return Arrays.asList(Model.containerResources.getString("movers").split(",")).contains(type);
   }
 
   public boolean isCollidableType(String type){
