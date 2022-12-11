@@ -18,7 +18,6 @@ public class UpwardMovement implements MoverAction {
   public void execute(Mover entity){
     if (! entity.canMoveUp()) return;
     entity.changeVelocities(0, entity.getMoverData().getUpwardActionVelocity());
-    entity.move();
   }
 
 }

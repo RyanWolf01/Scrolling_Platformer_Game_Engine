@@ -11,7 +11,6 @@ public class StopBothDirections implements MoverAction{
   @Override
   public void execute(Mover entity){
     entity.resetVelocities(true, true);
-    entity.move();
   }
 
 }

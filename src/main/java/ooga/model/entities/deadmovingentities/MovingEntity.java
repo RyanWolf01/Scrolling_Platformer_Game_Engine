@@ -35,6 +35,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public void move() {
+    basicMoverBehavior.move();
     setXCoordinate(getXCoordinate() + basicMoverBehavior.getXVelocity());
     setYCoordinate(getYCoordinate() + basicMoverBehavior.getYVelocity());
   }

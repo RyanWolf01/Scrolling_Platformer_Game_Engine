@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 public class AutomaticMovingCharacter extends MovingCharacter implements AutomaticMover {
 
   private static final Logger LOG = LogManager.getLogger(AutomaticMovingCharacter.class);
-  private MovementQueue movementQueue;
+  private final MovementQueue movementQueue;
 
   /**
    * AutomaticMovingCharacter has lives and can move; moves automatically

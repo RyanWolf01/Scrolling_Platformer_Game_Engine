@@ -17,7 +17,6 @@ public class DownwardMovement implements MoverAction {
   public void execute(Mover entity){
     if (! entity.canMoveDown()) return;
     entity.changeVelocities(0, entity.getMoverData().getDownwardActionVelocity());
-    entity.move();
   }
 
 }
