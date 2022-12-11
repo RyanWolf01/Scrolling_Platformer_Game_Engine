@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class JSONDecodingTest {
 
+  private String slash = System.getProperty("file.separator");
   public static final String TEST_SAMPLE = "testJSONsample";
   JSONInformationDecoder decoder = new JSONInformationDecoder(TEST_SAMPLE + "/level.json",
       TEST_SAMPLE + "/collisions.json", TEST_SAMPLE + "/controls.json");
@@ -20,8 +21,10 @@ public class JSONDecodingTest {
     sampleControls.put("A", "move_left");
     sampleControls.put("D", "move_right");
     sampleControls.put("S", "move_down");
+    String controlsPath = System.getProperty("user.dir") + slash + "src" + slash + "test" + slash +
+        "resources" + slash + "testJSONsample" + slash + "controls.json";
     try {
-      JSONObject actualControls = decoder.initialJSONInformation(TEST_SAMPLE + "/controls.json");
+      JSONObject actualControls = decoder.initialJSONInformation(controlsPath);
       assertEquals(sampleControls, actualControls);
     } catch (IOException e) {
       throw new RuntimeException(e);
