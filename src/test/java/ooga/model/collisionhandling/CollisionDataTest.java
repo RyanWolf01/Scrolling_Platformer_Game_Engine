@@ -1,4 +1,4 @@
-package ooga.model.collision_handling;
+package ooga.model.collisionhandling;
 
 import static ooga.model.collisions.collisionhandling.CollisionData.COLLISION_PREFIX;
 import static ooga.model.collisions.collisionhandling.CollisionData.MY_PREFIX;

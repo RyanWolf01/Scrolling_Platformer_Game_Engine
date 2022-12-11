@@ -1,4 +1,4 @@
-package ooga.model.collision_handling;
+package ooga.model.entities.collidable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
