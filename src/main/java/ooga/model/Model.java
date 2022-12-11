@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import ooga.Main;
 import ooga.model.actions.aliveactions.AliveAction;
-import ooga.model.actions.maincharacteractions.MainCharacterAction;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.physics.CurrentCollisionContainer;
@@ -16,7 +15,6 @@ import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.containers.BackendContainer;
 
 import java.util.ResourceBundle;
-import ooga.model.entities.entitymodels.MainCharacter;
 import ooga.model.entities.modelcallers.GameEnder;
 import ooga.model.entities.modelcallers.functionalinterfaces.EndGameCallable;
 

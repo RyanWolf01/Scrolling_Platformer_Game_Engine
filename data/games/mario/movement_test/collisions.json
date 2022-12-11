@@ -59,8 +59,8 @@
             "params": []
           },
           {
-            "classname": "ooga.model.actions.maincharacteractions.IncreaseSizePowerUp",
-            "action_interface": "MainCharacterAction",
+            "classname": "ooga.model.actions.basicentityactions.IncreaseSizePowerUp",
+            "action_interface": "BasicEntityAction",
             "params": []
           }
         ]

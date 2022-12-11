@@ -1,15 +1,14 @@
 package ooga.model.actionparsers;
 
 import java.lang.reflect.InvocationTargetException;
-import ooga.model.actions.maincharacteractions.MainCharacterAction;
-import ooga.model.actions.modelactions.EndGameAction;
+import ooga.model.actions.basicentityactions.BasicEntityAction;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
+import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.entitymodels.MainCharacter;
-import ooga.model.entities.modelcallers.GameEnder;
 
-public class MainCharacterActionParser {
-  public static final String ACTION_INTERFACE_NAME = "MainCharacterAction";
+public class EntityActionParser {
+  public static final String ACTION_INTERFACE_NAME = "BasicEntityAction";
 
   private final ActionDataContainer myActionDataContainer;
 
@@ -18,23 +17,22 @@ public class MainCharacterActionParser {
    *
    * @param actionDataContainer the ActionDataContainer with ActionData to be parsed
    */
-  public MainCharacterActionParser(ActionDataContainer actionDataContainer) {
+  public EntityActionParser(ActionDataContainer actionDataContainer) {
     myActionDataContainer = actionDataContainer;
   }
 
   /**
-   * Parse all EndGameActions from this EndGameActionParser's ActionDataContainer and apply them to the
-   * GameEnder entity passed. Throws an ActionParsingException if an error occurs. Returns the number of
-   * EndGameActions applied to the GameEnder specified.
+   * Parse all BasicEntity actions from ActionDataContainer and apply them to the
+   *  entity passed.
    *
-   * @param mainCharacter GameEnder entity to be executed on
-   * @return number of MoverActionsApplied.
+   * @param entity entity to be executed on
+   * @return number of actions applied.
    */
-  public int parseAndApplyActions(MainCharacter mainCharacter) {
+  public int parseAndApplyActions(Entity entity) {
     int numActionsExecuted = 0;
     for (ActionData actionData : myActionDataContainer) {
       if (actionData.interfaceName().equals(ACTION_INTERFACE_NAME)) {
-        parseAction(actionData).execute(mainCharacter);
+        parseAction(actionData).execute(entity);
         numActionsExecuted += 1;
       }
     }
@@ -42,7 +40,7 @@ public class MainCharacterActionParser {
     return numActionsExecuted;
   }
 
-  private MainCharacterAction parseAction(ActionData actionData) {
+  private BasicEntityAction parseAction(ActionData actionData) {
     // Make sure the actionData has no params
     if (actionData.params().size() != 0) {
       throw new ActionParsingException(
@@ -53,7 +51,7 @@ public class MainCharacterActionParser {
     // Parse the actionData and return the correct AliveAction instance, or throw exception
     try {
       Class<?> clazz = Class.forName(actionData.className());
-      return (MainCharacterAction) clazz.getDeclaredConstructor().newInstance();
+      return (BasicEntityAction) clazz.getDeclaredConstructor().newInstance();
     } catch (ClassNotFoundException | InvocationTargetException | InstantiationException |
              IllegalAccessException | NoSuchMethodException e) {
 

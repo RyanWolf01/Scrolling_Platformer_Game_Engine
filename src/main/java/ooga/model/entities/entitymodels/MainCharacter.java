@@ -2,10 +2,9 @@ package ooga.model.entities.entitymodels;
 
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.EndGameActionParser;
-import ooga.model.actionparsers.MainCharacterActionParser;
+import ooga.model.actionparsers.EntityActionParser;
 import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.actions.aliveactions.AliveAction;
-import ooga.model.actions.maincharacteractions.MainCharacterAction;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
@@ -79,7 +78,7 @@ public class MainCharacter extends MovingCharacter implements UserControllable,
     count += new MoverActionParser(actionDataContainer).parseAndApplyActions(this);
     count += new AliveActionParser(actionDataContainer).parseAndApplyActions(this);
     count += new EndGameActionParser(actionDataContainer).parseAndApplyActions(this);
-    count += new MainCharacterActionParser(actionDataContainer).parseAndApplyActions(this);
+    count += new EntityActionParser(actionDataContainer).parseAndApplyActions(this);
 
     return count;
   }

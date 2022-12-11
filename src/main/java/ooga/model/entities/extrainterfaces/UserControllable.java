@@ -1,7 +1,6 @@
 package ooga.model.entities.extrainterfaces;
 
 import ooga.model.actions.aliveactions.AliveAction;
-import ooga.model.actions.maincharacteractions.MainCharacterAction;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.entities.alive.Alive;
 import ooga.model.entities.movement.Mover;

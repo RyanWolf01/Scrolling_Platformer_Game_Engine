@@ -1,10 +1,10 @@
-package ooga.model.actions.maincharacteractions;
+package ooga.model.actions.basicentityactions;
 
 import java.util.ResourceBundle;
 import ooga.controller.exceptions.MiscellaneousPropertiesException;
-import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.model.entities.entitymodels.Entity;
 
-public class IncreaseSizePowerUp implements MainCharacterAction{
+public class IncreaseSizePowerUp implements BasicEntityAction {
 
   private final double SIZE_MULTIPLIER;
 
@@ -28,7 +28,7 @@ public class IncreaseSizePowerUp implements MainCharacterAction{
    * @param entity on which action is executing
    */
   @Override
-  public void execute(MainCharacter entity){
+  public void execute(Entity entity){
     entity.setHeight(entity.getHeight() * SIZE_MULTIPLIER);
     entity.setWidth(entity.getWidth() * SIZE_MULTIPLIER);
   }
