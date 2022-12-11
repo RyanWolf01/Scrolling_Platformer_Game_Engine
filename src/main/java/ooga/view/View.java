@@ -14,21 +14,25 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.util.ResourceBundle;
 
 public class View {
 
   private GameController myController;
   private static Timeline levelAnimation;
-
   private LevelScreen level;
   private static final double FRAME_DELAY = 1.0/60.0;
   private Stage myStage;
 
+  public static final ResourceBundle viewResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"View");
+
   private static final Logger LOG = LogManager.getLogger(View.class);
 
-  public View(Stage mainStage, String GameTitle, File levelDirectory){
+  public View(Stage mainStage, String GameTitle, File levelDirectory, String playerName, String language){
     myStage = mainStage;
     myController = new GameController(levelDirectory + "/level.json", levelDirectory + "/collisions.json", levelDirectory + "/controls.json");
+    myController.setPlayerName(playerName);
+    myController.setLanguage(language);
     level = new LevelScreen(myController);
     myStage.setScene(level.initiateLevel(new File(levelDirectory + "/level.json")));
     myStage.setTitle(GameTitle);

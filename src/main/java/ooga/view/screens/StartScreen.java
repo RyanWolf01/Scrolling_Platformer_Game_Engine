@@ -3,6 +3,8 @@ package ooga.view.screens;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -10,17 +12,21 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import ooga.Main;
 import ooga.view.View;
 import ooga.view.interactives.GameSelector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 public class StartScreen {
 
+  public static final int MAX_USER_NAME_LENGTH = 20;
   private static HashMap<String, String> gameToGame;
   private static final String RESOURCE_DIRECTORY = "/";
   private static final String ICON_DIRECTORY = "icongames/";
@@ -32,6 +38,8 @@ public class StartScreen {
   private GameSelector gameSelector;
   private Button startGame;
   private Button levelSelection;
+  private TextField nameCreator;
+  private ComboBox<String> languageSelector;
   private String slash = System.getProperty("file.separator");
   private static final Logger LOG = LogManager.getLogger(StartScreen.class);
 
@@ -44,6 +52,7 @@ public class StartScreen {
 
 
   private Scene makeScene(){
+    //TODO: Split into multiple methods
     gameChooser = new GridPane();
     getLevelDirectoryMap();
 
@@ -51,17 +60,27 @@ public class StartScreen {
     startGame.setText("Start Game");
 
     startGame.setOnAction(event -> {
-      new View(mainStage, gameSelector.getValue(), levelDirectory);
+      new View(mainStage, gameSelector.getValue(), levelDirectory, nameCreator.getText(0, Math.min(nameCreator.getText().length(), MAX_USER_NAME_LENGTH)), languageSelector.getValue());
     });
-    gameChooser.add(startGame, 0, 2);
+
+    nameCreator = new TextField("UserName");
+    gameChooser.add(nameCreator, 0, 0);
+
+    languageSelector = new ComboBox<String>();
+    languageSelector.setPromptText("Choose a Language");
+    LOG.info(View.viewResources.getString("languages").split(","));
+    languageSelector.getItems().addAll(View.viewResources.getString("languages").split(","));
+    gameChooser.add(languageSelector, 0, 1);
+
+    gameChooser.add(startGame, 0, 4);
     startGame.setVisible(false);
 
     levelSelection = createLevelButton();
-    gameChooser.add(levelSelection, 0, 1);
+    gameChooser.add(levelSelection, 0, 3);
     levelSelection.setVisible(false);
 
     gameSelector = new GameSelector(this);
-    gameChooser.add(gameSelector, 0, 0);
+    gameChooser.add(gameSelector, 0, 2);
 
 
     return new Scene(gameChooser, 400, 400);
