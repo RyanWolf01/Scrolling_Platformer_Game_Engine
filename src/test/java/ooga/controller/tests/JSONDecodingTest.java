@@ -56,8 +56,8 @@ public class JSONDecodingTest {
   void testIncorrectUserControlHandler() {
     UserControlHandler userControls = new UserControlHandler();
     userControls = decoder.makeUserControlHandlerFromJSON(userControls);
-    assertFalse()
-
+    assertFalse(userControls.isAliveAction(KeyCode.W));
+    assertFalse(userControls.isAliveAction(KeyCode.D));
   }
 
   @Test
