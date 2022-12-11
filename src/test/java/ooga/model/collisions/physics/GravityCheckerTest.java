@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import ooga.model.entities.Entity;
 import ooga.model.entities.StaticEntity;
+import ooga.model.entities.deadmovingentities.MovementQueue;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,7 @@ public class GravityCheckerTest {
   @BeforeEach
   public void setup(){
     EntityInfo info = new EntityInfo("mario");
-    mario = new MainCharacter(null, 10, 10, 2, 2, info);
+    mario = new MainCharacter(null, 10, 10, 2, 2, info, new MovementQueue());
   }
 
   @Test
