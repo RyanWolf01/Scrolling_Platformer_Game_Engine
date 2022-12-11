@@ -41,6 +41,8 @@ public class AutomaticMoverBehavior extends BasicMoverBehavior{
       throw new MovementDataException("MovementQueue not initialized or empty.", exception);
     }
 
+    stepCounter++;
+
   }
 
   /**

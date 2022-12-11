@@ -38,6 +38,7 @@ public class Model {
   public void moveMovers(){
     gravityEnforcer.applyGravityToAllMovers();
     entities.movers().moveAll(); // move all movers
+    entities.mainCharacter().move();
   }
 
   /**

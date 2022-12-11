@@ -24,10 +24,9 @@ public class GravityEnforcer {
    * apply gravity to all movers
    */
   public void applyGravityToAllMovers(){
-    for(Mover mover: entityContainer.automaticMovers()){
+    for(Mover mover: entityContainer.movers()){
       applyGravity(mover);
     }
-    applyGravity(entityContainer.mainCharacter());
   }
 
   /**

@@ -50,11 +50,13 @@ public class EntityFactory {
     public MainCharacter makeMainCharacter(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
         CollisionChart chart = collisionChart(type);
 
+        MovementQueue queue = decoder.getMovementQueue(type);
+
         MainCharacter main;
         try {
             main = (MainCharacter) Class.forName(Model.entityClassResources.getString(type)).
-                    getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class)
-                    .newInstance(chart, xCoordinate,yCoordinate, height, width, info);
+                    getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class, MovementQueue.class)
+                    .newInstance(chart, xCoordinate,yCoordinate, height, width, info, queue);
         } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
                  InstantiationException | IllegalAccessException e) {
             throw new InvalidTypeException("JSON holds invalid type",e);

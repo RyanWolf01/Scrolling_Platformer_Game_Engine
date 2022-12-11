@@ -36,7 +36,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    * @param movementQueue movement queue
    */
   private void initializeMoverBehavior(MovementQueue movementQueue){
-    if(movementQueue == null || movementQueue.getSize() == 0)
+    if(movementQueue == null || movementQueue.nextMove() == null)
       basicMoverBehavior = new BasicMoverBehavior();
     else
       basicMoverBehavior = new AutomaticMoverBehavior(movementQueue, this);

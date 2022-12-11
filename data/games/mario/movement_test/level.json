@@ -12,6 +12,7 @@
       "collidable_type": "mario",
       "x": "250",
       "y": "1",
+      "movement_queue": "",
       "height": "100",
       "width": "50",
       "texture": "/games/mario/assets/mario.png"
@@ -62,7 +63,7 @@
       "width": "1150"
     },
     {
-      "type": "automatic_moving_character",
+      "type": "moving_character",
       "collidable_type": "powerup",
       "texture": "/games/mario/assets/powerupMushroom.png",
       "x": "700",
