@@ -1,6 +1,7 @@
 package ooga.model.entities.livingentities.movingentities;
 
 import ooga.model.collisions.collisionhandling.CollisionChart;
+import ooga.model.entities.deadmovingentities.MovementQueue;
 import ooga.model.entities.deadmovingentities.MovingEntity;
 import ooga.model.entities.info.Info;
 import ooga.model.entities.livingentities.Alive;
@@ -24,8 +25,8 @@ public abstract class MovingCharacter extends MovingEntity implements Alive {
    * @param entityInfo entity info
    */
   public MovingCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
-      Info entityInfo) {
-    super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
+      Info entityInfo, MovementQueue movementQueue) {
+    super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo, movementQueue);
     basicAliveBehavior = new BasicAliveBehavior(entityInfo);
   }
 

@@ -1,11 +1,9 @@
 package ooga.model.entities.containers;
 
 import ooga.controller.JSONInformationDecoder;
-import ooga.model.collisions.collisionhandling.exceptions.CollisionChartParsingException;
 import ooga.model.entities.Entity;
 import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.info.EntityInfo;
-import ooga.model.entities.deadmovingentities.AutomaticMover;
 import ooga.model.entities.livingentities.Alive;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

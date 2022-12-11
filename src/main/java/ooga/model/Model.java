@@ -37,16 +37,14 @@ public class Model {
 
   public void moveMovers(){
     gravityEnforcer.applyGravityToAllMovers();
-    entities.automaticMovers().moveAll(); // move all automatic movers
-    entities.mainCharacter().move();
+    entities.movers().moveAll(); // move all movers
   }
 
   /**
    * reset horizontal velocity of all Movers. This needs to be done after every horizontal movement
    */
   public void resetHorizontalVelocities(){
-    entities.automaticMovers().resetVelocities(true, false);
-    entities.mainCharacter().resetVelocities(true, false);
+    entities.movers().resetVelocities(true, false);
   }
 
   public void handleMoveKey(MoverAction action){
