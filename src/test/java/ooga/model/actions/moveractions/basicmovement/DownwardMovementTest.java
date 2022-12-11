@@ -2,6 +2,7 @@ package ooga.model.actions.moveractions.basicmovement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import ooga.model.entities.deadmovingentities.MovementQueue;
 import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,7 @@ public class DownwardMovementTest {
 
   @Test
   void testMovementPos1() {
-    MainCharacter mario = new MainCharacter(null, 0, 15, 2, 2, null);
+    MainCharacter mario = new MainCharacter(null, 0, 15, 2, 2, null, new MovementQueue());
 
     DownwardMovement move = new DownwardMovement();
     move.execute(mario);
@@ -23,7 +24,7 @@ public class DownwardMovementTest {
    */
   @Test
   void testMovementPos2() {
-    MainCharacter mario = new MainCharacter(null,0, 15, 2, 2, null);
+    MainCharacter mario = new MainCharacter(null,0, 15, 2, 2, null, new MovementQueue());
 
     DownwardMovement move = new DownwardMovement();
     move.execute(mario);
@@ -38,7 +39,7 @@ public class DownwardMovementTest {
    */
   @Test
   void testMovementNeg() {
-    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, null);
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, null, new MovementQueue());
 
     DownwardMovement move = new DownwardMovement();
 

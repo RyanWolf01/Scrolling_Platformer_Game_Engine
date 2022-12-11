@@ -3,6 +3,7 @@ package ooga.model.entities.containers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ooga.model.entities.Entity;
+import ooga.model.entities.deadmovingentities.MovementQueue;
 import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ public class EntityContainerTest {
 
   @Test
   public void addTest(){
-    Entity e = new MainCharacter(null, 0, 0, 0, 0 , null);
+    Entity e = new MainCharacter(null, 0, 0, 0, 0 , null, new MovementQueue());
     container.addEntity(e);
 
     assert(container.contains(e));
@@ -30,7 +31,7 @@ public class EntityContainerTest {
 
   @Test
   public void iteratorTest(){
-    Entity e = new MainCharacter(null, 0, 0, 0, 0 , null);
+    Entity e = new MainCharacter(null, 0, 0, 0, 0 , null, new MovementQueue());
     container.addEntity(e);
     Entity testEntity = container.iterator().next();
     assertEquals(e, testEntity);
