@@ -68,8 +68,7 @@ public class PhysicsCalculatorTest {
     Entity collider = new StaticEntity(0, 0, 100, 50, new Info());
     Entity collided = new MainCharacter(new DefaultCollisionChart(), 500, 1000, 100, 50, new EntityInfo("MARIO"));
 
-    CollisionPhysicsData res = physicsCalculator.calculatePhysicsData(collider, collided);
-    assertThrows(RuntimeException.class, () -> res.getCollisionDirection());
+    assertThrows(EntitiesNotCollidingException.class, () -> physicsCalculator.calculatePhysicsData(collider, collided));
   }
 
 
