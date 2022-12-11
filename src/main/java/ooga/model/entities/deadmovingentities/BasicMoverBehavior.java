@@ -10,7 +10,7 @@ public class BasicMoverBehavior implements MoverBehavior{
    */
   @Override
   public void move() {
-    // do nothing for basic mover, as the movement is done in the MovingEntity class
+    // do nothing extra for basic mover, as the movement is done in the MovingEntity class
   }
 
   /**

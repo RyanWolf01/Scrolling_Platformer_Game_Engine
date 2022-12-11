@@ -24,10 +24,22 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    * @param entityInfo entity info
    */
   public MovingEntity(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
-      Info entityInfo) {
+      Info entityInfo, MovementQueue movementQueue) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
     this.moverData = new MoverData(entityInfo);
-    basicMoverBehavior = new BasicMoverBehavior();
+
+    initializeMoverBehavior(movementQueue);
+  }
+
+  /**
+   * initialize mover behavior based on movement queue existence
+   * @param movementQueue movement queue
+   */
+  private void initializeMoverBehavior(MovementQueue movementQueue){
+    if(movementQueue == null || movementQueue.getSize() == 0)
+      basicMoverBehavior = new BasicMoverBehavior();
+    else
+      basicMoverBehavior = new AutomaticMoverBehavior(movementQueue, this);
   }
 
   /**
