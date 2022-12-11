@@ -34,7 +34,7 @@ public class AutomaticMoverBehavior extends BasicMoverBehavior{
     try {
       MoverAction move = movementQueue.nextMove();
 
-      if(shouldAutomaticMove())
+//      if(shouldAutomaticMove())
         move.execute(thisEntity);
     }
     catch(NullPointerException exception){

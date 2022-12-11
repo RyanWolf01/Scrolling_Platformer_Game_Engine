@@ -27,6 +27,7 @@ public class GravityEnforcer {
     for(Mover mover: entityContainer.movers()){
       applyGravity(mover);
     }
+    applyGravity(entityContainer.mainCharacter());
   }
 
   /**
