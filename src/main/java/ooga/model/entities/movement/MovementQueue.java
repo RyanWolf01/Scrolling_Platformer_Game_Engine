@@ -3,8 +3,13 @@ package ooga.model.entities.movement;
 import java.util.LinkedList;
 import java.util.Queue;
 import ooga.model.actions.moveractions.MoverAction;
+import ooga.model.entities.entitymodels.MovingCharacter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class MovementQueue {
+
+  private static final Logger LOG = LogManager.getLogger(MovementQueue.class);
 
   private Queue<MoverAction> movementQueue;
 
