@@ -22,7 +22,7 @@ public class CollidableEntityTest {
     CollisionChartGetter ccg = new DefaultCollisionChartGetter();
     CollisionChart marioChart = ccg.getCollisionChart(decoder, "mario");
 
-    MainCharacter mario = new MainCharacter(marioChart,11, 0, 50, 20, new EntityInfo("MARIO"));
+    MainCharacter mario = new MainCharacter(marioChart,11, 0, 50, 20, new EntityInfo("MARIO"), null);
     BasicStaticCharacter goomba = new BasicStaticCharacter(null, 30, 0, 50, 20, new EntityInfo("GOOMBA"));
 
     PhysicsCalculator phyCalc = new PhysicsCalculator();
@@ -46,7 +46,7 @@ public class CollidableEntityTest {
     CollisionChartGetter ccg = new DefaultCollisionChartGetter();
     CollisionChart marioChart = ccg.getCollisionChart(decoder, "mario");
 
-    MainCharacter mario = new MainCharacter(marioChart, 0, 45, 50, 20, new EntityInfo("MARIO"));
+    MainCharacter mario = new MainCharacter(marioChart, 0, 45, 50, 20, new EntityInfo("MARIO"), null);
     BasicStaticCharacter goomba = new BasicStaticCharacter(null, 0, 0, 51, 22, new EntityInfo("GOOMBA"));
 
     PhysicsCalculator phyCalc = new PhysicsCalculator();

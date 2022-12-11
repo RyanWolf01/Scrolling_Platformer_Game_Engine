@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ResourceBundle;
 import ooga.model.actions.moveractions.basicmovement.RightMovement;
+import ooga.model.entities.entitymodels.MovingCharacter;
 import ooga.model.entities.movement.MovementQueue;
+import ooga.model.entities.movement.Mover;
 import org.junit.jupiter.api.Test;
 
 public class MoverContainerTest {
@@ -15,7 +17,7 @@ public class MoverContainerTest {
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());
 
-    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
+    MovingCharacter mover1 = new MovingCharacter(null,0, 0, 0, 0, null, movementQueue);
     MoverContainer container = new MoverContainer();
     container.addMover(mover1);
 
@@ -32,9 +34,9 @@ public class MoverContainerTest {
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());
 
-    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
+    MovingCharacter mover1 = new MovingCharacter(null,0, 0, 0, 0, null, movementQueue);
     container.addMover(mover1);
-    AutomaticMovingCharacter mover2 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
+    MovingCharacter mover2 = new MovingCharacter(null,0, 0, 0, 0, null, movementQueue);
     container.addMover(mover2);
 
     container.moveAll();
@@ -52,7 +54,7 @@ public class MoverContainerTest {
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());
 
-    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
+    MovingCharacter mover1 = new MovingCharacter(null,0, 0, 0, 0, null, movementQueue);
     container.addMover(mover1);
 
     assertEquals(0, mover1.getXCoordinate());
@@ -64,7 +66,7 @@ public class MoverContainerTest {
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());
 
-    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
+    MovingCharacter mover1 = new MovingCharacter(null,0, 0, 0, 0, null, movementQueue);
     MoverContainer container = new MoverContainer();
     container.addMover(mover1);
 
@@ -86,9 +88,9 @@ public class MoverContainerTest {
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());
 
-    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
+    MovingCharacter mover1 = new MovingCharacter(null,0, 0, 0, 0, null, movementQueue);
     container.addMover(mover1);
-    AutomaticMovingCharacter mover2 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
+    MovingCharacter mover2 = new MovingCharacter(null,0, 0, 0, 0, null, movementQueue);
     container.addMover(mover2);
 
     container.moveAll();
@@ -111,7 +113,7 @@ public class MoverContainerTest {
     MovementQueue movementQueue = new MovementQueue();
     movementQueue.addMove(new RightMovement());
 
-    AutomaticMovingCharacter mover1 = new AutomaticMovingCharacter(null,0, 0, 0, 0, null, movementQueue);
+    MovingCharacter mover1 = new MovingCharacter(null,0, 0, 0, 0, null, movementQueue);
     container.addMover(mover1);
     container.moveAll();
     container.resetVelocities(false,false);
