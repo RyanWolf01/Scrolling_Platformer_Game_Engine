@@ -1,8 +1,8 @@
 package ooga.model.collisions.physics;
 
 import java.util.ResourceBundle;
-import ooga.model.entities.Entity;
-import ooga.model.entities.ImmutableEntity;
+import ooga.model.entities.entitymodels.Entity;
+import ooga.model.entities.entitymodels.ImmutableEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

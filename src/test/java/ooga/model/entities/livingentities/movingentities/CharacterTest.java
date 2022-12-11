@@ -3,8 +3,9 @@ package ooga.model.entities.livingentities.movingentities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ooga.model.actions.aliveactions.IncreaseLife;
+import ooga.model.entities.entitymodels.MovingCharacter;
 import ooga.model.entities.info.EntityInfo;
-import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
+import ooga.model.entities.entitymodels.MainCharacter;
 import org.junit.jupiter.api.Test;
 
 public class CharacterTest {

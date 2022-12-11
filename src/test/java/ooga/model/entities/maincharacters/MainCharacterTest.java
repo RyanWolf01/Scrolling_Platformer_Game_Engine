@@ -1,4 +1,4 @@
-package ooga.model.entities.livingentities.movingentities.maincharacters;
+package ooga.model.entities.maincharacters;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

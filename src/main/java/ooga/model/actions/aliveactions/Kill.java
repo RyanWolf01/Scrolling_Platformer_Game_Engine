@@ -1,7 +1,6 @@
 package ooga.model.actions.aliveactions;
 
-import ooga.model.entities.deadmovingentities.MovingEntity;
-import ooga.model.entities.livingentities.Alive;
+import ooga.model.entities.alive.Alive;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

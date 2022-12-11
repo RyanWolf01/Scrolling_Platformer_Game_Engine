@@ -1,4 +1,4 @@
-package ooga.model.entities.livingentities;
+package ooga.model.entities.alive;
 
 import java.util.ResourceBundle;
 import ooga.model.entities.info.ImmutableInfo;

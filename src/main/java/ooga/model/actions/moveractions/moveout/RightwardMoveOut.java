@@ -1,7 +1,7 @@
 package ooga.model.actions.moveractions.moveout;
 
 import ooga.model.actions.moveractions.MoverAction;
-import ooga.model.entities.deadmovingentities.Mover;
+import ooga.model.entities.movement.Mover;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

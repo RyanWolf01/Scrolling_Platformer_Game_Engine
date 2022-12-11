@@ -1,9 +1,13 @@
-package ooga.model.entities.deadmovingentities;
+package ooga.model.entities.entitymodels;
 
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.physics.GravityChecker;
-import ooga.model.entities.collidable.CollidableEntity;
 import ooga.model.entities.info.Info;
+import ooga.model.entities.movement.AutomaticMoverBehavior;
+import ooga.model.entities.movement.BasicMoverBehavior;
+import ooga.model.entities.movement.MovementQueue;
+import ooga.model.entities.movement.Mover;
+import ooga.model.entities.movement.MoverData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

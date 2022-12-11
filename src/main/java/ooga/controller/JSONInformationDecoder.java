@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javafx.scene.image.Image;
 import ooga.controller.exceptions.MalformedJSONException;
 import ooga.model.actions.moveractions.MoverActionGetter;
 import ooga.model.collisions.actiondata.ActionData;
@@ -18,9 +17,8 @@ import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.collisionhandling.Criteria;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
 
-import ooga.model.entities.deadmovingentities.MovementQueue;
+import ooga.model.entities.movement.MovementQueue;
 import ooga.model.entities.info.EntityInfo;
-import ooga.view.View;
 import ooga.view.ViewInfo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

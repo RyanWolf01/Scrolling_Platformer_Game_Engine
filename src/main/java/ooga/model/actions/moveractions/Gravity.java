@@ -2,8 +2,7 @@ package ooga.model.actions.moveractions;
 
 import java.util.ResourceBundle;
 import ooga.controller.exceptions.MovementDataException;
-import ooga.model.entities.deadmovingentities.Mover;
-import ooga.model.entities.livingentities.Alive;
+import ooga.model.entities.movement.Mover;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

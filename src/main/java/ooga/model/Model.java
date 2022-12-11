@@ -5,14 +5,13 @@ import java.util.List;
 import ooga.Main;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
-import ooga.model.actions.moveractions.basicmovement.DownwardMovement;
 import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.physics.CurrentCollisionContainer;
 import ooga.model.collisions.physics.GravityEnforcer;
 import ooga.model.collisions.physics.PhysicsCalculator;
-import ooga.model.entities.ImmutableEntity;
-import ooga.model.entities.collidable.CollidableEntity;
-import ooga.model.entities.Entity;
+import ooga.model.entities.entitymodels.ImmutableEntity;
+import ooga.model.entities.entitymodels.CollidableEntity;
+import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.containers.BackendContainer;
 
 import java.util.ResourceBundle;
@@ -46,6 +45,7 @@ public class Model {
    */
   public void resetHorizontalVelocities(){
     entities.movers().resetVelocities(true, false);
+    entities.mainCharacter().resetVelocities(true, false);
   }
 
   public void handleMoveKey(MoverAction action){

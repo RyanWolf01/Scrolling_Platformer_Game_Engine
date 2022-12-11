@@ -1,4 +1,4 @@
-package ooga.model.entities.deadmovingentities;
+package ooga.model.entities.movement;
 
 public interface ImmutableMoverData {
 

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ResourceBundle;
 import ooga.model.actions.moveractions.basicmovement.RightMovement;
-import ooga.model.entities.deadmovingentities.MovementQueue;
+import ooga.model.entities.movement.MovementQueue;
 import org.junit.jupiter.api.Test;
 
 public class MoverContainerTest {
