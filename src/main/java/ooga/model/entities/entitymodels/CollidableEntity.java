@@ -1,9 +1,8 @@
-package ooga.model.entities.collidable;
+package ooga.model.entities.entitymodels;
 
 import ooga.model.actionparsers.ActionParsingException;
 import ooga.model.collisions.physics.CurrentCollisionContainer;
-import ooga.model.entities.Entity;
-import ooga.model.entities.ImmutableEntity;
+import ooga.model.entities.extrainterfaces.Collidable;
 import ooga.model.entities.info.ImmutableInfo;
 import ooga.model.entities.info.Info;
 import ooga.model.collisions.physics.CollisionPhysicsData;

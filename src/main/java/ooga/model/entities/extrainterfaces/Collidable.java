@@ -1,7 +1,7 @@
-package ooga.model.entities.collidable;
+package ooga.model.entities.extrainterfaces;
 
 import ooga.model.collisions.physics.CollisionPhysicsData;
-import ooga.model.entities.Entity;
+import ooga.model.entities.entitymodels.Entity;
 
 /**
  * Type of object that reacts to a collision (some objects, such as walls, do not react)

@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javafx.scene.image.Image;
 import ooga.controller.exceptions.MalformedJSONException;
+import ooga.model.actions.moveractions.Gravity;
 import ooga.model.actions.moveractions.MoverActionGetter;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
@@ -18,10 +18,12 @@ import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.collisionhandling.Criteria;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
 
-import ooga.model.entities.deadmovingentities.MovementQueue;
+import ooga.model.entities.movement.MovementQueue;
 import ooga.model.entities.info.EntityInfo;
-import ooga.view.View;
 import ooga.view.ViewInfo;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.eclipse.jetty.util.ajax.JSON;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -29,6 +31,8 @@ import org.json.simple.parser.ParseException;
 
 
 public class JSONInformationDecoder {
+  private static final Logger LOG = LogManager.getLogger(JSONInformationDecoder.class);
+
   private String levelJSON;
   private String collisionsJSON;
   private String controlsJSON;
@@ -338,9 +342,8 @@ public class JSONInformationDecoder {
       }
     }
     catch (NullPointerException e){
-      throw new MalformedJSONException("Make sure AutomaticMover of type "+type+" are formatted correctly", e);
+      LOG.debug("Make sure AutomaticMover of type "+type+" are formatted correctly", e);
     }
-
 
     return moves;
   }

@@ -1,4 +1,4 @@
-package ooga.model.entities.livingentities;
+package ooga.model.entities.alive;
 
 public interface ImmutableAliveBehavior {
 

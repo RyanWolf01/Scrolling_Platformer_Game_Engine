@@ -3,7 +3,7 @@ package ooga.model.entities.modelcallers;
 import ooga.model.actionparsers.EndGameActionParser;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.entities.collidable.CollidableEntity;
+import ooga.model.entities.entitymodels.CollidableEntity;
 import ooga.model.entities.info.Info;
 import ooga.model.entities.modelcallers.functionalinterfaces.EndGameCallable;
 

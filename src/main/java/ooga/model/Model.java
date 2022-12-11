@@ -9,9 +9,9 @@ import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.physics.CurrentCollisionContainer;
 import ooga.model.collisions.physics.GravityEnforcer;
 import ooga.model.collisions.physics.PhysicsCalculator;
-import ooga.model.entities.ImmutableEntity;
-import ooga.model.entities.collidable.CollidableEntity;
-import ooga.model.entities.Entity;
+import ooga.model.entities.entitymodels.ImmutableEntity;
+import ooga.model.entities.entitymodels.CollidableEntity;
+import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.containers.BackendContainer;
 
 import java.util.ResourceBundle;
@@ -34,10 +34,12 @@ public class Model {
     setEndGameMethods(endGameMethod);
   }
 
+  /**
+   * move all movers
+   */
   public void moveMovers(){
     gravityEnforcer.applyGravityToAllMovers();
     entities.movers().moveAll(); // move all movers
-    entities.mainCharacter().move();
   }
 
   /**

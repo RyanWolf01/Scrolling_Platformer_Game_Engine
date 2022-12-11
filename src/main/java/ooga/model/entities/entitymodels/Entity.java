@@ -1,4 +1,4 @@
-package ooga.model.entities;
+package ooga.model.entities.entitymodels;
 
 import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.physics.CurrentCollisionContainer;
@@ -54,6 +54,20 @@ public abstract class Entity implements ImmutableEntity{
      */
     public double getHeight(){
         return height;
+    }
+
+    /**
+     * Set new height. Need this for power ups.
+     */
+    public void setHeight(double height){
+        this.height = height;
+    }
+
+    /**
+     * Set new width. Need this for power ups.
+     */
+    public void setWidth(double width){
+        this.width = width;
     }
 
     /**

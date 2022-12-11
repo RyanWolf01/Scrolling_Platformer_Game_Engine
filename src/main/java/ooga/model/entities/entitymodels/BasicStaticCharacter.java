@@ -1,4 +1,4 @@
-package ooga.model.entities.livingentities;
+package ooga.model.entities.entitymodels;
 
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.info.Info;
@@ -20,6 +20,11 @@ public class BasicStaticCharacter extends StaticCharacter {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
   }
 
+  /**
+   *
+   * @param actionDataContainer contains actions to be applied to entity
+   * @return number of actions performed
+   */
   @Override
   protected int performActions(ActionDataContainer actionDataContainer) {
     return new AliveActionParser(actionDataContainer).parseAndApplyActions(this);

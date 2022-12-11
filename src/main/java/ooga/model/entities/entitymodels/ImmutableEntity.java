@@ -1,4 +1,4 @@
-package ooga.model.entities;
+package ooga.model.entities.entitymodels;
 
 import ooga.model.entities.info.ImmutableInfo;
 
@@ -28,5 +28,9 @@ public interface ImmutableEntity {
    */
   double getWidth();
 
+  /**
+   *
+   * @return immutable version of entity info
+   */
   ImmutableInfo getImmutableEntityInfo();
 }

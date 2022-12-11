@@ -2,8 +2,8 @@ package ooga.model.collisions.physics;
 
 import java.util.ArrayList;
 import java.util.List;
-import ooga.model.entities.Entity;
-import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
+import ooga.model.entities.entitymodels.Entity;
+import ooga.model.entities.entitymodels.MainCharacter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -1,16 +1,14 @@
-package ooga.model.entities.livingentities.movingentities;
+package ooga.model.entities.entitymodels;
 
 import ooga.model.actionparsers.AliveActionParser;
-import ooga.model.actionparsers.EndGameActionParser;
 import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.entities.deadmovingentities.MovementQueue;
-import ooga.model.entities.deadmovingentities.MovingEntity;
+import ooga.model.entities.movement.MovementQueue;
 import ooga.model.entities.info.Info;
-import ooga.model.entities.livingentities.Alive;
-import ooga.model.entities.livingentities.BasicAliveBehavior;
-import ooga.model.entities.livingentities.ImmutableAliveBehavior;
+import ooga.model.entities.alive.Alive;
+import ooga.model.entities.alive.BasicAliveBehavior;
+import ooga.model.entities.alive.ImmutableAliveBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -74,6 +72,11 @@ public class MovingCharacter extends MovingEntity implements Alive {
     this.basicAliveBehavior = oldBasicAliveBehavior;
   }
 
+  /**
+   * reads from CollisionChart and performs resulting actions necessary to handle the collision
+   *
+   * @param actionDataContainer contains all the actions to be performed on this entity
+   */
   @Override
   protected int performActions(ActionDataContainer actionDataContainer) {
     int count = 0;

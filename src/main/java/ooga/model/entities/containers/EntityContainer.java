@@ -3,7 +3,7 @@ package ooga.model.entities.containers;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import ooga.model.entities.Entity;
+import ooga.model.entities.entitymodels.Entity;
 
 /**
  * hold all entities

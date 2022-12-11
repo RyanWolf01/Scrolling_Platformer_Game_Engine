@@ -1,4 +1,4 @@
-package ooga.model.entities.livingentities.movingentities.maincharacters;
+package ooga.model.entities.entitymodels;
 
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.EndGameActionParser;
@@ -7,8 +7,8 @@ import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.entities.deadmovingentities.MovementQueue;
-import ooga.model.entities.livingentities.movingentities.MovingCharacter;
+import ooga.model.entities.extrainterfaces.UserControllable;
+import ooga.model.entities.movement.MovementQueue;
 import ooga.model.entities.info.Info;
 import ooga.model.entities.modelcallers.GameEnder;
 import ooga.model.entities.modelcallers.functionalinterfaces.EndGameCallable;
@@ -69,7 +69,7 @@ public class MainCharacter extends MovingCharacter implements UserControllable,
   /**
    * reads from CollisionChart and performs resulting actions necessary to handle the collision
    *
-   * @param actionDataContainer
+   * @param actionDataContainer contains all the actions to be performed on this entity
    */
   @Override
   public int performActions(ActionDataContainer actionDataContainer) {
@@ -81,12 +81,14 @@ public class MainCharacter extends MovingCharacter implements UserControllable,
     return count;
   }
 
+  @Override
   public void endGame() {
     if (endGameMethod == null) throw new RuntimeException("The end game method for mario hasn't"
         + "been set!");
     endGameMethod.execute();
   }
 
+  @Override
   public void setEndGameCallable(EndGameCallable endGameCallable) {
     this.endGameMethod = endGameCallable;
   }

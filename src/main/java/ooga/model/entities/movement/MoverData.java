@@ -1,4 +1,4 @@
-package ooga.model.entities.deadmovingentities;
+package ooga.model.entities.movement;
 
 import java.lang.reflect.Field;
 import java.util.ResourceBundle;
@@ -54,32 +54,43 @@ public class MoverData implements ImmutableMoverData {
 
   }
 
+  /**
+   * initialize all velocities from entity info or properties
+   * @param entityInfo this entity's entity info
+   */
   private void initializeVelocities(ImmutableInfo entityInfo){
 
     ResourceBundle resources = ResourceBundle.getBundle("properties/movement");
-    parseVelocity(entityInfo, RIGHT_VELOCITY_KEY);
-    parseVelocity(entityInfo, LEFT_VELOCITY_KEY);
-    parseVelocity(entityInfo, UPWARD_VELOCITY_KEY);
-    parseVelocity(entityInfo, DOWNWARD_VELOCITY_KEY);
-    parseVelocity(entityInfo, GRAVITY_VELOCITY_KEY);
+    initializeVelocity(entityInfo, RIGHT_VELOCITY_KEY);
+    initializeVelocity(entityInfo, LEFT_VELOCITY_KEY);
+    initializeVelocity(entityInfo, UPWARD_VELOCITY_KEY);
+    initializeVelocity(entityInfo, DOWNWARD_VELOCITY_KEY);
+    initializeVelocity(entityInfo, GRAVITY_VELOCITY_KEY);
   }
 
-  private void parseVelocity(ImmutableInfo entityInfo, String key){
+  /**
+   * Uses reflection to assign values to attributes. Used properties if can't find value in entity info
+   * @param entityInfo this entity's entity info
+   * @param key the velocity currently being parsed
+   */
+  private void initializeVelocity(ImmutableInfo entityInfo, String key){
 
-    double tempVelocity;
-    try{
-      tempVelocity = Double.parseDouble(entityInfo.get(key));
-    }catch(NumberFormatException | NullPointerException exception){
-      LOG.error("incorrect velocity format in entity info");
-      try{
-        tempVelocity = Double.parseDouble(
-            ResourceBundle.getBundle("properties/movement").getString(key));
-      }
-      catch(NumberFormatException propertiesException){
-        throw new MovementDataException("incorrect velocity format in properties file", propertiesException);
-      }
+    double velocity = parseVelocity(entityInfo, key);
+
+    boolean foundField = assignVelocityToField(key, velocity);
+
+    if(!foundField){
+      throw new MovementDataException("couldn't find one of the velocities while parsing in MoverData");
     }
+  }
 
+  /**
+   * helper method to assign parsed velocity to field using reflection
+   * @param key velocity key
+   * @param velocity velocity
+   * @return boolean representing if field was found
+   */
+  private boolean assignVelocityToField(String key, double velocity) {
     Class thisClass = this.getClass();
     Field[] thisClassFields = thisClass.getDeclaredFields();
     boolean foundField = false;
@@ -87,7 +98,7 @@ public class MoverData implements ImmutableMoverData {
       for(Field field : thisClassFields) {
         field.setAccessible(true);
         if(field.getName().equals(key)) {
-          field.set(this, tempVelocity);
+          field.set(this, velocity);
           foundField = true;
           break;
         }
@@ -95,10 +106,30 @@ public class MoverData implements ImmutableMoverData {
     } catch (IllegalAccessException e) {
       throw new MovementDataException("error using reflection in MoverData", e);
     }
+    return foundField;
+  }
 
-    if(!foundField){
-      throw new MovementDataException("couldn't find one of the velocities while parsing in MoverData");
+  /**
+   * helper method to get velocity from entity info or properties
+   * @param entityInfo entity info
+   * @param key current velocity
+   * @return velocity
+   */
+  private double parseVelocity(ImmutableInfo entityInfo, String key) {
+    double velocity;
+    try{
+      velocity = Double.parseDouble(entityInfo.get(key));
+    }catch(NumberFormatException | NullPointerException exception){
+      LOG.error("incorrect velocity format in entity info");
+      try{
+        velocity = Double.parseDouble(
+            ResourceBundle.getBundle("properties/movement").getString(key));
+      }
+      catch(NumberFormatException propertiesException){
+        throw new MovementDataException("incorrect velocity format in properties file", propertiesException);
+      }
     }
+    return velocity;
   }
 
   /**

@@ -1,6 +1,6 @@
 package ooga.model.actions.aliveactions;
 
-import ooga.model.entities.livingentities.Alive;
+import ooga.model.entities.alive.Alive;
 
 public class IncreaseLife implements AliveAction {
 
