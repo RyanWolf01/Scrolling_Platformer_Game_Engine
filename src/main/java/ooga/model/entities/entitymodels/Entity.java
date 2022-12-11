@@ -57,6 +57,20 @@ public abstract class Entity implements ImmutableEntity{
     }
 
     /**
+     * Set new height. Need this for power ups.
+     */
+    public void setHeight(double height){
+        this.height = height;
+    }
+
+    /**
+     * Set new width. Need this for power ups.
+     */
+    public void setWidth(double width){
+        this.width = width;
+    }
+
+    /**
      * Need this getter in the PhysicsCalculator class
      * @return width of entity
      */

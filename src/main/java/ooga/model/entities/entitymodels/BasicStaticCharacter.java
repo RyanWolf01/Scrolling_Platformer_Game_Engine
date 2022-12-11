@@ -20,6 +20,11 @@ public class BasicStaticCharacter extends StaticCharacter {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
   }
 
+  /**
+   *
+   * @param actionDataContainer contains actions to be applied to entity
+   * @return number of actions performed
+   */
   @Override
   protected int performActions(ActionDataContainer actionDataContainer) {
     return new AliveActionParser(actionDataContainer).parseAndApplyActions(this);

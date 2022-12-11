@@ -69,7 +69,7 @@ public class MainCharacter extends MovingCharacter implements UserControllable,
   /**
    * reads from CollisionChart and performs resulting actions necessary to handle the collision
    *
-   * @param actionDataContainer
+   * @param actionDataContainer contains all the actions to be performed on this entity
    */
   @Override
   public int performActions(ActionDataContainer actionDataContainer) {
@@ -81,12 +81,14 @@ public class MainCharacter extends MovingCharacter implements UserControllable,
     return count;
   }
 
+  @Override
   public void endGame() {
     if (endGameMethod == null) throw new RuntimeException("The end game method for mario hasn't"
         + "been set!");
     endGameMethod.execute();
   }
 
+  @Override
   public void setEndGameCallable(EndGameCallable endGameCallable) {
     this.endGameMethod = endGameCallable;
   }

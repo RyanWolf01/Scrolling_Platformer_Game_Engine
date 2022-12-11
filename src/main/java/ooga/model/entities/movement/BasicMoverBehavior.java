@@ -1,5 +1,8 @@
 package ooga.model.entities.movement;
 
+/**
+ * Default behavior for a Mover.
+ */
 public class BasicMoverBehavior implements MoverBehavior{
 
   private double xVelocity;
