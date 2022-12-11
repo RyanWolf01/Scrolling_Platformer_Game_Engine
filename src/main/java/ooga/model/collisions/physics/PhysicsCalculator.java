@@ -37,6 +37,27 @@ public class PhysicsCalculator {
     return currCollisionPhysicsData;
   }
 
+  /**
+   * Check if two entities are colliding with each other
+   * @param collider Entity that's initiating the collision
+   * @param collided Entity that's being collided with
+   * @return entitiesAreColliding
+   */
+  public boolean areColliding(Entity collider, Entity collided) {
+    if (collider.getXCoordinate() + collider.getWidth() < collided.getXCoordinate()) return false;
+    if (collider.getXCoordinate() > collided.getXCoordinate() + collided.getWidth()) return false;
+    if (collider.getYCoordinate() + collider.getHeight() < collided.getYCoordinate()) return false;
+    if (collider.getYCoordinate() > collided.getYCoordinate() + collided.getHeight()) return false;
+
+    return true;
+  }
+
+  private void throwExceptionIfNotColliding(Entity collider, Entity collided) {
+    if (!areColliding(collider, collided)) {
+      throw new RuntimeException("These Entities aren't colliding!");
+    }
+  }
+
   private DirectionDistancePair checkDirection(Entity collider, Entity collided) {
     return positionApproach(collider, collided);
   }
@@ -51,7 +72,6 @@ public class PhysicsCalculator {
     directionDistancePairs.add(new DirectionDistancePair(CollisionDirection.LEFT, collider.getXCoordinate() - (collided.getXCoordinate() + collided.getWidth())));
     directionDistancePairs.add(new DirectionDistancePair(CollisionDirection.RIGHT, (collider.getXCoordinate() + collider.getWidth()) - collided.getXCoordinate()));
 
-
     DirectionDistancePair minddp = directionDistancePairs.remove(0);
     for (DirectionDistancePair ddp : directionDistancePairs) {
       if (Math.abs(ddp.distance) < Math.abs(minddp.distance)) {
@@ -60,21 +80,6 @@ public class PhysicsCalculator {
     }
     return minddp;
 
-  }
-
-  private void throwExceptionIfNotColliding(Entity collider, Entity collided) {
-    if (!areColliding(collider, collided)) {
-      throw new RuntimeException("These Entities aren't colliding!");
-    }
-  }
-
-  private boolean areColliding(Entity collider, Entity collided) {
-    if (collider.getXCoordinate() + collider.getWidth() < collided.getXCoordinate()) return false;
-    if (collider.getXCoordinate() > collided.getXCoordinate() + collided.getWidth()) return false;
-    if (collider.getYCoordinate() + collider.getHeight() < collided.getYCoordinate()) return false;
-    if (collider.getYCoordinate() > collided.getYCoordinate() + collided.getHeight()) return false;
-
-    return true;
   }
 
   private class DirectionDistancePair {
