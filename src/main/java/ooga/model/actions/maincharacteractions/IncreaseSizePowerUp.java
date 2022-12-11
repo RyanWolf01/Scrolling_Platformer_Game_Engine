@@ -2,12 +2,15 @@ package ooga.model.actions.maincharacteractions;
 
 import java.util.ResourceBundle;
 import ooga.controller.exceptions.MiscellaneousPropertiesException;
-import ooga.controller.exceptions.MovementDataException;
 import ooga.model.entities.entitymodels.MainCharacter;
 
 public class IncreaseSizePowerUp implements MainCharacterAction{
 
   private final double SIZE_MULTIPLIER;
+
+  /**
+   * increases size of main character
+   */
   public IncreaseSizePowerUp(){
     double tempMultiplier;
     try{
