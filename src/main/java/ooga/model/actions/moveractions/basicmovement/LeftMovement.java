@@ -17,7 +17,8 @@ public class LeftMovement implements MoverAction {
   @Override
   public void execute(Mover entity){
     if (! entity.canMoveLeft()) return;
-    entity.changeVelocities(entity.getMoverData().getLeftActionVelocity(), 0);
+    if(entity.getXVelocity() > entity.getMoverData().getLeftActionVelocity())
+      entity.changeVelocities(entity.getMoverData().getLeftActionVelocity(), 0);
   }
 
 }
