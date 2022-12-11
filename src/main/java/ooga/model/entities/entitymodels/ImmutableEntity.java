@@ -28,5 +28,9 @@ public interface ImmutableEntity {
    */
   double getWidth();
 
+  /**
+   *
+   * @return immutable version of entity info
+   */
   ImmutableInfo getImmutableEntityInfo();
 }

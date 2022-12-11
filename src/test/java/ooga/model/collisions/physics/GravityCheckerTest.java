@@ -18,7 +18,7 @@ public class GravityCheckerTest {
   @BeforeEach
   public void setup(){
     EntityInfo info = new EntityInfo("mario");
-    mario = new MainCharacter(null, 10, 10, 2, 2, info);
+    mario = new MainCharacter(null, 10, 10, 2, 2, info, null);
   }
 
   @Test

@@ -1,11 +1,13 @@
 package ooga.model.entities.entitymodels;
 
+import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.info.Info;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.collisions.actiondata.ActionDataContainer;
+import ooga.model.entities.movement.MovementQueue;
 
-public class BasicStaticCharacter extends StaticCharacter {
+public class BasicMovingEntity extends MovingEntity {
 
   /**
    * AutomaticMovingCharacter has lives but cannot move
@@ -15,9 +17,9 @@ public class BasicStaticCharacter extends StaticCharacter {
    * @param width width
    * @param entityInfo entity info
    */
-  public BasicStaticCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
-      Info entityInfo) {
-    super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
+  public BasicMovingEntity(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
+      Info entityInfo, MovementQueue movementQueue) {
+    super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo, movementQueue);
   }
 
   /**
@@ -27,7 +29,7 @@ public class BasicStaticCharacter extends StaticCharacter {
    */
   @Override
   protected int performActions(ActionDataContainer actionDataContainer) {
-    return new AliveActionParser(actionDataContainer).parseAndApplyActions(this);
+    return new MoverActionParser(actionDataContainer).parseAndApplyActions(this);
   }
 
 }

@@ -22,7 +22,7 @@ public class Gravity implements MoverAction{
           ResourceBundle.getBundle("properties/movement").getString("terminal_velocity"));
     }
     catch(NumberFormatException exception){
-      throw new MovementDataException("incorrect termina lvelocity format", exception);
+      throw new MovementDataException("incorrect terminal velocity format", exception);
     }
     TERMINAL_VELOCITY = tempTerminalVelocity;
   }
