@@ -3,38 +3,19 @@ package ooga.model.entities.deadmovingentities;
 /**
  * Implement move() in concrete classes to ensure guarding which directions an object can move
  */
-public interface Mover {
-    /**
-     * This will move the Mover entity by its current velocity in whichever direction it should
-     */
-    void move();
-
-    /**
-     * @param changeYVelocity changes Mover's y velocity and updates position
-     * @param changeXVelocity changes Mover's x velocity and updates position
-     */
-    void changeVelocities(double changeXVelocity, double changeYVelocity);
-
-    /**
-     * Reset velocities
-     *
-     * @param resetX tells if should reset xVelocity
-     * @param resetY tells if should reset yVelocity
-     *
-     */
-    void resetVelocities(boolean resetX, boolean resetY);
+public interface Mover extends MoverBehavior {
 
     /**
      *
-     * @return double x velocity
+     * @return version of MoverData
      */
-    double getXVelocity();
+    MoverData getMoverData();
 
     /**
      *
-     * @return double y velocity
+     * @param basicMoverBehavior new mover behavior
      */
-    double getYVelocity();
+    void setMoverBehavior(BasicMoverBehavior basicMoverBehavior);
 
     /**
      *

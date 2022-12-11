@@ -1,17 +1,23 @@
 package ooga.model.entities.livingentities.movingentities;
 
+import ooga.model.actionparsers.AliveActionParser;
+import ooga.model.actionparsers.EndGameActionParser;
+import ooga.model.actionparsers.MoverActionParser;
+import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
+import ooga.model.entities.deadmovingentities.MovementQueue;
 import ooga.model.entities.deadmovingentities.MovingEntity;
 import ooga.model.entities.info.Info;
 import ooga.model.entities.livingentities.Alive;
-import ooga.model.entities.livingentities.AliveBehavior;
+import ooga.model.entities.livingentities.BasicAliveBehavior;
+import ooga.model.entities.livingentities.ImmutableAliveBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public abstract class MovingCharacter extends MovingEntity implements Alive {
+public class MovingCharacter extends MovingEntity implements Alive {
 
   private static final Logger LOG = LogManager.getLogger(MovingCharacter.class);
-  private AliveBehavior aliveBehavior;
+  private BasicAliveBehavior basicAliveBehavior;
 
   /**
    * Moving Character has lives and can move.
@@ -23,9 +29,9 @@ public abstract class MovingCharacter extends MovingEntity implements Alive {
    * @param entityInfo entity info
    */
   public MovingCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
-      Info entityInfo) {
-    super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
-    aliveBehavior = new AliveBehavior(entityInfo);
+      Info entityInfo, MovementQueue movementQueue) {
+    super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo, movementQueue);
+    basicAliveBehavior = new BasicAliveBehavior(entityInfo);
   }
 
   /**
@@ -35,7 +41,7 @@ public abstract class MovingCharacter extends MovingEntity implements Alive {
    */
   @Override
   public void changeLives(int changeInLives) {
-    aliveBehavior.changeLives(changeInLives);
+    basicAliveBehavior.changeLives(changeInLives);
   }
 
   /**
@@ -43,7 +49,7 @@ public abstract class MovingCharacter extends MovingEntity implements Alive {
    */
   @Override
   public int getLives() {
-    return aliveBehavior.getLives();
+    return basicAliveBehavior.getLives();
   }
 
   /**
@@ -51,7 +57,30 @@ public abstract class MovingCharacter extends MovingEntity implements Alive {
    */
   @Override
   public void kill() {
-    aliveBehavior.kill();
+    basicAliveBehavior.kill();
+  }
+
+  @Override
+  public ImmutableAliveBehavior getAliveBehavior(){
+    return basicAliveBehavior;
+  }
+
+  /**
+   * set new AliveBehavior
+   * @param oldBasicAliveBehavior is old alive behavior
+   */
+  @Override
+  public void setAliveBehavior(BasicAliveBehavior oldBasicAliveBehavior){
+    this.basicAliveBehavior = oldBasicAliveBehavior;
+  }
+
+  @Override
+  protected int performActions(ActionDataContainer actionDataContainer) {
+    int count = 0;
+    count += new MoverActionParser(actionDataContainer).parseAndApplyActions(this);
+    count += new AliveActionParser(actionDataContainer).parseAndApplyActions(this);
+
+    return count;
   }
 
 }

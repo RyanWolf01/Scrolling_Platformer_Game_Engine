@@ -9,7 +9,7 @@ import ooga.model.collisions.collisionhandling.DefaultCollisionChartGetter;
 import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.physics.PhysicsCalculator;
 import ooga.model.entities.livingentities.BasicStaticCharacter;
-import ooga.model.entities.livingentities.movingentities.maincharacters.marios.Mario;
+import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ public class CollidableEntityTest {
     CollisionChartGetter ccg = new DefaultCollisionChartGetter();
     CollisionChart marioChart = ccg.getCollisionChart(decoder, "mario");
 
-    Mario mario = new Mario(marioChart,11, 0, 50, 20, new EntityInfo("MARIO"));
+    MainCharacter mario = new MainCharacter(marioChart,11, 0, 50, 20, new EntityInfo("MARIO"));
     BasicStaticCharacter goomba = new BasicStaticCharacter(null, 30, 0, 50, 20, new EntityInfo("GOOMBA"));
 
     PhysicsCalculator phyCalc = new PhysicsCalculator();
@@ -46,7 +46,7 @@ public class CollidableEntityTest {
     CollisionChartGetter ccg = new DefaultCollisionChartGetter();
     CollisionChart marioChart = ccg.getCollisionChart(decoder, "mario");
 
-    Mario mario = new Mario(marioChart, 0, 45, 50, 20, new EntityInfo("MARIO"));
+    MainCharacter mario = new MainCharacter(marioChart, 0, 45, 50, 20, new EntityInfo("MARIO"));
     BasicStaticCharacter goomba = new BasicStaticCharacter(null, 0, 0, 51, 22, new EntityInfo("GOOMBA"));
 
     PhysicsCalculator phyCalc = new PhysicsCalculator();

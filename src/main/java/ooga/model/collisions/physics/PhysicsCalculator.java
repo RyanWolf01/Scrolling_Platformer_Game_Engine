@@ -3,13 +3,13 @@ package ooga.model.collisions.physics;
 import java.util.ArrayList;
 import java.util.List;
 import ooga.model.entities.Entity;
-import ooga.model.entities.livingentities.movingentities.maincharacters.marios.Mario;
+import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class PhysicsCalculator {
 
-  private static final Logger LOG = LogManager.getLogger(Mario.class);
+  private static final Logger LOG = LogManager.getLogger(MainCharacter.class);
 
   /**
    * This will enact the rules on the first entity, Entity a

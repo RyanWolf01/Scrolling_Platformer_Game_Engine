@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ResourceBundle;
 import ooga.model.actions.moveractions.StopXMovement;
-import ooga.model.entities.livingentities.movingentities.maincharacters.marios.Mario;
+import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import org.junit.jupiter.api.Test;
 
 public class UpwardMovementTest {
@@ -14,7 +14,7 @@ public class UpwardMovementTest {
 
   @Test
   void testUpwardMovementPos1() {
-    Mario mario = new Mario(null, 0, 0, 2, 2, null);
+    MainCharacter mario = new MainCharacter(null, 0, 0, 2, 2, null);
 
     UpwardMovement move = new UpwardMovement();
     move.execute(mario);
@@ -28,7 +28,7 @@ public class UpwardMovementTest {
    */
   @Test
   void testUpwardMovementPos2() {
-    Mario mario = new Mario(null,0, 0, 2, 2, null);
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, null);
 
     UpwardMovement move = new UpwardMovement();
     move.execute(mario);
@@ -43,7 +43,7 @@ public class UpwardMovementTest {
    */
   @Test
   void testUpwardMovementNeg() {
-    Mario mario = new Mario(null,0, 0, 2, 2, null);
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, null);
 
     StopXMovement move = new StopXMovement();
 

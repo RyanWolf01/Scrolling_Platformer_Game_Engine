@@ -9,24 +9,7 @@ import org.apache.logging.log4j.Logger;
 public class LeftMovement implements MoverAction {
 
   private static final Logger LOG = LogManager.getLogger(LeftMovement.class);
-  private final int LEFT_VELOCITY;
 
-  /**
-   * LeftMovement constructor initializes default LeftMovement velocity value
-   */
-  public LeftMovement(){
-
-    int tempVelocity;
-    try{
-      tempVelocity = Integer.parseInt(
-          ResourceBundle.getBundle("properties/movement").getString("left_velocity"));
-    }
-    catch(NumberFormatException exception){
-      tempVelocity = -5;
-      LOG.error("incorrect velocity format");
-    }
-    LEFT_VELOCITY = tempVelocity;
-  }
 
   /**
    * moves entity up in y direction by a fixed amount
@@ -35,8 +18,7 @@ public class LeftMovement implements MoverAction {
   @Override
   public void execute(Mover entity){
     if (! entity.canMoveLeft()) return;
-    entity.changeVelocities(LEFT_VELOCITY, 0);
-    entity.move();
+    entity.changeVelocities(entity.getMoverData().getLeftActionVelocity(), 0);
   }
 
 }

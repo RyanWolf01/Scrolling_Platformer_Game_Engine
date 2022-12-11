@@ -2,14 +2,14 @@ package ooga.model.actions.moveractions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import ooga.model.entities.livingentities.movingentities.maincharacters.marios.Mario;
+import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import org.junit.jupiter.api.Test;
 
 public class StopBothDirectionsTest {
 
   @Test
   void testStopPos1() {
-    Mario mario = new Mario(null, 0, 0, 2, 2, null);
+    MainCharacter mario = new MainCharacter(null, 0, 0, 2, 2, null);
 
     StopBothDirections stop = new StopBothDirections();
     stop.execute(mario);
@@ -23,7 +23,7 @@ public class StopBothDirectionsTest {
    */
   @Test
   void testStopPos2() {
-    Mario mario = new Mario(null, 0, 0, 2, 2, null);
+    MainCharacter mario = new MainCharacter(null, 0, 0, 2, 2, null);
 
     StopBothDirections stop = new StopBothDirections();
     stop.execute(mario);
@@ -38,7 +38,7 @@ public class StopBothDirectionsTest {
    */
   @Test
   void testStopNeg() {
-    Mario mario = new Mario(null, 0, 0, 2, 2, null);
+    MainCharacter mario = new MainCharacter(null, 0, 0, 2, 2, null);
 
     StopBothDirections stop = new StopBothDirections();
 

@@ -3,14 +3,14 @@ package ooga.model.entities.livingentities.movingentities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ooga.model.entities.info.EntityInfo;
-import ooga.model.entities.livingentities.movingentities.maincharacters.marios.Mario;
+import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import org.junit.jupiter.api.Test;
 
 public class MovingEntityTest {
 
   @Test
   void resetVelocitiesTestPositive1() {
-    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"));
     mario.changeVelocities(1,1);
     mario.resetVelocities(true, true);
     assertEquals(0, mario.getXVelocity());
@@ -19,7 +19,7 @@ public class MovingEntityTest {
 
   @Test
   void resetVelocitiesTestPositive2() {
-    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"));
     mario.changeVelocities(1,1);
     mario.resetVelocities(false, true);
     assertEquals(1, mario.getXVelocity());
@@ -28,7 +28,7 @@ public class MovingEntityTest {
 
   @Test
   void resetVelocitiesTestNegative() {
-    Mario mario = new Mario(null,0, 0, 2, 2, new EntityInfo("MARIO"));
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"));
     mario.changeVelocities(1,1);
     mario.resetVelocities(false, false);
     assertEquals(1, mario.getXVelocity());

@@ -1,10 +1,5 @@
 package ooga.model.entities.livingentities;
 
-import java.util.ResourceBundle;
-import ooga.model.entities.info.ImmutableInfo;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 
 /**
  * The Alive interface is used to distinguish between an entity that holds a concept of being alive (i.e. being
@@ -29,36 +24,18 @@ public interface Alive {
    */
   void changeLives(int changeInLives);
 
+
   /**
-   * gets initial lives from entity info
-   * @param entityInfo entity info
-   * @return lives
+   * returns immutable version of alive behavior
    */
-  default int setInitialLives(ImmutableInfo entityInfo){
+  ImmutableAliveBehavior getAliveBehavior();
 
-    Logger LOG = LogManager.getLogger(Alive.class);
+  /**
+   * set new AliveBehavior
+   * @param oldBasicAliveBehavior is old alive behavior
+   */
+  void setAliveBehavior(BasicAliveBehavior oldBasicAliveBehavior);
 
-    ResourceBundle defaultAttributesProperties = ResourceBundle.getBundle("properties/defaultAttributes");
-
-    int lives;
-
-    try {
-
-      lives = Integer.parseInt(entityInfo.get("lives"));
-
-    } catch(NumberFormatException | NullPointerException exception){
-        LOG.error("lives formatted incorrectly in entity info");
-      // try to get default value from properties
-      try{
-        lives = Integer.parseInt(defaultAttributesProperties.getString("lives"));
-      } catch(NumberFormatException propertiesException){
-        LOG.error("lives formatted incorrectly in properties file");
-        throw propertiesException;
-      }
-    }
-
-    return lives;
-  }
 
 
 }

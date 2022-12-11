@@ -1,6 +1,5 @@
 package ooga.model.entities.deadmovingentities;
 
-import java.util.ResourceBundle;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.physics.GravityChecker;
 import ooga.model.entities.collidable.CollidableEntity;
@@ -11,9 +10,9 @@ import org.apache.logging.log4j.Logger;
 public abstract class MovingEntity extends CollidableEntity implements Mover {
 
   private static final Logger LOG = LogManager.getLogger(MovingEntity.class);
-  private final int SCREEN_SIZE;
-  private double xVelocity;
-  private double yVelocity;
+
+  private BasicMoverBehavior basicMoverBehavior;
+  private MoverData moverData;
 
   /**
    * Moving Entity has no lives but can move. Constructor initializes screen size from Properties files.
@@ -25,20 +24,22 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    * @param entityInfo entity info
    */
   public MovingEntity(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height, double width,
-      Info entityInfo) {
+      Info entityInfo, MovementQueue movementQueue) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo);
+    this.moverData = new MoverData(entityInfo);
 
-    int tempScreenSize;
-    try{
-      tempScreenSize = Integer.parseInt(
-          ResourceBundle.getBundle("properties/view").getString("screen_size"));
-    } catch(NumberFormatException exception){
-      LOG.error("screen size from properties file formatted incorrectly");
-      throw exception;
-    }
+    initializeMoverBehavior(movementQueue);
+  }
 
-    SCREEN_SIZE = tempScreenSize;
-
+  /**
+   * initialize mover behavior based on movement queue existence
+   * @param movementQueue movement queue
+   */
+  private void initializeMoverBehavior(MovementQueue movementQueue){
+    if(movementQueue == null || movementQueue.nextMove() == null)
+      basicMoverBehavior = new BasicMoverBehavior();
+    else
+      basicMoverBehavior = new AutomaticMoverBehavior(movementQueue, this);
   }
 
   /**
@@ -46,24 +47,17 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public void move() {
-    setXCoordinate(getXCoordinate() + getXVelocity());
-    setYCoordinate(getYCoordinate() + getYVelocity());
-    handleInvalidCoordinates();
+    basicMoverBehavior.move();
+    setXCoordinate(getXCoordinate() + basicMoverBehavior.getXVelocity());
+    setYCoordinate(getYCoordinate() + basicMoverBehavior.getYVelocity());
   }
-
-  /**
-   * helper method for move that makes sure new coordinates are valid. if not, handles cases appropriately.
-   * must be implemented in each concrete class.
-   */
-  protected abstract void handleInvalidCoordinates();
 
   /**
    * Implements Mover interface changeVelocities method that changes object's velocities
    */
   @Override
   public void changeVelocities(double changeXVelocity, double changeYVelocity) {
-    xVelocity += changeXVelocity;
-    yVelocity += changeYVelocity;
+    basicMoverBehavior.changeVelocities(changeXVelocity, changeYVelocity);
   }
 
   /**
@@ -75,10 +69,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public void resetVelocities(boolean resetX, boolean resetY){
-    if(resetX)
-      xVelocity = 0;
-    if(resetY)
-      yVelocity = 0;
+    basicMoverBehavior.resetVelocities(resetX, resetY);
   }
 
   /**
@@ -87,7 +78,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public double getXVelocity() {
-    return xVelocity;
+    return basicMoverBehavior.getXVelocity();
   }
 
   /**
@@ -96,15 +87,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public double getYVelocity() {
-    return yVelocity;
-  }
-
-  /**
-   *
-   * @return screen size
-   */
-  protected int getScreenSize(){
-    return SCREEN_SIZE;
+    return basicMoverBehavior.getYVelocity();
   }
 
   /**
@@ -128,5 +111,24 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
     GravityChecker gravityChecker = new GravityChecker();
     return gravityChecker.checkHittingRightOfPlatform(this);
   }
+
+  /**
+   *
+   * @return immutable version of MoverData
+   */
+  @Override
+  public MoverData getMoverData(){
+    return moverData;
+  }
+
+  /**
+   *
+   * @param basicMoverBehavior new mover behavior
+   */
+  @Override
+  public void setMoverBehavior(BasicMoverBehavior basicMoverBehavior){
+    setMoverBehavior(basicMoverBehavior);
+  }
+
 
 }
