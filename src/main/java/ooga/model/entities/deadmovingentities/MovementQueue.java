@@ -34,4 +34,12 @@ public class MovementQueue {
     movementQueue.add(move);
   }
 
+  /**
+   *
+   * @return size of movement queue. need this for initializing mover behavior
+   */
+  public int getSize(){
+    return movementQueue.size();
+  }
+
 }

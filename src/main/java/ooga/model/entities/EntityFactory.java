@@ -12,9 +12,9 @@ import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.info.ImmutableInfo;
 import ooga.model.entities.info.Info;
 import ooga.model.entities.livingentities.BasicStaticCharacter;
-import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
 
 import java.lang.reflect.InvocationTargetException;
+import ooga.model.entities.livingentities.movingentities.MovingCharacter;
 import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import ooga.model.entities.modelcallers.GameEnderCollidableEntity;
 
@@ -29,14 +29,14 @@ public class EntityFactory {
         this.decoder = decoder;
     }
 
-    public AutomaticMovingCharacter makeAutomaticMover(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
+    public MovingCharacter makeMover(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
         CollisionChart chart = collisionChart(info.get(ImmutableInfo.COLLIDABLE_TYPE_KEY));
 
         MovementQueue queue = decoder.getMovementQueue(type);
 
-        AutomaticMovingCharacter newMover;
+        MovingCharacter newMover;
         try {
-            newMover = (AutomaticMovingCharacter) Class.forName(Model.entityClassResources.getString(type)).
+            newMover = (MovingCharacter) Class.forName(Model.entityClassResources.getString(type)).
                     getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class, MovementQueue.class)
                     .newInstance(chart, xCoordinate,yCoordinate, height, width, info, queue);
         } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
@@ -50,11 +50,13 @@ public class EntityFactory {
     public MainCharacter makeMainCharacter(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
         CollisionChart chart = collisionChart(type);
 
+        MovementQueue queue = decoder.getMovementQueue(type);
+
         MainCharacter main;
         try {
             main = (MainCharacter) Class.forName(Model.entityClassResources.getString(type)).
-                    getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class)
-                    .newInstance(chart, xCoordinate,yCoordinate, height, width, info);
+                    getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class, MovementQueue.class)
+                    .newInstance(chart, xCoordinate,yCoordinate, height, width, info, queue);
         } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |
                  InstantiationException | IllegalAccessException e) {
             throw new InvalidTypeException("JSON holds invalid type",e);

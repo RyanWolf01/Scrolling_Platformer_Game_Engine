@@ -35,7 +35,6 @@ public class Bounce implements MoverAction{
   @Override
   public void execute(Mover entity){
     entity.changeVelocities(0, BOUNCE_VELOCITY);
-    entity.move();
   }
 
 }

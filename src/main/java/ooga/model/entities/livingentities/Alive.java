@@ -1,12 +1,5 @@
 package ooga.model.entities.livingentities;
 
-import java.util.ResourceBundle;
-import ooga.model.entities.deadmovingentities.MoverBehavior;
-import ooga.model.entities.deadmovingentities.MoverData;
-import ooga.model.entities.info.ImmutableInfo;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 
 /**
  * The Alive interface is used to distinguish between an entity that holds a concept of being alive (i.e. being
@@ -39,9 +32,9 @@ public interface Alive {
 
   /**
    * set new AliveBehavior
-   * @param oldAliveBehavior is old alive behavior
+   * @param oldBasicAliveBehavior is old alive behavior
    */
-  void setAliveBehavior(AliveBehavior oldAliveBehavior);
+  void setAliveBehavior(BasicAliveBehavior oldBasicAliveBehavior);
 
 
 

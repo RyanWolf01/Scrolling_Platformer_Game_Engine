@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
 import ooga.model.entities.Entity;
 import ooga.model.entities.StaticEntity;
+import ooga.model.entities.deadmovingentities.MovementQueue;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.info.Info;
 import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
@@ -16,7 +17,7 @@ public class PhysicsCalculatorTest {
   @Test
   public void checkRightCollision() {
     PhysicsCalculator physicsCalculator = new PhysicsCalculator();
-    Entity collider = new MainCharacter(new DefaultCollisionChart(), 50, 0, 100, 100, new EntityInfo("MARIO"));
+    Entity collider = new MainCharacter(new DefaultCollisionChart(), 50, 0, 100, 100, new EntityInfo("MARIO"), new MovementQueue());
     Entity collided = new StaticEntity(150, 0, 100, 50, new Info());
 
     CollisionPhysicsData res = physicsCalculator.calculatePhysicsData(collider, collided);
@@ -28,7 +29,7 @@ public class PhysicsCalculatorTest {
   @Test
   public void checkLeftCollision() {
     PhysicsCalculator physicsCalculator = new PhysicsCalculator();
-    Entity collided = new MainCharacter(new DefaultCollisionChart(), 50, 0, 100, 50, new EntityInfo("MARIO"));
+    Entity collided = new MainCharacter(new DefaultCollisionChart(), 50, 0, 100, 50, new EntityInfo("MARIO"), new MovementQueue());
     Entity collider = new StaticEntity(150, 0, 100, 50, new Info());
     collider.setXCoordinate(100);
 
@@ -41,7 +42,7 @@ public class PhysicsCalculatorTest {
   @Test
   public void checkTopCollision() {
     PhysicsCalculator physicsCalculator = new PhysicsCalculator();
-    Entity collider = new MainCharacter(new DefaultCollisionChart(), 50, 100, 100, 50, new EntityInfo("MARIO"));
+    Entity collider = new MainCharacter(new DefaultCollisionChart(), 50, 100, 100, 50, new EntityInfo("MARIO"), new MovementQueue());
     Entity collided = new StaticEntity(50, 0, 100, 50, new Info());
 
     CollisionPhysicsData res = physicsCalculator.calculatePhysicsData(collider, collided);
@@ -54,7 +55,7 @@ public class PhysicsCalculatorTest {
   public void checkBottomCollision() {
     PhysicsCalculator physicsCalculator = new PhysicsCalculator();
     Entity collider = new StaticEntity(50, 0, 100, 50, new Info());
-    Entity collided = new MainCharacter(new DefaultCollisionChart(), 50, 100, 100, 50, new EntityInfo("MARIO"));
+    Entity collided = new MainCharacter(new DefaultCollisionChart(), 50, 100, 100, 50, new EntityInfo("MARIO"), new MovementQueue());
 
     CollisionPhysicsData res = physicsCalculator.calculatePhysicsData(collider, collided);
     assertEquals(CollisionDirection.BOTTOM, res.getCollisionDirection());
@@ -66,7 +67,7 @@ public class PhysicsCalculatorTest {
   public void checkThrowsException() {
     PhysicsCalculator physicsCalculator = new PhysicsCalculator();
     Entity collider = new StaticEntity(0, 0, 100, 50, new Info());
-    Entity collided = new MainCharacter(new DefaultCollisionChart(), 500, 1000, 100, 50, new EntityInfo("MARIO"));
+    Entity collided = new MainCharacter(new DefaultCollisionChart(), 500, 1000, 100, 50, new EntityInfo("MARIO"), new MovementQueue());
 
     assertThrows(EntitiesNotCollidingException.class, () -> physicsCalculator.calculatePhysicsData(collider, collided));
   }
