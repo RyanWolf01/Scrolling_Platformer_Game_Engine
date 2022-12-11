@@ -61,6 +61,7 @@ public class JSONDecodingTest {
     assertFalse(userControls.isAliveAction(KeyCode.D));
   }
 
+  // TODO: fix error in this test
   @Test
   void testConnectionContainerEntityAdding() {
     EntityInfo info = new EntityInfo("mario");
