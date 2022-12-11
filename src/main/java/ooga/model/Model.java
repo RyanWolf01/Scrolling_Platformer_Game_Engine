@@ -34,6 +34,9 @@ public class Model {
     setEndGameMethods(endGameMethod);
   }
 
+  /**
+   * move all movers
+   */
   public void moveMovers(){
     gravityEnforcer.applyGravityToAllMovers();
     entities.movers().moveAll(); // move all movers
