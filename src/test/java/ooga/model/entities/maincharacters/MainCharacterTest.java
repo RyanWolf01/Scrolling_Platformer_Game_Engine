@@ -7,6 +7,7 @@ import ooga.model.actions.aliveactions.IncreaseLife;
 import ooga.model.actions.aliveactions.Kill;
 import ooga.model.actions.moveractions.basicmovement.LeftMovement;
 import ooga.model.actions.moveractions.basicmovement.RightMovement;
+import ooga.model.entities.entitymodels.MainCharacter;
 import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 
@@ -25,14 +26,15 @@ public class MainCharacterTest {
 
   @Test
   void testAcceptMoverActionPos1() {
-    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"));
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     mario.acceptMoveAction(new RightMovement());
     assertEquals(rightVelocity, mario.getXCoordinate());
   }
   @Test
   void testAcceptMoverActionPos2() {
-    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"));
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
+
     mario.acceptMoveAction(new RightMovement());
     mario.acceptMoveAction(new RightMovement());
     mario.acceptMoveAction(new LeftMovement());
@@ -41,7 +43,7 @@ public class MainCharacterTest {
 
   @Test
   void testAcceptMoverActionNegative() {
-    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"));
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     mario.acceptMoveAction(null);
     assertEquals(0, mario.getXCoordinate());
@@ -49,7 +51,7 @@ public class MainCharacterTest {
 
   @Test
   void testAcceptAliveActionPos1() {
-    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"));
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     mario.acceptAliveAction(new IncreaseLife());
     assertEquals(1, mario.getLives());
@@ -57,7 +59,7 @@ public class MainCharacterTest {
 
   @Test
   void testAcceptAliveActionPos2() {
-    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"));
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     mario.acceptAliveAction(new IncreaseLife());
     mario.acceptAliveAction(new IncreaseLife());
@@ -67,7 +69,7 @@ public class MainCharacterTest {
 
   @Test
   void testAcceptAliveActionNegative() {
-    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"));
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     mario.acceptAliveAction(null);
     assertEquals(1, mario.getLives());

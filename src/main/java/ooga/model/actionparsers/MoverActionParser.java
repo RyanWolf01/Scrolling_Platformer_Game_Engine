@@ -2,9 +2,12 @@ package ooga.model.actionparsers;
 
 import java.lang.reflect.InvocationTargetException;
 import ooga.model.actions.moveractions.MoverAction;
+import ooga.model.entities.entitymodels.MovingCharacter;
 import ooga.model.entities.movement.Mover;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 /**
@@ -13,6 +16,7 @@ import ooga.model.collisions.actiondata.ActionDataContainer;
  */
 public class MoverActionParser {
 
+  private static final Logger LOG = LogManager.getLogger(MoverActionParser.class);
   public static final String ACTION_INTERFACE_NAME = "MoverAction";
 
   private final ActionDataContainer myActionDataContainer;

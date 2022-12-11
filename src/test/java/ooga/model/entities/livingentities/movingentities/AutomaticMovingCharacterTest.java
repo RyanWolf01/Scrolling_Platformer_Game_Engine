@@ -8,6 +8,7 @@ import ooga.model.actions.moveractions.basicmovement.RightMovement;
 import ooga.model.actions.moveractions.basicmovement.UpwardMovement;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
+import ooga.model.entities.entitymodels.BasicMovingEntity;
 import ooga.model.entities.entitymodels.MovingCharacter;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.movement.MovementQueue;
@@ -31,7 +32,7 @@ public class AutomaticMovingCharacterTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingCharacter movingCharacter = new AutomaticMovingCharacter(null, 0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    MovingCharacter movingCharacter = new MovingCharacter(null, 0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     movingCharacter.changeVelocities(5,0);
     movingCharacter.move();
@@ -44,7 +45,7 @@ public class AutomaticMovingCharacterTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingCharacter movingCharacter = new AutomaticMovingCharacter(null, 0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    MovingCharacter movingCharacter = new MovingCharacter(null, 0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     movingCharacter.changeVelocities(-100,0);
     movingCharacter.move();
@@ -57,7 +58,7 @@ public class AutomaticMovingCharacterTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    MovingCharacter movingCharacter = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     movingCharacter.changeVelocities(0,0);
     movingCharacter.move();
@@ -70,7 +71,7 @@ public class AutomaticMovingCharacterTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    MovingCharacter movingCharacter = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     movingCharacter.changeVelocities(0,5);
     movingCharacter.move();
@@ -83,7 +84,7 @@ public class AutomaticMovingCharacterTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    MovingCharacter movingCharacter = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     movingCharacter.changeVelocities(0,-100);
     movingCharacter.move();
@@ -96,7 +97,7 @@ public class AutomaticMovingCharacterTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    MovingCharacter movingCharacter = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     movingCharacter.changeVelocities(0,0);
     movingCharacter.move();
@@ -109,7 +110,7 @@ public class AutomaticMovingCharacterTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    MovingCharacter movingCharacter = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     movingCharacter.changeLives(1);
     assertEquals(2, movingCharacter.getLives());
@@ -121,7 +122,7 @@ public class AutomaticMovingCharacterTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    MovingCharacter movingCharacter = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     movingCharacter.changeLives(100);
     assertEquals(101, movingCharacter.getLives());
@@ -133,7 +134,7 @@ public class AutomaticMovingCharacterTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    MovingCharacter movingCharacter = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     movingCharacter.changeLives(0);
     assertEquals(1, movingCharacter.getLives());
@@ -145,7 +146,7 @@ public class AutomaticMovingCharacterTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    MovingCharacter movingCharacter = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     movingCharacter.changeLives(-1);
     assertEquals(0, movingCharacter.getLives());
@@ -157,7 +158,7 @@ public class AutomaticMovingCharacterTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    MovingCharacter movingCharacter = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     movingCharacter.changeLives(100);
     movingCharacter.changeLives(-1);
@@ -170,8 +171,8 @@ public class AutomaticMovingCharacterTest {
     movementQueue.addMove(new RightMovement());
     movementQueue.addMove(new RightMovement());
 
-    AutomaticMovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
-    movingCharacter.automaticMove();
+    MovingCharacter movingCharacter = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    movingCharacter.move();
     assertEquals(rightVelocity, movingCharacter.getXCoordinate());
   }
 
@@ -181,10 +182,10 @@ public class AutomaticMovingCharacterTest {
     movementQueue.addMove(new RightMovement());
     movementQueue.addMove(new UpwardMovement());
 
-    AutomaticMovingCharacter movingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
-    movingCharacter.automaticMove();
-    movingCharacter.automaticMove();
-    movingCharacter.automaticMove();
+    MovingCharacter movingCharacter = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    movingCharacter.move();
+    movingCharacter.move();
+    movingCharacter.move();
     assertEquals(rightVelocity * 4, movingCharacter.getXCoordinate());
     assertEquals(upwardVelocity * 2 , movingCharacter.getYCoordinate());
   }
@@ -192,14 +193,14 @@ public class AutomaticMovingCharacterTest {
   @Test
   void testPerformActionsPos1(){
     MovementQueue movementQueue = new MovementQueue();
-    AutomaticMovingCharacter character = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    MovingCharacter character = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();
     ActionData data = new ActionData("ooga.model.actions.aliveactions.IncreaseLife", "AliveAction", params);
     actionList.add(data);
     ActionDataContainer container = new ActionDataContainer(actionList);
-    character.performActions(container);
+//    character.performActions(container);
 
     assertEquals(2, character.getLives());
   }
@@ -207,21 +208,21 @@ public class AutomaticMovingCharacterTest {
   @Test
   void testPerformActionsPos2(){
     MovementQueue movementQueue = new MovementQueue();
-    AutomaticMovingCharacter character = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    MovingCharacter character = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();
     ActionData data = new ActionData("ooga.model.actions.moveractions.Bounce", "MoverAction", params);
     actionList.add(data);
     ActionDataContainer container = new ActionDataContainer(actionList);
-    character.performActions(container);
+//    character.performActions(container);
 
     assertEquals(bounceVelocity, character.getYCoordinate());
   }
 
   @Test
   void handleInvalidCoordinatesTestOffBottomPositive1(){
-    AutomaticMovingCharacter automaticMovingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
+    MovingCharacter automaticMovingCharacter = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     automaticMovingCharacter.changeLives(1);
     automaticMovingCharacter.changeVelocities(0, 10000000);
@@ -232,7 +233,7 @@ public class AutomaticMovingCharacterTest {
 
   @Test
   void handleInvalidCoordinatesTestOffBottomPositive2(){
-    AutomaticMovingCharacter automaticMovingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
+    MovingCharacter automaticMovingCharacter = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     automaticMovingCharacter.changeLives(3);
     automaticMovingCharacter.changeVelocities(0, 100000);
@@ -243,7 +244,7 @@ public class AutomaticMovingCharacterTest {
 
   @Test
   void handleInvalidCoordinatesTestOffBottomNegative(){
-    AutomaticMovingCharacter automaticMovingCharacter = new AutomaticMovingCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
+    MovingCharacter automaticMovingCharacter = new MovingCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     int screenSize = Integer.parseInt(
         ResourceBundle.getBundle("properties/view").getString("screen_size"));

@@ -56,6 +56,7 @@ public class BackendContainer {
       livers.addLiver(mainCharacter);
       newEntity = mainCharacter;
       collidables.addCollidable(mainCharacter); // all main characters are collidable
+      movers.addMover(mainCharacter);
     }
     else if(isMoverType(type)){
       MovingCharacter newMover = factory.makeMover(xCoordinate,yCoordinate, height, width, type, info);

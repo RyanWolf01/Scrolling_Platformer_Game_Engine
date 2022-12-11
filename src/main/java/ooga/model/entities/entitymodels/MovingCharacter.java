@@ -72,6 +72,11 @@ public class MovingCharacter extends MovingEntity implements Alive {
     this.basicAliveBehavior = oldBasicAliveBehavior;
   }
 
+  /**
+   * reads from CollisionChart and performs resulting actions necessary to handle the collision
+   *
+   * @param actionDataContainer contains all the actions to be performed on this entity
+   */
   @Override
   protected int performActions(ActionDataContainer actionDataContainer) {
     int count = 0;

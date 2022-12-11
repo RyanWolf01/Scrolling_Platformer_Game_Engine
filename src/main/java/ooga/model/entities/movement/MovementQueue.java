@@ -3,13 +3,18 @@ package ooga.model.entities.movement;
 import java.util.LinkedList;
 import java.util.Queue;
 import ooga.model.actions.moveractions.MoverAction;
+import ooga.model.entities.entitymodels.MovingCharacter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class MovementQueue {
+
+  private static final Logger LOG = LogManager.getLogger(MovementQueue.class);
 
   private Queue<MoverAction> movementQueue;
 
   /**
-   * holds MoverActions to be made continuously by AutomaticMover types
+   * holds MoverActions to be made continuously by AutomaticMoverBehavior Movers
    */
   public MovementQueue(){
     movementQueue = new LinkedList<>();
@@ -32,14 +37,6 @@ public class MovementQueue {
    */
   public void addMove(MoverAction move){
     movementQueue.add(move);
-  }
-
-  /**
-   *
-   * @return size of movement queue. need this for initializing mover behavior
-   */
-  public int getSize(){
-    return movementQueue.size();
   }
 
 }

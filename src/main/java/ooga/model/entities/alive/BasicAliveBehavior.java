@@ -1,6 +1,7 @@
 package ooga.model.entities.alive;
 
 import java.util.ResourceBundle;
+import ooga.controller.exceptions.MiscellaneousPropertiesException;
 import ooga.model.entities.info.ImmutableInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,13 +9,21 @@ import org.apache.logging.log4j.Logger;
 public class BasicAliveBehavior implements AliveBehavior, ImmutableAliveBehavior{
 
   private int lives;
+  private String LIVES_KEY;
 
   /**
    * make initial alive behavior
    * @param entityInfo used to set initialize lives
    */
   public BasicAliveBehavior(ImmutableInfo entityInfo){
-    lives = setInitialLives(entityInfo);;
+    lives = setInitialLives(entityInfo);
+
+    ResourceBundle entityInfoProperties = ResourceBundle.getBundle("properties/entityInfo");
+    try{
+      LIVES_KEY = entityInfoProperties.getString("lives");
+    }catch(NullPointerException exception){
+      throw new MiscellaneousPropertiesException("lives key not found");
+    }
   }
 
   /**
@@ -40,7 +49,7 @@ public class BasicAliveBehavior implements AliveBehavior, ImmutableAliveBehavior
 
     try {
 
-      lives = Integer.parseInt(entityInfo.get("lives"));
+      lives = Integer.parseInt(entityInfo.get(LIVES_KEY));
 
     } catch(NumberFormatException | NullPointerException exception){
       LOG.error("lives formatted incorrectly in entity info");

@@ -79,7 +79,7 @@ public class BasicStaticCharacterTest {
     ActionData data = new ActionData("ooga.model.actions.aliveactions.IncreaseLife", "AliveAction", params);
     actionList.add(data);
     ActionDataContainer container = new ActionDataContainer(actionList);
-    character.performActions(container);
+//    character.performActions(container);
 
     assertEquals(2, character.getLives());
   }
@@ -93,7 +93,7 @@ public class BasicStaticCharacterTest {
     ActionData data = new ActionData("ooga.model.actions.aliveactions.Kill", "AliveAction", params);
     actionList.add(data);
     ActionDataContainer container = new ActionDataContainer(actionList);
-    character.performActions(container);
+//    character.performActions(container);
 
     assertEquals(2, character.getLives());
   }

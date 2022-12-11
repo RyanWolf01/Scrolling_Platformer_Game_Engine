@@ -12,8 +12,9 @@ public class MoverContainer implements Iterable<Mover>{
   Logger LOG = LogManager.getLogger(MoverContainer.class);
 
   private List<Mover> movers;
+
   /**
-   * default constructor
+   * default constructor for container of all movers
    */
   public MoverContainer(){
     movers = new ArrayList<>();
@@ -27,7 +28,7 @@ public class MoverContainer implements Iterable<Mover>{
   }
 
   /**
-   * call move method on all Automatic Movers
+   * call move method on all movers
    */
   public void moveAll(){
     for(Mover mover: this.movers){
@@ -36,7 +37,7 @@ public class MoverContainer implements Iterable<Mover>{
   }
 
   /**
-   * call reset velocities method on all Automatic Movers
+   * call reset velocities method on all Movers
    */
   public void resetVelocities(boolean resetXVelocity, boolean resetYVelocity){
     for(Mover mover: this.movers){
@@ -44,6 +45,10 @@ public class MoverContainer implements Iterable<Mover>{
     }
   }
 
+  /**
+   *
+   * @return iterator for movers
+   */
   @Override
   public Iterator<Mover> iterator() {
     return movers.iterator();
