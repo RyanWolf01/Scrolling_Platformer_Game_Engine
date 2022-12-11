@@ -1,7 +1,9 @@
-package ooga.model.entities.livingentities;
+package ooga.model.entities.entitymodels;
 
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.entities.collidable.CollidableEntity;
+import ooga.model.entities.alive.Alive;
+import ooga.model.entities.alive.BasicAliveBehavior;
+import ooga.model.entities.alive.ImmutableAliveBehavior;
 import ooga.model.entities.info.Info;
 
 public abstract class StaticCharacter extends CollidableEntity implements Alive {

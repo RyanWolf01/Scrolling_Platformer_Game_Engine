@@ -1,4 +1,4 @@
-package ooga.model.entities;
+package ooga.model.entities.entitymodels;
 
 import ooga.model.entities.info.ImmutableInfo;
 

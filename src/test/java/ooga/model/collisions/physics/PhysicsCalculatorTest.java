@@ -3,11 +3,11 @@ package ooga.model.collisions.physics;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
-import ooga.model.entities.Entity;
-import ooga.model.entities.StaticEntity;
+import ooga.model.entities.entitymodels.Entity;
+import ooga.model.entities.entitymodels.StaticEntity;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.info.Info;
-import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
+import ooga.model.entities.entitymodels.MainCharacter;
 import org.junit.jupiter.api.Test;
 
 public class PhysicsCalculatorTest {

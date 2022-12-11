@@ -1,4 +1,4 @@
-package ooga.model.entities.deadmovingentities;
+package ooga.model.entities.movement;
 
 /**
  * Implement move() in concrete classes to ensure guarding which directions an object can move

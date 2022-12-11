@@ -1,4 +1,4 @@
-package ooga.model.entities.deadmovingentities;
+package ooga.model.entities.movement;
 
 import java.lang.reflect.Field;
 import java.util.ResourceBundle;

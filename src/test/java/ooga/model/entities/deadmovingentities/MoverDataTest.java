@@ -3,6 +3,7 @@ package ooga.model.entities.deadmovingentities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import ooga.model.entities.info.EntityInfo;
+import ooga.model.entities.movement.MoverData;
 import org.junit.jupiter.api.Test;
 
 public class MoverDataTest {

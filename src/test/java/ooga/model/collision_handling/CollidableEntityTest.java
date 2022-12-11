@@ -8,8 +8,8 @@ import ooga.model.collisions.collisionhandling.CollisionChartGetter;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChartGetter;
 import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.physics.PhysicsCalculator;
-import ooga.model.entities.livingentities.BasicStaticCharacter;
-import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
+import ooga.model.entities.entitymodels.BasicStaticCharacter;
+import ooga.model.entities.entitymodels.MainCharacter;
 import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 

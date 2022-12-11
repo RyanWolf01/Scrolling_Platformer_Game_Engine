@@ -1,4 +1,4 @@
-package ooga.model.entities.livingentities;
+package ooga.model.entities.entitymodels;
 
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.info.Info;

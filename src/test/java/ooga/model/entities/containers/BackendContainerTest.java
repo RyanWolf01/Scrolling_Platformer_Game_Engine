@@ -1,10 +1,10 @@
 package ooga.model.entities.containers;
 
 import ooga.controller.JSONInformationDecoder;
-import ooga.model.entities.Entity;
-import ooga.model.entities.collidable.CollidableEntity;
+import ooga.model.entities.entitymodels.Entity;
+import ooga.model.entities.entitymodels.CollidableEntity;
 import ooga.model.entities.info.EntityInfo;
-import ooga.model.entities.livingentities.Alive;
+import ooga.model.entities.alive.Alive;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

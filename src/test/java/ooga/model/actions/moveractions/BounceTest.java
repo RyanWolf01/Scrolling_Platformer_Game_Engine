@@ -2,9 +2,8 @@ package ooga.model.actions.moveractions;
 
 
 import java.util.ResourceBundle;
-import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
+import ooga.model.entities.entitymodels.MainCharacter;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class BounceTest {
 

@@ -7,7 +7,9 @@ import ooga.model.actions.moveractions.basicmovement.RightMovement;
 import ooga.model.actions.moveractions.basicmovement.UpwardMovement;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
+import ooga.model.entities.entitymodels.MovingEntity;
 import ooga.model.entities.info.EntityInfo;
+import ooga.model.entities.movement.MovementQueue;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

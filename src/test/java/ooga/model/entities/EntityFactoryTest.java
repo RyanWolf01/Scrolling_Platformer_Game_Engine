@@ -1,10 +1,9 @@
 package ooga.model.entities;
 
 import ooga.controller.JSONInformationDecoder;
+import ooga.model.entities.entitymodels.MainCharacter;
 import ooga.model.entities.info.EntityInfo;
-import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class EntityFactoryTest {
     public JSONInformationDecoder decoder;

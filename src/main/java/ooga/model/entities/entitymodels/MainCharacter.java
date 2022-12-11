@@ -1,4 +1,4 @@
-package ooga.model.entities.livingentities.movingentities.maincharacters;
+package ooga.model.entities.entitymodels;
 
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.EndGameActionParser;
@@ -7,8 +7,8 @@ import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.entities.deadmovingentities.MovementQueue;
-import ooga.model.entities.livingentities.movingentities.MovingCharacter;
+import ooga.model.entities.extrainterfaces.UserControllable;
+import ooga.model.entities.movement.MovementQueue;
 import ooga.model.entities.info.Info;
 import ooga.model.entities.modelcallers.GameEnder;
 import ooga.model.entities.modelcallers.functionalinterfaces.EndGameCallable;

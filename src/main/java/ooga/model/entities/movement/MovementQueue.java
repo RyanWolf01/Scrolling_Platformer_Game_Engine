@@ -1,4 +1,4 @@
-package ooga.model.entities.deadmovingentities;
+package ooga.model.entities.movement;
 
 import java.util.LinkedList;
 import java.util.Queue;

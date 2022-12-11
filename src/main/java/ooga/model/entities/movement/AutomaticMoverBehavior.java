@@ -1,8 +1,9 @@
-package ooga.model.entities.deadmovingentities;
+package ooga.model.entities.movement;
 
 import java.util.ResourceBundle;
 import ooga.controller.exceptions.MovementDataException;
 import ooga.model.actions.moveractions.MoverAction;
+import ooga.model.entities.entitymodels.MovingEntity;
 
 public class AutomaticMoverBehavior extends BasicMoverBehavior{
 
@@ -34,7 +35,7 @@ public class AutomaticMoverBehavior extends BasicMoverBehavior{
     try {
       MoverAction move = movementQueue.nextMove();
 
-//      if(shouldAutomaticMove())
+      if(shouldAutomaticMove())
         move.execute(thisEntity);
     }
     catch(NullPointerException exception){
