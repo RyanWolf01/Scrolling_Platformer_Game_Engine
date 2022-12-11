@@ -54,7 +54,9 @@ public class PhysicsCalculator {
 
   private void throwExceptionIfNotColliding(Entity collider, Entity collided) {
     if (!areColliding(collider, collided)) {
-      throw new RuntimeException("These Entities aren't colliding!");
+      throw new EntitiesNotCollidingException("The entities provided aren't colliding! Here's"
+          + "their entity info: \n" + collider.getImmutableEntityInfo() + "\n" +
+          collided.getImmutableEntityInfo());
     }
   }
 
