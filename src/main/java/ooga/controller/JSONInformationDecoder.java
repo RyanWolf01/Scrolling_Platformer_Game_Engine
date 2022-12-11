@@ -67,7 +67,7 @@ public class JSONInformationDecoder {
    * It also populates a map of general information about the game, which are any key value pairs in the
    * JSON not in the JSON array value of the Entity key
    * @param connectionContainer, a connection container object that will hold all the entities
-   * @return connectionContainer, updated, populated connection container of all the initial game entities
+   * @return
    */
   public void makeEntityContainerFromLevelJSON(ConnectionContainer connectionContainer) {
     JSONObject levelJSONObject = null;

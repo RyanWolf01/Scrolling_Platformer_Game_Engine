@@ -4,6 +4,7 @@ import java.io.IOException;
 import ooga.controller.ConnectionContainer;
 import ooga.controller.JSONInformationDecoder;
 import ooga.controller.UserControlHandler;
+import ooga.model.entities.info.EntityInfo;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
@@ -61,12 +62,20 @@ public class JSONDecodingTest {
   }
 
   @Test
-  void testJSONCollisionChartMaking() {
-
+  void testConnectionContainerEntityAdding() {
+    EntityInfo info = new EntityInfo("mario");
+    info.set("collidable_type", "mario");
+    info.set("texture", "/games/mario/assets/mario.png");
+    ConnectionContainer realConnectionContainer = new ConnectionContainer(decoder);
+    realConnectionContainer.addNewEntity(250, 1, 100, 50,
+        "mario", info);
+    ConnectionContainer sampleConnectionContainer = new ConnectionContainer(decoder);
+    decoder.makeEntityContainerFromLevelJSON(sampleConnectionContainer);
+    assertEquals(sampleConnectionContainer, realConnectionContainer);
   }
 
   @Test
-  void testJSONConnectionContainer() {
+  void testJSONCollisionChartMaking() {
 
   }
 
