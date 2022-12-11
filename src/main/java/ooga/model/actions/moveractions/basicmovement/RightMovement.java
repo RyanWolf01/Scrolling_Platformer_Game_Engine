@@ -16,7 +16,8 @@ public class RightMovement implements MoverAction {
   @Override
   public void execute(Mover entity){
     if (! entity.canMoveRight()) return;
-    entity.changeVelocities(entity.getMoverData().getRightActionVelocity(), 0);
+    if(entity.getXVelocity() < entity.getMoverData().getRightActionVelocity())
+      entity.changeVelocities(entity.getMoverData().getRightActionVelocity(), 0);
   }
 
 }

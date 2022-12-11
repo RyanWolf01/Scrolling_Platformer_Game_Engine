@@ -67,7 +67,7 @@
       "texture": "/games/mario/assets/powerupMushroom.png",
       "x": "700",
       "y": "61",
-      "automatic_movement_rate": "10",
+      "leftActionVelocity": "-1",
       "movement_queue": "move_left",
       "height": "40",
       "width": "40"
@@ -78,8 +78,10 @@
       "texture": "/games/mario/assets/goomba.png",
       "x": "800",
       "y": "50",
-      "automatic_movement_rate": "39",
-      "movement_queue": "move_right,move_right, move_right, move_left, move_left, move_left",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
       "height": "50",
       "width": "40"
     }

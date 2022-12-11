@@ -17,7 +17,7 @@ public class FlyPowerUp implements MoverAction {
     double tempVelocity;
     try{
       tempVelocity = Double.parseDouble(
-          ResourceBundle.getBundle("properties/movement").getString("fly_multiplier"));
+          ResourceBundle.getBundle("properties/powerups").getString("fly_multiplier"));
     }
     catch(NumberFormatException exception){
       throw new MovementDataException("incorrect velocity format", exception);
