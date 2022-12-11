@@ -37,7 +37,6 @@ public class Model {
   public void moveMovers(){
     gravityEnforcer.applyGravityToAllMovers();
     entities.movers().moveAll(); // move all movers
-    entities.mainCharacter().move();
   }
 
   /**
@@ -45,7 +44,6 @@ public class Model {
    */
   public void resetHorizontalVelocities(){
     entities.movers().resetVelocities(true, false);
-    entities.mainCharacter().resetVelocities(true, false);
   }
 
   public void handleMoveKey(MoverAction action){
