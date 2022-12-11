@@ -1,12 +1,14 @@
 package ooga.controller.tests;
 
 import java.io.IOException;
+import ooga.controller.ConnectionContainer;
 import ooga.controller.JSONInformationDecoder;
 import ooga.controller.UserControlHandler;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import javafx.scene.input.KeyCode;
 
 public class JSONDecodingTest {
 
@@ -36,7 +38,7 @@ public class JSONDecodingTest {
   }
 
   @Test
-  void testJSONUserControlHandler() {
+  void testJSONUserControlHandlerSetup() {
     UserControlHandler realUserControls = new UserControlHandler();
     realUserControls.addControl("W", "move_up");
     realUserControls.addControl("A", "move_left");
@@ -44,7 +46,18 @@ public class JSONDecodingTest {
     realUserControls.addControl("S", "move_down");
     UserControlHandler sampleUserControls = new UserControlHandler();
     sampleUserControls = decoder.makeUserControlHandlerFromJSON(sampleUserControls);
-    assertEquals(sampleUserControls, realUserControls);
+    assertEquals(realUserControls.isMoveAction(KeyCode.W), sampleUserControls.isMoveAction(KeyCode.W));
+    assertEquals(realUserControls.isMoveAction(KeyCode.A), sampleUserControls.isMoveAction(KeyCode.A));
+    assertEquals(realUserControls.isMoveAction(KeyCode.D), sampleUserControls.isMoveAction(KeyCode.D));
+    assertEquals(realUserControls.isMoveAction(KeyCode.S), sampleUserControls.isMoveAction(KeyCode.S));
+  }
+
+  @Test
+  void testIncorrectUserControlHandler() {
+    UserControlHandler userControls = new UserControlHandler();
+    userControls = decoder.makeUserControlHandlerFromJSON(userControls);
+    assertFalse()
+
   }
 
   @Test
@@ -56,6 +69,8 @@ public class JSONDecodingTest {
   void testJSONConnectionContainer() {
 
   }
+
+
 
 
 
