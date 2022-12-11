@@ -9,16 +9,16 @@
   "Entity": [
     {
       "type": "mario",
-      "character_type": "mario",
-      "x": "700",
-      "y": "-1",
+      "collidable_type": "mario",
+      "x": "250",
+      "y": "1",
       "height": "100",
       "width": "50",
       "texture": "/games/mario/assets/mario.png"
     },
     {
       "type": "static_platform",
-      "character_type": "static_platform",
+      "collidable_type": "static_platform",
       "texture": "/games/mario/assets/ground.png",
       "x": "200",
       "y": "100",
@@ -26,12 +26,62 @@
       "width": "1000"
     },
     {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redplatform.png",
+      "x": "600",
+      "y": "-50",
+      "height": "50",
+      "width": "200"
+    },
+    {
+      "type": "game_ender",
+      "collidable_type": "game_ender",
+      "texture": "/games/mario/assets/orangeSquare.png",
+      "x": "1250",
+      "y": "-50",
+      "height": "500",
+      "width": "50"
+    },
+    {
+      "type": "game_ender",
+      "collidable_type": "game_ender",
+      "texture": "/games/mario/assets/orangeSquare.png",
+      "x": "100",
+      "y": "-50",
+      "height": "500",
+      "width": "50"
+    },
+    {
+      "type": "game_ender",
+      "collidable_type": "game_ender",
+      "texture": "/games/mario/assets/orangeSquare.png",
+      "x": "100",
+      "y": "300",
+      "height": "50",
+      "width": "1150"
+    },
+    {
+      "type": "moving_character",
+      "collidable_type": "powerup",
+      "texture": "/games/mario/assets/powerupMushroom.png",
+      "x": "700",
+      "y": "61",
+      "leftActionVelocity": "-1",
+      "movement_queue": "move_left",
+      "height": "40",
+      "width": "40"
+    },
+    {
       "type": "goomba",
-      "character_type": "goomba",
+      "collidable_type": "goomba",
       "texture": "/games/mario/assets/goomba.png",
       "x": "800",
-      "y": "49",
-      "movement_queue": "move_right,move_right,move_right,move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_left,move_left",
+      "y": "50",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
       "height": "50",
       "width": "40"
     }

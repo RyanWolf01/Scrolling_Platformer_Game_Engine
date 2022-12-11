@@ -3,6 +3,8 @@ package ooga.model.entities.livingentities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ResourceBundle;
+import ooga.model.entities.entitymodels.BasicStaticCharacter;
+import ooga.model.entities.entitymodels.StaticCharacter;
 import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 

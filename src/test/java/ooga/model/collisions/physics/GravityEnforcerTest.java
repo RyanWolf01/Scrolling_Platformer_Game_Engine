@@ -19,9 +19,9 @@ public class GravityEnforcerTest {
 
   @BeforeEach
   public void setup(){
-    decoder = new JSONInformationDecoder("data/games/sprint_1_test/level.json",
-        "data/games/sprint_1_test/collisions.json",
-        "data/games/sprint_1_test/controls.json");
+    decoder = new JSONInformationDecoder("data/games/mario/movement_test/level.json",
+        "data/games/mario/movement_test/collisions.json",
+        "data/games/mario/movement_test/controls.json");
     container = new BackendContainer(decoder);
     EntityInfo info = new EntityInfo("mario");
     info.set("texture", "idk");

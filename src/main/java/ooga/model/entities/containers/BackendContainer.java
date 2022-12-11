@@ -4,12 +4,14 @@ import java.util.Arrays;
 import ooga.controller.JSONInformationDecoder;
 import ooga.model.Model;
 import ooga.model.entities.*;
-import ooga.model.entities.collidable.CollidableEntity;
-import ooga.model.entities.Entity;
-import ooga.model.entities.StaticEntity;
+import ooga.model.entities.entitymodels.CollidableEntity;
+import ooga.model.entities.entitymodels.Entity;
+import ooga.model.entities.entitymodels.StaticEntity;
 import ooga.model.entities.info.EntityInfo;
-import ooga.model.entities.livingentities.movingentities.AutomaticMovingCharacter;
-import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacterEntity;
+import ooga.model.entities.entitymodels.BasicStaticCharacter;
+import ooga.model.entities.entitymodels.MovingCharacter;
+import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.model.entities.modelcallers.GameEnderCollidableEntity;
 
 
 /**
@@ -17,18 +19,21 @@ import ooga.model.entities.livingentities.movingentities.maincharacters.MainChar
  */
 public class BackendContainer {
   private EntityContainer entities;
-  private AutomaticMoverContainer autoMovers;
+  private MoverContainer movers;
   private CollidableContainer collidables;
-  private MainCharacterEntity mainCharacter;
+  private GameEnderContainer gameEnders;
+  private LivingContainer livers;
+  private MainCharacter mainCharacter;
   private JSONInformationDecoder decoder;
   private EntityFactory factory;
 
-  // TODO: Add EndGoalEntity
 
   public BackendContainer(JSONInformationDecoder decoder){
+    livers = new LivingContainer();
     entities = new EntityContainer();
-    autoMovers = new AutomaticMoverContainer();
+    movers = new MoverContainer();
     collidables = new CollidableContainer();
+    gameEnders = new GameEnderContainer();
     factory = new EntityFactory(decoder);
     this.decoder = decoder;
   }
@@ -48,28 +53,58 @@ public class BackendContainer {
 
       mainCharacter = factory.makeMainCharacter(xCoordinate,yCoordinate, height, width, type, info);
 
+      livers.addLiver(mainCharacter);
       newEntity = mainCharacter;
       collidables.addCollidable(mainCharacter); // all main characters are collidable
+      movers.addMover(mainCharacter);
     }
-    else if(isAutomaticMoverType(type)){
-      AutomaticMovingCharacter newMover = factory.makeAutomaticMover(xCoordinate,yCoordinate, height, width, type, info);
+    else if(isMoverType(type)){
+      MovingCharacter newMover = factory.makeMover(xCoordinate,yCoordinate, height, width, type, info);
 
-      autoMovers.addMover(newMover);
+      movers.addMover(newMover);
       newEntity = newMover;
 
       if(isCollidableType(type)){ // an automatic mover that is also a collidable
         collidables.addCollidable(newMover);
       }
+
+      if(isAliveType(type)){
+        livers.addLiver(newMover);
+      }
+
     }
     else if(isCollidableType(type)){ // only a collidable
+      if(isAliveType(type)){
+        BasicStaticCharacter newLivingCollidable = factory.makeLivingStaticCharacter(xCoordinate,yCoordinate, height, width, type, info);
+        livers.addLiver(newLivingCollidable);
+        collidables.addCollidable(newLivingCollidable);
+        newEntity = newLivingCollidable;
+      }
+      else{
+        CollidableEntity newCollidable = factory.makeCollidable(xCoordinate,yCoordinate, height, width, type, info);
 
-      CollidableEntity newCollidable = factory.makeCollidable(xCoordinate,yCoordinate, height, width, type, info);
+        collidables.addCollidable(newCollidable);
+        newEntity = newCollidable;
+      }
 
-      collidables.addCollidable(newCollidable);
-      newEntity = newCollidable;
+    }
+    else if (isGameEnderType(type)) {
+      GameEnderCollidableEntity newGameEnder = factory.makeGameEnder(xCoordinate, yCoordinate, height, width, type, info);
+
+      gameEnders.addGameEnder(newGameEnder);
+      collidables.addCollidable(newGameEnder);
+      newEntity = newGameEnder;
     }
     else{
-      newEntity = new StaticEntity(xCoordinate,yCoordinate, height, width, info);
+      if(isAliveType(type)){
+        BasicStaticCharacter newLivingCharacter = factory.makeLivingStaticCharacter(xCoordinate,yCoordinate, height, width, type, info);
+        livers.addLiver(newLivingCharacter);
+        newEntity = newLivingCharacter;
+      }
+      else{
+        newEntity = new StaticEntity(xCoordinate,yCoordinate, height, width, info);
+      }
+
     }
 
     entities.addEntity(newEntity);
@@ -77,11 +112,11 @@ public class BackendContainer {
     return newEntity;
   }
 
-  public AutomaticMoverContainer automaticMovers(){
-    return autoMovers;
+  public MoverContainer movers(){
+    return movers;
   }
 
-  public MainCharacterEntity mainCharacter(){
+  public MainCharacter mainCharacter(){
     return mainCharacter;
   }
 
@@ -93,15 +128,36 @@ public class BackendContainer {
     return collidables;
   }
 
+  public LivingContainer livers(){
+    return livers;
+  }
+
+  public EntityContainer entities(){
+    return entities;
+  }
+
+
+  public GameEnderContainer gameEnders() { return gameEnders; }
+
   public boolean isMainCharacterType(String type){
     return Arrays.asList(Model.containerResources.getString("main_characters").split(",")).contains(type);
   }
 
-  public boolean isAutomaticMoverType(String type){
-    return Arrays.asList(Model.containerResources.getString("automatic_movers").split(",")).contains(type);
+  public boolean isMoverType(String type){
+    return Arrays.asList(Model.containerResources.getString("movers").split(",")).contains(type);
   }
 
   public boolean isCollidableType(String type){
     return Arrays.asList(Model.containerResources.getString("collidables").split(",")).contains(type);
   }
+
+  public boolean isGameEnderType(String type) {
+    return Arrays.asList(Model.containerResources.getString("game_enders").split(",")).contains(type);
+  }
+
+  public boolean isAliveType(String type){
+    return Arrays.asList(Model.containerResources.getString("living").split(",")).contains(type);
+  }
+
 }
+

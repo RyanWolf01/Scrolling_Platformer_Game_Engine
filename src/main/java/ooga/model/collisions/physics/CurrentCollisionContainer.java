@@ -3,8 +3,8 @@ package ooga.model.collisions.physics;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import ooga.model.entities.Entity;
-import ooga.model.entities.ImmutableEntity;
+import ooga.model.entities.entitymodels.Entity;
+import ooga.model.entities.entitymodels.ImmutableEntity;
 
 /**
  * Wrapper class that encapsulates a hashmap of <Entity, CollisionPhysicsInfo>

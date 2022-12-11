@@ -2,15 +2,14 @@ package ooga.model.actions.moveractions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
+import ooga.model.entities.entitymodels.MainCharacter;
 import org.junit.jupiter.api.Test;
 
 public class StopYMovementTest {
 
   @Test
   void testStopYMovementPos1() {
-    Mario mario = new Mario(null, 0, 0, 2, 2, null);
-
+    MainCharacter mario = new MainCharacter(null, 0, 0, 2, 2, null, null);
     StopYMovement stop = new StopYMovement();
     stop.execute(mario);
 
@@ -23,8 +22,7 @@ public class StopYMovementTest {
    */
   @Test
   void testStopYMovementPos2() {
-    Mario mario = new Mario(null,0, 0, 2, 2, null);
-
+    MainCharacter mario = new MainCharacter(null, 0, 0, 2, 2, null, null);
     StopYMovement stop = new StopYMovement();
     stop.execute(mario);
     stop.execute(mario);
@@ -38,8 +36,7 @@ public class StopYMovementTest {
    */
   @Test
   void testStopYMovementNeg() {
-    Mario mario = new Mario(null, 0, 0, 2, 2, null);
-
+    MainCharacter mario = new MainCharacter(null, 0, 0, 2, 2, null, null);
     StopYMovement stop = new StopYMovement();
 
     assertEquals(0, mario.getXCoordinate());

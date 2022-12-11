@@ -2,14 +2,15 @@ package ooga.model.actions.aliveactions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import ooga.model.entities.livingentities.movingentities.maincharacters.Mario;
+import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 
 public class KillTest {
 
   @Test
   void testKillPos1() {
-    Mario mario = new Mario(null, 0, 0, 2, 2, null);
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     IncreaseLife increaseLife = new IncreaseLife();
     increaseLife.execute(mario);
@@ -27,7 +28,7 @@ public class KillTest {
    */
   @Test
   void testKillPos2() {
-    Mario mario = new Mario(null, 0, 0, 2, 2, null);
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     IncreaseLife increaseLife = new IncreaseLife();
     increaseLife.execute(mario);
@@ -46,7 +47,7 @@ public class KillTest {
    */
   @Test
   void testKillNeg() {
-    Mario mario = new Mario(null, 0, 0, 2, 2, null);
+    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     Kill kill = new Kill();
 

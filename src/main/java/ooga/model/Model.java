@@ -9,12 +9,14 @@ import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.physics.CurrentCollisionContainer;
 import ooga.model.collisions.physics.GravityEnforcer;
 import ooga.model.collisions.physics.PhysicsCalculator;
-import ooga.model.entities.ImmutableEntity;
-import ooga.model.entities.collidable.CollidableEntity;
-import ooga.model.entities.Entity;
+import ooga.model.entities.entitymodels.ImmutableEntity;
+import ooga.model.entities.entitymodels.CollidableEntity;
+import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.containers.BackendContainer;
 
 import java.util.ResourceBundle;
+import ooga.model.entities.modelcallers.GameEnder;
+import ooga.model.entities.modelcallers.functionalinterfaces.EndGameCallable;
 
 /**
  * Backend logic is performed in here,
@@ -26,23 +28,18 @@ public class Model {
   public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Containers");
   BackendContainer entities;
 
-  public Model(BackendContainer entities){
+  public Model(BackendContainer entities, EndGameCallable endGameMethod){
     this.entities = entities;
     gravityEnforcer = new GravityEnforcer(entities);
-  }
-
-  public void moveMovers(){
-    gravityEnforcer.applyGravityToAllMovers();
-    entities.automaticMovers().moveAll(); // move all automatic movers
-    entities.mainCharacter().move();
+    setEndGameMethods(endGameMethod);
   }
 
   /**
-   * reset horizontal velocity of all Movers. This needs to be done after every horizontal movement
+   * move all movers
    */
-  public void resetHorizontalVelocities(){
-    entities.automaticMovers().resetVelocities(true, false);
-    entities.mainCharacter().resetVelocities(true, false);
+  public void moveMovers(){
+    gravityEnforcer.applyGravityToAllMovers();
+    entities.movers().moveAll(); // move all movers
   }
 
   public void handleMoveKey(MoverAction action){
@@ -58,9 +55,11 @@ public class Model {
    * @param collider first entity that collides
    * @param collided second entity that is collided with
    */
+  // for breakpoint:
+  // collider.getImmutableEntityInfo().get(ImmutableInfo.TYPE_KEY).equals("goomba") && collided.getImmutableEntityInfo().get(ImmutableInfo.TYPE_KEY).equals("mario")
   public void handleCollision(Entity collider, Entity collided) {
     if (collider.hasCurrentCollisionWith(collided)) {
-      handleCollisionHelper(collider, collided, collider.physicsInfoOfCurrentCollisionWith(collided));
+      handleCollisionHelper(collider, collided, collider.physicsDataOfCurrentCollisionWith(collided));
     }
     else {
       handleCollisionHelper(collider, collided);
@@ -68,6 +67,10 @@ public class Model {
     collider.getMyCurrentCollisions().get(collided).setCollisionIsFresh(true);
   }
 
+  /**
+   * To be called in the GameController before every time the Collision detection loop is
+   * executed
+   */
   public void preCollisionDetectionLoop() {
     removeNonFreshEntities();
     for (CollidableEntity collidable : entities.collidables()) {
@@ -111,4 +114,8 @@ public class Model {
     }
   }
 
+  private void setEndGameMethods(EndGameCallable endGameMethod) {
+    entities.mainCharacter().setEndGameCallable(endGameMethod);
+    entities.gameEnders().forEach((GameEnder gameEnder) -> gameEnder.setEndGameCallable(endGameMethod));
+  }
 }

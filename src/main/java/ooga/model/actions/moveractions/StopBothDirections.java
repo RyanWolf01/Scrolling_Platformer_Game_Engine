@@ -1,6 +1,6 @@
 package ooga.model.actions.moveractions;
 
-import ooga.model.entities.deadmovingentities.Mover;
+import ooga.model.entities.movement.Mover;
 
 public class StopBothDirections implements MoverAction{
 
@@ -11,7 +11,6 @@ public class StopBothDirections implements MoverAction{
   @Override
   public void execute(Mover entity){
     entity.resetVelocities(true, true);
-    entity.move();
   }
 
 }

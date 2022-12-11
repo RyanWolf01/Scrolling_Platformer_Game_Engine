@@ -1,31 +1,30 @@
 package ooga.model.actions.moveractions;
 
 import java.util.ResourceBundle;
-import ooga.model.entities.deadmovingentities.Mover;
-import ooga.model.entities.livingentities.Alive;
+import ooga.controller.exceptions.MovementDataException;
+import ooga.model.entities.movement.Mover;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Gravity implements MoverAction{
 
   private static final Logger LOG = LogManager.getLogger(Gravity.class);
-  private final double GRAVITY_VELOCITY;
+  private final double TERMINAL_VELOCITY;
 
   /**
    * Bounce constructor initializes default Bounce velocity value
    */
   public Gravity(){
 
-    double tempVelocity;
+    double tempTerminalVelocity;
     try{
-      tempVelocity = Double.parseDouble(
-          ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
+      tempTerminalVelocity = Double.parseDouble(
+          ResourceBundle.getBundle("properties/movement").getString("terminal_velocity"));
     }
     catch(NumberFormatException exception){
-      LOG.error("incorrect velocity format");
-      throw exception;
+      throw new MovementDataException("incorrect terminal velocity format", exception);
     }
-    GRAVITY_VELOCITY = tempVelocity;
+    TERMINAL_VELOCITY = tempTerminalVelocity;
   }
 
   /**
@@ -34,7 +33,11 @@ public class Gravity implements MoverAction{
    */
   @Override
   public void execute(Mover entity){
-    entity.changeVelocities(0, GRAVITY_VELOCITY);
+    if (!entity.canMoveDown()) return;
+
+    double gravityVelocity = entity.getMoverData().getGravityVelocity();
+    if(entity.getYVelocity() + gravityVelocity <= TERMINAL_VELOCITY)
+      entity.changeVelocities(0, gravityVelocity);
   }
 
 }

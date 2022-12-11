@@ -1,12 +1,9 @@
 package ooga.controller;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ResourceBundle;
-import ooga.Main;
-import ooga.model.Model;
-import ooga.model.entities.Entity;
+import ooga.controller.exceptions.MalformedJSONException;
+import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.containers.BackendContainer;
 import ooga.model.entities.info.EntityInfo;
 import ooga.view.nodes.NodeContainer;
@@ -46,8 +43,7 @@ public class ConnectionContainer {
       imageURL = info.get("texture");
     }
     catch(IllegalArgumentException e){
-      // TODO: Fix this
-      //imageURL = something from default_images resource file
+      throw new MalformedJSONException("Malformed 'texture' field", e);
     }
 
     Entity newEntity = entities.addNewEntity(xCoordinate, yCoordinate, height, width, type, info);
