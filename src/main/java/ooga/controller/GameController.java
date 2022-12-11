@@ -49,7 +49,6 @@ public class GameController {
     public NodeContainer step(){
         if (! gameRunning) return container.viewables();
         checkForCollisions();
-        model.resetHorizontalVelocities();
         executeKeyInputActions();
         model.moveMovers();
         container.update();
