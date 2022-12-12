@@ -32,16 +32,22 @@ public class UserControlHandler {
      * @param action string that maps to Action
      */
     public void addControl(String keyCodeName, String action){
-        KeyCode code = KeyCode.valueOf(keyCodeName);
-        if(aliveActionGetter.isAliveAction(action)){ //check if keyCodeName is an alive action
-            aliveActionMap.put(code, aliveActionGetter.aliveActionTranslate(action));
+        try{
+            KeyCode code = KeyCode.valueOf(keyCodeName);
+            if(aliveActionGetter.isAliveAction(action)){ //check if keyCodeName is an alive action
+                aliveActionMap.put(code, aliveActionGetter.aliveActionTranslate(action));
+            }
+            else if(moverActionGetter.isMoverAction(action)){ //check if keyCodeName is mover action
+                moveActionMap.put(code, moverActionGetter.moverActionTranslate(action));
+            }
+            else{
+                throw new MalformedJSONException("invalid_action");
+            }
         }
-        else if(moverActionGetter.isMoverAction(action)){ //check if keyCodeName is mover action
-            moveActionMap.put(code, moverActionGetter.moverActionTranslate(action));
+        catch (IllegalArgumentException e){
+            throw new MalformedJSONException("invalid_key_type", e);
         }
-        else{
-            throw new MalformedJSONException("invalid_action");
-        }
+
     }
 
     public boolean isMoveAction(KeyCode code){
