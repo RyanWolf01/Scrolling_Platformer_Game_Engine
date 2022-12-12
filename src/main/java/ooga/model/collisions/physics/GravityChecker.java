@@ -1,6 +1,7 @@
 package ooga.model.collisions.physics;
 
 import java.util.ResourceBundle;
+import ooga.model.entities.entitymodels.CollidableEntity;
 import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.entitymodels.ImmutableEntity;
 import org.apache.logging.log4j.LogManager;
@@ -41,19 +42,19 @@ public class GravityChecker {
    * @return boolean
    */
   // entity.getImmutableEntityInfo().get(ImmutableInfo.COLLIDABLE_TYPE_KEY).equalsIgnoreCase("mario") && !checkCollisionWithStaticPlatformFromDirection(entity, CollisionDirection.BOTTOM) == true && entity.yCoordinate + entity.getHeight() >= 100
-  public boolean checkInAir(Entity entity){
+  public boolean checkInAir(CollidableEntity entity){
     return !checkCollisionWithStaticPlatformFromDirection(entity, CollisionDirection.BOTTOM);
   }
 
-  public boolean checkHittingLeftOfPlatform(Entity entity) {
+  public boolean checkHittingLeftOfPlatform(CollidableEntity entity) {
     return checkCollisionWithStaticPlatformFromDirection(entity, CollisionDirection.LEFT);
   }
 
-  public boolean checkHittingRightOfPlatform(Entity entity) {
+  public boolean checkHittingRightOfPlatform(CollidableEntity entity) {
     return checkCollisionWithStaticPlatformFromDirection(entity, CollisionDirection.RIGHT);
   }
 
-  private boolean checkCollisionWithStaticPlatformFromDirection(Entity entity, CollisionDirection collisionDirection) {
+  private boolean checkCollisionWithStaticPlatformFromDirection(CollidableEntity entity, CollisionDirection collisionDirection) {
     if(!entity.getMyCurrentCollisions().hasCollisions())
       return false;
 
