@@ -27,13 +27,15 @@ public class GameController {
     private Model model;
     private Queue<KeyCode> keyCodeQueue;
     private String myLevel;
-    private String playerName;
+    private String playerName = "user";
     private String language;
     private boolean gameRunning = true;
 
     private JSONObject initialLevelJSON;
     private JSONObject initialCollisionJSON;
     private JSONObject initialControlsJSON;
+
+    private DatabaseAccess access;
 
     /**
      * The GameController needs to have a mapping of backend to frontend objects
@@ -51,11 +53,11 @@ public class GameController {
             initialControlsJSON = jsonDecoder.initialJSONInformation(controlsJSON);
             initialCollisionJSON = jsonDecoder.initialJSONInformation(collisionJSON);
             initialLevelJSON = jsonDecoder.initialJSONInformation(levelJSON);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
+
+        access = new DatabaseAccess(jsonDecoder.game());
 
         model = new Model(container.entities(), this::endGame);
         keyCodeQueue = new LinkedList<>();
@@ -66,7 +68,7 @@ public class GameController {
      * @return NodeContainer that the View can
      */
     public NodeContainer step(){
-        if (! gameRunning) return container.viewables();
+        if (!gameRunning) return container.viewables();
         model.checkAndHandleGameState();
         checkAndHandleModelState();
         model.checkForAndHandleCollisions();
@@ -74,6 +76,14 @@ public class GameController {
         model.moveMovers();
         container.update();
         return container.viewables();
+    }
+
+    public void setHighScore(int score){
+        access.postHighScore(playerName, score);
+    }
+
+    public org.json.JSONObject getHighScores(){
+        return access.getHighScores();
     }
 
     public void handleKeyInput(KeyCode code){
@@ -104,10 +114,10 @@ public class GameController {
 
     private void checkAndHandleModelState() {
         if (model.getGameState().equals(GameState.USER_WON)) {
-            // do something here
+            endGame(true);
         }
         else if (model.getGameState().equals(GameState.USER_LOST)) {
-            // do something else here
+            endGame(false);
         }
     }
 
@@ -125,7 +135,8 @@ public class GameController {
 
     private void endGame(boolean userWon) {
         gameRunning = false;
-        LOG.info("The game is over (and you lost the game)!");
+        if (userWon) LOG.info("The user WON the game!");
+        else LOG.info("The user LOST the game!");
     }
 
     public String getLevelDirectory(){

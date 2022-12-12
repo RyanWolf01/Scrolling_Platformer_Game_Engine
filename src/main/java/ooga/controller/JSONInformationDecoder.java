@@ -380,4 +380,19 @@ public class JSONInformationDecoder {
     return info;
   }
 
+  /**
+   * @return The name of the game (mario, doodle_jump, etc.)
+   */
+  public String game(){
+
+    JSONObject levelJSONObject = null;
+    try {
+      levelJSONObject = initialJSONInformation(levelJSON);
+    } catch (IOException | ParseException e) {
+      throw new MalformedJSONException("Level JSON unreadable");
+    }
+
+    return (String) levelJSONObject.get("game");
+  }
+
 }
