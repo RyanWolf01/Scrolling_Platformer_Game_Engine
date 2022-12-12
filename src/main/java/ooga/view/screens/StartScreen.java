@@ -19,13 +19,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
 public class StartScreen {
 
+  private final int sceneWidth = 400;
+
+  private final int sceneHeight = 400;
   public static final int MAX_USER_NAME_LENGTH = 20;
   private static HashMap<String, String> gameToGame;
   private static final String RESOURCE_DIRECTORY = "/";
@@ -42,17 +44,15 @@ public class StartScreen {
   private ComboBox<String> languageSelector;
   private String slash = System.getProperty("file.separator");
   private static final Logger LOG = LogManager.getLogger(StartScreen.class);
-  public static ResourceBundle languageResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE + "languages.English");
+  private ResourceBundle languageResources;
 
   Stage mainStage;
   public StartScreen(Stage primaryStage){
     mainStage = primaryStage;
-    mainStage.setScene(makeScene());
-    mainStage.show();
   }
 
 
-  private Scene makeScene(){
+  public Scene makeScene(){
     //TODO: Split into multiple methods
     gameChooser = new GridPane();
     getLevelDirectoryMap();
@@ -60,20 +60,19 @@ public class StartScreen {
 
     languageSelector = new ComboBox<>();
     languageSelector.setPromptText("Choose a Language");
-    LOG.info(View.viewResources.getString("languages").split(","));
-    languageSelector.getItems().addAll(View.viewResources.getString("languages").split(","));
+    languageSelector.getItems().addAll(View.languageResources.getString("languages").split(","));
     languageSelector.setOnAction(event -> {
       changeLanguage(languageSelector.getValue());
       languageSelector.setVisible(false);
-      createAllButtons();
+      createSelectorButtons();
     });
     gameChooser.add(languageSelector, 0, 0);
 
 
-    return new Scene(gameChooser, 400, 400);
+    return new Scene(gameChooser, sceneWidth, sceneHeight);
   }
 
-  private void createAllButtons(){
+  private void createSelectorButtons(){
     startGame = new Button();
     startGame.setText(languageResources.getString("start_game"));
 

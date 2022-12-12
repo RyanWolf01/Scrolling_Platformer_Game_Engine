@@ -28,5 +28,7 @@ public class Main extends Application {
   public void start(Stage primaryStage) {
     //Create Splash Screen and set it to the stage
     StartScreen startScreen = new StartScreen(primaryStage);
+    primaryStage.setScene(startScreen.makeScene());
+    primaryStage.show();
   }
 }

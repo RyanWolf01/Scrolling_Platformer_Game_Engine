@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ooga.controller.GameController;
+import ooga.view.View;
 
 public class SaveButton extends GUIBasicButton {
 
@@ -12,8 +13,8 @@ public class SaveButton extends GUIBasicButton {
 
   private GameController myController;
 
-  public SaveButton(String buttonText, String iconString, GameController controller) {
-    super(buttonText, iconString, controller);
+  public SaveButton(String buttonText, String iconString, View myView) {
+    super(buttonText, iconString, myView);
     this.setOnClickEvent(this::openTextPopup);
   }
 
@@ -37,7 +38,7 @@ public class SaveButton extends GUIBasicButton {
    * @param saveName
    */
   private void handleTextInput(String saveName) {
-
+    //myView.saveGame(saveName);
   }
 
 }

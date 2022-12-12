@@ -39,7 +39,7 @@ public class DatabaseAccess {
       String received = content.toString();
 
       result = new JSONObject(received);
-      System.out.println(result);
+      //System.out.println(result);
 
 
     } catch (IOException e) {
