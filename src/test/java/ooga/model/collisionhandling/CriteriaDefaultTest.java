@@ -11,13 +11,13 @@ import java.util.Map;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionData;
-import ooga.model.collisions.collisionhandling.Criteria;
+import ooga.model.collisions.collisionhandling.CriteriaDefault;
 import ooga.model.collisions.physics.CollisionDirection;
 import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.entities.info.Info;
 import org.junit.jupiter.api.Test;
 
-public class CriteriaTest {
+public class CriteriaDefaultTest {
 
   @Test
   public void testCriteriaMatch() {
@@ -30,7 +30,7 @@ public class CriteriaTest {
     ActionDataContainer adc = getActionDataContainer();
 
     // Create Criteria object
-    Criteria criteria = new Criteria(map, adc);
+    CriteriaDefault criteria = new CriteriaDefault(map, adc);
 
     // Create Info objects and CollisionPhysicsData for CollisionData
     Info infoA = getInfoA();
@@ -56,7 +56,7 @@ public class CriteriaTest {
     ActionDataContainer adc = getActionDataContainer();
 
     // Create Criteria object
-    Criteria criteria = new Criteria(map, adc);
+    CriteriaDefault criteria = new CriteriaDefault(map, adc);
 
     // Create Info objects and CollisionPhysicsData for CollisionData
     Info infoA = getInfoA();
@@ -80,7 +80,7 @@ public class CriteriaTest {
     ActionDataContainer adc = getActionDataContainer();
 
     // Create Criteria object
-    Criteria criteria = new Criteria(map, adc);
+    CriteriaDefault criteria = new CriteriaDefault(map, adc);
 
     // Create Info objects and CollisionPhysicsData for CollisionData
     Info infoA = getInfoA();
@@ -105,7 +105,7 @@ public class CriteriaTest {
     ActionDataContainer adc = getActionDataContainer();
 
     // Create Criteria object
-    Criteria criteria = new Criteria(map, adc);
+    CriteriaDefault criteria = new CriteriaDefault(map, adc);
 
     // Create Info objects and CollisionPhysicsData for CollisionData
     Info infoA = getInfoA();
@@ -131,7 +131,7 @@ public class CriteriaTest {
     ActionDataContainer adc = getActionDataContainer();
 
     // Create Criteria object
-    Criteria criteria = new Criteria(map, adc);
+    CriteriaDefault criteria = new CriteriaDefault(map, adc);
 
     // Create Info objects and CollisionPhysicsData for CollisionData
     Info infoA = getInfoA();
@@ -157,7 +157,7 @@ public class CriteriaTest {
     ActionDataContainer adc = getActionDataContainer();
 
     // Create Criteria object
-    Criteria criteria = new Criteria(map, adc);
+    CriteriaDefault criteria = new CriteriaDefault(map, adc);
 
     // Create Info objects and CollisionPhysicsData for CollisionData
     Info infoA = getInfoA();
@@ -182,7 +182,7 @@ public class CriteriaTest {
     ActionDataContainer adc = getActionDataContainer();
 
     // Create Criteria object
-    Criteria criteria = new Criteria(map, adc);
+    CriteriaDefault criteria = new CriteriaDefault(map, adc);
 
     // Create Info objects and CollisionPhysicsData for CollisionData
     Info infoA = getInfoA();
@@ -208,7 +208,7 @@ public class CriteriaTest {
     ActionDataContainer adc = getActionDataContainer();
 
     // Create Criteria object
-    Criteria criteria = new Criteria(map, adc);
+    CriteriaDefault criteria = new CriteriaDefault(map, adc);
 
     // Create Info objects and CollisionPhysicsData for CollisionData
     Info infoA = getInfoA();
