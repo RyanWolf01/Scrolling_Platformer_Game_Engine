@@ -19,7 +19,6 @@ public class GameSelector extends ComboBox<String> {
 
   private static final String GAMES_FILE = "games.json";
   private static final String[] DEFAULT_GAME_LIST = {"Super Mario Bros", "Doodle Jump", "Geometry Dash"};
-  private static final String[] DEFAULT_FOLDER_LIST = {"\\mario", "\\doodle", "\\dash"};
   private static final String CHOOSE_GAME_PROMPT = "Select a Game";
   private String selectedGame;
   private StartScreen myStartScreen;
