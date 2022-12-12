@@ -19,11 +19,11 @@ import org.apache.logging.log4j.Logger;
 /**
  * Maybe all main character entities
  */
-public class MainCharacter extends MovingCharacter implements UserControllable,
-    GameEnder {
+public class MainCharacter extends MovingCharacter implements UserControllable, GameEnder {
 
   private static final Logger LOG = LogManager.getLogger(MainCharacter.class);
   private EndGameCallable endGameMethod;
+  private boolean endPointHit = false;
 
   /**
    * MainCharacterEntity takes user input and is alive, collidable, and moveable
@@ -84,15 +84,23 @@ public class MainCharacter extends MovingCharacter implements UserControllable,
   }
 
   @Override
-  public void endGame() {
+  public void endGame(boolean userWon) {
     if (endGameMethod == null) throw new RuntimeException("The end game method for mario hasn't"
         + "been set!");
-    endGameMethod.execute();
+    endGameMethod.execute(userWon);
   }
 
   @Override
   public void setEndGameCallable(EndGameCallable endGameCallable) {
     this.endGameMethod = endGameCallable;
+  }
+
+  public boolean isEndPointHit() {
+    return endPointHit;
+  }
+
+  public void setEndPointHit(boolean endPointHit) {
+    this.endPointHit = endPointHit;
   }
 
   private boolean isEndGameMethodSet() {

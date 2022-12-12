@@ -5,13 +5,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.controller.saveloadhandling.CheckpointDirectory;
+import ooga.model.GameState;
 import ooga.model.Model;
-import ooga.model.collisions.physics.PhysicsCalculator;
-import ooga.model.entities.entitymodels.CollidableEntity;
-import ooga.model.entities.entitymodels.Entity;
 import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
-import ooga.view.nodes.ScrollingNode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
@@ -70,6 +67,8 @@ public class GameController {
      */
     public NodeContainer step(){
         if (! gameRunning) return container.viewables();
+        model.checkAndHandleGameState();
+        checkAndHandleModelState();
         model.checkForAndHandleCollisions();
         executeKeyInputActions();
         model.moveMovers();
@@ -103,6 +102,15 @@ public class GameController {
         saveDirectory.CreateDirectory();
     }
 
+    private void checkAndHandleModelState() {
+        if (model.getGameState().equals(GameState.USER_WON)) {
+            // do something here
+        }
+        else if (model.getGameState().equals(GameState.USER_LOST)) {
+            // do something else here
+        }
+    }
+
     private void executeKeyInputActions() {
         while (! keyCodeQueue.isEmpty()) {
             KeyCode code = keyCodeQueue.poll();
@@ -115,7 +123,7 @@ public class GameController {
         }
     }
 
-    private void endGame() {
+    private void endGame(boolean userWon) {
         gameRunning = false;
         LOG.info("The game is over (and you lost the game)!");
     }
