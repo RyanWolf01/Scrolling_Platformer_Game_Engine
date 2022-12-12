@@ -1,6 +1,7 @@
 package ooga.controller;
 
 import javafx.scene.input.KeyCode;
+import ooga.controller.exceptions.MalformedJSONException;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.aliveactions.AliveActionGetter;
 import ooga.model.actions.moveractions.*;
@@ -16,8 +17,6 @@ public class UserControlHandler {
     private Map<KeyCode, AliveAction> aliveActionMap;
     private final AliveActionGetter aliveActionGetter;
     private final MoverActionGetter moverActionGetter;
-    //private Map<String, AliveAction> allAliveActions;
-    //private Map<String, MoverAction> allMoverActions;
 
     public UserControlHandler(){
         aliveActionGetter = new AliveActionGetter();
@@ -33,16 +32,22 @@ public class UserControlHandler {
      * @param action string that maps to Action
      */
     public void addControl(String keyCodeName, String action){
-        KeyCode code = KeyCode.valueOf(keyCodeName);
-        if(aliveActionGetter.isAliveAction(action)){ //check if keyCodeName is an alive action
-            aliveActionMap.put(code, aliveActionGetter.aliveActionTranslate(action));
+        try{
+            KeyCode code = KeyCode.valueOf(keyCodeName);
+            if(aliveActionGetter.isAliveAction(action)){ //check if keyCodeName is an alive action
+                aliveActionMap.put(code, aliveActionGetter.aliveActionTranslate(action));
+            }
+            else if(moverActionGetter.isMoverAction(action)){ //check if keyCodeName is mover action
+                moveActionMap.put(code, moverActionGetter.moverActionTranslate(action));
+            }
+            else{
+                throw new MalformedJSONException("invalid_action");
+            }
         }
-        else if(moverActionGetter.isMoverAction(action)){ //check if keyCodeName is mover action
-            moveActionMap.put(code, moverActionGetter.moverActionTranslate(action));
+        catch (IllegalArgumentException e){
+            throw new MalformedJSONException("invalid_key_type", e);
         }
-        else{
-            // throw an exception, not a valid action
-        }
+
     }
 
     public boolean isMoveAction(KeyCode code){

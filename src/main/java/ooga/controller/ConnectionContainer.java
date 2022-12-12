@@ -80,7 +80,7 @@ public class ConnectionContainer {
   public void update(){
     for(ScrollingNode node : connectorMap.keySet()){
       Entity entity = connectorMap.get(node);
-      node.update(entity.getXCoordinate(), entity.getYCoordinate());
+      node.update(entity.getXCoordinate(), entity.getYCoordinate(), entity.getHeight(), entity.getWidth());
     }
   }
 
