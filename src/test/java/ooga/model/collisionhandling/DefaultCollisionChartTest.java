@@ -70,6 +70,34 @@ public class DefaultCollisionChartTest {
   }
 
   @Test
+  public void testFirstCriteriaMatched_whenMultipleCriteriaMatch() {
+    CollisionChart cc = new DefaultCollisionChart();
+
+    // Generate criteria1 that matches with collisionData1
+    CollisionData collisionData1 = new CollisionData(new Info(), new Info(),
+        new CollisionPhysicsData(true, 1, CollisionDirection.RIGHT));
+    ActionDataContainer actionDataContainer1 = new ActionDataContainer();
+    Criteria criteria1 = getCriteria(collisionData1, actionDataContainer1);
+    cc.addCriteria(criteria1);
+
+    ActionDataContainer actionDataContainer2 = new ActionDataContainer();
+    Criteria criteria2 = getCriteria(collisionData1, actionDataContainer2);
+    cc.addCriteria(criteria2);
+
+    // Generate criteria3 that matches with collisionData3
+    CollisionData collisionData3 = new CollisionData(new Info(), new Info(),
+        new CollisionPhysicsData(true, 1, CollisionDirection.RIGHT));
+    ActionDataContainer actionDataContainer3 = new ActionDataContainer();
+    Criteria criteria3 = getCriteria(collisionData3, actionDataContainer3);
+    cc.addCriteria(criteria3);
+
+    ActionDataContainer matchedADC = cc.getActionDatas(collisionData1);
+    assertEquals(actionDataContainer1, matchedADC);
+    assertNotEquals(actionDataContainer2, matchedADC);
+    assertNotEquals(actionDataContainer3, matchedADC);
+  }
+
+  @Test
   public void testDefaultCollisionChart_throwsExceptionWhenNothingLoaded() {
     CollisionChart cc = new DefaultCollisionChart();
     CollisionData collisionData = new CollisionData(new Info(), new Info(), new CollisionPhysicsData(true, 1, CollisionDirection.BOTTOM));
