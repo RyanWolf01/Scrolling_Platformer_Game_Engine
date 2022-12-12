@@ -4,6 +4,7 @@
     "collision_chart": [
       {
         "OPPONENT_TYPE": "static_platform",
+
         "COLLISION_DIRECTION": "LEFT||RIGHT",
         "ACTIONS": [
           {
