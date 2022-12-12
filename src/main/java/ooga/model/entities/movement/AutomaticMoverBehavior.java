@@ -58,10 +58,13 @@ public class AutomaticMoverBehavior extends BasicMoverBehavior{
   public void move(){
 
     try {
-      MoverAction move = movementQueue.nextMove();
 
-      if(shouldAutomaticMove())
+
+      if(shouldAutomaticMove()){
+        MoverAction move = movementQueue.nextMove();
         move.execute(thisEntity);
+      }
+
     }
     catch(NullPointerException exception){
       throw new MovementDataException("MovementQueue not initialized or empty.", exception);

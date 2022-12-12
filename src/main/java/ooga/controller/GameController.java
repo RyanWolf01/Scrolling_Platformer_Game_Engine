@@ -25,6 +25,8 @@ public class GameController {
     private Model model;
     private Queue<KeyCode> keyCodeQueue;
     private String myLevel;
+    private String playerName;
+    private String language;
     private boolean gameRunning = true;
 
     /**
@@ -49,7 +51,6 @@ public class GameController {
     public NodeContainer step(){
         if (! gameRunning) return container.viewables();
         checkForCollisions();
-        model.resetHorizontalVelocities();
         executeKeyInputActions();
         model.moveMovers();
         container.update();
@@ -104,5 +105,15 @@ public class GameController {
 
     public String getLevelDirectory(){
         return myLevel.replace("level.json", "");
+    }
+
+    public void setPlayerName(String name){
+        LOG.info("Player name: " + name);
+        playerName = name;
+    }
+
+    public void setLanguage(String textLanguage){
+        LOG.info("Language: " + textLanguage);
+        language = textLanguage;
     }
 }

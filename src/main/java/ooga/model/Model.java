@@ -42,13 +42,6 @@ public class Model {
     entities.movers().moveAll(); // move all movers
   }
 
-  /**
-   * reset horizontal velocity of all Movers. This needs to be done after every horizontal movement
-   */
-  public void resetHorizontalVelocities(){
-    entities.movers().resetVelocities(true, false);
-  }
-
   public void handleMoveKey(MoverAction action){
     entities.mainCharacter().acceptMoveAction(action);
   }

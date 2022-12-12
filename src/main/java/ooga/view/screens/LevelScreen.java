@@ -3,6 +3,7 @@ package ooga.view.screens;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
@@ -61,7 +62,7 @@ public class LevelScreen {
 
 
     Scene scene = new Scene(levelPane, levelWidth, levelHeight);
-    scene.setOnKeyPressed(e -> myController.handleKeyInput(e.getCode()));
+    scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
     createCamera();
     return scene;
   }
@@ -129,7 +130,7 @@ public class LevelScreen {
     FileReader infoFile = new FileReader(levelFile);
     JSONObject levelJson = (JSONObject) new JSONParser().parse(infoFile);
     String backgroundFile = (String) levelJson.get("background");
-    LOG.info(backgroundFile);
+    LOG.info("Background Image Loaded: " + backgroundFile);
     Image backgroundImage = new Image(BACKGROUND_DIRECTORY + backgroundFile);
 
     newBackground = new Background(new BackgroundImage(backgroundImage, null, null, null, null));
@@ -137,4 +138,22 @@ public class LevelScreen {
     levelPane.setBackground(newBackground);
   }
 
+
+  private void handleKeyInput(KeyCode code){
+    if(code == KeyCode.P){
+      pause();
+    }
+    else {
+    myController.handleKeyInput(code);
+    }
+  }
+
+
+  private void pause(){
+    LOG.info("Pause Game");
+
+    //Pause all stepping and animations
+    //Display Resume, Save, Load, and Quit Buttons
+    //On Resume,
+  }
 }
