@@ -33,7 +33,7 @@ public class GameController {
     private String myLevel;
     private String playerName = "user";
     private String language;
-    private boolean gameRunning = true;
+    private  GameState state = GameState.UNSTARTED;
 
     private JSONObject initialLevelJSON;
     private JSONObject initialCollisionJSON;
@@ -65,6 +65,8 @@ public class GameController {
 
         model = new Model(container.entities(), this::endGame);
         keyCodeQueue = new LinkedList<>();
+
+        state = GameState.ACTIVE;
     }
 
     /**
@@ -72,11 +74,12 @@ public class GameController {
      * @return NodeContainer that the View can
      */
     public NodeContainer step(){
-        if (! gameRunning) return container.viewables();
-        model.checkForAndHandleCollisions();
-        executeKeyInputActions();
-        model.moveMovers();
-        container.update();
+        if (state == GameState.ACTIVE){
+            model.checkForAndHandleCollisions();
+            executeKeyInputActions();
+            model.moveMovers();
+            container.update();
+        }
         return container.viewables();
     }
 
@@ -127,8 +130,12 @@ public class GameController {
     }
 
     private void endGame() {
-        gameRunning = false;
+        state = GameState.LOST;
         LOG.info("The game is over (and you lost the game)!");
+    }
+
+    public GameState gameState(){
+        return state;
     }
 
     public String getLevelDirectory(){

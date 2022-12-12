@@ -3,6 +3,8 @@ package ooga.model.entities.containers;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.movement.Mover;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,6 +45,10 @@ public class MoverContainer implements Iterable<Mover>{
     for(Mover mover: this.movers){
       mover.resetVelocities(resetXVelocity, resetYVelocity);
     }
+  }
+
+  public void remove(Entity entity){
+    movers.remove(entity);
   }
 
   /**
