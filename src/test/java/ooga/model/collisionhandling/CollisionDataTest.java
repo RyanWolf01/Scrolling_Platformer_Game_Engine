@@ -23,20 +23,16 @@ public class CollisionDataTest {
 
     String[] kvPairsA = new String[]{"powerUp", "NONE", "test", "FOO"};
     String[] kvPairsB = new String[]{"powerUp", "STAR", "BTest", "BAR"};
-    String[] cpiKvPairs = new String[]{"substance", "WATER"};
 
     setInfo(entityAInfo, kvPairsA);
     setInfo(entityBInfo, kvPairsB);
-
-    // Downcast! Alert:
-    setInfo((Info) cpi.toImmutableInfoObject(), cpiKvPairs);
 
     CollisionData collisionData = new CollisionData(entityAInfo, entityBInfo, cpi);
 
     String CP = COLLISION_PREFIX;
     String MP = MY_PREFIX;
     String OP = OPPONENT_PREFIX;
-    String[] combined = new String[]{CP + "DIRECTION", "LEFT", MP + "powerUp", "NONE", MP + "test", "FOO", OP + "powerUp", "STAR", OP + "BTest", "BAR", CP + "substance", "WATER"};
+    String[] combined = new String[]{CP + "DIRECTION", "LEFT", MP + "powerUp", "NONE", MP + "test", "FOO", OP + "powerUp", "STAR", OP + "BTest", "BAR"};
 
     for (int i = 0; i < combined.length; i += 2) {
       assertTrue(collisionData.hasKey(combined[i]));
