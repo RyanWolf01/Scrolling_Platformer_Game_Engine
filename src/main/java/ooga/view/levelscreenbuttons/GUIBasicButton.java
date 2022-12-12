@@ -13,6 +13,7 @@ import javafx.scene.text.*;
 import java.io.InputStream;
 import java.util.ResourceBundle;
 import ooga.Main;
+import ooga.controller.GameController;
 
 
 public abstract class GUIBasicButton {
@@ -24,10 +25,12 @@ public abstract class GUIBasicButton {
   private Text buttonText;
   private VBox buttonContainer;
   private ImageView buttonIcon;
+  private GameController myController;
 
 
-  public GUIBasicButton(String buttonText, String iconString) {
+  public GUIBasicButton(String buttonText, String iconString, GameController controller) {
 
+    this.myController = controller;
     InputStream iconPath = GUIBasicButton.class.getClassLoader().getResourceAsStream(
         ICON_PROPERTIES.getString(iconString));
     buttonContainer = new VBox();
@@ -59,6 +62,10 @@ public abstract class GUIBasicButton {
    */
   protected void setOnClickEvent(EventHandler<ActionEvent> actionEvent) {
     button.setOnAction(actionEvent);
+  }
+
+  public Node getButton() {
+    return buttonContainer;
   }
 
 }
