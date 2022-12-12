@@ -2,6 +2,7 @@ package ooga.model.collisions.physics;
 
 import java.util.ArrayList;
 import java.util.List;
+import ooga.model.entities.entitymodels.CollidableEntity;
 import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.entitymodels.MainCharacter;
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +18,7 @@ public class PhysicsCalculator {
    * @param collider the first entity, to be acted on
    * @param collided the second entity, that is collided with
    */
-  public CollisionPhysicsData calculatePhysicsData(Entity collider, Entity collided) {
+  public CollisionPhysicsData calculatePhysicsData(CollidableEntity collider, Entity collided) {
     throwExceptionIfNotColliding(collider, collided);
     DirectionDistancePair ddp = checkDirection(collider, collided);
     CollisionPhysicsData info = new CollisionPhysicsData(true, 1, ddp.direction);
