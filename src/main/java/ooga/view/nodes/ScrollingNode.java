@@ -1,5 +1,6 @@
 package ooga.view.nodes;
 
+import java.util.Objects;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -14,18 +15,18 @@ public class ScrollingNode extends ImageView {
   private double backY;
   public ScrollingNode(int xCoordinate, int yCoordinate, double height, double width, String url){
     super();
-    update(xCoordinate, yCoordinate);
-    this.setFitHeight(height);
-    this.setFitWidth(width);
+    update(xCoordinate, yCoordinate, height, width);
 
-    this.setImage(new Image(getClass().getResourceAsStream(url)));
+    this.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(url))));
   }
 
-  public void update(double xCoordinate, double yCoordinate){
+  public void update(double xCoordinate, double yCoordinate, double height, double width){
     backX = xCoordinate;
     backY = yCoordinate;
     this.setX(xCoordinate);
     this.setY(yCoordinate);
+    this.setFitWidth(width);
+    this.setFitHeight(height);
   }
 
   public double getBackX(){
