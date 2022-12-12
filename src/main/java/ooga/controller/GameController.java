@@ -6,8 +6,6 @@ import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.controller.saveloadhandling.CheckpointDirectory;
 import ooga.model.Model;
-import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
-import ooga.model.collisions.collisionhandling.exceptions.NoCollisionCriteriaMatchException;
 import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
@@ -29,13 +27,15 @@ public class GameController {
     private Model model;
     private Queue<KeyCode> keyCodeQueue;
     private String myLevel;
-    private String playerName;
+    private String playerName = "user";
     private String language;
     private boolean gameRunning = true;
 
     private JSONObject initialLevelJSON;
     private JSONObject initialCollisionJSON;
     private JSONObject initialControlsJSON;
+
+    private DatabaseAccess access;
 
     /**
      * The GameController needs to have a mapping of backend to frontend objects
@@ -53,11 +53,11 @@ public class GameController {
             initialControlsJSON = jsonDecoder.initialJSONInformation(controlsJSON);
             initialCollisionJSON = jsonDecoder.initialJSONInformation(collisionJSON);
             initialLevelJSON = jsonDecoder.initialJSONInformation(levelJSON);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
+
+        access = new DatabaseAccess(jsonDecoder.game());
 
         model = new Model(container.entities(), this::endGame);
         keyCodeQueue = new LinkedList<>();
@@ -74,6 +74,14 @@ public class GameController {
         model.moveMovers();
         container.update();
         return container.viewables();
+    }
+
+    public void setHighScore(int score){
+        access.postHighScore(playerName, score);
+    }
+
+    public org.json.JSONObject getHighScores(){
+        return access.getHighScores();
     }
 
     public void handleKeyInput(KeyCode code){
