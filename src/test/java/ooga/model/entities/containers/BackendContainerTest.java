@@ -1,10 +1,11 @@
 package ooga.model.entities.containers;
 
 import ooga.controller.JSONInformationDecoder;
-import ooga.model.entities.Entity;
-import ooga.model.entities.collidable.CollidableEntity;
+import ooga.model.entities.entitymodels.Entity;
+import ooga.model.entities.entitymodels.CollidableEntity;
 import ooga.model.entities.info.EntityInfo;
-import ooga.model.entities.livingentities.Alive;
+import ooga.model.entities.alive.Alive;
+import ooga.model.entities.movement.Mover;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -45,7 +46,7 @@ public class BackendContainerTest {
     container.addNewEntity(0, 0, 0, 0, "goomba", info);
 
     int moverCounter = 0;
-    for(AutomaticMover c : container.automaticMovers()){
+    for(Mover c : container.movers()){
       moverCounter++;
     }
 
@@ -72,7 +73,7 @@ public class BackendContainerTest {
     container.addNewEntity(0, 0, 0, 0, "static_entity", info);
 
     int moverCounter = 0;
-    for(AutomaticMover c : container.automaticMovers()){
+    for(Mover c : container.movers()){
       moverCounter++;
     }
 
@@ -116,7 +117,7 @@ public class BackendContainerTest {
     container.addNewEntity(0, 0, 0, 0, "end", info);
 
     int moverCounter = 0;
-    for(AutomaticMover c : container.automaticMovers()){
+    for(Mover c : container.movers()){
       moverCounter++;
     }
 

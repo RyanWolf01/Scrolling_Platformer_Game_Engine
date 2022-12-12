@@ -2,8 +2,8 @@ package ooga.model.actions.moveractions;
 
 import java.util.ResourceBundle;
 import ooga.controller.exceptions.MovementDataException;
-import ooga.model.entities.deadmovingentities.Mover;
-import ooga.model.entities.deadmovingentities.MoverData;
+import ooga.model.entities.movement.Mover;
+import ooga.model.entities.movement.MoverData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,7 +17,7 @@ public class FlyPowerUp implements MoverAction {
     double tempVelocity;
     try{
       tempVelocity = Double.parseDouble(
-          ResourceBundle.getBundle("properties/movement").getString("fly_multiplier"));
+          ResourceBundle.getBundle("properties/powerups").getString("fly_multiplier"));
     }
     catch(NumberFormatException exception){
       throw new MovementDataException("incorrect velocity format", exception);

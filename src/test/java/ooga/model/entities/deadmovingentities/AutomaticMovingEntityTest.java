@@ -7,7 +7,10 @@ import ooga.model.actions.moveractions.basicmovement.RightMovement;
 import ooga.model.actions.moveractions.basicmovement.UpwardMovement;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
+import ooga.model.entities.entitymodels.BasicMovingEntity;
+import ooga.model.entities.entitymodels.MovingEntity;
 import ooga.model.entities.info.EntityInfo;
+import ooga.model.entities.movement.MovementQueue;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,7 +24,7 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    MovingEntity movingEntity = new BasicMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
 
     movingEntity.changeVelocities(5,0);
     movingEntity.move();
@@ -34,7 +37,7 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    MovingEntity movingEntity = new BasicMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
 
     movingEntity.changeVelocities(-100,0);
     movingEntity.move();
@@ -47,7 +50,7 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    MovingEntity movingEntity = new BasicMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
 
     movingEntity.changeVelocities(0,0);
     movingEntity.move();
@@ -60,7 +63,7 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    MovingEntity movingEntity = new BasicMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
 
     movingEntity.changeVelocities(0,5);
     movingEntity.move();
@@ -73,7 +76,7 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    MovingEntity movingEntity = new BasicMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
 
     movingEntity.changeVelocities(0,-100);
     movingEntity.move();
@@ -86,7 +89,7 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new LeftMovement());
     movementQueue.addMove(new RightMovement());
 
-    MovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    MovingEntity movingEntity = new BasicMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
 
     movingEntity.changeVelocities(0,0);
     movingEntity.move();
@@ -99,8 +102,8 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new RightMovement());
     movementQueue.addMove(new RightMovement());
 
-    AutomaticMovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
-    movingEntity.automaticMove();
+    BasicMovingEntity movingEntity = new BasicMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    movingEntity.move();
     assertEquals(5, movingEntity.getXCoordinate());
   }
 
@@ -110,10 +113,10 @@ public class AutomaticMovingEntityTest {
     movementQueue.addMove(new RightMovement());
     movementQueue.addMove(new UpwardMovement());
 
-    AutomaticMovingEntity movingEntity = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
-    movingEntity.automaticMove();
-    movingEntity.automaticMove();
-    movingEntity.automaticMove();
+    BasicMovingEntity movingEntity = new BasicMovingEntity(null,0, 0, 2, 2, new EntityInfo("test"), movementQueue);
+    movingEntity.move();
+    movingEntity.move();
+    movingEntity.move();
     assertEquals(10, movingEntity.getXCoordinate());
     assertEquals(10, movingEntity.getYCoordinate());
   }
@@ -121,14 +124,13 @@ public class AutomaticMovingEntityTest {
   @Test
   void testPerformActionsPos1(){
     MovementQueue movementQueue = new MovementQueue();
-    AutomaticMovingEntity character = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    BasicMovingEntity character = new BasicMovingEntity(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();
     ActionData data = new ActionData("ooga.model.actions.moveractions.basicmovement.RightMovement", "MoverAction", params);
     actionList.add(data);
     ActionDataContainer container = new ActionDataContainer(actionList);
-    character.performActions(container);
 
     assertEquals(5, character.getXCoordinate());
   }
@@ -136,14 +138,13 @@ public class AutomaticMovingEntityTest {
   @Test
   void testPerformActionsPos2(){
     MovementQueue movementQueue = new MovementQueue();
-    AutomaticMovingEntity character = new AutomaticMovingEntity(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
+    BasicMovingEntity character = new BasicMovingEntity(null,0, 0, 2, 2, new EntityInfo("GOOMBA"), movementQueue);
 
     List<ActionData> actionList = new ArrayList<>();
     List<String> params = new ArrayList<>();
     ActionData data = new ActionData("ooga.model.actions.moveractions.Bounce", "MoverAction", params);
     actionList.add(data);
     ActionDataContainer container = new ActionDataContainer(actionList);
-    character.performActions(container);
 
     assertEquals(5, character.getYCoordinate());
   }

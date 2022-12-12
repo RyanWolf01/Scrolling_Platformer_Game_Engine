@@ -4,13 +4,13 @@ import java.util.Arrays;
 import ooga.controller.JSONInformationDecoder;
 import ooga.model.Model;
 import ooga.model.entities.*;
-import ooga.model.entities.collidable.CollidableEntity;
-import ooga.model.entities.Entity;
-import ooga.model.entities.StaticEntity;
+import ooga.model.entities.entitymodels.CollidableEntity;
+import ooga.model.entities.entitymodels.Entity;
+import ooga.model.entities.entitymodels.StaticEntity;
 import ooga.model.entities.info.EntityInfo;
-import ooga.model.entities.livingentities.BasicStaticCharacter;
-import ooga.model.entities.livingentities.movingentities.MovingCharacter;
-import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
+import ooga.model.entities.entitymodels.BasicStaticCharacter;
+import ooga.model.entities.entitymodels.MovingCharacter;
+import ooga.model.entities.entitymodels.MainCharacter;
 import ooga.model.entities.modelcallers.GameEnderCollidableEntity;
 
 
@@ -56,6 +56,7 @@ public class BackendContainer {
       livers.addLiver(mainCharacter);
       newEntity = mainCharacter;
       collidables.addCollidable(mainCharacter); // all main characters are collidable
+      movers.addMover(mainCharacter);
     }
     else if(isMoverType(type)){
       MovingCharacter newMover = factory.makeMover(xCoordinate,yCoordinate, height, width, type, info);

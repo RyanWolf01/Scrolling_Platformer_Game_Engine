@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
+import ooga.model.entities.entitymodels.BasicStaticCharacter;
+import ooga.model.entities.entitymodels.StaticCharacter;
 import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 
@@ -77,7 +79,7 @@ public class BasicStaticCharacterTest {
     ActionData data = new ActionData("ooga.model.actions.aliveactions.IncreaseLife", "AliveAction", params);
     actionList.add(data);
     ActionDataContainer container = new ActionDataContainer(actionList);
-    character.performActions(container);
+//    character.performActions(container);
 
     assertEquals(2, character.getLives());
   }
@@ -91,7 +93,7 @@ public class BasicStaticCharacterTest {
     ActionData data = new ActionData("ooga.model.actions.aliveactions.Kill", "AliveAction", params);
     actionList.add(data);
     ActionDataContainer container = new ActionDataContainer(actionList);
-    character.performActions(container);
+//    character.performActions(container);
 
     assertEquals(2, character.getLives());
   }

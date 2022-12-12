@@ -4,10 +4,10 @@ package ooga.model.collisions.physics;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import ooga.model.entities.Entity;
-import ooga.model.entities.StaticEntity;
+import ooga.model.entities.entitymodels.Entity;
+import ooga.model.entities.entitymodels.StaticEntity;
 import ooga.model.entities.info.EntityInfo;
-import ooga.model.entities.livingentities.movingentities.maincharacters.MainCharacter;
+import ooga.model.entities.entitymodels.MainCharacter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ public class GravityCheckerTest {
   @BeforeEach
   public void setup(){
     EntityInfo info = new EntityInfo("mario");
-    mario = new MainCharacter(null, 10, 10, 2, 2, info);
+    mario = new MainCharacter(null, 10, 10, 2, 2, info, null);
   }
 
   @Test

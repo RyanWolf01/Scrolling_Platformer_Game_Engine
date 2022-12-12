@@ -1,8 +1,7 @@
 package ooga.model.actions.moveractions.basicmovement;
 
-import java.util.ResourceBundle;
 import ooga.model.actions.moveractions.MoverAction;
-import ooga.model.entities.deadmovingentities.Mover;
+import ooga.model.entities.movement.Mover;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,7 +17,8 @@ public class LeftMovement implements MoverAction {
   @Override
   public void execute(Mover entity){
     if (! entity.canMoveLeft()) return;
-    entity.changeVelocities(entity.getMoverData().getLeftActionVelocity(), 0);
+    if(entity.getXVelocity() > entity.getMoverData().getLeftActionVelocity())
+      entity.changeVelocities(entity.getMoverData().getLeftActionVelocity(), 0);
   }
 
 }

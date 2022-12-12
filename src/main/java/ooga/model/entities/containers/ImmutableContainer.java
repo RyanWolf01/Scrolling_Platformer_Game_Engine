@@ -1,6 +1,6 @@
 package ooga.model.entities.containers;
 
-import ooga.model.entities.ImmutableEntity;
+import ooga.model.entities.entitymodels.ImmutableEntity;
 
 /**
  * Control use of entity container in the front end (don't allow view to add entities)

@@ -1,9 +1,8 @@
 package ooga.model.collisions.physics;
 
-import java.util.ResourceBundle;
 import ooga.model.actions.moveractions.Gravity;
 import ooga.model.entities.containers.BackendContainer;
-import ooga.model.entities.deadmovingentities.Mover;
+import ooga.model.entities.movement.Mover;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
