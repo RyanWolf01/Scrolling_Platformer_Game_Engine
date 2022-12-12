@@ -1,5 +1,6 @@
 package ooga.model.actions.moveractions.moveout;
 
+import java.util.ResourceBundle;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.entities.movement.Mover;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +16,7 @@ public class UpwardMoveOut implements MoverAction {
    */
   @Override
   public void execute(Mover entity){
-    entity.changeVelocities(0, -0.5);
+    entity.changeVelocities(0,  entity.getMoverData().getGravityVelocity() * -2);
   }
 
 }

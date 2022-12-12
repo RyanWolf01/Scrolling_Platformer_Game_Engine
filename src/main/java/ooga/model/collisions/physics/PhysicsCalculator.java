@@ -2,9 +2,11 @@ package ooga.model.collisions.physics;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.geometry.Bounds;
 import ooga.model.entities.entitymodels.CollidableEntity;
 import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.view.nodes.ScrollingNode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -44,7 +46,7 @@ public class PhysicsCalculator {
    * @param collided Entity that's being collided with
    * @return entitiesAreColliding
    */
-  public boolean areColliding(Entity collider, Entity collided) {
+  public boolean areColliding(CollidableEntity collider, Entity collided) {
     if (collider.getXCoordinate() + collider.getWidth() < collided.getXCoordinate()) return false;
     if (collider.getXCoordinate() > collided.getXCoordinate() + collided.getWidth()) return false;
     if (collider.getYCoordinate() + collider.getHeight() < collided.getYCoordinate()) return false;
@@ -53,7 +55,8 @@ public class PhysicsCalculator {
     return true;
   }
 
-  private void throwExceptionIfNotColliding(Entity collider, Entity collided) {
+// collider.getImmutableEntityInfo().get(ImmutableInfo.COLLIDABLE_TYPE_KEY).equalsIgnoreCase("MARIO") && collider.getYCoordinate() < 50
+  private void throwExceptionIfNotColliding(CollidableEntity collider, Entity collided) {
     if (!areColliding(collider, collided)) {
       throw new EntitiesNotCollidingException("The entities provided aren't colliding! Here's "
           + "their entity info: \n" + collider.getImmutableEntityInfo() + "\n" +

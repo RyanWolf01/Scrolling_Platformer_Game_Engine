@@ -1,6 +1,7 @@
 package ooga.model.collisions.physics;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
@@ -71,6 +72,14 @@ public class PhysicsCalculatorTest {
     CollidableEntity collider = new MainCharacter(new DefaultCollisionChart(), 0, 0, 100, 50, new EntityInfo("MARIO"), null);
 
     assertThrows(EntitiesNotCollidingException.class, () -> physicsCalculator.calculatePhysicsData(collider, collided));
+  }
+
+  @Test
+  public void checkAreColliding() {
+    PhysicsCalculator physicsCalculator = new PhysicsCalculator();
+    CollidableEntity collider = new MainCharacter(new DefaultCollisionChart(), 0, 0, 100, 50, new EntityInfo("MARIO"), null);
+    Entity collided = new StaticEntity(10, 110, 5, 50, new EntityInfo("yeet"));
+    assertFalse(physicsCalculator.areColliding(collider, collided));
   }
 
 

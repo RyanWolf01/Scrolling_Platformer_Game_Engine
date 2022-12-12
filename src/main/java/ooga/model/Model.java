@@ -50,6 +50,19 @@ public class Model {
     entities.mainCharacter().acceptAliveAction(action);
   }
 
+  public void checkForAndHandleCollisions() {
+    PhysicsCalculator physicsCalculator = new PhysicsCalculator();
+
+    preCollisionDetectionLoop();
+    for (CollidableEntity collidable : entities.collidables()) {
+      for (Entity entity : entities.entities()) {
+        if (!collidable.equals(entity) && physicsCalculator.areColliding(collidable, entity)) {
+          handleCollision(collidable, entity);
+        }
+      }
+    }
+  }
+
   /**
    * Handles the collision with backend logic
    * @param colliderEntity first entity that collides
