@@ -1,13 +1,19 @@
 package ooga.model.collisionhandling;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
-import ooga.model.collisions.collisionhandling.CriteriaDefault;
+import ooga.model.collisions.collisionhandling.CollisionData;
+import ooga.model.collisions.collisionhandling.Criteria;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
+import ooga.model.collisions.collisionhandling.exceptions.NoCollisionCriteriaMatchException;
+import ooga.model.collisions.physics.CollisionDirection;
+import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.entities.info.Info;
 import org.junit.jupiter.api.Test;
 
@@ -17,55 +23,74 @@ public class DefaultCollisionChartTest {
   public void testDefaultCollisionChart() {
     CollisionChart cc = new DefaultCollisionChart();
 
-  }
+    // Generate criteria1 that matches with collisionData1
+    CollisionData collisionData1 = new CollisionData(new Info(), new Info(),
+        new CollisionPhysicsData(true, 1, CollisionDirection.RIGHT));
+    ActionDataContainer actionDataContainer1 = new ActionDataContainer();
+    Criteria criteria1 = getCriteria(collisionData1, actionDataContainer1);
+    cc.addCriteria(criteria1);
 
-  private CriteriaDefault getCriteria1() {
-    // Make criteria data
-    Map<String, String> map = new HashMap<>();
-    map.put("MY_TYPE", "123");
-    map.put("OPPONENT_FOO", "bar");
-    map.put("collision_direction", "bottom");
+    // Generate criteria2 that matches with collisionData2
+    CollisionData collisionData2 = new CollisionData(new Info(), new Info(),
+        new CollisionPhysicsData(true, 1, CollisionDirection.RIGHT));
+    ActionDataContainer actionDataContainer2 = new ActionDataContainer();
+    Criteria criteria2 = getCriteria(collisionData2, actionDataContainer2);
+    cc.addCriteria(criteria2);
 
-    // Make ActionDataContainer data
-    ActionDataContainer adc = getActionDataContainer();
+    // Generate criteria3 that matches with collisionData3
+    CollisionData collisionData3 = new CollisionData(new Info(), new Info(),
+        new CollisionPhysicsData(true, 1, CollisionDirection.RIGHT));
+    ActionDataContainer actionDataContainer3 = new ActionDataContainer();
+    Criteria criteria3 = getCriteria(collisionData3, actionDataContainer3);
+    cc.addCriteria(criteria3);
 
-    // Create Criteria object
-    return new CriteriaDefault(map, adc);
-
-  }
-
-  private CriteriaDefault getCriteria2() {
-    // Make criteria data
-    Map<String, String> map = new HashMap<>();
-    map.put("my_Test", "123");
-    map.put("opponent_FOO", "bar");
-    map.put("collision_direction", "bottom");
-
-    // Make ActionDataContainer data
-    ActionDataContainer adc = getActionDataContainer();
-
-    // Create Criteria object
-    return new CriteriaDefault(map, adc);
+    ActionDataContainer matchedADC = cc.getActionDatas(collisionData2);
+    assertEquals(actionDataContainer2, matchedADC);
+    assertNotEquals(actionDataContainer1, matchedADC);
+    assertNotEquals(actionDataContainer3, matchedADC);
 
   }
 
-  private ActionDataContainer getActionDataContainer() {
-    ActionDataContainer adc = new ActionDataContainer();
-    adc.addActionData(new ActionData("ooga.model.actions.moveractions.basicmovement.RightMovement", "MoverAction", new ArrayList<>()));
-    return adc;
+  @Test
+  public void testDefaultCollisionChart_throwsExceptionWhenNothingMatched() {
+    CollisionChart cc = new DefaultCollisionChart();
+
+    // Generate criteria1 that matches with collisionData1
+    CollisionData collisionData1 = new CollisionData(new Info(), new Info(),
+        new CollisionPhysicsData(true, 1, CollisionDirection.RIGHT));
+    ActionDataContainer actionDataContainer1 = new ActionDataContainer();
+    Criteria criteria1 = getCriteria(collisionData1, actionDataContainer1);
+    cc.addCriteria(criteria1);
+
+    CollisionData collisionData2 = new CollisionData(new Info(), new Info(),
+        new CollisionPhysicsData(true, 1, CollisionDirection.RIGHT));
+
+    assertThrows(NoCollisionCriteriaMatchException.class, () -> cc.getActionDatas(collisionData2));
+
   }
 
-  private Info getInfoA() {
-    Info infoA = new Info();
-    infoA.set("tesT", "123");
-    infoA.set("alsdfj", "2392");
-    return infoA;
+  @Test
+  public void testDefaultCollisionChart_throwsExceptionWhenNothingLoaded() {
+    CollisionChart cc = new DefaultCollisionChart();
+    CollisionData collisionData = new CollisionData(new Info(), new Info(), new CollisionPhysicsData(true, 1, CollisionDirection.BOTTOM));
+    assertThrows(NoCollisionCriteriaMatchException.class, () -> cc.getActionDatas(collisionData));
   }
 
-  private Info getInfoB() {
-    Info infoB = new Info();
-    infoB.set("foo", "BAR");
-    infoB.set("dafskl", "492301");
-    return infoB;
+  @Test
+  public void testAddCriteriaMethod() {
+    CollisionChart cc = new DefaultCollisionChart();
+    CollisionData collisionData = new CollisionData(new Info(), new Info(), new CollisionPhysicsData(true, 1, CollisionDirection.BOTTOM));
+    assertThrows(NoCollisionCriteriaMatchException.class, () -> cc.getActionDatas(collisionData));
+
+    ActionDataContainer res = new ActionDataContainer();
+    cc.addCriteria(new CriteriaMock(collisionData, res));
+    assertEquals(cc.getActionDatas(collisionData), res);
+  }
+
+
+  private Criteria getCriteria(CollisionData collisionDataToMatch,
+      ActionDataContainer actionDataContainer) {
+    actionDataContainer.addActionData(new ActionData("1", "1", new ArrayList<>()));
+    return new CriteriaMock(collisionDataToMatch, actionDataContainer);
   }
 }
