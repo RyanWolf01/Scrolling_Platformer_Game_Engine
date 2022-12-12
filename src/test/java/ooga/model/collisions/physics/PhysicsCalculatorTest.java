@@ -17,7 +17,7 @@ public class PhysicsCalculatorTest {
   @Test
   public void checkRightCollision() {
     PhysicsCalculator physicsCalculator = new PhysicsCalculator();
-    Entity collider = new MainCharacter(new DefaultCollisionChart(), 50, 0, 100, 50, new EntityInfo("MARIO"), null);
+    Entity collider = new MainCharacter(new DefaultCollisionChart(), 50, 0, 100, 100, new EntityInfo("MARIO"), null);
     Entity collided = new StaticEntity(150, 0, 100, 50, new Info());
 
     CollisionPhysicsData res = physicsCalculator.calculatePhysicsData(collider, collided);
