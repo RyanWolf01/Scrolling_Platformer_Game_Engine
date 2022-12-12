@@ -42,6 +42,7 @@ public class StartScreen {
   private ComboBox<String> languageSelector;
   private String slash = System.getProperty("file.separator");
   private static final Logger LOG = LogManager.getLogger(StartScreen.class);
+  public static ResourceBundle languageResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE + "languages.English");
 
   Stage mainStage;
   public StartScreen(Stage primaryStage){
@@ -56,34 +57,42 @@ public class StartScreen {
     gameChooser = new GridPane();
     getLevelDirectoryMap();
 
+
+    languageSelector = new ComboBox<>();
+    languageSelector.setPromptText("Choose a Language");
+    LOG.info(View.viewResources.getString("languages").split(","));
+    languageSelector.getItems().addAll(View.viewResources.getString("languages").split(","));
+    languageSelector.setOnAction(event -> {
+      changeLanguage(languageSelector.getValue());
+      languageSelector.setVisible(false);
+      createAllButtons();
+    });
+    gameChooser.add(languageSelector, 0, 0);
+
+
+    return new Scene(gameChooser, 400, 400);
+  }
+
+  private void createAllButtons(){
     startGame = new Button();
-    startGame.setText("Start Game");
+    startGame.setText(languageResources.getString("start_game"));
 
     startGame.setOnAction(event -> {
       new View(mainStage, gameSelector.getValue(), levelDirectory, nameCreator.getText(0, Math.min(nameCreator.getText().length(), MAX_USER_NAME_LENGTH)), languageSelector.getValue());
     });
 
-    nameCreator = new TextField("UserName");
+    nameCreator = new TextField(languageResources.getString("enter_name"));
     gameChooser.add(nameCreator, 0, 0);
 
-    languageSelector = new ComboBox<String>();
-    languageSelector.setPromptText("Choose a Language");
-    LOG.info(View.viewResources.getString("languages").split(","));
-    languageSelector.getItems().addAll(View.viewResources.getString("languages").split(","));
-    gameChooser.add(languageSelector, 0, 1);
-
-    gameChooser.add(startGame, 0, 4);
+    gameChooser.add(startGame, 0, 3);
     startGame.setVisible(false);
 
     levelSelection = createLevelButton();
-    gameChooser.add(levelSelection, 0, 3);
+    gameChooser.add(levelSelection, 0, 2);
     levelSelection.setVisible(false);
 
     gameSelector = new GameSelector(this);
-    gameChooser.add(gameSelector, 0, 2);
-
-
-    return new Scene(gameChooser, 400, 400);
+    gameChooser.add(gameSelector, 0, 1);
   }
 
   public void changeBackground(String url){
@@ -95,16 +104,16 @@ public class StartScreen {
     Button levelButton = new Button();
 
 
-    levelButton.setText("Choose Level");
+    levelButton.setText(languageResources.getString("choose_level"));
     levelButton.setOnAction(e -> {
-      String levelFile = chooseLevel("Choose a Level Directory");
+      String levelFile = chooseLevel(languageResources.getString("choose_level"));
       if(levelFile != null){
         levelButton.setText(levelFile);
         startGame.setVisible(true);
         LOG.info("Got Level Directory Successfully");
       } else {
         levelButton.setTextFill(Color.RED);
-        levelButton.setText("Not a Valid Level Directory");
+        levelButton.setText(languageResources.getString("not_valid_directory"));
         startGame.setVisible(false);
         LOG.error("Did not get Level Directory");
       }
@@ -123,7 +132,7 @@ public class StartScreen {
   }
 
   private String chooseLevel(String prompt){
-    String fileDirectory = System.getProperty("user.dir") + slash + "data" + slash+ "games" + slash + gameToGame.get(gameSelector.getValue());
+    String fileDirectory = System.getProperty("user.dir") + slash + "data" + slash + "games" + slash + gameToGame.get(gameSelector.getValue());
     LOG.debug(fileDirectory);
     directoryChooser = new DirectoryChooser();
     try{
@@ -145,7 +154,7 @@ public class StartScreen {
     try{
       directoryName = levelDirectory.getName();
     } catch (NullPointerException e){
-      createWarning("Please Choose a Valid Level Directory");
+      createWarning(languageResources.getString("not_valid_directory"));
       directoryName = null;
     }
     return directoryName;
@@ -160,6 +169,10 @@ public class StartScreen {
 
   public void changeLevelSelectionButtonVisible(){
     levelSelection.setVisible(true);
+  }
+
+  private void changeLanguage(String language){
+    languageResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE + "languages." + language);
   }
 
 }
