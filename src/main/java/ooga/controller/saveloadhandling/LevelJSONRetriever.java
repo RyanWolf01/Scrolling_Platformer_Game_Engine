@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 import ooga.model.entities.alive.Alive;
 import ooga.model.entities.containers.BackendContainer;
+import ooga.model.entities.containers.EntityContainer;
 import ooga.model.entities.containers.LivingContainer;
 import ooga.model.entities.entitymodels.Entity;
+import ooga.model.entities.info.Info;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
@@ -28,25 +30,49 @@ public class LevelJSONRetriever {
 
   public JSONObject currentLevelJSON;
   private List<Entity> seenEntities;
-  public static final String ENTITY_KEY = "Entity";
 
-  public LevelJSONRetriever(Map<String, Object> infoMap, BackendContainer backendContainer, LivingContainer livingContainer) {
-    this.currentLevelJSON = generateLevelJSON(infoMap, backendContainer, livingContainer);
+  public LevelJSONRetriever(Map<String, Object> infoMap, EntityContainer entityContainer, LivingContainer livingContainer) {
+    this.currentLevelJSON = generateLevelJSON(infoMap, entityContainer, livingContainer);
   }
 
-  public JSONObject generateLevelJSON(Map<String, Object> generalInfoMap, BackendContainer backendContainer, LivingContainer livingContainer) {
+  public JSONObject generateLevelJSON(Map<String, Object> generalInfoMap, EntityContainer entityContainer, LivingContainer livingContainer) {
     currentLevelJSON = new JSONObject();
     for (String key : generalInfoMap.keySet()) {
       currentLevelJSON.put(key, generalInfoMap.get(key));
     }
-    JSONArray entityJSONObject = new JSONArray();
-    for(Alive liver : livingContainer) {
+    JSONArray entityJSONArray = new JSONArray();
+    for (Alive liver : livingContainer) {
+      JSONObject singleEntity = new JSONObject();
       Entity entity = (Entity) liver;
-      seenEntities.add(entity);
-      entity.
+      // singleEntity.put("type", ???)
+      singleEntity.put("x", entity.getXCoordinate());
+      singleEntity.put("y", entity.getXCoordinate());
+      singleEntity.put("height", entity.getXCoordinate());
+      singleEntity.put("width", entity.getXCoordinate());
+      Info info = (Info) entity.getImmutableEntityInfo();
+      for (String key : info) {
+        singleEntity.put(key, info.get(key));
+      }
+      entityJSONArray.add(singleEntity);
     }
 
-    currentLevelJSON.put(ENTITY_KEY, entityJSONObject);
+    for (Entity entity : entityContainer) {
+      if (!livingContainer.contains((Alive) entity)) {
+        JSONObject singleEntity = new JSONObject();
+        // singleEntity.put("type", ???)
+        singleEntity.put("x", entity.getXCoordinate());
+        singleEntity.put("y", entity.getXCoordinate());
+        singleEntity.put("height", entity.getXCoordinate());
+        singleEntity.put("width", entity.getXCoordinate());
+        Info info = (Info) entity.getImmutableEntityInfo();
+        for (String key : info) {
+          singleEntity.put(key, info.get(key));
+        }
+        entityJSONArray.add(singleEntity);
+      }
+    }
+
+    currentLevelJSON.put(ENTITY_KEY, entityJSONArray);
     return currentLevelJSON;
   }
 
