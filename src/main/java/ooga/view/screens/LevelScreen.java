@@ -7,7 +7,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
-import ooga.Main;
 import ooga.controller.GameController;
 import ooga.view.GameCamera;
 import ooga.view.Margin;
@@ -20,10 +19,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Iterator;
 
 public class LevelScreen {
 
@@ -48,7 +45,7 @@ public class LevelScreen {
     myController = controller;
   }
 
-  public Scene initiateLevel(File levelFile){
+  public Scene makeScene(File levelFile){
     levelPane = new Pane();
 
     levelPane.setId("Pane");

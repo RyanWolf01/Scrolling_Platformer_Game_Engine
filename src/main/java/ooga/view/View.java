@@ -10,6 +10,7 @@ import ooga.controller.GameController;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.screens.EndScreen;
 import ooga.view.screens.LevelScreen;
+import ooga.view.screens.PauseScreen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,7 +35,7 @@ public class View {
     myController.setPlayerName(playerName);
     myController.setLanguage(language);
     level = new LevelScreen(myController);
-    myStage.setScene(level.initiateLevel(new File(levelDirectory + "/level.json")));
+    myStage.setScene(level.makeScene(new File(levelDirectory + "/level.json")));
     myStage.setTitle(GameTitle);
 
     levelAnimation = new Timeline();
@@ -52,7 +53,7 @@ public class View {
   public void finishLevel(){
     levelAnimation.stop();
     EndScreen endScreen = new EndScreen();
-    myStage.setScene(endScreen.initiateScene(myController.getLevelDirectory() + Main.slash + "scores.json"));
+    myStage.setScene(endScreen.makeScene(myController.getLevelDirectory() + Main.slash + "scores.json"));
     myStage.setTitle("You Won!");
   }
 
@@ -77,12 +78,14 @@ public class View {
   private void pause(){
     LOG.info("Pause Game");
     levelAnimation.pause();
+    PauseScreen pause = new PauseScreen(this);
+    myStage.setScene(pause.makeScene());
     //Pause all stepping and animations
     //Display Resume, Save, Load, and Quit Buttons
     //On Resume,
   }
 
-  private void play(){
+  public void play(){
     LOG.info("Play Game");
     levelAnimation.play();
   }
