@@ -8,6 +8,9 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Iterator;
+
+import ooga.controller.exceptions.BadDatabaseAccessException;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DatabaseAccess {
@@ -18,7 +21,7 @@ public class DatabaseAccess {
     this.game = game;
   }
 
-  private JSONObject getHighScores(){
+  public JSONObject getHighScores(){
     HttpURLConnection con = null;
     JSONObject result = null;
 
@@ -38,9 +41,11 @@ public class DatabaseAccess {
 
       String received = content.toString();
 
-      result = new JSONObject(received);
-      //System.out.println(result);
-
+      try{
+        result = new JSONObject(received);
+      } catch(JSONException e){
+        throw new BadDatabaseAccessException("nothing_received", e);
+      }
 
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -51,6 +56,10 @@ public class DatabaseAccess {
 
   public void postHighScore(String username, int score){
     JSONObject high_scores = getHighScores();
+
+    if(high_scores.has(username) && (int) high_scores.get(username) >= score){
+      return;
+    }
 
     high_scores.put(username, score);
 
