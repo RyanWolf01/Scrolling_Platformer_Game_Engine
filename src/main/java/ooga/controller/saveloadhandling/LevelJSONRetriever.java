@@ -57,7 +57,7 @@ public class LevelJSONRetriever {
     }
 
     for (Entity entity : entityContainer) {
-      if (!livingContainer.contains((Alive) entity)) {
+      if (!seenEntities.contains(entity)) {
         JSONObject singleEntity = new JSONObject();
         // singleEntity.put("type", ???)
         singleEntity.put("x", entity.getXCoordinate());
@@ -73,6 +73,7 @@ public class LevelJSONRetriever {
     }
 
     currentLevelJSON.put(ENTITY_KEY, entityJSONArray);
+
     return currentLevelJSON;
   }
 
