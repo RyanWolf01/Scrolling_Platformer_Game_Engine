@@ -50,21 +50,37 @@ public class Model {
     entities.mainCharacter().acceptAliveAction(action);
   }
 
+  public void checkForAndHandleCollisions() {
+    PhysicsCalculator physicsCalculator = new PhysicsCalculator();
+
+    preCollisionDetectionLoop();
+    for (CollidableEntity collidable : entities.collidables()) {
+      for (Entity entity : entities.entities()) {
+        if (!collidable.equals(entity) && physicsCalculator.areColliding(collidable, entity)) {
+          handleCollision(collidable, entity);
+        }
+      }
+    }
+  }
+
   /**
    * Handles the collision with backend logic
-   * @param collider first entity that collides
-   * @param collided second entity that is collided with
+   * @param colliderEntity first entity that collides
+   * @param collidedEntity second entity that is collided with
    */
   // for breakpoint:
   // collider.getImmutableEntityInfo().get(ImmutableInfo.TYPE_KEY).equals("goomba") && collided.getImmutableEntityInfo().get(ImmutableInfo.TYPE_KEY).equals("mario")
-  public void handleCollision(Entity collider, Entity collided) {
-    if (collider.hasCurrentCollisionWith(collided)) {
-      handleCollisionHelper(collider, collided, collider.physicsDataOfCurrentCollisionWith(collided));
+  public void handleCollision(Entity colliderEntity, Entity collidedEntity) {
+    if (!entities.isCollidable(colliderEntity)) return;
+    CollidableEntity collider = getCollidableEntity(colliderEntity);
+
+    if (collider.hasCurrentCollisionWith(collidedEntity)) {
+      handleCollisionHelper(collider, collidedEntity, collider.physicsDataOfCurrentCollisionWith(collidedEntity));
     }
     else {
-      handleCollisionHelper(collider, collided);
+      handleCollisionHelper(collider, collidedEntity);
     }
-    collider.getMyCurrentCollisions().get(collided).setCollisionIsFresh(true);
+    collider.getMyCurrentCollisions().get(collidedEntity).setCollisionIsFresh(true);
   }
 
   /**
@@ -97,21 +113,23 @@ public class Model {
     }
   }
 
-  private void handleCollisionHelper(Entity collider, Entity collided) {
+  private CollidableEntity getCollidableEntity(Entity collider) {
     for(CollidableEntity collidable : entities.collidables()){
       if(collidable.equals(collider)){
-        collidable.onCollision(collided, new PhysicsCalculator().calculatePhysicsInfoAndMoveColliderOutsideOfCollided(collider, collided));
+        return collidable;
       }
     }
+
+    throw new RuntimeException("Improper usage of this private method. This should only be called"
+        + "if it is known that collider is a CollidableEntity");
   }
 
-  private void handleCollisionHelper(Entity collider, Entity collided, CollisionPhysicsData currCollisionPhysicsData) {
-    for(CollidableEntity collidable : entities.collidables()){
-      if(collidable.equals(collider)){
-        collidable.onCollision(collided, new PhysicsCalculator().updatePhysicsDataOfCurrentCollision(
-            currCollisionPhysicsData));
-      }
-    }
+  private void handleCollisionHelper(CollidableEntity collider, Entity collided) {
+    collider.onCollision(collided, new PhysicsCalculator().calculatePhysicsData(collider, collided));
+  }
+
+  private void handleCollisionHelper(CollidableEntity collider, Entity collided, CollisionPhysicsData currCollisionPhysicsData) {
+    collider.onCollision(collided, new PhysicsCalculator().updatePhysicsDataOfCurrentCollision(currCollisionPhysicsData));
   }
 
   private void setEndGameMethods(EndGameCallable endGameMethod) {

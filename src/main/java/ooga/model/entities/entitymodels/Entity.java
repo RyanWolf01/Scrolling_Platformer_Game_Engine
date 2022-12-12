@@ -82,32 +82,4 @@ public abstract class Entity implements ImmutableEntity{
         return entityInfo;
     };
 
-    /**
-     * By default, this entity's X velocity is zero
-     * @return 0
-     */
-    public double getXVelocity() {
-        return 0;
-    }
-
-    /**
-     * By default, this entity's Y velocity is zero
-     * @return 0
-     */
-    public double getYVelocity() {
-        return 0;
-    }
-
-    public boolean hasCurrentCollisionWith(ImmutableEntity otherEntity) {
-        return false;
-    }
-
-    public CollisionPhysicsData physicsDataOfCurrentCollisionWith(ImmutableEntity otherEntity) {
-        return null;
-    }
-
-    public CurrentCollisionContainer getMyCurrentCollisions() {
-        return new CurrentCollisionContainer();
-    }
-
 }

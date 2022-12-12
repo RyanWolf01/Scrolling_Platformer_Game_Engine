@@ -46,6 +46,7 @@
       {
         "OPPONENT_COLLIDABLE_TYPE": "goomba",
         "COLLISION_DIRECTION": "BOTTOM",
+        "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
         "ACTIONS": [
           {
             "classname": "ooga.model.actions.moveractions.StopYMovement",
@@ -53,7 +54,7 @@
             "params": []
           },
           {
-            "classname": "ooga.model.actions.moveractions.Bounce",
+            "classname": "ooga.model.actions.moveractions.moveout.UpwardMoveOut",
             "action_interface": "MoverAction",
             "params": []
           }

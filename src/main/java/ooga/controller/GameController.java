@@ -6,6 +6,10 @@ import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.controller.saveloadhandling.CheckpointDirectory;
 import ooga.model.Model;
+
+import ooga.model.collisions.physics.PhysicsCalculator;
+import ooga.model.entities.entitymodels.CollidableEntity;
+import ooga.model.entities.entitymodels.Entity;
 import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
@@ -69,7 +73,7 @@ public class GameController {
      */
     public NodeContainer step(){
         if (! gameRunning) return container.viewables();
-        checkForCollisions();
+        model.checkForAndHandleCollisions();
         executeKeyInputActions();
         model.moveMovers();
         container.update();
@@ -125,21 +129,6 @@ public class GameController {
     private void endGame() {
         gameRunning = false;
         LOG.info("The game is over (and you lost the game)!");
-    }
-
-    /**
-     * Check for collisions in the View nodes
-     */
-    private void checkForCollisions(){
-        model.preCollisionDetectionLoop();
-        NodeContainer nodes = container.viewables();
-        for(ScrollingNode collider: nodes){
-            for(ScrollingNode collided: nodes){
-                if(collider.getBoundsInParent().intersects(collided.getBoundsInParent()) && collided != collider && container.isCollidable(collider)){
-                    model.handleCollision(container.getConnectedEntity(collider), container.getConnectedEntity(collided));
-                }
-            }
-        }
     }
 
     public String getLevelDirectory(){

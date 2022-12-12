@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.Map;
 
 import ooga.controller.exceptions.MalformedJSONException;
-import ooga.model.actions.moveractions.Gravity;
 import ooga.model.actions.moveractions.MoverActionGetter;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.collisions.collisionhandling.Criteria;
+import ooga.model.collisions.collisionhandling.CriteriaDefault;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
 
 import ooga.model.entities.movement.MovementQueue;
@@ -23,7 +23,6 @@ import ooga.model.entities.info.EntityInfo;
 import ooga.view.ViewInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.jetty.util.ajax.JSON;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -211,7 +210,7 @@ public class JSONInformationDecoder {
         }
       }
 
-      Criteria criteria = new Criteria(criteriaMap, actionDataContainer);
+      Criteria criteria = new CriteriaDefault(criteriaMap, actionDataContainer);
       collisionChart.addCriteria(criteria);
     }
 

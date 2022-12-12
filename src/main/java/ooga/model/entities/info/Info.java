@@ -25,4 +25,9 @@ public class Info implements ImmutableInfo {
   public void set(String key, String val) {
     map.put(key, val);
   }
+
+  @Override
+  public String toString() {
+    return map.toString();
+  }
 }
