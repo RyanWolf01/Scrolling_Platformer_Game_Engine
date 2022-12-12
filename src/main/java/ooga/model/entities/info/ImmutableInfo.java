@@ -5,7 +5,6 @@ import java.util.ResourceBundle;
 public interface ImmutableInfo extends Iterable<String>{
   ResourceBundle entityInfoResources = ResourceBundle.getBundle("properties/entityInfo");
   String COLLIDABLE_TYPE_KEY = entityInfoResources.getString("type");
-  String COLLISION_CHART_KEY = "COLLISION_CHART";
 
   String get(String key);
   boolean hasKey(String key);

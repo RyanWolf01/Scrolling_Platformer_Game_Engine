@@ -6,8 +6,9 @@ import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.controller.saveloadhandling.CheckpointDirectory;
 import ooga.model.Model;
-import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
-import ooga.model.collisions.collisionhandling.exceptions.NoCollisionCriteriaMatchException;
+import ooga.model.collisions.physics.PhysicsCalculator;
+import ooga.model.entities.entitymodels.CollidableEntity;
+import ooga.model.entities.entitymodels.Entity;
 import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
@@ -69,7 +70,7 @@ public class GameController {
      */
     public NodeContainer step(){
         if (! gameRunning) return container.viewables();
-        checkForCollisions();
+        model.checkForAndHandleCollisions();
         executeKeyInputActions();
         model.moveMovers();
         container.update();
@@ -119,20 +120,43 @@ public class GameController {
         LOG.info("The game is over (and you lost the game)!");
     }
 
-    /**
-     * Check for collisions in the View nodes
-     */
-    private void checkForCollisions(){
-        model.preCollisionDetectionLoop();
-        NodeContainer nodes = container.viewables();
-        for(ScrollingNode collider: nodes){
-            for(ScrollingNode collided: nodes){
-                if(collider.getBoundsInParent().intersects(collided.getBoundsInParent()) && collided != collider && container.isCollidable(collider)){
-                    model.handleCollision(container.getConnectedEntity(collider), container.getConnectedEntity(collided));
-                }
-            }
-        }
-    }
+//    /**
+//     * Check for collisions in the View nodes
+//     */
+//    private void checkForCollisions(){
+//        model.preCollisionDetectionLoop();
+//        NodeContainer nodes = container.viewables();
+//        for(ScrollingNode collider: nodes){
+//            for(ScrollingNode collided: nodes){
+////                if(collider.getBoundsInParent().intersects(collided.getBoundsInParent()) && collided != collider && container.isCollidable(collider)){
+////                    model.handleCollision(container.getConnectedEntity(collider), container.getConnectedEntity(collided));
+////                }
+//                if(container.isCollidable(collider) && new PhysicsCalculator().areColliding((CollidableEntity) container.getConnectedEntity(collider), container.getConnectedEntity(collided)) && collided != collider){
+//                    model.handleCollision(container.getConnectedEntity(collider), container.getConnectedEntity(collided));
+//                }
+//                testStuff(collider, collided, container.getConnectedEntity(collider), container.getConnectedEntity(collided));
+//
+//                if(container.isCollidable(collider) && new PhysicsCalculator().areColliding(collider, collided) && collided != collider){
+//                    model.handleCollision(container.getConnectedEntity(collider), container.getConnectedEntity(collided));
+//                }
+//            }
+//        }
+//    }
+//
+//    private void testStuff(ScrollingNode scrollingNodeA, ScrollingNode scrollingNodeB, Entity entityA, Entity entityB) {
+//        boolean test1 = scrollingNodeA.getBoundsInParent().getMinX() == entityA.getXCoordinate();
+//        boolean test2 = scrollingNodeB.getBoundsInParent().getMinX() == entityB.getXCoordinate();
+//        boolean test3 = scrollingNodeA.getBoundsInParent().getMinY() == entityA.getYCoordinate();
+//        boolean test4 = scrollingNodeB.getBoundsInParent().getMinY() == entityB.getYCoordinate();
+//        boolean test5 = scrollingNodeA.getBoundsInParent().getHeight() == entityA.getHeight();
+//        boolean test6 = scrollingNodeB.getBoundsInParent().getHeight() == entityB.getHeight();
+//
+//        if (!test5 || !test6) System.out.println("yeeeeeeeee");
+//
+//        int i = 0;
+//        i += 1;
+//    }
+
 
     public String getLevelDirectory(){
         return myLevel.replace("level.json", "");

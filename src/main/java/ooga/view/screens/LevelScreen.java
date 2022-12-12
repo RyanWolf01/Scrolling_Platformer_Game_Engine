@@ -7,7 +7,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
-import ooga.Main;
 import ooga.controller.GameController;
 import ooga.view.GameCamera;
 import ooga.view.Margin;
@@ -20,10 +19,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Iterator;
 
 public class LevelScreen {
 
@@ -38,6 +35,7 @@ public class LevelScreen {
   private NodeContainer myNodes;
   private GameController myController;
   private GameCamera myGameCamera;
+  private Scene levelScene;
   private static final Logger LOG = LogManager.getLogger(LevelScreen.class);
 
 /**
@@ -48,7 +46,7 @@ public class LevelScreen {
     myController = controller;
   }
 
-  public Scene initiateLevel(File levelFile){
+  public Scene makeScene(File levelFile){
     levelPane = new Pane();
 
     levelPane.setId("Pane");
@@ -61,10 +59,10 @@ public class LevelScreen {
     }
 
 
-    Scene scene = new Scene(levelPane, levelWidth, levelHeight);
-    scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
+    levelScene = new Scene(levelPane, levelWidth, levelHeight);
+    levelScene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
     createCamera();
-    return scene;
+    return levelScene;
   }
 
 /**
@@ -155,5 +153,9 @@ public class LevelScreen {
     //Pause all stepping and animations
     //Display Resume, Save, Load, and Quit Buttons
     //On Resume,
+  }
+
+  public Scene getScene(){
+    return levelScene;
   }
 }
