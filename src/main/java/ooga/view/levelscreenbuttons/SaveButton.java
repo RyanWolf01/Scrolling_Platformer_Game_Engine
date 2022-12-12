@@ -8,12 +8,12 @@ import ooga.controller.GameController;
 public class SaveButton extends GUIBasicButton {
 
   private Stage stage;
-  private TextField directoryNameInput;
-
+  public TextField directoryNameInput;
   private GameController myController;
 
   public SaveButton(String buttonText, String iconString, GameController controller) {
     super(buttonText, iconString, controller);
+    this.myController = controller;
     this.setOnClickEvent(this::openTextPopup);
   }
 
@@ -37,7 +37,7 @@ public class SaveButton extends GUIBasicButton {
    * @param saveName
    */
   private void handleTextInput(String saveName) {
-
+    myController.saveGame(saveName);
   }
 
 }
