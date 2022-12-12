@@ -1,6 +1,7 @@
 package ooga.controller;
 
 import javafx.scene.input.KeyCode;
+import ooga.controller.exceptions.MalformedJSONException;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.aliveactions.AliveActionGetter;
 import ooga.model.actions.moveractions.*;
@@ -16,8 +17,6 @@ public class UserControlHandler {
     private Map<KeyCode, AliveAction> aliveActionMap;
     private final AliveActionGetter aliveActionGetter;
     private final MoverActionGetter moverActionGetter;
-    //private Map<String, AliveAction> allAliveActions;
-    //private Map<String, MoverAction> allMoverActions;
 
     public UserControlHandler(){
         aliveActionGetter = new AliveActionGetter();
@@ -41,7 +40,7 @@ public class UserControlHandler {
             moveActionMap.put(code, moverActionGetter.moverActionTranslate(action));
         }
         else{
-            // throw an exception, not a valid action
+            throw new MalformedJSONException("invalid_action");
         }
     }
 
