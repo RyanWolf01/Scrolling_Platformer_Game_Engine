@@ -1,24 +1,15 @@
 package ooga.view.screens;
 
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import ooga.controller.GameController;
-import ooga.view.GameCamera;
-import ooga.view.Margin;
-import ooga.view.nodes.NodeContainer;
-import ooga.view.nodes.ScrollingNode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.File;
 import java.io.FileReader;
@@ -44,7 +35,7 @@ public class EndScreen {
   public EndScreen(){
   }
 
-  public Scene initiateScene(String scoresPath){
+  public Scene makeScene(String scoresPath){
     levelPane = new Pane();
 
     levelPane.setId("Pane");
