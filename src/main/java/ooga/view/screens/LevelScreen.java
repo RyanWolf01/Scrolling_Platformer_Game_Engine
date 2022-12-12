@@ -35,6 +35,7 @@ public class LevelScreen {
   private NodeContainer myNodes;
   private GameController myController;
   private GameCamera myGameCamera;
+  private Scene levelScene;
   private static final Logger LOG = LogManager.getLogger(LevelScreen.class);
 
 /**
@@ -58,10 +59,10 @@ public class LevelScreen {
     }
 
 
-    Scene scene = new Scene(levelPane, levelWidth, levelHeight);
-    scene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
+    levelScene = new Scene(levelPane, levelWidth, levelHeight);
+    levelScene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
     createCamera();
-    return scene;
+    return levelScene;
   }
 
 /**
@@ -152,5 +153,9 @@ public class LevelScreen {
     //Pause all stepping and animations
     //Display Resume, Save, Load, and Quit Buttons
     //On Resume,
+  }
+
+  public Scene getScene(){
+    return levelScene;
   }
 }

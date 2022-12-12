@@ -44,7 +44,7 @@ public class StartScreen {
   private ComboBox<String> languageSelector;
   private String slash = System.getProperty("file.separator");
   private static final Logger LOG = LogManager.getLogger(StartScreen.class);
-  public static ResourceBundle languageResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE + "languages.English");
+  private ResourceBundle languageResources;
 
   Stage mainStage;
   public StartScreen(Stage primaryStage){
@@ -60,8 +60,7 @@ public class StartScreen {
 
     languageSelector = new ComboBox<>();
     languageSelector.setPromptText("Choose a Language");
-    LOG.info(View.viewResources.getString("languages").split(","));
-    languageSelector.getItems().addAll(View.viewResources.getString("languages").split(","));
+    languageSelector.getItems().addAll(View.languageResources.getString("languages").split(","));
     languageSelector.setOnAction(event -> {
       changeLanguage(languageSelector.getValue());
       languageSelector.setVisible(false);

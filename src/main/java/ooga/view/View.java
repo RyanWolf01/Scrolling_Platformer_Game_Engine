@@ -24,13 +24,13 @@ public class View {
   private LevelScreen level;
   private static final double FRAME_DELAY = 1.0/60.0;
   private Stage myStage;
-
-  public static final ResourceBundle viewResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"View");
-
+  public static final ResourceBundle languageResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"View");
   private static final Logger LOG = LogManager.getLogger(View.class);
+  private String language;
 
-  public View(Stage mainStage, String GameTitle, File levelDirectory, String playerName, String language){
+  public View(Stage mainStage, String GameTitle, File levelDirectory, String playerName, String myLanguage){
     myStage = mainStage;
+    language = myLanguage;
     myController = new GameController(levelDirectory + "/level.json", levelDirectory + "/collisions.json", levelDirectory + "/controls.json");
     myController.setPlayerName(playerName);
     myController.setLanguage(language);
@@ -78,16 +78,22 @@ public class View {
   private void pause(){
     LOG.info("Pause Game");
     levelAnimation.pause();
-    PauseScreen pause = new PauseScreen(this);
+    PauseScreen pause = new PauseScreen(this, myController, language);
     myStage.setScene(pause.makeScene());
-    //Pause all stepping and animations
-    //Display Resume, Save, Load, and Quit Buttons
-    //On Resume,
   }
 
   public void play(){
     LOG.info("Play Game");
+    myStage.setScene(level.getScene());
     levelAnimation.play();
+  }
+
+  public Stage getMyStage(){
+    return myStage;
+  }
+
+  public void saveGame(String directoryName){
+    myController.saveGame(directoryName);
   }
 
 }

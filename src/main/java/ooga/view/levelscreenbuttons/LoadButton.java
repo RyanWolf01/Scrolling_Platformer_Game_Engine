@@ -5,6 +5,7 @@ import java.io.File;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import ooga.controller.GameController;
+import ooga.view.View;
 
 public class LoadButton extends GUIBasicButton {
   public static final String SAVED_GAME_PATH = "savedgames/";
@@ -17,8 +18,8 @@ public class LoadButton extends GUIBasicButton {
    * @param buttonText
    * @param iconString
    */
-  public LoadButton(String buttonText, String iconString, GameController controller) {
-    super(buttonText, iconString, controller);
+  public LoadButton(String buttonText, String iconString, View myView) {
+    super(buttonText, iconString, myView);
 
     directoryChooser = new DirectoryChooser();
     directoryChooser.setInitialDirectory(new File(SAVED_GAME_PATH));
@@ -32,8 +33,8 @@ public class LoadButton extends GUIBasicButton {
    */
   private void openDirectoryChooser(ActionEvent actionEvent) {
     // TODO: need this method to perform opening with right stage (game stage)
-    File levelDirectory = directoryChooser.showDialog();
+    File levelDirectory = directoryChooser.showDialog(myView.getMyStage());
     System.out.println(levelDirectory);
-    // LOG.debug(this.levelDirectory);
+    //LOG.debug(this.levelDirectory);
   }
 }

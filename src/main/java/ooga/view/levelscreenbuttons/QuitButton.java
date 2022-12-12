@@ -3,7 +3,9 @@ package ooga.view.levelscreenbuttons;
 import javafx.event.ActionEvent;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import ooga.Main;
 import ooga.view.View;
+import ooga.view.screens.StartScreen;
 
 import java.io.File;
 
@@ -20,12 +22,12 @@ public class QuitButton extends GUIBasicButton{
    * @param iconString
    */
   public QuitButton(String buttonText, String iconString, View myView) {
-    super(buttonText, iconString);
+    super(buttonText, iconString, myView);
     view = myView;
 
     directoryChooser = new DirectoryChooser();
     directoryChooser.setInitialDirectory(new File(SAVED_GAME_PATH));
-    this.setOnClickEvent(this::openDirectoryChooser);
+    this.setOnClickEvent(this::quitGame);
 
   }
 
@@ -33,14 +35,9 @@ public class QuitButton extends GUIBasicButton{
    * Method to open to directory chooser when the user clicks on the load button
    * @param actionEvent
    */
-  private void openDirectoryChooser(ActionEvent actionEvent) {
-    // TODO: need this method to perform opening with right stage (game stage)
-    File levelDirectory = directoryChooser.showDialog(stage);
-    System.out.println(levelDirectory);
-    // LOG.debug(this.levelDirectory);
+  private void quitGame(ActionEvent actionEvent) {
+    Main main = new Main();
+    main.start(view.getMyStage());
   }
 
-  private void setView(View myView){
-    view = myView;
-  }
 }

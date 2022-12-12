@@ -20,7 +20,7 @@ public class ResumeButton extends GUIBasicButton{
    * @param iconString
    */
   public ResumeButton(String buttonText, String iconString, View myView) {
-    super(buttonText, iconString);
+    super(buttonText, iconString, myView);
     view = myView;
 
     directoryChooser = new DirectoryChooser();
@@ -34,10 +34,6 @@ public class ResumeButton extends GUIBasicButton{
    * @param actionEvent
    */
   private void resumeGame(ActionEvent actionEvent) {
-    view.
-  }
-
-  private void setView(View myView){
-    view = myView;
+    view.play();
   }
 }

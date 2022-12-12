@@ -1,30 +1,43 @@
 package ooga.view.screens;
 
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import ooga.Main;
+import ooga.controller.GameController;
 import ooga.view.View;
 import ooga.view.levelscreenbuttons.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class PauseScreen {
 
   private final int sceneWidth = 400;
   private final int sceneHeight = 400;
   private View view;
+  private GameController controller;
   private LoadButton load;
   private SaveButton save;
   private ResumeButton resume;
   private QuitButton quit;
-  private List<GUIBasicButton> buttonList;
+  private List<Node> buttonList;
   private GridPane pausePane;
+  private String language;
+  private ResourceBundle languageResources;
 
 
-  public PauseScreen(View myView){
+  public PauseScreen(View myView, GameController myController, String myLanguage){
     view = myView;
+    controller = myController;
+    language = myLanguage;
+    setLanguage();
+  }
+
+  private void setLanguage() {
+    languageResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE + "languages." + language);
   }
 
   public Scene makeScene(){
@@ -39,11 +52,11 @@ public class PauseScreen {
 
 
   private void makeButtons(){
-    load = new LoadButton(View.viewResources.getString("load"), GUIBasicButton.ICON_PROPERTIES.getString("load_game"));
-    save = new SaveButton(View.viewResources.getString("save"), GUIBasicButton.ICON_PROPERTIES.getString("save_game"));
-    resume = new ResumeButton(View.viewResources.getString("resume"), GUIBasicButton.ICON_PROPERTIES.getString("resume_game"), view);
-    quit = new QuitButton(View.viewResources.getString("quit"), GUIBasicButton.ICON_PROPERTIES.getString("quit_game"), view);
+    load = new LoadButton(languageResources.getString("load"), "load_game", view);
+    save = new SaveButton(languageResources.getString("save"), "save_game", view);
+    resume = new ResumeButton(languageResources.getString("resume"), "resume_game", view);
+    quit = new QuitButton(languageResources.getString("quit"), "quit_game", view);
     buttonList = new ArrayList<>();
-    buttonList.addAll(Arrays.asList(load, save, resume, quit));
+    buttonList.addAll(Arrays.asList(load.getButton(), save.getButton(), resume.getButton(), quit.getButton()));
   }
 }
