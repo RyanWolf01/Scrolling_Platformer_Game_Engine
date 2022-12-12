@@ -3,16 +3,18 @@ package ooga.view.levelscreenbuttons;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import ooga.controller.GameController;
+import ooga.view.View;
 
 public class SaveButton extends GUIBasicButton {
 
   private Stage stage;
-
   private TextField directoryNameInput;
 
+  private GameController myController;
 
-  public SaveButton(String buttonText, String iconString) {
-    super(buttonText, iconString);
+  public SaveButton(String buttonText, String iconString, View myView) {
+    super(buttonText, iconString, myView);
     this.setOnClickEvent(this::openTextPopup);
   }
 
@@ -28,10 +30,6 @@ public class SaveButton extends GUIBasicButton {
     // TODO: switch out string to be read from props
     directoryNameInput.setPromptText("Enter Name for Saved File");
 
-    /*
-    TBD, add to the screen here, idk if we want to just add it to where the button is or add
-    it using a popup
-     */
   }
 
   /**
@@ -40,12 +38,7 @@ public class SaveButton extends GUIBasicButton {
    * @param saveName
    */
   private void handleTextInput(String saveName) {
-    /*
-    createSavedDirectory(saveName)
-    MAKE THIS METHOD WHEREVER IS MOST SENSIBLE IN THE CONTROLLER TO USE THE
-    BACKEND CONTAINER TO MAKE THE NEW JSON AND PASS THE OTHER JSON OBJECTS
-    TO THE DIRECTORY
-     */
+    //myView.saveGame(saveName);
   }
 
 }

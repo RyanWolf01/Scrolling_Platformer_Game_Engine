@@ -13,6 +13,8 @@ import javafx.scene.text.*;
 import java.io.InputStream;
 import java.util.ResourceBundle;
 import ooga.Main;
+import ooga.controller.GameController;
+import ooga.view.View;
 
 
 public abstract class GUIBasicButton {
@@ -24,10 +26,12 @@ public abstract class GUIBasicButton {
   private Text buttonText;
   private VBox buttonContainer;
   private ImageView buttonIcon;
+  protected View myView;
 
 
-  public GUIBasicButton(String buttonText, String iconString) {
+  public GUIBasicButton(String buttonText, String iconString, View myView) {
 
+    this.myView = myView;
     InputStream iconPath = GUIBasicButton.class.getClassLoader().getResourceAsStream(
         ICON_PROPERTIES.getString(iconString));
     buttonContainer = new VBox();
@@ -39,7 +43,7 @@ public abstract class GUIBasicButton {
 
     // TODO: fix magic values**
     buttonIcon = new ImageView(new Image(iconPath));
-    buttonIcon.setFitWidth(50);
+    buttonIcon.setFitWidth(100);
     buttonIcon.setFitHeight(50);
 
     // set up button
@@ -59,6 +63,10 @@ public abstract class GUIBasicButton {
    */
   protected void setOnClickEvent(EventHandler<ActionEvent> actionEvent) {
     button.setOnAction(actionEvent);
+  }
+
+  public Node getButton() {
+    return buttonContainer;
   }
 
 }

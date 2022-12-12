@@ -1,29 +1,31 @@
 package ooga.view.levelscreenbuttons;
 
 import javafx.event.ActionEvent;
-import java.io.File;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-import ooga.controller.GameController;
 import ooga.view.View;
 
-public class LoadButton extends GUIBasicButton {
+import java.io.File;
+
+public class ResumeButton extends GUIBasicButton{
+
   public static final String SAVED_GAME_PATH = "savedgames/";
   private DirectoryChooser directoryChooser;
   private Stage stage;
-
+  private View view;
 
   /**
    * Constructor
    * @param buttonText
    * @param iconString
    */
-  public LoadButton(String buttonText, String iconString, View myView) {
+  public ResumeButton(String buttonText, String iconString, View myView) {
     super(buttonText, iconString, myView);
+    view = myView;
 
     directoryChooser = new DirectoryChooser();
     directoryChooser.setInitialDirectory(new File(SAVED_GAME_PATH));
-    this.setOnClickEvent(this::openDirectoryChooser);
+    this.setOnClickEvent(this::resumeGame);
 
   }
 
@@ -31,10 +33,7 @@ public class LoadButton extends GUIBasicButton {
    * Method to open to directory chooser when the user clicks on the load button
    * @param actionEvent
    */
-  private void openDirectoryChooser(ActionEvent actionEvent) {
-    // TODO: need this method to perform opening with right stage (game stage)
-    File levelDirectory = directoryChooser.showDialog(myView.getMyStage());
-    System.out.println(levelDirectory);
-    //LOG.debug(this.levelDirectory);
+  private void resumeGame(ActionEvent actionEvent) {
+    view.play();
   }
 }

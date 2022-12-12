@@ -48,7 +48,7 @@ public class CheckpointDirectory {
       collisionFile.write(collisionsJSON.toJSONString());
 
     } catch (IOException e) {
-      // TODO: handle exception and log
+      // TODO: handle exception and log, custom error, add to properties and make new exception class
       throw new RuntimeException(e);
     }
   }

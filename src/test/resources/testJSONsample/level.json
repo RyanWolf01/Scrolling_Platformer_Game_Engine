@@ -1,0 +1,19 @@
+{
+  "game": "mario",
+  "name": "Test Level 1",
+  "background": "bliss.jpg",
+  "camera_width": "400",
+  "camera_height": "500",
+  "scrolling_direction": "horizontal",
+  "Entity": [
+    {
+      "type": "mario",
+      "collidable_type": "mario",
+      "x": "250",
+      "y": "1",
+      "height": "100",
+      "width": "50",
+      "texture": "/games/mario/assets/mario.png"
+    }
+  ]
+}
