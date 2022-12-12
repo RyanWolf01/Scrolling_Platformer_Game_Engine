@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import ooga.model.entities.alive.Alive;
+import ooga.model.entities.entitymodels.Entity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,6 +19,10 @@ public class LivingContainer implements Iterable<Alive> {
 
   public void addLiver(Alive liver){
     livers.add(liver);
+  }
+
+  public boolean contains(Alive liver){
+    return livers.contains(liver);
   }
 
   @Override

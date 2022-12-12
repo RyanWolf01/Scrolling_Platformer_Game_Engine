@@ -1,8 +1,10 @@
 package ooga.controller;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 import javafx.scene.input.KeyCode;
+import ooga.controller.saveloadhandling.CheckpointDirectory;
 import ooga.model.Model;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
 import ooga.model.collisions.collisionhandling.exceptions.NoCollisionCriteriaMatchException;
@@ -11,6 +13,8 @@ import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 
 /**
@@ -29,6 +33,10 @@ public class GameController {
     private String language;
     private boolean gameRunning = true;
 
+    private JSONObject initialLevelJSON;
+    private JSONObject initialCollisionJSON;
+    private JSONObject initialControlsJSON;
+
     /**
      * The GameController needs to have a mapping of backend to frontend objects
      *
@@ -40,6 +48,17 @@ public class GameController {
         container = new ConnectionContainer(jsonDecoder);
         jsonDecoder.makeEntityContainerFromLevelJSON(container);
         jsonDecoder.makeUserControlHandlerFromJSON(controlHandler);
+
+        try {
+            initialControlsJSON = jsonDecoder.initialJSONInformation(controlsJSON);
+            initialCollisionJSON = jsonDecoder.initialJSONInformation(collisionJSON);
+            initialLevelJSON = jsonDecoder.initialJSONInformation(levelJSON);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
         model = new Model(container.entities(), this::endGame);
         keyCodeQueue = new LinkedList<>();
     }
@@ -69,6 +88,18 @@ public class GameController {
      */
     public ViewInfo getViewInfo(){
         return jsonDecoder.viewInfo();
+    }
+
+    /**
+     * Method to be called on the button press in the frontend to save the game
+     * at the current time by creating a checkpoint directory
+     *
+     * @param directoryName
+     */
+    public void saveGame(String directoryName) {
+        CheckpointDirectory saveDirectory = new CheckpointDirectory(directoryName, initialLevelJSON,
+            initialControlsJSON, initialCollisionJSON);
+        saveDirectory.CreateDirectory();
     }
 
     private void executeKeyInputActions() {
