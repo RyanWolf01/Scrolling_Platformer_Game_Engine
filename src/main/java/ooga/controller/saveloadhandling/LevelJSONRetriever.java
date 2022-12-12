@@ -1,11 +1,14 @@
 package ooga.controller.saveloadhandling;
 
 import java.util.List;
+import java.util.Map;
+import ooga.model.entities.alive.Alive;
 import ooga.model.entities.containers.BackendContainer;
 import ooga.model.entities.containers.LivingContainer;
 import ooga.model.entities.entitymodels.Entity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class LevelJSONRetriever {
@@ -13,10 +16,6 @@ public class LevelJSONRetriever {
   Logger LOG = LogManager.getLogger(LevelJSONRetriever.class);
 
   public static final String ENTITY_KEY = "Entity";
-  /*
-  The purpose of this class is to take the backend container, or alive container,
-  and be able to remake the level JSON from it to create a checkpoint directory
-   */
 
   /**
    * Format of the level JSON:
@@ -28,16 +27,27 @@ public class LevelJSONRetriever {
    */
 
   public JSONObject currentLevelJSON;
+  private List<Entity> seenEntities;
+  public static final String ENTITY_KEY = "Entity";
 
-  public List<Entity> seenEntities;
-
-  public LevelJSONRetriever(BackendContainer backendContainer, LivingContainer livingContainer) {
-    this.currentLevelJSON = generateLevelJSON(backendContainer, livingContainer);
+  public LevelJSONRetriever(Map<String, Object> infoMap, BackendContainer backendContainer, LivingContainer livingContainer) {
+    this.currentLevelJSON = generateLevelJSON(infoMap, backendContainer, livingContainer);
   }
 
-  public JSONObject generateLevelJSON(BackendContainer backendContainer, LivingContainer livingContainer) {
-    for
-    return new JSONObject();
+  public JSONObject generateLevelJSON(Map<String, Object> generalInfoMap, BackendContainer backendContainer, LivingContainer livingContainer) {
+    currentLevelJSON = new JSONObject();
+    for (String key : generalInfoMap.keySet()) {
+      currentLevelJSON.put(key, generalInfoMap.get(key));
+    }
+    JSONArray entityJSONObject = new JSONArray();
+    for(Alive liver : livingContainer) {
+      Entity entity = (Entity) liver;
+      seenEntities.add(entity);
+      entity.
+    }
+
+    currentLevelJSON.put(ENTITY_KEY, entityJSONObject);
+    return currentLevelJSON;
   }
 
 

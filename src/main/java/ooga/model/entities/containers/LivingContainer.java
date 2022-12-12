@@ -21,8 +21,8 @@ public class LivingContainer implements Iterable<Alive> {
     livers.add(liver);
   }
 
-  public boolean contains(Entity entity){
-    return livers.contains(entity);
+  public boolean contains(Alive liver){
+    return livers.contains(liver);
   }
 
   @Override
