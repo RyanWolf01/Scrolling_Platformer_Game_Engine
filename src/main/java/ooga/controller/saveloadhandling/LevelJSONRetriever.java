@@ -25,7 +25,7 @@ public class LevelJSONRetriever {
    * Entity: [{entity}, {entity}, {entity}]
    */
 
-  JSONObject currentLevelJSON;
+  public JSONObject currentLevelJSON;
 
 
   public LevelJSONRetriever(BackendContainer backendContainer, LivingContainer livingContainer) {
