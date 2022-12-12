@@ -22,6 +22,7 @@ public class PauseScreen {
   private LoadButton load;
   private SaveButton save;
   private ResumeButton resume;
+  private TitleScreenButton returnToTitle;
   private QuitButton quit;
   private List<Node> buttonList;
   private GridPane pausePane;
@@ -55,8 +56,9 @@ public class PauseScreen {
     load = new LoadButton(languageResources.getString("load"), "load_game", view);
     save = new SaveButton(languageResources.getString("save"), "save_game", view);
     resume = new ResumeButton(languageResources.getString("resume"), "resume_game", view);
+    returnToTitle = new TitleScreenButton(languageResources.getString("return_to_title"), "return_to_title", view);
     quit = new QuitButton(languageResources.getString("quit"), "quit_game", view);
     buttonList = new ArrayList<>();
-    buttonList.addAll(Arrays.asList(load.getButton(), save.getButton(), resume.getButton(), quit.getButton()));
+    buttonList.addAll(Arrays.asList(load.getButton(), save.getButton(), resume.getButton(), returnToTitle.getButton(), quit.getButton()));
   }
 }

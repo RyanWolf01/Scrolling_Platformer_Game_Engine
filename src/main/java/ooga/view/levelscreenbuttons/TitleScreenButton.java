@@ -8,9 +8,7 @@ import ooga.view.View;
 
 import java.io.File;
 
-import static javafx.application.Platform.exit;
-
-public class QuitButton extends GUIBasicButton {
+public class TitleScreenButton extends GUIBasicButton{
 
   public static final String SAVED_GAME_PATH = "savedgames/";
   private DirectoryChooser directoryChooser;
@@ -22,7 +20,7 @@ public class QuitButton extends GUIBasicButton {
    * @param buttonText
    * @param iconString
    */
-  public QuitButton(String buttonText, String iconString, View myView) {
+  public TitleScreenButton(String buttonText, String iconString, View myView) {
     super(buttonText, iconString, myView);
     view = myView;
 
@@ -37,6 +35,8 @@ public class QuitButton extends GUIBasicButton {
    * @param actionEvent
    */
   private void quitGame(ActionEvent actionEvent) {
-    exit();
+    Main main = new Main();
+    main.start(view.getMyStage());
   }
+
 }
