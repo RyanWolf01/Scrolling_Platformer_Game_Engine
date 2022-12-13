@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ooga.controller.exceptions.ConnectionContainerCreationException;
 import ooga.controller.exceptions.MalformedJSONException;
 import ooga.model.actions.moveractions.MoverActionGetter;
 import ooga.model.collisions.actiondata.ActionData;
@@ -78,7 +79,7 @@ public class JSONInformationDecoder {
     try {
       levelJSONObject = initialJSONInformation(levelJSON);
     } catch (IOException | ParseException e) {
-      throw new RuntimeException(e);
+      throw new ConnectionContainerCreationException("not_transformable_JSON");
     }
 
     for (Object o : levelJSONObject.keySet()) {
@@ -107,8 +108,7 @@ public class JSONInformationDecoder {
       if (checkJSONObjectValue(jsonObject)) {
         singleEntity = (JSONObject) jsonObject;
       } else {
-        // TODO: custom exception here
-        throw new RuntimeException("Not a JSON object");
+        throw new ConnectionContainerCreationException("invalid_JSON_object");
       }
       if (!checkRequiredKeys(singleEntity)) {
         // TODO: custom exception here
