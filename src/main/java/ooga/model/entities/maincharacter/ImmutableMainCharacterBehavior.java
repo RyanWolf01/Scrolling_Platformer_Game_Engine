@@ -4,7 +4,7 @@ import ooga.model.MainCharacterState;
 
 public interface ImmutableMainCharacterBehavior {
 
-  int getScore();
+  double getScore();
   MainCharacterState getMainCharacterState();
 
 }

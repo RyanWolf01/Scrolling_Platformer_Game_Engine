@@ -31,11 +31,11 @@ public class BasicMainCharacterBehavior implements MainCharacterBehavior{
 
   @Override
   public void updateScore(double addToScore) {
-
+    score += addToScore;
   }
   @Override
-  public int getScore() {
-    return 0;
+  public double getScore() {
+    return score;
   }
 
 }

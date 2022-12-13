@@ -87,30 +87,28 @@ public class BasicMainCharacter extends MovingCharacter implements UserControlla
     return count;
   }
 
-  public MainCharacterState getGameState() {
+  @Override
+  public MainCharacterState getMainCharacterState() {
     return mainCharacterBehavior.getMainCharacterState();
   }
 
   @Override
-  public MainCharacterState getMainCharacterState() {
-    return null;
-  }
-
   public void checkLivesAndUpdateMainCharacterState() {
     mainCharacterBehavior.checkLivesAndUpdateMainCharacterState();
   }
 
+  @Override
   public void setMainCharacterState(MainCharacterState mainCharacterState) {
     mainCharacterBehavior.setMainCharacterState(mainCharacterState);
   }
 
   @Override
   public void updateScore(double addToScore) {
-
+    mainCharacterBehavior.updateScore(addToScore);
   }
 
   @Override
-  public int getScore() {
+  public double getScore() {
     return mainCharacterBehavior.getScore();
   }
 

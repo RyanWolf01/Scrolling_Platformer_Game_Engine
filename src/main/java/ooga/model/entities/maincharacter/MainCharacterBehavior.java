@@ -8,6 +8,6 @@ public interface MainCharacterBehavior extends ImmutableMainCharacterBehavior{
   void checkLivesAndUpdateMainCharacterState();
   void setMainCharacterState(MainCharacterState mainCharacterState);
   void updateScore(double addToScore);
-  int getScore();
+  double getScore();
 
 }
