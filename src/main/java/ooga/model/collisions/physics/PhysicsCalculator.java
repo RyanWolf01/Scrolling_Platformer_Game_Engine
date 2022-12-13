@@ -58,9 +58,7 @@ public class PhysicsCalculator {
 // collider.getImmutableEntityInfo().get(ImmutableInfo.COLLIDABLE_TYPE_KEY).equalsIgnoreCase("MARIO") && collider.getYCoordinate() < 50
   private void throwExceptionIfNotColliding(CollidableEntity collider, Entity collided) {
     if (!areColliding(collider, collided)) {
-      throw new EntitiesNotCollidingException("The entities provided aren't colliding! Here's "
-          + "their entity info: \n" + collider.getImmutableEntityInfo() + "\n" +
-          collided.getImmutableEntityInfo());
+      throw new EntitiesNotCollidingException();
     }
   }
 
