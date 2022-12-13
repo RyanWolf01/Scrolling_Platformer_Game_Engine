@@ -88,7 +88,7 @@ public class LevelScreen implements Screen{
     mainCharacter = myNodes.getMainCharacter();
     if(mainCharacter == null){
       LOG.info("Character Has Died");
-      view.finishLevel();
+      view.finishLevel("game_over");
       return;
     }
     updateCamera(mainCharacter);

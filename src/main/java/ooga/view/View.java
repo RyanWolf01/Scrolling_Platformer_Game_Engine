@@ -72,14 +72,14 @@ public class View {
     level.setLiveCount(myController.getMainCharacterLives());
   }
 
-  public void finishLevel(){
+  public void finishLevel(String endMessage){
     levelAnimation.stop();
     WaitingScreen waitingScreen = new WaitingScreen();
     myStage.setScene(waitingScreen.makeScene());
     myController.setHighScore(playerName, myController.getPlayerScore());
     EndScreen endScreen = new EndScreen(language, myController.getHighScores());
     myStage.setScene(endScreen.makeScene());
-    myStage.setTitle(languageResources.getString("game_over"));
+    myStage.setTitle(languageResources.getString(endMessage));
   }
 
 
@@ -91,7 +91,7 @@ public class View {
     if(code == KeyCode.P){
       pause();
     } else if(code == KeyCode.O){
-      finishLevel();
+      finishLevel("key_press_end_message");
     }
     else {
       myController.handleKeyInput(code);
