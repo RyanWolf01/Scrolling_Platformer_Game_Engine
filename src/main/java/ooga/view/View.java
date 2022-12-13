@@ -11,6 +11,7 @@ import ooga.view.nodes.NodeContainer;
 import ooga.view.screens.EndScreen;
 import ooga.view.screens.LevelScreen;
 import ooga.view.screens.PauseScreen;
+import ooga.view.screens.WaitingScreen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -52,12 +53,20 @@ public class View {
   private void step(double frameTime){
     NodeContainer nextNodes = myController.step();
     level.step(nextNodes);
+    level.setScore(myController.getPlayerScore());
+    level.setLiveCount(myController.getLives());
   }
 
   public void finishLevel(){
     levelAnimation.stop();
-    EndScreen endScreen = new EndScreen(language, myController.getPlayerScore(), playerName);
-    myStage.setScene(endScreen.makeScene(myController.getLevelDirectory() + "scores.json"));
+    WaitingScreen waitingScreen = new WaitingScreen();
+    myStage.setScene(waitingScreen.makeScene());
+    myController.setHighScore(myController.getPlayerScore());
+    for(int score: myController.getHighScores().keySet()){
+      LOG.info(score);
+    }
+    EndScreen endScreen = new EndScreen(language, myController.getHighScores());
+    myStage.setScene(endScreen.makeScene());
     myStage.setTitle("Game Over!");
   }
 
