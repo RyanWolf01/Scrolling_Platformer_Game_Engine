@@ -83,6 +83,10 @@ public class GameController {
         return container.viewables();
     }
 
+    public boolean isGameRunning(){
+        return gameRunning;
+    }
+
     public void setHighScore(String playerName, int score){
         access.postHighScore(playerName, score);
     }
