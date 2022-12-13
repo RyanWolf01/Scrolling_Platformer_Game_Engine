@@ -5,14 +5,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.controller.saveloadhandling.CheckpointDirectory;
+import ooga.model.GameState;
 import ooga.model.Model;
-
-import ooga.model.collisions.physics.PhysicsCalculator;
-import ooga.model.entities.entitymodels.CollidableEntity;
-import ooga.model.entities.entitymodels.Entity;
 import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
-import ooga.view.nodes.ScrollingNode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
@@ -33,7 +29,7 @@ public class GameController {
     private String myLevel;
     private String playerName = "user";
     private String language;
-    private  GameState state = GameState.UNSTARTED;
+    private boolean gameRunning = true;
 
     private JSONObject initialLevelJSON;
     private JSONObject initialCollisionJSON;
@@ -63,10 +59,9 @@ public class GameController {
 
         access = new DatabaseAccess(jsonDecoder.game());
 
-        model = new Model(container.entities(), this::endGame);
+        model = new Model(container.entities());
         keyCodeQueue = new LinkedList<>();
 
-        state = GameState.ACTIVE;
     }
 
     /**
@@ -74,12 +69,13 @@ public class GameController {
      * @return NodeContainer that the View can
      */
     public NodeContainer step(){
-        if (state == GameState.ACTIVE){
-            model.checkForAndHandleCollisions();
-            executeKeyInputActions();
-            model.moveMovers();
-            container.update();
-        }
+        if (!gameRunning) return container.viewables();
+        model.checkAndHandleGameState();
+        checkAndHandleModelState();
+        model.checkForAndHandleCollisions();
+        executeKeyInputActions();
+        model.moveMovers();
+        container.update();
         return container.viewables();
     }
 
@@ -117,6 +113,15 @@ public class GameController {
         saveDirectory.CreateDirectory();
     }
 
+    private void checkAndHandleModelState() {
+        if (model.getGameState().equals(GameState.USER_WON)) {
+            endGame(true);
+        }
+        else if (model.getGameState().equals(GameState.USER_LOST)) {
+            endGame(false);
+        }
+    }
+
     private void executeKeyInputActions() {
         while (! keyCodeQueue.isEmpty()) {
             KeyCode code = keyCodeQueue.poll();
@@ -129,13 +134,10 @@ public class GameController {
         }
     }
 
-    private void endGame() {
-        state = GameState.LOST;
-        LOG.info("The game is over (and you lost the game)!");
-    }
-
-    public GameState gameState(){
-        return state;
+    private void endGame(boolean userWon) {
+        gameRunning = false;
+        if (userWon) LOG.info("The user WON the game!");
+        else LOG.info("The user LOST the game!");
     }
 
     public String getLevelDirectory(){

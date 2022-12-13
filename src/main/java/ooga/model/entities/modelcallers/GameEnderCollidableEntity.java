@@ -16,10 +16,10 @@ public class GameEnderCollidableEntity extends CollidableEntity implements GameE
   }
 
   @Override
-  public void endGame() {
+  public void endGame(boolean userWon) {
     if (endGameMethod == null) throw new RuntimeException("The end game method for mario hasn't"
         + "been set!");
-    endGameMethod.execute();
+    endGameMethod.execute(userWon);
   }
 
   @Override
