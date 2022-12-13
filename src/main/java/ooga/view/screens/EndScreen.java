@@ -135,6 +135,7 @@ public class EndScreen {
     titleBox.setPrefWidth(sceneWidth);
     titleBox.setPrefHeight(titleHeight);
     Text highScoreTitle = new Text(languageResources.getString("high_scores"));
+    highScoreTitle.setFill(Color.SNOW);
     titleBox.getChildren().add(highScoreTitle);
     levelPane.add(titleBox, 0, 0);
   }
