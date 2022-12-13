@@ -3,7 +3,7 @@ package ooga.controller.exceptions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class MovementDataException extends RuntimeException {
+public class MovementDataException extends CustomException {
   private static final Logger LOG = LogManager.getLogger(MovementDataException.class);
 
   /**
