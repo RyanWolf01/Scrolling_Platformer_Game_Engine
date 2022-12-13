@@ -13,4 +13,9 @@ public interface ImmutableMainCharacterBehavior {
    */
   MainCharacterState getMainCharacterState();
 
+  /**
+   * @return if has power up
+   */
+  boolean hasPowerUp();
+
 }

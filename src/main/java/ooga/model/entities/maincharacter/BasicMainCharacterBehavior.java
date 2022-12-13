@@ -7,11 +7,28 @@ public class BasicMainCharacterBehavior implements MainCharacterBehavior{
   private ImmutableAliveBehavior aliveBehavior;
   private MainCharacterState mainCharacterState = MainCharacterState.RUNNING;
   private int score;
+  private boolean hasPowerUp;
+
+  /**
+   *
+   * @param aliveBehavior alive behavior
+   */
   public BasicMainCharacterBehavior(ImmutableAliveBehavior aliveBehavior){
     this.aliveBehavior = aliveBehavior;
     score = 0;
+    hasPowerUp = false;
   }
 
+  /**
+   * in case this has a power up
+   * @param aliveBehavior alive behavior
+   * @param hasPowerUp has power up
+   */
+  public BasicMainCharacterBehavior(ImmutableAliveBehavior aliveBehavior, boolean hasPowerUp){
+    this.aliveBehavior = aliveBehavior;
+    score = 0;
+    this.hasPowerUp = hasPowerUp;
+  }
   /**
    *
    * @return main character state
@@ -58,5 +75,22 @@ public class BasicMainCharacterBehavior implements MainCharacterBehavior{
   public int getScore() {
     return score;
   }
+
+  /**
+   * @return if has power up
+   */
+  @Override
+  public boolean hasPowerUp(){
+    return hasPowerUp;
+  }
+
+  /**
+   * set has power up
+   */
+  @Override
+  public void setHasPowerUp(boolean hasPowerUp){
+    this.hasPowerUp = hasPowerUp;
+  }
+
 
 }

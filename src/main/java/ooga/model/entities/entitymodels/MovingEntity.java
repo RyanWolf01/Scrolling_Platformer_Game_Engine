@@ -131,8 +131,16 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
    */
   @Override
   public void setMoverBehavior(BasicMoverBehavior basicMoverBehavior){
-    setMoverBehavior(basicMoverBehavior);
+    this.basicMoverBehavior = basicMoverBehavior;
   }
+
+ @Override
+ /**
+  * reset mover data to original
+  */
+ public void resetMoverData(){
+   moverData = new MoverData(getImmutableEntityInfo());
+ }
 
 
 }

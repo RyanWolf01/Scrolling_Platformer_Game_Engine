@@ -28,15 +28,6 @@
       "width": "1000"
     },
     {
-      "type": "static_platform",
-      "collidable_type": "static_platform",
-      "texture": "/games/mario/assets/redplatform.png",
-      "x": "600",
-      "y": "-50",
-      "height": "50",
-      "width": "200"
-    },
-    {
       "type": "static_entity",
       "collidable_type": "boundary",
       "texture": "/games/mario/assets/orangeSquare.png",
