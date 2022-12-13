@@ -12,26 +12,48 @@ public class BasicMainCharacterBehavior implements MainCharacterBehavior{
     score = 0;
   }
 
+  /**
+   *
+   * @return main character state
+   */
   @Override
   public MainCharacterState getMainCharacterState() {
     return mainCharacterState;
   }
 
+  /**
+   * check lives
+   */
   @Override
   public void checkLivesAndUpdateMainCharacterState() {
     if (aliveBehavior.getLives() <= 0) {
       mainCharacterState = MainCharacterState.USER_LOST;
     }
   }
+
+  /**
+   *
+   * @param mainCharacterState new main character state
+   */
   @Override
   public void setMainCharacterState(MainCharacterState mainCharacterState) {
     this.mainCharacterState = mainCharacterState;
   }
 
+  /**
+   *
+   * @param addToScore to add to score
+   */
   @Override
   public void updateScore(int addToScore) {
-    score += addToScore;
+    if(score + addToScore >= 0)
+      score += addToScore;
   }
+
+  /**
+   *
+   * @return score
+   */
   @Override
   public int getScore() {
     return score;
