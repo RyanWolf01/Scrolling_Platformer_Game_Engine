@@ -53,7 +53,7 @@ public class View {
   public void finishLevel(){
     levelAnimation.stop();
     EndScreen endScreen = new EndScreen(language, myController.getPlayerScore(), playerName);
-    myStage.setScene(endScreen.makeScene(myController.getLevelDirectory() + Main.slash + "scores.json"));
+    myStage.setScene(endScreen.makeScene(myController.getLevelDirectory() + "scores.json"));
     myStage.setTitle("You Won!");
   }
 
@@ -66,8 +66,8 @@ public class View {
     //TODO: Use a JSON in the controller that states the "view-oriented" controls instead of an if tree
     if(code == KeyCode.P){
       pause();
-    } else if(code == KeyCode.R){
-      play();
+    } else if(code == KeyCode.O){
+      finishLevel();
     }
     else {
       myController.handleKeyInput(code);

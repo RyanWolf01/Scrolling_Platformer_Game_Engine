@@ -15,10 +15,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class EndScreen {
@@ -29,7 +26,7 @@ public class EndScreen {
   private final int sceneHeight = 500;
   private final int titleHeight = 100;
   private GridPane levelPane;
-  private File myScores;
+  private FileReader myScores;
   private int playerScore;
   private String playerName;
   private HashMap<Integer, String> scoresMap = new HashMap();
@@ -71,16 +68,19 @@ public class EndScreen {
   }
 
   private void initiateScoreFile(String scoresPath){
+    LOG.debug(scoresPath);
     try{
-      myScores = new File(this.getClass().getClassLoader().getResource(scoresPath).getFile());
+      myScores = new FileReader(scoresPath);
+      LOG.debug(myScores);
       LOG.debug("Games List Loaded Successfully");
     } catch(Exception e){
+      LOG.error(e.getMessage());
       LOG.debug("No Scores File, Time to Create One");
       myScores = createNewScoresFile(scoresPath);
     }
     JSONObject scoresJson = null;
     try {
-      scoresJson = (JSONObject) new JSONParser().parse(new FileReader(myScores));
+      scoresJson = (JSONObject) new JSONParser().parse(myScores);
     } catch (Exception e) {
       //TODO: Handle Exception
       throw new RuntimeException(e);
@@ -102,7 +102,7 @@ public class EndScreen {
     return singleScore;
   }
 
-  private File createNewScoresFile(String scoresPath){
+  private FileReader createNewScoresFile(String scoresPath){
     JSONObject singleScore = createPlayerScoreObject();
     JSONArray arr = new JSONArray();
     arr.add(singleScore);
@@ -117,9 +117,17 @@ public class EndScreen {
     } catch (IOException e) {
       // TODO Actually implement Exception
       LOG.error("Could not save new Scores File");
-      e.printStackTrace();
     }
-    return new File(this.getClass().getClassLoader().getResource(scoresPath).getFile());
+    FileReader newFile;
+    try {
+      newFile = new FileReader(scoresPath);
+    } catch (FileNotFoundException e) {
+      newFile = null;
+      // TODO Actually implement Exception
+      LOG.error("Could not load new Scores File");
+    }
+
+    return newFile;
   }
 
   private void createTitleBox(){
