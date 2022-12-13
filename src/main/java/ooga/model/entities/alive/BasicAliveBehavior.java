@@ -22,7 +22,7 @@ public class BasicAliveBehavior implements AliveBehavior, ImmutableAliveBehavior
     try{
       LIVES_KEY = entityInfoProperties.getString("lives");
     }catch(NullPointerException exception){
-      throw new MiscellaneousPropertiesException("lives key not found");
+      throw new MiscellaneousPropertiesException("lives_key_missing");
     }
   }
 
