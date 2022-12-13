@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import ooga.controller.GameController;
 import ooga.view.GameCamera;
 import ooga.view.Margin;
+import ooga.view.View;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
 import org.apache.logging.log4j.LogManager;
@@ -36,14 +37,18 @@ public class LevelScreen {
   private GameController myController;
   private GameCamera myGameCamera;
   private Scene levelScene;
+  private View view;
   private static final Logger LOG = LogManager.getLogger(LevelScreen.class);
 
 /**
-* Creates a level based on only it's LevelName. Currently, this method is for testing a level by just calling it and creating its initial entities
+ * Creates a level based on only it's LevelName. Currently, this method is for testing a level by just calling it and creating its initial entities
+ *
  * @param controller
-*/
-  public LevelScreen(GameController controller){
+ * @param myView
+ */
+  public LevelScreen(GameController controller, View myView){
     myController = controller;
+    view = myView;
   }
 
   public Scene makeScene(File levelFile){
@@ -69,7 +74,7 @@ public class LevelScreen {
 * Generates the new frame of the level
  * @param nextNodes is the list of nodes that the level needs to display for the frame
 */
-  public void step(NodeContainer nextNodes){
+  public void step(NodeContainer nextNodes) {
 
 
 
@@ -80,6 +85,10 @@ public class LevelScreen {
     }
     myNodes = nextNodes;
     mainCharacter = myNodes.getMainCharacter();
+    if(mainCharacter == null){
+      LOG.info("Character Has Died");
+      view.finishLevel();
+    }
     updateCamera(mainCharacter);
     translateNodes();
     for (Node node : myNodes) {
