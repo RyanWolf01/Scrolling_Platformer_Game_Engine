@@ -7,18 +7,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.entitymodels.StaticEntity;
 import ooga.model.entities.info.EntityInfo;
-import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.model.entities.entitymodels.BasicMainCharacter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class GravityCheckerTest {
 
-  private MainCharacter mario;
+  private BasicMainCharacter mario;
 
   @BeforeEach
   public void setup(){
     EntityInfo info = new EntityInfo("mario");
-    mario = new MainCharacter(null, 10, 10, 2, 2, info, null);
+    mario = new BasicMainCharacter(null, 10, 10, 2, 2, info, null);
   }
 
   @Test

@@ -8,7 +8,7 @@ import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
 import ooga.model.entities.alive.Alive;
-import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.model.entities.entitymodels.BasicMainCharacter;
 import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +29,7 @@ public class AliveActionParserTest {
     addActionData(acd, "Kill");
     AliveActionParser aliveActionParser = new AliveActionParser(acd);
 
-    Alive alive = new MainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
+    Alive alive = new BasicMainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
     int numLives = alive.getLives();
 
     int res = aliveActionParser.parseAndApplyActions(alive);
@@ -44,7 +44,7 @@ public class AliveActionParserTest {
     ActionDataContainer acd = new ActionDataContainer();
     addActionData(acd, "IncreaseLifeee");
     AliveActionParser actionParser = new AliveActionParser(acd);
-    Alive alive = new MainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
+    Alive alive = new BasicMainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
 
     assertThrows(ActionParsingException.class, () -> actionParser.parseAndApplyActions(alive));
   }
@@ -57,7 +57,7 @@ public class AliveActionParserTest {
     acd.addActionData(
         new ActionData(MOVER_ACTION_PATH + "StopXMovement", MOVER_ACTION, new ArrayList<>()));
 
-    Alive alive = new MainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
+    Alive alive = new BasicMainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
     AliveActionParser aliveActionParser = new AliveActionParser(acd);
     int count = aliveActionParser.parseAndApplyActions(alive);
 
@@ -68,7 +68,7 @@ public class AliveActionParserTest {
   void test_parseAndApplyActions_noActions() {
     ActionDataContainer acd = new ActionDataContainer();
 
-    Alive alive = new MainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
+    Alive alive = new BasicMainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
     AliveActionParser aliveActionParser = new AliveActionParser(acd);
     int count = aliveActionParser.parseAndApplyActions(alive);
 

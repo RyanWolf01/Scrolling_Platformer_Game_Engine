@@ -73,6 +73,11 @@
             "classname": "ooga.model.actions.aliveactions.Kill",
             "action_interface": "AliveAction",
             "params": []
+          },
+          {
+            "classname": "ooga.model.actions.maincharacteractions.ResetVerticalPosition",
+            "action_interface": "MainCharacterAction",
+            "params": []
           }
         ]
       },
