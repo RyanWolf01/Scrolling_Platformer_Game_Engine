@@ -51,7 +51,15 @@ public class View {
   }
 
   private void step(double frameTime){
-    NodeContainer nextNodes = myController.step();
+    NodeContainer nextNodes = null;
+    try{
+      nextNodes = myController.step();
+    }
+    catch(RuntimeException e){
+      LOG.error(e.getMessage());
+      //ExceptionAlerter alerter = new ExceptionAlert(language);
+      //alerter.displayAlert(e);
+    }
     level.step(nextNodes);
     level.setScore(myController.getPlayerScore());
     level.setLiveCount(myController.getLives());
