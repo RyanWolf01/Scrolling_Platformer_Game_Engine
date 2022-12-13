@@ -317,6 +317,7 @@ public class JSONInformationDecoder {
     try {
       levelJSONObject = initialJSONInformation(levelJSON);
     } catch (IOException | ParseException e) {
+      LOG.error("Level JSON unreadable");
       throw new MalformedJSONException("Level JSON unreadable");
     }
 
@@ -355,6 +356,7 @@ public class JSONInformationDecoder {
     try {
       levelJSONObject = initialJSONInformation(levelJSON);
     } catch (IOException | ParseException e) {
+      LOG.error("Level JSON unreadable");
       throw new MalformedJSONException("Level JSON unreadable");
     }
 
@@ -390,6 +392,7 @@ public class JSONInformationDecoder {
     try {
       levelJSONObject = initialJSONInformation(levelJSON);
     } catch (IOException | ParseException e) {
+      LOG.error("Level JSON unreadable");
       throw new MalformedJSONException("Level JSON unreadable");
     }
 
