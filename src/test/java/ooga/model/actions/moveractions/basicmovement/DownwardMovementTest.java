@@ -16,7 +16,7 @@ public class DownwardMovementTest {
     move.execute(mario);
 
     assertEquals(0, mario.getXCoordinate());
-    assertEquals(10, mario.getYCoordinate());
+    assertEquals(0, mario.getYVelocity());
   }
 
   /**

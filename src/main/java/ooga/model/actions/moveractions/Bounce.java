@@ -1,6 +1,7 @@
 package ooga.model.actions.moveractions;
 
 import java.util.ResourceBundle;
+import ooga.controller.exceptions.MovementDataException;
 import ooga.model.entities.movement.Mover;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +23,7 @@ public class Bounce implements MoverAction{
     }
     catch(NumberFormatException exception){
       LOG.error("incorrect velocity format");
-      throw exception;
+      throw new MovementDataException("velocity_parse_error", exception);
     }
     BOUNCE_VELOCITY = tempBounceVelocity;
   }

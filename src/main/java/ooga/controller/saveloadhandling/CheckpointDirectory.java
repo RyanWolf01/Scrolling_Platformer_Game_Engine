@@ -3,6 +3,9 @@ package ooga.controller.saveloadhandling;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import ooga.controller.exceptions.SaveLoadException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 
 public class CheckpointDirectory {
@@ -13,6 +16,7 @@ public class CheckpointDirectory {
   private JSONObject collisionsJSON;
   private JSONObject controlsJSON;
   private JSONObject levelJSON;
+  private static final Logger LOG = LogManager.getLogger(CheckpointDirectory.class);
 
   /**
    * Default constructor for a CheckpointDirectory, which is what will be saved in resources when a user presses save game
@@ -49,8 +53,8 @@ public class CheckpointDirectory {
       collisionFile.close();
 
     } catch (IOException e) {
-      // TODO: handle exception and log, custom error, add to properties and make new exception class
-      throw new RuntimeException(e);
+      LOG.error("Directory could not be saved");
+      throw new SaveLoadException("file_saving_error");
     }
   }
 

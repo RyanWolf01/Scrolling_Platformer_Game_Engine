@@ -20,7 +20,7 @@ public class KillTest {
     Kill kill = new Kill();
     kill.execute(mario);
 
-    assertEquals(2, mario.getLives());
+    assertEquals(3, mario.getLives());
   }
 
   /**
@@ -39,7 +39,7 @@ public class KillTest {
     kill.execute(mario);
     kill.execute(mario);
 
-    assertEquals(1, mario.getLives());
+    assertEquals(2, mario.getLives());
   }
 
   /**
@@ -51,7 +51,7 @@ public class KillTest {
 
     Kill kill = new Kill();
 
-    assertEquals(0, mario.getLives());
+    assertEquals(1, mario.getLives());
   }
 
 }

@@ -1,7 +1,7 @@
 package ooga.model.actions.basicentityactions;
 
 import java.util.ResourceBundle;
-import ooga.controller.exceptions.MiscellaneousPropertiesException;
+import ooga.controller.exceptions.MiscellaneousParsingException;
 import ooga.model.entities.entitymodels.Entity;
 
 public class IncreaseSizePowerUp implements BasicEntityAction {
@@ -18,7 +18,7 @@ public class IncreaseSizePowerUp implements BasicEntityAction {
           ResourceBundle.getBundle("properties/powerups").getString("size_multiplier"));
     }
     catch(NumberFormatException exception){
-      throw new MiscellaneousPropertiesException("incorrect multiplier format", exception);
+      throw new MiscellaneousParsingException("incorrect multiplier format", exception);
     }
     SIZE_MULTIPLIER = tempMultiplier;
   }

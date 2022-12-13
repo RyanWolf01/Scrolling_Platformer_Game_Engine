@@ -1,8 +1,8 @@
 package ooga.model.collisions.physics;
 
 import java.util.ResourceBundle;
+import ooga.controller.exceptions.MiscellaneousParsingException;
 import ooga.model.entities.entitymodels.CollidableEntity;
-import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.entitymodels.ImmutableEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,14 +25,14 @@ public class GravityChecker {
       STATIC_PLATFORM = entityInfoResources.getString("default_static_platform");
     } catch(NullPointerException exception){
       LOG.error("no value provided for default static platform in resources");
-      throw exception;
+      throw new MiscellaneousParsingException("not_found_in_properties", exception);
     }
 
     try{
       TYPE = entityInfoResources.getString("type");
     } catch(NullPointerException exception){
       LOG.error("no value provided for type in resources");
-      throw exception;
+      throw new MiscellaneousParsingException("not_found_in_properties", exception);
     }
 
   }
@@ -54,6 +54,12 @@ public class GravityChecker {
     return checkCollisionWithStaticPlatformFromDirection(entity, CollisionDirection.RIGHT);
   }
 
+  /**
+   *
+   * @param entity current entity
+   * @param collisionDirection collision direction
+   * @return if collided with static platform
+   */
   private boolean checkCollisionWithStaticPlatformFromDirection(CollidableEntity entity, CollisionDirection collisionDirection) {
     if(!entity.getMyCurrentCollisions().hasCollisions())
       return false;
@@ -66,7 +72,7 @@ public class GravityChecker {
         entityType = collided.getImmutableEntityInfo().get(TYPE);
       }catch (NullPointerException exception){
         LOG.error("no type in entity info");
-        throw exception;
+        throw new MiscellaneousParsingException("not_found_in_properties", exception);
       }
 
       if(entityInfoResources.containsKey(entityType)){

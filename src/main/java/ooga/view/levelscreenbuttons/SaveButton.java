@@ -33,8 +33,7 @@ public class SaveButton extends GUIBasicButton {
     directoryNameInput.setOnAction(event ->
         handleTextInput(directoryNameInput.getText()));
     buttonContainer.getChildren().add(directoryNameInput);
-    // TODO: switch out string to be read from props
-    directoryNameInput.setPromptText("Enter Name for Saved File");
+    directoryNameInput.setPromptText("save_directory_input");
 
   }
 
