@@ -19,7 +19,7 @@ public class RightMovementTest {
     RightMovement move = new RightMovement();
     move.execute(mario);
 
-    assertEquals(rightVelocity, mario.getXCoordinate());
+    assertEquals(rightVelocity, mario.getXVelocity());
     assertEquals(0, mario.getYCoordinate());
   }
 
@@ -34,7 +34,7 @@ public class RightMovementTest {
     move.execute(mario);
     move.execute(mario);
 
-    assertEquals(rightVelocity * 2, mario.getXVelocity());
+    assertEquals(rightVelocity, mario.getXVelocity());
     assertEquals(0, mario.getYCoordinate());
   }
 

@@ -16,14 +16,15 @@ public class BasicAliveBehavior implements AliveBehavior, ImmutableAliveBehavior
    * @param entityInfo used to set initialize lives
    */
   public BasicAliveBehavior(ImmutableInfo entityInfo){
-    lives = setInitialLives(entityInfo);
-
     ResourceBundle entityInfoProperties = ResourceBundle.getBundle("properties/entityInfo");
     try{
-      LIVES_KEY = entityInfoProperties.getString("lives");
+      LIVES_KEY = entityInfoProperties.getString("lives_key");
     }catch(NullPointerException exception){
-      throw new MiscellaneousPropertiesException("lives key not found");
+      throw new MiscellaneousPropertiesException("lives_key_missing");
     }
+
+    lives = setInitialLives(entityInfo);
+
   }
 
   /**
@@ -55,7 +56,7 @@ public class BasicAliveBehavior implements AliveBehavior, ImmutableAliveBehavior
       LOG.error("lives formatted incorrectly in entity info");
       // try to get default value from properties
       try{
-        lives = Integer.parseInt(defaultAttributesProperties.getString("lives"));
+        lives = Integer.parseInt(defaultAttributesProperties.getString(LIVES_KEY));
       } catch(NumberFormatException propertiesException){
         LOG.error("lives formatted incorrectly in properties file");
         throw propertiesException;
