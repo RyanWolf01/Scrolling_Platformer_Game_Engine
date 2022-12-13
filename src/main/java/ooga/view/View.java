@@ -53,7 +53,7 @@ public class View {
     NodeContainer nextNodes = myController.step();
     level.step(nextNodes);
     level.setScore(myController.getPlayerScore());
-    level.setLiveCount(myController.getLives());
+    level.setLiveCount(myController.getMainCharacterLives());
   }
 
   public void finishLevel(){
