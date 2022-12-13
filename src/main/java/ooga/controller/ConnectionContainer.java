@@ -21,6 +21,7 @@ import org.apache.logging.log4j.Logger;
  * the JSON to the game.
  */
 public class ConnectionContainer {
+  private static final Logger LOG = LogManager.getLogger(ConnectionContainer.class);
   private BackendContainer entities;
   private JSONInformationDecoder decoder;
   private NodeContainer nodes;
@@ -95,13 +96,15 @@ public class ConnectionContainer {
       node.update(entity.getXCoordinate(), entity.getYCoordinate(), entity.getHeight(), entity.getWidth());
     }
 
-    List<Alive> liversList = new ArrayList<>();
-    entities.livers().forEach(liversList::add);
+    List<Alive> livers = new ArrayList<>();
+    entities.livers().forEach(livers::add);
 
-    for(Alive liver : liversList){
+    for(Alive liver : livers){
       if(liver.getLives() <= 0){
         Entity toRemove = (Entity) liver;
         entities.removeEntity(toRemove);
+
+        LOG.info(toRemove.toString());
 
         nodes.remove(reverseConnectorMap.get(toRemove));
       }

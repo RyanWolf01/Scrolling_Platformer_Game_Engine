@@ -6,16 +6,13 @@ import java.io.IOException;
 import org.json.simple.JSONObject;
 
 public class CheckpointDirectory {
-  private static final String RESOURCE_DIRECTORY = "/";
-  private static final String SAVED_GAMES = "savedgames/";
+  public static final String SLASH = System.getProperty("file.separator");
+  public static final String SAVED_GAMES = System.getProperty("user.dir") + SLASH + "src" + SLASH + "main" + SLASH
+      + "resources" + SLASH + "savedgames" + SLASH;
   private String savedDirectoryName;
   private JSONObject collisionsJSON;
   private JSONObject controlsJSON;
   private JSONObject levelJSON;
-
-
-  // link used here below, on writing json objects to files
-  // https://crunchify.com/how-to-write-json-object-to-file-in-java/
 
   /**
    * Default constructor for a CheckpointDirectory, which is what will be saved in resources when a user presses save game
@@ -38,14 +35,18 @@ public class CheckpointDirectory {
    * in the savedgames directory within resources
    */
   public void CreateDirectory() {
-    new File(RESOURCE_DIRECTORY+SAVED_GAMES+savedDirectoryName).mkdirs();
+    new File(SAVED_GAMES+savedDirectoryName).mkdirs();
     try {
-      FileWriter levelFile = new FileWriter(RESOURCE_DIRECTORY+SAVED_GAMES+savedDirectoryName+"/level.json");
+      FileWriter levelFile = new FileWriter(SAVED_GAMES+savedDirectoryName+"/level.json");
+      System.out.println(levelJSON.toJSONString());
       levelFile.write(levelJSON.toJSONString());
-      FileWriter controlFile = new FileWriter(RESOURCE_DIRECTORY+SAVED_GAMES+savedDirectoryName+"/controls.json");
+      levelFile.close();
+      FileWriter controlFile = new FileWriter(SAVED_GAMES+savedDirectoryName+"/controls.json");
       controlFile.write(controlsJSON.toJSONString());
-      FileWriter collisionFile = new FileWriter(RESOURCE_DIRECTORY+SAVED_GAMES+savedDirectoryName+"/collision.json");
+      controlFile.close();
+      FileWriter collisionFile = new FileWriter(SAVED_GAMES+savedDirectoryName+"/collisions.json");
       collisionFile.write(collisionsJSON.toJSONString());
+      collisionFile.close();
 
     } catch (IOException e) {
       // TODO: handle exception and log, custom error, add to properties and make new exception class

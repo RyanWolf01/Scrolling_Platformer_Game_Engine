@@ -7,10 +7,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import ooga.controller.GameController;
 import ooga.view.GameCamera;
 import ooga.view.Margin;
 import ooga.view.View;
+import ooga.view.nodes.GUIElement;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
 import org.apache.logging.log4j.LogManager;
@@ -22,6 +24,10 @@ import org.json.simple.parser.ParseException;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LevelScreen {
 
@@ -32,12 +38,15 @@ public class LevelScreen {
   private final int levelHeight = 600;
   private final String BACKGROUND_DIRECTORY = "/backgrounds/";
   private Pane levelPane;
+  private StackPane screenPane;
   private ScrollingNode mainCharacter;
   private NodeContainer myNodes;
   private GameController myController;
   private GameCamera myGameCamera;
   private Scene levelScene;
   private View view;
+  Map<String, GUIElement> guiMap;
+  private static final String[] GUI_NAMES = {"Score", "Lives"};
   private static final Logger LOG = LogManager.getLogger(LevelScreen.class);
 
 /**
@@ -52,7 +61,9 @@ public class LevelScreen {
   }
 
   public Scene makeScene(File levelFile){
+    screenPane = new StackPane();
     levelPane = new Pane();
+    screenPane.getChildren().add(levelPane);
 
     levelPane.setId("Pane");
     try {
@@ -64,9 +75,10 @@ public class LevelScreen {
     }
 
 
-    levelScene = new Scene(levelPane, levelWidth, levelHeight);
+    levelScene = new Scene(screenPane, levelWidth, levelHeight);
     levelScene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
     createCamera();
+    addGUIElements();
     return levelScene;
   }
 
@@ -74,10 +86,8 @@ public class LevelScreen {
 * Generates the new frame of the level
  * @param nextNodes is the list of nodes that the level needs to display for the frame
 */
-  public void step(NodeContainer nextNodes) {
 
-
-
+  public void step(NodeContainer nextNodes){
     if(myNodes != null){
       for (Node a : myNodes) {
           levelPane.getChildren().remove(a);
@@ -88,12 +98,15 @@ public class LevelScreen {
     if(mainCharacter == null){
       LOG.info("Character Has Died");
       view.finishLevel();
+      return;
     }
     updateCamera(mainCharacter);
     translateNodes();
     for (Node node : myNodes) {
         levelPane.getChildren().add(node);
     }
+
+    myNodes = new NodeContainer(nextNodes);
   }
 
 
@@ -166,5 +179,22 @@ public class LevelScreen {
 
   public Scene getScene(){
     return levelScene;
+  }
+
+  public void setScore(int score){
+    guiMap.get("Score").updateValue(score);
+  }
+
+  public void setLiveCount(int lives){
+    guiMap.get("Lives").updateValue(lives);
+  }
+
+  private void addGUIElements(){
+    guiMap = new HashMap<>();
+    for (String name : GUI_NAMES) {
+      guiMap.put(name, new GUIElement(name, 0));
+      screenPane.getChildren().add(guiMap.get(name));
+    }
+
   }
 }

@@ -24,7 +24,7 @@ public abstract class GUIBasicButton {
 
   private Button button;
   private Text buttonText;
-  private VBox buttonContainer;
+  public VBox buttonContainer;
   private ImageView buttonIcon;
   protected View myView;
 

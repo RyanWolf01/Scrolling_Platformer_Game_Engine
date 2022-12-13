@@ -11,6 +11,7 @@ import ooga.view.nodes.NodeContainer;
 import ooga.view.screens.EndScreen;
 import ooga.view.screens.LevelScreen;
 import ooga.view.screens.PauseScreen;
+import ooga.view.screens.WaitingScreen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,6 +29,8 @@ public class View {
   public static final ResourceBundle languageResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"View");
   private static final Logger LOG = LogManager.getLogger(View.class);
   private String language;
+  private String gameTitle;
+  private String name;
 
   public View(Stage mainStage, String GameTitle, File levelDirectory, String name, String myLanguage){
     myStage = mainStage;
@@ -43,17 +46,26 @@ public class View {
     levelAnimation.getKeyFrames().add(new KeyFrame(Duration.seconds(FRAME_DELAY), e -> this.step(FRAME_DELAY)));
     levelAnimation.play();
     myStage.getScene().setOnKeyPressed(e -> handleKeyInput(e.getCode()));
+    gameTitle = GameTitle;
   }
 
   private void step(double frameTime){
     NodeContainer nextNodes = myController.step();
     level.step(nextNodes);
+    level.setScore(myController.getPlayerScore());
+    level.setLiveCount(myController.getMainCharacterLives());
   }
 
   public void finishLevel(){
     levelAnimation.stop();
-    EndScreen endScreen = new EndScreen(language, myController.getPlayerScore(), playerName);
-    myStage.setScene(endScreen.makeScene(myController.getLevelDirectory() + "scores.json"));
+    WaitingScreen waitingScreen = new WaitingScreen();
+    myStage.setScene(waitingScreen.makeScene());
+    myController.setHighScore(myController.getPlayerScore());
+    for(int score: myController.getHighScores().keySet()){
+      LOG.info(score);
+    }
+    EndScreen endScreen = new EndScreen(language, myController.getHighScores());
+    myStage.setScene(endScreen.makeScene());
     myStage.setTitle("Game Over!");
   }
 
@@ -73,7 +85,6 @@ public class View {
       myController.handleKeyInput(code);
     }
   }
-
 
   private void pause(){
     LOG.info("Pause Game");
@@ -96,4 +107,15 @@ public class View {
     myController.saveGame(directoryName);
   }
 
+  public String getLanguage() {
+    return language;
+  }
+
+  public String getName() {
+    return playerName;
+  }
+
+  public String getGameTitle() {
+    return gameTitle;
+  }
 }

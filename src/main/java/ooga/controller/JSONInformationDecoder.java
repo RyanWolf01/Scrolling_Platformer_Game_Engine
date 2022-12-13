@@ -37,7 +37,8 @@ public class JSONInformationDecoder {
   private String controlsJSON;
   private static final String ENTITY_JSON_KEY = "Entity";
   private List<JSONObject> entityJSONList;
-  private Map<String, Object> generalInfoMap;
+
+  protected Map<String, Object> generalInfoMap;
   public static final List<String> REQUIRED_ENTITY_PARAMETERS = List.of("x", "y", "width", "height");
 
   public JSONInformationDecoder(String levelJSON, String collisionsJSON, String controlsJSON){
@@ -316,6 +317,7 @@ public class JSONInformationDecoder {
     try {
       levelJSONObject = initialJSONInformation(levelJSON);
     } catch (IOException | ParseException e) {
+      LOG.error("Level JSON unreadable");
       throw new MalformedJSONException("Level JSON unreadable");
     }
 
@@ -354,6 +356,7 @@ public class JSONInformationDecoder {
     try {
       levelJSONObject = initialJSONInformation(levelJSON);
     } catch (IOException | ParseException e) {
+      LOG.error("Level JSON unreadable");
       throw new MalformedJSONException("Level JSON unreadable");
     }
 
@@ -389,6 +392,7 @@ public class JSONInformationDecoder {
     try {
       levelJSONObject = initialJSONInformation(levelJSON);
     } catch (IOException | ParseException e) {
+      LOG.error("Level JSON unreadable");
       throw new MalformedJSONException("Level JSON unreadable");
     }
 

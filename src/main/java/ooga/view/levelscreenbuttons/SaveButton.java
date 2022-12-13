@@ -8,11 +8,16 @@ import ooga.view.View;
 
 public class SaveButton extends GUIBasicButton {
 
-  private Stage stage;
-  private TextField directoryNameInput;
-
+  public TextField directoryNameInput;
   private GameController myController;
 
+
+  /**
+   * Constructor for save button
+   * @param buttonText
+   * @param iconString
+   * @param myView
+   */
   public SaveButton(String buttonText, String iconString, View myView) {
     super(buttonText, iconString, myView);
     this.setOnClickEvent(this::openTextPopup);
@@ -27,6 +32,7 @@ public class SaveButton extends GUIBasicButton {
     directoryNameInput = new TextField();
     directoryNameInput.setOnAction(event ->
         handleTextInput(directoryNameInput.getText()));
+    buttonContainer.getChildren().add(directoryNameInput);
     // TODO: switch out string to be read from props
     directoryNameInput.setPromptText("Enter Name for Saved File");
 
@@ -38,7 +44,7 @@ public class SaveButton extends GUIBasicButton {
    * @param saveName
    */
   private void handleTextInput(String saveName) {
-    //myView.saveGame(saveName);
+    myView.saveGame(saveName);
   }
 
 }
