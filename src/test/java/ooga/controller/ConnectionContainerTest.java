@@ -1,6 +1,7 @@
 package ooga.controller;
 
 import javafx.scene.Node;
+import ooga.controller.exceptions.BadImageException;
 import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.info.EntityInfo;
 import ooga.view.nodes.ScrollingNode;
@@ -87,6 +88,16 @@ public class ConnectionContainerTest {
         assertEquals(2, container.viewables().size());
 
 
+    }
+
+    @Test
+    public void badURLTest(){
+        container = new ConnectionContainer(decoder);
+        EntityInfo info = new EntityInfo("goomba");
+        info.set("texture", "/games/msets/mario.png");
+        assertThrows(BadImageException.class, () -> {
+            container.addNewEntity(0,0,0,0,"goomba", info);
+        });
     }
 
 }

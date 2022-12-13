@@ -46,7 +46,7 @@ public class View {
     } catch (RuntimeException e){
       alerter.displayAlert(e);
     }
-    myStage.setScene(level.makeScene(new File(levelDirectory + "/level.json")));
+    myStage.setScene(level.makeScene());
     myStage.setTitle(myController.getViewInfo().name());
 
     levelAnimation = new Timeline();
@@ -68,7 +68,7 @@ public class View {
     }
 
     if(!myController.isGameRunning()){
-      this.finishLevel();
+      this.finishLevel("end_win");
     }
 
     level.step(nextNodes);
@@ -76,14 +76,14 @@ public class View {
     level.setLiveCount(myController.getMainCharacterLives());
   }
 
-  public void finishLevel(){
+  public void finishLevel(String endMessage){
     levelAnimation.stop();
     WaitingScreen waitingScreen = new WaitingScreen();
     myStage.setScene(waitingScreen.makeScene());
     myController.setHighScore(playerName, myController.getPlayerScore());
     EndScreen endScreen = new EndScreen(language, myController.getHighScores());
     myStage.setScene(endScreen.makeScene());
-    myStage.setTitle(languageResources.getString("game_over"));
+    myStage.setTitle(languageResources.getString(endMessage));
   }
 
 
@@ -92,11 +92,10 @@ public class View {
  * @param code
 */
   private void handleKeyInput(KeyCode code){
-    //TODO: Use a JSON in the controller that states the "view-oriented" controls instead of an if tree
     if(code == KeyCode.P){
       pause();
     } else if(code == KeyCode.O){
-      finishLevel();
+      finishLevel("key_press_end_message");
     }
     else {
       myController.handleKeyInput(code);

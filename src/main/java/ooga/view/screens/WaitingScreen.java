@@ -8,10 +8,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class WaitingScreen {
+public class WaitingScreen implements Screen{
   private final int screenWidth = 400;
   private final int screenHeight = 400;
-  private final String WAITING_IMAGE = "/games/mario/assets/ball.gif";
 
   public WaitingScreen(){
   }

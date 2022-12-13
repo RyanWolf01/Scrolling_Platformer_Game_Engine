@@ -1,6 +1,7 @@
 package ooga.model.entities.maincharacter;
 
 import ooga.model.entities.alive.ImmutableAliveBehavior;
+import ooga.model.entities.entitymodels.BasicMainCharacter;
 
 public class BasicMainCharacterBehavior implements MainCharacterBehavior{
 
@@ -28,6 +29,15 @@ public class BasicMainCharacterBehavior implements MainCharacterBehavior{
     this.aliveBehavior = aliveBehavior;
     score = 0;
     this.hasPowerUp = hasPowerUp;
+  }
+
+  /**
+   * in case this has a power up
+   * @param basicMainCharacter main character from which old behavior is grabbed
+   */
+  public BasicMainCharacterBehavior(BasicMainCharacter basicMainCharacter){
+    this.aliveBehavior = basicMainCharacter.getAliveBehavior();
+    score = basicMainCharacter.getScore();
   }
   /**
    *
