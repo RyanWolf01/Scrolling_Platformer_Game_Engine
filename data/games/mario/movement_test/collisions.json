@@ -70,7 +70,7 @@
         "COLLISION_DIRECTION": "LEFT||RIGHT",
         "ACTIONS": [
           {
-            "classname": "ooga.model.actions.maincharacteractions.ResetStandardDeath",
+            "classname": "ooga.model.actions.maincharacteractions.ResetVerticalDeath",
             "action_interface": "MainCharacterAction",
             "params": []
           }

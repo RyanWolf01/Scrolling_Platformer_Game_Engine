@@ -39,7 +39,7 @@ public class ResetStandardDeath implements MainCharacterAction {
     mainCharacter.setAliveBehavior(new BasicAliveBehavior(mainCharacter.getAliveBehavior()));
     mainCharacter.setMoverBehavior(mainCharacter.getOriginalMoverBehavior());
     mainCharacter.resetMoverData();
-    mainCharacter.setMainCharacterBehavior(new BasicMainCharacterBehavior(mainCharacter.getAliveBehavior()));
+    mainCharacter.setMainCharacterBehavior(new BasicMainCharacterBehavior(mainCharacter));
   }
 
   /**
