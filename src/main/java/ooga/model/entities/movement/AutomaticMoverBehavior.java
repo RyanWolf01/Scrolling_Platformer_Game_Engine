@@ -32,7 +32,7 @@ public class AutomaticMoverBehavior extends BasicMoverBehavior{
     try {
       MOVEMENT_RATE_KEY = entityInfoProperties.getString("movement_rate");
     } catch (NullPointerException exception) {
-      throw new MiscellaneousPropertiesException("key not found");
+      throw new MiscellaneousPropertiesException("movement_rate_key_missing");
     }
 
     int tempRate;

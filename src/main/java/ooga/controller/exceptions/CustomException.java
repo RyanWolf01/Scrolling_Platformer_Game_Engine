@@ -9,15 +9,48 @@ public abstract class CustomException extends RuntimeException {
   private static final Logger LOG = LogManager.getLogger(CustomException.class);
   public static final String ERROR_TYPES_PATH = "properties.ErrorTypes";
   public ResourceBundle errorTypes;
+  private final String extraInformation;
 
   /**
    * Constructor for the Custom exceptions in the program
-   * @param message, string message for the error
+   * @param messageKey, string message for the error
    */
-  public CustomException(String message) {
-    super(message);
+  public CustomException(String messageKey) {
+    this(messageKey, "");
+  }
+
+  /**
+   * Constructor for the Custom exceptions in the program
+   * @param messageKey, string message for the error
+   * @param extraInformation, string to be appended to final message
+   */
+  public CustomException(String messageKey, String extraInformation) {
+    super(messageKey);
+    this.extraInformation = extraInformation;
     errorTypes = ResourceBundle.getBundle(ERROR_TYPES_PATH);
-    LOG.error(message);
+    LOG.error(messageKey);
+  }
+
+  /**
+   * Constructor for the Custom exceptions in the program
+   * @param messageKey, string message for the error
+   * @param e, Exception to be passed to super
+   */
+  public CustomException(String messageKey, Exception e) {
+    this(messageKey, "", e);
+  }
+
+  /**
+   * Constructor for the Custom exceptions in the program
+   * @param messageKey, string message for the error
+   * @param extraInformation, string to be appended to final message
+   * @param e, Exception to be passed to super
+   */
+  public CustomException(String messageKey, String extraInformation, Exception e) {
+    super(messageKey, e);
+    this.extraInformation = extraInformation;
+    errorTypes = ResourceBundle.getBundle(ERROR_TYPES_PATH);
+    LOG.error(messageKey);
   }
 
   /**
@@ -33,8 +66,12 @@ public abstract class CustomException extends RuntimeException {
    * Method to return the message of the error for the specific error as per the constructor
    * @return error message to be displayed in alert
    */
-  public String getErrorMessage() {
+  public String getErrorMessageKey() {
     return this.getMessage();
+  }
+
+  public String getExtraInformation() {
+    return this.extraInformation;
   }
 
 }

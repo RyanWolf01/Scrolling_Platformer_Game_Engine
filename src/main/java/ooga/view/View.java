@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 public class View {
 
   private GameController myController;
+  private String playerName;
   private static Timeline levelAnimation;
   private LevelScreen level;
   private static final double FRAME_DELAY = 1.0/60.0;
@@ -30,13 +31,12 @@ public class View {
   private String gameTitle;
   private String name;
 
-  public View(Stage mainStage, String GameTitle, File levelDirectory, String playerName, String myLanguage){
+  public View(Stage mainStage, String GameTitle, File levelDirectory, String name, String myLanguage){
     myStage = mainStage;
     language = myLanguage;
+    playerName = name;
     myController = new GameController(levelDirectory + "/level.json", levelDirectory + "/collisions.json", levelDirectory + "/controls.json");
-    myController.setPlayerName(playerName);
-    myController.setLanguage(language);
-    level = new LevelScreen(myController);
+    level = new LevelScreen(myController, this);
     myStage.setScene(level.makeScene(new File(levelDirectory + "/level.json")));
     myStage.setTitle(GameTitle);
 
@@ -56,9 +56,9 @@ public class View {
 
   public void finishLevel(){
     levelAnimation.stop();
-    EndScreen endScreen = new EndScreen();
-    myStage.setScene(endScreen.makeScene(myController.getLevelDirectory() + Main.slash + "scores.json"));
-    myStage.setTitle("You Won!");
+    EndScreen endScreen = new EndScreen(language, myController.getPlayerScore(), playerName);
+    myStage.setScene(endScreen.makeScene(myController.getLevelDirectory() + "scores.json"));
+    myStage.setTitle("Game Over!");
   }
 
 
@@ -70,8 +70,8 @@ public class View {
     //TODO: Use a JSON in the controller that states the "view-oriented" controls instead of an if tree
     if(code == KeyCode.P){
       pause();
-    } else if(code == KeyCode.R){
-      play();
+    } else if(code == KeyCode.O){
+      finishLevel();
     }
     else {
       myController.handleKeyInput(code);

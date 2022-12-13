@@ -29,7 +29,7 @@ public class MainCharacterTest {
     MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     mario.acceptMoveAction(new RightMovement());
-    assertEquals(rightVelocity, mario.getXCoordinate());
+    assertEquals(rightVelocity, mario.getXVelocity());
   }
   @Test
   void testAcceptMoverActionPos2() {
@@ -38,15 +38,7 @@ public class MainCharacterTest {
     mario.acceptMoveAction(new RightMovement());
     mario.acceptMoveAction(new RightMovement());
     mario.acceptMoveAction(new LeftMovement());
-    assertEquals(rightVelocity, mario.getXCoordinate());
-  }
-
-  @Test
-  void testAcceptMoverActionNegative() {
-    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
-
-    mario.acceptMoveAction(null);
-    assertEquals(0, mario.getXCoordinate());
+    assertEquals(0, mario.getXVelocity());
   }
 
   @Test
@@ -54,7 +46,7 @@ public class MainCharacterTest {
     MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     mario.acceptAliveAction(new IncreaseLife());
-    assertEquals(1, mario.getLives());
+    assertEquals(2, mario.getLives());
   }
 
   @Test
@@ -64,17 +56,8 @@ public class MainCharacterTest {
     mario.acceptAliveAction(new IncreaseLife());
     mario.acceptAliveAction(new IncreaseLife());
     mario.acceptAliveAction(new Kill());
-    assertEquals(1, mario.getLives());
+    assertEquals(2, mario.getLives());
   }
-
-  @Test
-  void testAcceptAliveActionNegative() {
-    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
-
-    mario.acceptAliveAction(null);
-    assertEquals(1, mario.getLives());
-  }
-
 
 
 

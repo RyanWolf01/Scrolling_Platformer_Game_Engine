@@ -9,20 +9,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ConnectionContainerTest {
     public ConnectionContainer container;
-    public JSONInformationDecoder decoder = new JSONInformationDecoder("data/games/sprint_1_test/level.json", "data/games/sprint_1_test/collisions.json", "data/games/sprint_1_test/controls.json");
-
-    @Test
-    public void constructorTest(){
-        container = new ConnectionContainer(decoder);
-        assertInstanceOf(container.getClass(), ConnectionContainer.class);
-    }
+    public JSONInformationDecoder decoder = new JSONInformationDecoder("data/games/mario/sprint_1_test/level.json", "data/games/mario/sprint_1_test/collisions.json", "data/games/mario/sprint_1_test/controls.json");
 
     @Test
     public void testAdd(){
         container = new ConnectionContainer(decoder);
-        EntityInfo info = new EntityInfo("uh");
-        info.set("texture", "idk");
-        container.addNewEntity(0,0,0,0,"uh", info);
+        EntityInfo info = new EntityInfo("goomba");
+        info.set("texture", "/games/mario/assets/mario.png");
+        container.addNewEntity(0,0,0,0,"goomba", info);
 
         assertEquals(1, container.viewables().size());
     }
@@ -31,7 +25,7 @@ public class ConnectionContainerTest {
     public void testMultipleAdds(){
         container = new ConnectionContainer(decoder);
         EntityInfo info = new EntityInfo("uh");
-        info.set("texture", "idk");
+        info.set("texture", "/games/mario/assets/mario.png");
         container.addNewEntity(0,0,0,0,"uh", info);
         assertEquals(1, container.viewables().size());
         container.addNewEntity(0,0,0,0,"uh", info);
@@ -42,7 +36,7 @@ public class ConnectionContainerTest {
     public void testMap(){
         container = new ConnectionContainer(decoder);
         EntityInfo info = new EntityInfo("uh");
-        info.set("texture", "idk");
+        info.set("texture", "/games/mario/assets/mario.png");
         container.addNewEntity(0,0,0,0,"uh", info);
 
         for(ScrollingNode node : container.viewables()){
@@ -58,7 +52,7 @@ public class ConnectionContainerTest {
     public void testUpdate(){
         container = new ConnectionContainer(decoder);
         EntityInfo info = new EntityInfo("uh");
-        info.set("texture", "idk");
+        info.set("texture", "/games/mario/assets/mario.png");
         container.addNewEntity(0,0,0,0,"uh", info);
 
         for(Node node : container.viewables()){
@@ -77,4 +71,22 @@ public class ConnectionContainerTest {
             assertEquals(entity.getYCoordinate(), 10);
         }
     }
+
+    @Test
+    public void killTest(){
+        container = new ConnectionContainer(decoder);
+        EntityInfo info = new EntityInfo("goomba");
+        info.set("texture", "/games/mario/assets/mario.png");
+        container.addNewEntity(0,0,0,0,"goomba", info);
+        assertEquals(1, container.viewables().size());
+
+        //container.
+
+        info.set("lives", "0");
+        container.addNewEntity(0,0,0,0,"goomba", info);
+        assertEquals(2, container.viewables().size());
+
+
+    }
+
 }
