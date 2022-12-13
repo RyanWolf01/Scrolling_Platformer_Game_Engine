@@ -7,8 +7,6 @@ public class AlertTest {
 
   @Test
   void testAlert() {
-    CustomException exception = new "Wrong JSON Formatting");
-    ExceptionAlert alert = new ExceptionAlert();
-
+    assertEquals()
   }
 }
