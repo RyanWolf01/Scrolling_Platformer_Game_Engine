@@ -45,17 +45,16 @@ public class LevelJSONRetriever {
     JSONArray entityJSONArray = new JSONArray();
     for (Alive liver : livingContainer) {
       JSONObject singleEntity = new JSONObject();
-      singleEntity.put("lives", liver.getLives());
+      singleEntity.put("lives", String.valueOf(liver.getLives()));
       Entity entity = (Entity) liver;
       seenEntities.add(entity);
-      // singleEntity.put("type", ???)
-      singleEntity.put("x", entity.getXCoordinate());
-      singleEntity.put("y", entity.getYCoordinate());
-      singleEntity.put("height", entity.getXCoordinate());
-      singleEntity.put("width", entity.getXCoordinate());
+      singleEntity.put("x", String.valueOf(entity.getXCoordinate()));
+      singleEntity.put("y", String.valueOf(entity.getYCoordinate()));
+      singleEntity.put("height", String.valueOf(entity.getHeight()));
+      singleEntity.put("width", String.valueOf(entity.getWidth()));
       Info info = (Info) entity.getImmutableEntityInfo();
       for (String key : info) {
-        singleEntity.put(key, info.get(key));
+        singleEntity.put(key, String.valueOf(info.get(key)));
       }
       entityJSONArray.add(singleEntity);
     }
@@ -63,14 +62,13 @@ public class LevelJSONRetriever {
     for (Entity entity : entityContainer) {
       if (!seenEntities.contains(entity)) {
         JSONObject singleEntity = new JSONObject();
-        // singleEntity.put("type", ???)
-        singleEntity.put("x", entity.getXCoordinate());
-        singleEntity.put("y", entity.getYCoordinate());
-        singleEntity.put("height", entity.getXCoordinate());
-        singleEntity.put("width", entity.getXCoordinate());
+        singleEntity.put("x", String.valueOf(entity.getXCoordinate()));
+        singleEntity.put("y", String.valueOf(entity.getYCoordinate()));
+        singleEntity.put("height", String.valueOf(entity.getHeight()));
+        singleEntity.put("width", String.valueOf(entity.getWidth()));
         Info info = (Info) entity.getImmutableEntityInfo();
         for (String key : info) {
-          singleEntity.put(key, info.get(key));
+          singleEntity.put(key, String.valueOf(info.get(key)));
         }
         entityJSONArray.add(singleEntity);
       }
