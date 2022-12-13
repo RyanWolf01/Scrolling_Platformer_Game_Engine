@@ -5,11 +5,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.controller.saveloadhandling.CheckpointDirectory;
-<<<<<<< HEAD
+
 import ooga.controller.saveloadhandling.LevelJSONRetriever;
-=======
 import ooga.model.GameState;
->>>>>>> master
 import ooga.model.Model;
 import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
