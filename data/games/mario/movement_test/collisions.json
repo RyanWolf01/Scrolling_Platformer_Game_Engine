@@ -86,6 +86,11 @@
             "params": []
           },
           {
+            "classname": "ooga.model.actions.maincharacteractions.IncrementScoreStandard",
+            "action_interface": "MainCharacterAction",
+            "params": []
+          },
+          {
             "classname": "ooga.model.actions.maincharacteractions.SetHasPowerUpTrue",
             "action_interface": "MainCharacterAction",
             "params": []

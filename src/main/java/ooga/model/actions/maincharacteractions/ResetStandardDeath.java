@@ -7,21 +7,7 @@ import ooga.model.entities.entitymodels.BasicMainCharacter;
 import ooga.model.entities.maincharacter.BasicMainCharacterBehavior;
 import ooga.model.entities.movement.BasicMoverBehavior;
 
-public class ResetVerticalDeath implements MainCharacterAction {
-
-  private final double VERTICAL_OFFSET;
-
-  public ResetVerticalDeath(){
-    double tempOffset;
-    try{
-      tempOffset = Double.parseDouble(
-          ResourceBundle.getBundle("properties/powerups").getString("vertical_offset"));
-    }
-    catch(NumberFormatException exception){
-      throw new MovementDataException("incorrect vertical_offset format", exception);
-    }
-    VERTICAL_OFFSET = tempOffset;
-  }
+public class ResetStandardDeath implements MainCharacterAction {
 
   /**
    * increment score of main character
@@ -32,7 +18,6 @@ public class ResetVerticalDeath implements MainCharacterAction {
 
     if(mainCharacter.hasPowerUp()){
       mainCharacter.setHasPowerUp(false);
-      fallFromSky(mainCharacter);
     }
     else{
       mainCharacter.kill();
@@ -55,14 +40,6 @@ public class ResetVerticalDeath implements MainCharacterAction {
     mainCharacter.setMoverBehavior(mainCharacter.getOriginalMoverBehavior());
     mainCharacter.resetMoverData();
     mainCharacter.setMainCharacterBehavior(new BasicMainCharacterBehavior(mainCharacter));
-  }
-
-  /**
-   *
-   * @param mainCharacter falls from sky if didn't die
-   */
-  private void fallFromSky(BasicMainCharacter mainCharacter){
-    mainCharacter.setYCoordinate(mainCharacter.getYCoordinate() + VERTICAL_OFFSET);
   }
 
   /**
