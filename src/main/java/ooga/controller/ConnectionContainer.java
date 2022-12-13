@@ -96,7 +96,10 @@ public class ConnectionContainer {
       node.update(entity.getXCoordinate(), entity.getYCoordinate(), entity.getHeight(), entity.getWidth());
     }
 
-    for(Alive liver : entities.livers()){
+    List<Alive> livers = new ArrayList<>();
+    entities.livers().forEach(livers::add);
+
+    for(Alive liver : livers){
       if(liver.getLives() <= 0){
         Entity toRemove = (Entity) liver;
         entities.removeEntity(toRemove);
