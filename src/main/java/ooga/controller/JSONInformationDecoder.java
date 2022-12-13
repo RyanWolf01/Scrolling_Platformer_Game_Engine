@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ooga.controller.exceptions.CollisionChartCreationException;
 import ooga.controller.exceptions.ConnectionContainerCreationException;
 import ooga.controller.exceptions.MalformedJSONException;
 import ooga.model.actions.moveractions.MoverActionGetter;
@@ -111,8 +112,7 @@ public class JSONInformationDecoder {
         throw new ConnectionContainerCreationException("invalid_JSON_object");
       }
       if (!checkRequiredKeys(singleEntity)) {
-        // TODO: custom exception here
-        throw new RuntimeException("Not all required information for entity");
+        throw new ConnectionContainerCreationException("missing_required_info");
       }
       singleEntityInfo = makeEntityInfoFromJSONObject(singleEntity);
       connectionContainer.addNewEntity(Integer.parseInt((String) singleEntity.get("x")), Integer.parseInt((String) singleEntity.get("y")),
@@ -170,23 +170,21 @@ public class JSONInformationDecoder {
     JSONObject allJSON;
     JSONArray criteriaListJSON;
     String parent;
-//    List<Criteria> criteriaList = new ArrayList<>();
-//    CollisionChart defaultCollisionChart = new DefaultCollisionChart();
 
     // make sure we can open JSON file
     try {
       allJSON = initialJSONInformation(collisionsJSON);
     } catch (IOException | ParseException e) {
-      throw new RuntimeException(e);
+      throw new CollisionChartCreationException("not_transformable_JSON");
     }
 
     // make sure this type has a corresponding CollisionChart
-    if (! checkJSONObjectValue(allJSON.get(type))) {
-      throw new RuntimeException("invalid type");
+    if (!checkJSONObjectValue(allJSON.get(type))) {
+      throw new CollisionChartCreationException("invalid_type");
     }
     JSONObject entityJSON = (JSONObject) allJSON.get(type);
-    if (! checkJSONArrayValue(entityJSON.get("collision_chart"))) {
-      throw new RuntimeException("invalid type");
+    if (!checkJSONArrayValue(entityJSON.get("collision_chart"))) {
+      throw new CollisionChartCreationException("invalid_type");
     }
 
     criteriaListJSON = (JSONArray) entityJSON.get("collision_chart");
@@ -204,7 +202,6 @@ public class JSONInformationDecoder {
 
       for (Object j : criteriaElement.keySet()) {
         if (j.equals("ACTIONS")) {
-          //TODO: surround with try catch and check type errors
           loadActionDataContainer(actionDataContainer, (JSONArray) criteriaElement.get(j));
         } else {
           criteriaMap.put((String) j, (String) criteriaElement.get(j));
@@ -231,10 +228,9 @@ public class JSONInformationDecoder {
         action = (JSONObject) o;
 
       } else {
-        throw new RuntimeException("not an object");
+        throw new CollisionChartCreationException("invalid_JSON_object");
       }
 
-      // TODO: handle exception here**
       parameters = (Collection<String>) action.get("params");
       ActionData actionData = new ActionData((String) action.get("classname"), (String) action.get("action_interface"),
           parameters);
