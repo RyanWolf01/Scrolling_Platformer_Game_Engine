@@ -96,7 +96,7 @@ public class GameController {
      * Method to be called on the button press in the frontend to save the game
      * at the current time by creating a checkpoint directory
      *
-     * @param directoryName
+     * @param directoryName, string that the directory will be named
      */
     public void saveGame(String directoryName) {
         LevelJSONRetriever retriever = new LevelJSONRetriever(jsonDecoder.generalInfoMap, container.entities()

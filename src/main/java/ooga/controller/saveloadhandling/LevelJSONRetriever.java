@@ -1,5 +1,6 @@
 package ooga.controller.saveloadhandling;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import ooga.model.entities.alive.Alive;
@@ -37,6 +38,7 @@ public class LevelJSONRetriever {
 
   public JSONObject generateLevelJSON(Map<String, Object> generalInfoMap, EntityContainer entityContainer, LivingContainer livingContainer) {
     currentLevelJSON = new JSONObject();
+    seenEntities = new ArrayList<>();
     for (String key : generalInfoMap.keySet()) {
       currentLevelJSON.put(key, generalInfoMap.get(key));
     }
@@ -44,6 +46,7 @@ public class LevelJSONRetriever {
     for (Alive liver : livingContainer) {
       JSONObject singleEntity = new JSONObject();
       Entity entity = (Entity) liver;
+      seenEntities.add(entity);
       // singleEntity.put("type", ???)
       singleEntity.put("x", entity.getXCoordinate());
       singleEntity.put("y", entity.getXCoordinate());
