@@ -87,14 +87,23 @@ public class GameController {
         access.postHighScore(playerName, score);
     }
 
-    public TreeMap<String, Integer> getHighScores(){
-        TreeMap<String, Integer> scoreMap = new TreeMap<>();
+    public Map<String, Integer> getHighScores(){
+        Map<String, Integer> scoreMap = new HashMap<>();
         org.json.JSONObject json = access.getHighScores();
 
         for(String o : json.keySet()){
             scoreMap.put(o, (Integer) json.get(o));
         }
-        return scoreMap;
+
+        LinkedHashMap<String, Integer> reverseSortedMap = new LinkedHashMap<>();
+        scoreMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .forEachOrdered(x -> reverseSortedMap.put(x.getKey(), x.getValue()));
+
+        // taken from https://howtodoinjava.com/java/sort/java-sort-map-by-values/
+
+        return reverseSortedMap;
     }
 
     public void handleKeyInput(KeyCode code){

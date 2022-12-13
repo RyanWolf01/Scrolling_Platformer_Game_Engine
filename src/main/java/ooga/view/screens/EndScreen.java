@@ -33,7 +33,7 @@ public class EndScreen implements Screen{
   /**
    * Creates an EndScreen To Display High Scores
    */
-  public EndScreen(String language, TreeMap<String, Integer> scores){
+  public EndScreen(String language, Map<String, Integer> scores){
     scoresMap = scores;
     languageResources = ResourceBundle.getBundle(Main.DEFAULT_LANGUAGE_RESOURCE_PACKAGE + language);
   }
@@ -52,16 +52,29 @@ public class EndScreen implements Screen{
 
 
   private void createTexts(){
-
-    ArrayList<String> nameList = new ArrayList<>(scoresMap.keySet());
+    //ArrayList<Integer> scoreList = new ArrayList<>(scoresMap.values());
+    //scoreList.sort(Comparator.reverseOrder());
     int boxHeight = (sceneHeight - titleHeight)/MAX_SCORES;
-    for (int i = 0; i < Math.min(scoresMap.size(), MAX_SCORES); ++i) {
-      HighScore box = new HighScore(sceneWidth, boxHeight, scoresMap.get(nameList.get(i)), nameList.get(i));
+
+    int counter = 0;
+    for(String key : scoresMap.keySet()){
+      if(counter == 10) break;
+      HighScore box = new HighScore(sceneWidth, boxHeight, scoresMap.get(key), key);
       levelPane.getChildren().add(box);
       box.setPrefWidth(sceneWidth);
       box.setPrefHeight(boxHeight);
-      box.setTranslateY(titleHeight + (boxHeight*i));
+      box.setTranslateY(titleHeight + (boxHeight*counter));
+      counter++;
     }
+
+//
+//    for (int i = 0; i < Math.min(scoresMap.size(), MAX_SCORES); ++i) {
+//      HighScore box = new HighScore(sceneWidth, boxHeight, scoreList.get(i), scoresMap.get(scoreList.get(i)));
+//      levelPane.getChildren().add(box);
+//      box.setPrefWidth(sceneWidth);
+//      box.setPrefHeight(boxHeight);
+//      box.setTranslateY(titleHeight + (boxHeight*i));
+//    }
   }
 
 /**

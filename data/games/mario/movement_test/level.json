@@ -16,7 +16,8 @@
       "height": "100",
       "width": "50",
       "texture": "/games/mario/assets/mario.png",
-      "lives": "2"
+      "lives": "2",
+      "movement_queue": "move_right"
     },
     {
       "type": "static_platform",

@@ -16,6 +16,7 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
   private static final Logger LOG = LogManager.getLogger(MovingEntity.class);
 
   private BasicMoverBehavior basicMoverBehavior;
+  private final BasicMoverBehavior originalMoverBehavior;
   private MoverData moverData;
 
   /**
@@ -33,6 +34,8 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
     this.moverData = new MoverData(entityInfo);
 
     initializeMoverBehavior(movementQueue);
+
+    originalMoverBehavior = basicMoverBehavior;
   }
 
   /**
@@ -44,6 +47,14 @@ public abstract class MovingEntity extends CollidableEntity implements Mover {
       basicMoverBehavior = new BasicMoverBehavior();
     else
       basicMoverBehavior = new AutomaticMoverBehavior(movementQueue, this);
+  }
+
+  @Override
+  /**
+   * get original movement behavior
+   */
+  public BasicMoverBehavior getOriginalMoverBehavior(){
+    return originalMoverBehavior;
   }
 
   /**
