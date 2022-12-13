@@ -16,7 +16,7 @@ import org.json.simple.JSONObject;
 
 public class LevelJSONRetriever {
 
-  Logger LOG = LogManager.getLogger(LevelJSONRetriever.class);
+  private static final Logger LOG = LogManager.getLogger(LevelJSONRetriever.class);
 
   public static final String ENTITY_KEY = "Entity";
 
