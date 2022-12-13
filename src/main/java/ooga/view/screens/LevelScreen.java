@@ -86,6 +86,7 @@ public class LevelScreen {
     if(mainCharacter == null){
       LOG.info("Character Has Died");
       view.finishLevel();
+      return;
     }
     updateCamera(mainCharacter);
     translateNodes();
