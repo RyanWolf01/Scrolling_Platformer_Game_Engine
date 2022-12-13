@@ -95,7 +95,6 @@ public class JSONInformationDecoder {
   }
 
 
-  // TODO: could also maybe do try catch here instead, lots of logic, longish method
   /**
    * Method to take in the JSONArray of objects for each entity, and the connection container,
    * and populate this connection container properly with the required parameters
@@ -132,7 +131,6 @@ public class JSONInformationDecoder {
       if (checkJSONObjectValue(jsonObject)) {
         entityJSONList.add((JSONObject) jsonObject);
       } else {
-        // TODO: custom exception here
         throw new MalformedJSONException("Not a json object");
       }
     }
@@ -161,11 +159,6 @@ public class JSONInformationDecoder {
 
 
   // TODO: refactor this method to simplify the control flow logic
-  /*
-  Basically, we should get every single file in the collisions folder and combine it into one big
-  JSON object. Then look for the type in here, and fill in type values for when you're checking
-  OPPONENT_TYPE?...
-   */
   private CollisionChart makeCollisionDataFromJSONObject(String type, CollisionChart collisionChart) {
     JSONObject allJSON;
     JSONArray criteriaListJSON;
