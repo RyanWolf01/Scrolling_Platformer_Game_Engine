@@ -35,8 +35,8 @@
       "width": "200"
     },
     {
-      "type": "game_ender",
-      "collidable_type": "game_ender",
+      "type": "static_entity",
+      "collidable_type": "boundary",
       "texture": "/games/mario/assets/orangeSquare.png",
       "x": "1250",
       "y": "-50",
@@ -44,8 +44,8 @@
       "width": "50"
     },
     {
-      "type": "game_ender",
-      "collidable_type": "game_ender",
+      "type": "static_entity",
+      "collidable_type": "boundary",
       "texture": "/games/mario/assets/orangeSquare.png",
       "x": "100",
       "y": "-50",
@@ -53,13 +53,22 @@
       "width": "50"
     },
     {
-      "type": "game_ender",
-      "collidable_type": "game_ender",
+      "type": "static_entity",
+      "collidable_type": "boundary",
       "texture": "/games/mario/assets/orangeSquare.png",
       "x": "100",
       "y": "300",
       "height": "50",
       "width": "1150"
+    },
+    {
+      "type": "static_entity",
+      "collidable_type": "flagpole",
+      "texture": "/games/mario/assets/flagpole.png",
+      "x": "1100",
+      "y": "-400",
+      "height": "500",
+      "width": "50"
     },
     {
       "type": "moving_character",

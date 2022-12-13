@@ -11,7 +11,6 @@ import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.entitymodels.BasicStaticCharacter;
 import ooga.model.entities.entitymodels.MovingCharacter;
 import ooga.model.entities.entitymodels.MainCharacter;
-import ooga.model.entities.modelcallers.GameEnderCollidableEntity;
 
 
 /**
@@ -21,7 +20,6 @@ public class BackendContainer {
   private EntityContainer entities;
   private MoverContainer movers;
   private CollidableContainer collidables;
-  private GameEnderContainer gameEnders;
   private LivingContainer livers;
   private MainCharacter mainCharacter;
   private JSONInformationDecoder decoder;
@@ -33,7 +31,6 @@ public class BackendContainer {
     entities = new EntityContainer();
     movers = new MoverContainer();
     collidables = new CollidableContainer();
-    gameEnders = new GameEnderContainer();
     factory = new EntityFactory(decoder);
     this.decoder = decoder;
   }
@@ -88,13 +85,6 @@ public class BackendContainer {
       }
 
     }
-    else if (isGameEnderType(type)) {
-      GameEnderCollidableEntity newGameEnder = factory.makeGameEnder(xCoordinate, yCoordinate, height, width, type, info);
-
-      gameEnders.addGameEnder(newGameEnder);
-      collidables.addCollidable(newGameEnder);
-      newEntity = newGameEnder;
-    }
     else{
       if(isAliveType(type)){
         BasicStaticCharacter newLivingCharacter = factory.makeLivingStaticCharacter(xCoordinate,yCoordinate, height, width, type, info);
@@ -143,9 +133,6 @@ public class BackendContainer {
     return entities;
   }
 
-
-  public GameEnderContainer gameEnders() { return gameEnders; }
-
   public boolean isMainCharacterType(String type){
     return Arrays.asList(Model.containerResources.getString("main_characters").split(",")).contains(type);
   }
@@ -156,10 +143,6 @@ public class BackendContainer {
 
   public boolean isCollidableType(String type){
     return Arrays.asList(Model.containerResources.getString("collidables").split(",")).contains(type);
-  }
-
-  public boolean isGameEnderType(String type) {
-    return Arrays.asList(Model.containerResources.getString("game_enders").split(",")).contains(type);
   }
 
   public boolean isAliveType(String type){
