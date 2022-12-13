@@ -11,7 +11,7 @@ public class ExceptionAlert {
   public ExceptionAlert (CustomException exception) {
     alert = new Alert(AlertType.ERROR);
     alert.setTitle(exception.getErrorType());
-    alert.setContentText(exception.getErrorMessage());
+    alert.setContentText(exception.getErrorMessageKey());
     alert.showAndWait();
   }
 
