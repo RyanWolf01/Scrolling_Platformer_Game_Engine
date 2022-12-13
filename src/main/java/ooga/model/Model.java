@@ -17,7 +17,6 @@ import ooga.model.entities.containers.BackendContainer;
 import java.util.ResourceBundle;
 import ooga.model.entities.modelcallers.GameEnder;
 import ooga.model.entities.modelcallers.functionalinterfaces.EndGameCallable;
-import ooga.model.gamestatelisteners.GameStateListenerContainer;
 
 /**
  * Backend logic is performed in here,
@@ -30,7 +29,6 @@ public class Model {
 
   private GameState gameState = GameState.RUNNING;
   BackendContainer entities;
-  GameStateListenerContainer gameStateListenerContainer;
 
   public Model(BackendContainer entities, EndGameCallable endGameMethod){
     this.entities = entities;
