@@ -67,6 +67,10 @@ public class View {
       alerter.displayAlert(e);
     }
 
+    if(!myController.isGameRunning()){
+      this.finishLevel();
+    }
+
     level.step(nextNodes);
     level.setScore(myController.getPlayerScore());
     level.setLiveCount(myController.getMainCharacterLives());
