@@ -22,9 +22,9 @@ public class EndScreen {
 
 
   public static final int MAX_SCORES = 10;
-  private final int sceneWidth = 400;
-  private final int sceneHeight = 500;
-  private final int titleHeight = 100;
+  private static final int sceneWidth = 400;
+  private static final int sceneHeight = 500;
+  private static final int titleHeight = 100;
   private GridPane levelPane;
   private FileReader myScores;
   private Map<Integer, String> scoresMap;

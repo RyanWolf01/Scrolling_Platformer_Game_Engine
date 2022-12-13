@@ -53,6 +53,8 @@ public class View {
   private void step(double frameTime){
     NodeContainer nextNodes = myController.step();
     level.step(nextNodes);
+    level.setScore(myController.getPlayerScore());
+    level.setLiveCount(myController.getLives());
   }
 
   public void finishLevel(){
