@@ -73,12 +73,13 @@ public class GameController {
      * @return NodeContainer that the View can
      */
     public NodeContainer step(){
-        if (!gameRunning) return container.viewables();
-        model.checkAndHandleGameState();
-        checkAndHandleModelState();
-        model.checkForAndHandleCollisions();
-        executeKeyInputActions();
-        model.moveMovers();
+        if (gameRunning){
+            model.checkAndHandleGameState();
+            checkAndHandleModelState();
+            model.checkForAndHandleCollisions();
+            executeKeyInputActions();
+            model.moveMovers();
+        }
         container.update();
         return container.viewables();
     }
