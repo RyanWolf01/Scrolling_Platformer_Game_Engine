@@ -1,6 +1,8 @@
 package ooga.controller;
 
+import javafx.scene.input.KeyCode;
 import ooga.model.entities.containers.EntityContainer;
+import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -13,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,26 +32,75 @@ public class GameControllerTest {
       assertEquals(levelDirectory, controller.getLevelDirectory());
     }
 
-    /*
     @Test
-    public void constructorTest(){
-        controller = new GameController("something", "something else", "something else again");
-        assertInstanceOf(controller.getClass(), GameController.class);
+    public void highScores(){
+        String resourcesDirectory = System.getProperty("user.dir") + slash + "src" + slash + "test" + slash + "resources" + slash;
+        String levelDirectory = resourcesDirectory + "sprint_1_test" + slash;
+        controller = new GameController(levelDirectory + "level.json", levelDirectory + "collisions.json", levelDirectory + "controls.json");
+
+        Map<String, Integer> map = controller.getHighScores();
+
+        assertEquals(map.get("test"), 459);
     }
 
     @Test
-    public void stepTest() throws IOException, ParseException {
-        ConnectionContainer connectionContainer = new ConnectionContainer();
-        controller = new GameController("something", "something else", "something else again");
-        NodeContainer nodes = controller.step();
+    public void viewInfo(){
+        String resourcesDirectory = System.getProperty("user.dir") + slash + "src" + slash + "test" + slash + "resources" + slash;
+        String levelDirectory = resourcesDirectory + "movement_test" + slash;
+        controller = new GameController(levelDirectory + "level.json", levelDirectory + "collisions.json", levelDirectory + "controls.json");
 
-        JSONInformationDecoder jsoner = new JSONInformationDecoder();
-        FileReader infoFile = new FileReader("something");
-        JSONObject initialGameStates = (JSONObject) new JSONParser().parse(infoFile);
-        jsoner.makeEntityContainerFromLevelJSON("something", connectionContainer);
+        ViewInfo info = controller.getViewInfo();
 
-         assertEquals(nodes.size(), container.getContainerSize());
+        assertEquals(100, info.marginLeft());
+        assertEquals(400, info.marginRight());
+        assertEquals(200, info.marginBottom());
+        assertEquals(200, info.marginTop());
+
+        assertEquals("bliss.jpg", info.backgroundURL());
     }
-     */
+
+    @Test
+    public void stepTest(){
+        String resourcesDirectory = System.getProperty("user.dir") + slash + "src" + slash + "test" + slash + "resources" + slash;
+        String levelDirectory = resourcesDirectory + "movement_test" + slash;
+        controller = new GameController(levelDirectory + "level.json", levelDirectory + "collisions.json", levelDirectory + "controls.json");
+
+        assertEquals(0, controller.getPlayerScore());
+
+        controller.step();
+
+        assertEquals(0, controller.getPlayerScore());
+    }
+
+    @Test
+    public void isRunningTest(){
+        String resourcesDirectory = System.getProperty("user.dir") + slash + "src" + slash + "test" + slash + "resources" + slash;
+        String levelDirectory = resourcesDirectory + "movement_test" + slash;
+        controller = new GameController(levelDirectory + "level.json", levelDirectory + "collisions.json", levelDirectory + "controls.json");
+
+        assertTrue(controller.isGameRunning());
+    }
+
+    @Test
+    public void keyInputTest(){
+        String resourcesDirectory = System.getProperty("user.dir") + slash + "src" + slash + "test" + slash + "resources" + slash;
+        String levelDirectory = resourcesDirectory + "movement_test" + slash;
+        controller = new GameController(levelDirectory + "level.json", levelDirectory + "collisions.json", levelDirectory + "controls.json");
+
+        controller.handleKeyInput(KeyCode.D);
+
+        assertTrue(controller.isGameRunning());
+    }
+
+    @Test
+    public void livesTest(){
+        String resourcesDirectory = System.getProperty("user.dir") + slash + "src" + slash + "test" + slash + "resources" + slash;
+        String levelDirectory = resourcesDirectory + "movement_test" + slash;
+        controller = new GameController(levelDirectory + "level.json", levelDirectory + "collisions.json", levelDirectory + "controls.json");
+
+        assertEquals(2, controller.getMainCharacterLives());
+    }
+
+
 
 }
