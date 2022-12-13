@@ -47,6 +47,22 @@ public class DatabaseAccessTest {
     }
 
     @Test
+    public void putBigScoreTest(){
+        access = new DatabaseAccess("some_game");
+        access.postHighScore("arman", 696969696);
+
+        JSONObject o = access.getHighScores();
+
+        assertEquals(o.get("thomsen"), 69);
+
+        access.postHighScore("thomsen", 22);
+
+        o = access.getHighScores();
+
+        assertEquals(o.get("arman"), 696969696);
+    }
+
+    @Test
     public void badGameAccess(){
         access = new DatabaseAccess("not_a_game");
 
