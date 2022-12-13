@@ -33,7 +33,6 @@ public class GameController {
     private Model model;
     private Queue<KeyCode> keyCodeQueue;
     private String myLevel;
-    private String playerName = "user";
     private String language;
     private boolean gameRunning = true;
 
@@ -86,7 +85,7 @@ public class GameController {
         return container.viewables();
     }
 
-    public void setHighScore(int score){
+    public void setHighScore(String playerName, int score){
         access.postHighScore(playerName, score);
     }
 

@@ -33,7 +33,6 @@ public class StartScreen {
   private static final String RESOURCE_DIRECTORY = "/";
   private static final String ICON_DIRECTORY = "icongames/";
   private static final String[] GAME_LIST = {"Super Mario Bros", "Doodle Jump", "Geometry Dash"};
-  private static final String NO_GAME_DIRECTORY = "Cannot Find Initial Game Directory";
   private File levelDirectory;
   private DirectoryChooser directoryChooser;
   private GridPane gameChooser;
@@ -141,7 +140,7 @@ public class StartScreen {
     catch(Exception e){
       directoryChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
       LOG.error("Did not find Initial Directory Successfully.");
-      createWarning(NO_GAME_DIRECTORY);
+      createWarning(languageResources.getString("no_game_directory"));
     }
     directoryChooser.setInitialDirectory(new File(fileDirectory));
     directoryChooser.getInitialDirectory();
