@@ -144,13 +144,7 @@ public class GameController {
         return myLevel.replace("level.json", "");
     }
 
-    public void setPlayerName(String name){
-        LOG.info("Player name: " + name);
-        playerName = name;
-    }
-
-    public void setLanguage(String textLanguage){
-        LOG.info("Language: " + textLanguage);
-        language = textLanguage;
+    public int getPlayerScore() {
+        return 0;
     }
 }
