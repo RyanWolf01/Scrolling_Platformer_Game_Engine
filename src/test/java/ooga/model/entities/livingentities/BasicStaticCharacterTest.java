@@ -81,7 +81,7 @@ public class BasicStaticCharacterTest {
     ActionDataContainer container = new ActionDataContainer(actionList);
 //    character.performActions(container);
 
-    assertEquals(2, character.getLives());
+    assertEquals(1, character.getLives());
   }
 
   @Test
@@ -95,7 +95,7 @@ public class BasicStaticCharacterTest {
     ActionDataContainer container = new ActionDataContainer(actionList);
 //    character.performActions(container);
 
-    assertEquals(2, character.getLives());
+    assertEquals(1, character.getLives());
   }
 
 }

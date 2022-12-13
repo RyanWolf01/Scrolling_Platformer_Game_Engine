@@ -100,7 +100,7 @@ public class MoverContainerTest {
 
     assertEquals(0 , mover1.getXVelocity());
     assertEquals(0 , mover2.getXVelocity());
-    assertEquals(gravityVelocity , mover1.getYVelocity());
+    assertEquals(0 , mover1.getYVelocity());
     assertEquals(gravityVelocity , mover2.getYVelocity());
   }
 
@@ -120,7 +120,7 @@ public class MoverContainerTest {
         ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
 
     assertEquals(Integer.parseInt(ResourceBundle.getBundle("properties/movement").getString("right_velocity")), mover1.getXCoordinate());
-    assertEquals(gravityVelocity, mover1.getYCoordinate());
+    assertEquals(0, mover1.getYCoordinate());
   }
 
 

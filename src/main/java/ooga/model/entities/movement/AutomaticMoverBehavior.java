@@ -1,7 +1,7 @@
 package ooga.model.entities.movement;
 
 import java.util.ResourceBundle;
-import ooga.controller.exceptions.MiscellaneousPropertiesException;
+import ooga.controller.exceptions.MiscellaneousParsingException;
 import ooga.controller.exceptions.MovementDataException;
 import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.entities.entitymodels.MovingEntity;
@@ -32,7 +32,7 @@ public class AutomaticMoverBehavior extends BasicMoverBehavior{
     try {
       MOVEMENT_RATE_KEY = entityInfoProperties.getString("movement_rate");
     } catch (NullPointerException exception) {
-      throw new MiscellaneousPropertiesException("movement_rate_key_missing");
+      throw new MiscellaneousParsingException("movement_rate_key_missing");
     }
 
     int tempRate;
