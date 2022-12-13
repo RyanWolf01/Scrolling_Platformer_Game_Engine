@@ -14,7 +14,7 @@
       "y": "-1",
       "height": "100",
       "width": "50",
-      "texture": "/games/mario/assets/mario.png"
+      "texture": "/games/mario/ass/mario.png"
     },
     {
       "type": "static_platform",
