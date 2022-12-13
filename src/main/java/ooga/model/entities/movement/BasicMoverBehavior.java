@@ -19,6 +19,7 @@ public class BasicMoverBehavior implements MoverBehavior{
   /**
    * Implements Mover interface changeVelocities method that changes object's velocities
    */
+  @Override
   public void changeVelocities(double changeXVelocity, double changeYVelocity) {
     xVelocity += changeXVelocity;
     yVelocity += changeYVelocity;
@@ -31,6 +32,7 @@ public class BasicMoverBehavior implements MoverBehavior{
    * @param resetY tells if should reset yVelocity
    *
    */
+  @Override
   public void resetVelocities(boolean resetX, boolean resetY){
     if(resetX)
       xVelocity = 0;
@@ -42,6 +44,7 @@ public class BasicMoverBehavior implements MoverBehavior{
    * @return x velocity, implements Mover method This getter is needed for some MoverAction classes,
    * and for subclasses
    */
+  @Override
   public double getXVelocity() {
     return xVelocity;
   }
@@ -50,6 +53,7 @@ public class BasicMoverBehavior implements MoverBehavior{
    * @return y velocity, implements Mover method This getter is needed for some MoverAction classes,
    * and for subclasses
    */
+  @Override
   public double getYVelocity() {
     return yVelocity;
   }
