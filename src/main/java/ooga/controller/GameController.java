@@ -129,10 +129,10 @@ public class GameController {
     }
 
     private void checkAndHandleModelState() {
-        if (model.getGameState().equals(MainCharacterState.USER_WON)) {
+        if (model.getMainCharacterState().equals(MainCharacterState.USER_WON)) {
             endGame(true);
         }
-        else if (model.getGameState().equals(MainCharacterState.USER_LOST)) {
+        else if (model.getMainCharacterState().equals(MainCharacterState.USER_LOST)) {
             endGame(false);
         }
     }
