@@ -8,8 +8,10 @@ import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.controller.saveloadhandling.CheckpointDirectory;
 
+import ooga.model.entities.maincharacter.MainCharacterState;
+
 import ooga.controller.saveloadhandling.LevelJSONRetriever;
-import ooga.model.GameState;
+
 import ooga.model.Model;
 import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
@@ -31,7 +33,6 @@ public class GameController {
     private Model model;
     private Queue<KeyCode> keyCodeQueue;
     private String myLevel;
-    private String playerName = "user";
     private String language;
     private boolean gameRunning = true;
 
@@ -84,7 +85,7 @@ public class GameController {
         return container.viewables();
     }
 
-    public void setHighScore(int score){
+    public void setHighScore(String playerName, int score){
         access.postHighScore(playerName, score);
     }
 
@@ -128,10 +129,10 @@ public class GameController {
     }
 
     private void checkAndHandleModelState() {
-        if (model.getGameState().equals(GameState.USER_WON)) {
+        if (model.getGameState().equals(MainCharacterState.USER_WON)) {
             endGame(true);
         }
-        else if (model.getGameState().equals(GameState.USER_LOST)) {
+        else if (model.getGameState().equals(MainCharacterState.USER_LOST)) {
             endGame(false);
         }
     }
@@ -159,9 +160,11 @@ public class GameController {
     }
 
     public int getPlayerScore() {
-        return 0;
+        return model.getPlayerScore();
     }
-    public int getLives(){
-        return 0;
+
+    public int getMainCharacterLives(){
+        return container.entities().mainCharacter().getLives();
+
     }
 }

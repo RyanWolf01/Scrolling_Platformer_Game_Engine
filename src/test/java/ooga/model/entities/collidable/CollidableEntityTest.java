@@ -10,7 +10,7 @@ import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.physics.PhysicsCalculator;
 
 import ooga.model.entities.entitymodels.BasicStaticCharacter;
-import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.model.entities.entitymodels.BasicMainCharacter;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.movement.MovementQueue;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ public class CollidableEntityTest {
     CollisionChartGetter ccg = new DefaultCollisionChartGetter();
     CollisionChart marioChart = ccg.getCollisionChart(decoder, "mario");
 
-    MainCharacter mario = new MainCharacter(marioChart,11, 0, 50, 20, new EntityInfo("MARIO"), new MovementQueue());
+    BasicMainCharacter mario = new BasicMainCharacter(marioChart,11, 0, 50, 20, new EntityInfo("MARIO"), new MovementQueue());
 
     BasicStaticCharacter goomba = new BasicStaticCharacter(null, 30, 0, 50, 20, new EntityInfo("GOOMBA"));
 

@@ -2,13 +2,14 @@ package ooga.model.entities.entitymodels;
 
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.alive.Alive;
+import ooga.model.entities.alive.AliveBehavior;
 import ooga.model.entities.alive.BasicAliveBehavior;
 import ooga.model.entities.alive.ImmutableAliveBehavior;
 import ooga.model.entities.info.Info;
 
 public abstract class StaticCharacter extends CollidableEntity implements Alive {
 
-  private BasicAliveBehavior basicAliveBehavior;
+  private AliveBehavior basicAliveBehavior;
 
   /**
    * Static Entity has lives but can not move.

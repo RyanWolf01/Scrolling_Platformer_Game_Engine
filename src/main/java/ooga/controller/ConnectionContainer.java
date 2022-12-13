@@ -103,10 +103,7 @@ public class ConnectionContainer {
       if(liver.getLives() <= 0){
         Entity toRemove = (Entity) liver;
         entities.removeEntity(toRemove);
-
-        LOG.info(toRemove.toString());
-
-        nodes.remove(reverseConnectorMap.get(toRemove));
+        nodes.remove(getConnectedNode(toRemove));
       }
     }
   }
