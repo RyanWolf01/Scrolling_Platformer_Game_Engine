@@ -12,6 +12,11 @@ public interface Mover extends MoverBehavior {
     MoverData getMoverData();
 
     /**
+     * reset mover data to original
+     */
+    void resetMoverData();
+
+    /**
      *
      * @param basicMoverBehavior new mover behavior
      */
