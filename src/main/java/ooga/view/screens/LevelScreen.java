@@ -74,10 +74,8 @@ public class LevelScreen {
 * Generates the new frame of the level
  * @param nextNodes is the list of nodes that the level needs to display for the frame
 */
-  public void step(NodeContainer nextNodes) {
 
-
-
+  public void step(NodeContainer nextNodes){
     if(myNodes != null){
       for (Node a : myNodes) {
           levelPane.getChildren().remove(a);
@@ -88,12 +86,15 @@ public class LevelScreen {
     if(mainCharacter == null){
       LOG.info("Character Has Died");
       view.finishLevel();
+      return;
     }
     updateCamera(mainCharacter);
     translateNodes();
     for (Node node : myNodes) {
         levelPane.getChildren().add(node);
     }
+
+    myNodes = new NodeContainer(nextNodes);
   }
 
 
