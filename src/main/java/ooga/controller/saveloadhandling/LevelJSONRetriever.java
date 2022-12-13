@@ -43,10 +43,11 @@ public class LevelJSONRetriever {
     JSONArray entityJSONArray = new JSONArray();
     for (Alive liver : livingContainer) {
       JSONObject singleEntity = new JSONObject();
+      singleEntity.put("lives", liver.getLives());
       Entity entity = (Entity) liver;
       // singleEntity.put("type", ???)
       singleEntity.put("x", entity.getXCoordinate());
-      singleEntity.put("y", entity.getXCoordinate());
+      singleEntity.put("y", entity.getYCoordinate());
       singleEntity.put("height", entity.getXCoordinate());
       singleEntity.put("width", entity.getXCoordinate());
       Info info = (Info) entity.getImmutableEntityInfo();
@@ -61,7 +62,7 @@ public class LevelJSONRetriever {
         JSONObject singleEntity = new JSONObject();
         // singleEntity.put("type", ???)
         singleEntity.put("x", entity.getXCoordinate());
-        singleEntity.put("y", entity.getXCoordinate());
+        singleEntity.put("y", entity.getYCoordinate());
         singleEntity.put("height", entity.getXCoordinate());
         singleEntity.put("width", entity.getXCoordinate());
         Info info = (Info) entity.getImmutableEntityInfo();
@@ -76,7 +77,5 @@ public class LevelJSONRetriever {
 
     return currentLevelJSON;
   }
-
-
 
 }
