@@ -70,12 +70,7 @@
         "COLLISION_DIRECTION": "LEFT||RIGHT",
         "ACTIONS": [
           {
-            "classname": "ooga.model.actions.aliveactions.Kill",
-            "action_interface": "AliveAction",
-            "params": []
-          },
-          {
-            "classname": "ooga.model.actions.maincharacteractions.ResetVerticalPosition",
+            "classname": "ooga.model.actions.maincharacteractions.ResetVerticalDeath",
             "action_interface": "MainCharacterAction",
             "params": []
           }
@@ -86,8 +81,13 @@
         "COLLISION_DIRECTION": "*",
         "ACTIONS": [
           {
-            "classname": "ooga.model.actions.moveractions.FlyPowerUp",
-            "action_interface": "MoverAction",
+            "classname": "ooga.model.actions.basicentityactions.IncreaseSizePowerUp",
+            "action_interface": "BasicEntityAction",
+            "params": []
+          },
+          {
+            "classname": "ooga.model.actions.maincharacteractions.SetHasPowerUpTrue",
+            "action_interface": "MainCharacterAction",
             "params": []
           }
         ]

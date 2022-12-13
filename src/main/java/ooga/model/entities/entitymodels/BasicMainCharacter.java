@@ -27,6 +27,7 @@ public class BasicMainCharacter extends MovingCharacter implements UserControlla
   private static final Logger LOG = LogManager.getLogger(BasicMainCharacter.class);
   private MainCharacterBehavior mainCharacterBehavior;
 
+
   /**
    * MainCharacterEntity takes user input and is alive, collidable, and moveable
    * @param chart Collision Chart
@@ -147,5 +148,22 @@ public class BasicMainCharacter extends MovingCharacter implements UserControlla
   @Override
   public ImmutableMainCharacterBehavior getMainCharacterBehavior() {
     return mainCharacterBehavior;
+  }
+
+  /**
+   *
+   * @return if has power up
+   */
+  @Override
+  public boolean hasPowerUp(){
+    return mainCharacterBehavior.hasPowerUp();
+  }
+
+  /**
+   * set has power up
+   */
+  @Override
+  public void setHasPowerUp(boolean hasPowerUp){
+    mainCharacterBehavior.setHasPowerUp(hasPowerUp);
   }
 }
