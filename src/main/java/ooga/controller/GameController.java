@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.controller.saveloadhandling.CheckpointDirectory;
+import ooga.controller.saveloadhandling.LevelJSONRetriever;
 import ooga.model.Model;
 import ooga.model.collisions.physics.PhysicsCalculator;
 import ooga.model.entities.entitymodels.CollidableEntity;
@@ -98,7 +99,9 @@ public class GameController {
      * @param directoryName
      */
     public void saveGame(String directoryName) {
-        CheckpointDirectory saveDirectory = new CheckpointDirectory(directoryName, initialLevelJSON,
+        LevelJSONRetriever retriever = new LevelJSONRetriever(jsonDecoder.generalInfoMap, container.entities()
+            .entities(), container.entities().livers());
+        CheckpointDirectory saveDirectory = new CheckpointDirectory(directoryName, retriever.currentLevelJSON,
             initialControlsJSON, initialCollisionJSON);
         saveDirectory.CreateDirectory();
     }
