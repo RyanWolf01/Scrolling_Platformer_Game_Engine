@@ -57,7 +57,7 @@ public class DatabaseAccess {
   public void postHighScore(String username, int score){
     JSONObject high_scores = getHighScores();
 
-    if(high_scores.has(username) && (int) high_scores.get(username) >= score){
+    if(high_scores.has(username) && (int) high_scores.get(username) > score){
       return;
     }
 
