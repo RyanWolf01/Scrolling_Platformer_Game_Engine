@@ -1,7 +1,7 @@
 package ooga.model.entities.entitymodels;
 
+import ooga.model.GameState;
 import ooga.model.actionparsers.AliveActionParser;
-import ooga.model.actionparsers.EndGameActionParser;
 import ooga.model.actionparsers.EntityActionParser;
 import ooga.model.actionparsers.MainCharacterActionParser;
 import ooga.model.actionparsers.MoverActionParser;
@@ -12,19 +12,16 @@ import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.extrainterfaces.UserControllable;
 import ooga.model.entities.movement.MovementQueue;
 import ooga.model.entities.info.Info;
-import ooga.model.entities.modelcallers.GameEnder;
-import ooga.model.entities.modelcallers.functionalinterfaces.EndGameCallable;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
  * Maybe all main character entities
  */
-public class MainCharacter extends MovingCharacter implements UserControllable, GameEnder {
+public class MainCharacter extends MovingCharacter implements UserControllable {
 
   private static final Logger LOG = LogManager.getLogger(MainCharacter.class);
-  private EndGameCallable endGameMethod;
-  private boolean endPointHit = false;
+  private GameState gameState = GameState.RUNNING;
 
   /**
    * MainCharacterEntity takes user input and is alive, collidable, and moveable
@@ -62,6 +59,7 @@ public class MainCharacter extends MovingCharacter implements UserControllable, 
   public void acceptAliveAction(AliveAction action) {
     try {
       action.execute(this);
+      checkNumLivesAndUpdateMyGameState();
     }catch(NullPointerException exception){
       LOG.error("AliveAction is null");
       throw exception;
@@ -78,34 +76,24 @@ public class MainCharacter extends MovingCharacter implements UserControllable, 
     int count = 0;
     count += new MoverActionParser(actionDataContainer).parseAndApplyActions(this);
     count += new AliveActionParser(actionDataContainer).parseAndApplyActions(this);
-    count += new EndGameActionParser(actionDataContainer).parseAndApplyActions(this);
     count += new EntityActionParser(actionDataContainer).parseAndApplyActions(this);
     count += new MainCharacterActionParser(actionDataContainer).parseAndApplyActions(this);
 
     return count;
   }
 
-  @Override
-  public void endGame(boolean userWon) {
-    if (endGameMethod == null) throw new RuntimeException("The end game method for mario hasn't"
-        + "been set!");
-    endGameMethod.execute(userWon);
+  public GameState getGameState() {
+    return gameState;
   }
 
-  @Override
-  public void setEndGameCallable(EndGameCallable endGameCallable) {
-    this.endGameMethod = endGameCallable;
+  public void checkNumLivesAndUpdateMyGameState() {
+    if (getLives() <= 0) {
+      gameState = GameState.USER_LOST;
+    }
   }
 
-  public boolean isEndPointHit() {
-    return endPointHit;
+  public void setGameState(GameState gameState) {
+    this.gameState = gameState;
   }
 
-  public void setEndPointHit(boolean endPointHit) {
-    this.endPointHit = endPointHit;
-  }
-
-  private boolean isEndGameMethodSet() {
-    return endGameMethod != null;
-  }
 }

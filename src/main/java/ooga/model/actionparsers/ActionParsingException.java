@@ -1,5 +1,6 @@
 package ooga.model.actionparsers;
 
+import java.util.ResourceBundle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,16 +9,17 @@ import org.apache.logging.log4j.Logger;
  * ActionParsers.
  */
 public class ActionParsingException extends RuntimeException {
-
+  
   private static final Logger LOG = LogManager.getLogger(ActionParsingException.class);
+  private static final String MESSAGE = ResourceBundle.getBundle("properties/languages/English").getString("action_parsing_exception_message");
 
   public ActionParsingException(String s) {
     super(s);
     LOG.error(s);
   }
 
-  public ActionParsingException(String s, Exception e) {
-    super(s, e);
-    LOG.error(s, e);
+  public ActionParsingException(String actionDataString, Exception e) {
+    super(String.format(MESSAGE, actionDataString), e);
+    LOG.error(actionDataString, e);
   }
 }

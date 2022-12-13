@@ -1,9 +1,12 @@
 package ooga.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import ooga.controller.exceptions.MalformedJSONException;
 import ooga.model.entities.alive.Alive;
+import ooga.model.entities.containers.LivingContainer;
 import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.containers.BackendContainer;
 import ooga.model.entities.info.EntityInfo;
@@ -92,7 +95,10 @@ public class ConnectionContainer {
       node.update(entity.getXCoordinate(), entity.getYCoordinate(), entity.getHeight(), entity.getWidth());
     }
 
-    for(Alive liver : entities.livers()){
+    List<Alive> liversList = new ArrayList<>();
+    entities.livers().forEach(liversList::add);
+
+    for(Alive liver : liversList){
       if(liver.getLives() <= 0){
         Entity toRemove = (Entity) liver;
         entities.removeEntity(toRemove);
