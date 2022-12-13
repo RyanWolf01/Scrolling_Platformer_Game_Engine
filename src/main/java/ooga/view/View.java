@@ -68,7 +68,7 @@ public class View {
     levelAnimation.stop();
     WaitingScreen waitingScreen = new WaitingScreen();
     myStage.setScene(waitingScreen.makeScene());
-    myController.setHighScore(myController.getPlayerScore());
+    myController.setHighScore(playerName, myController.getPlayerScore());
     for(int score: myController.getHighScores().keySet()){
       LOG.info(score);
     }
