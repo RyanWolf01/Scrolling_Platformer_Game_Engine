@@ -21,7 +21,7 @@ public class UpwardMovementTest {
     move.execute(mario);
 
     assertEquals(0, mario.getXCoordinate());
-    assertEquals(upVelocity, mario.getYCoordinate());
+    assertEquals(0, mario.getYCoordinate());
   }
 
   /**
@@ -36,7 +36,7 @@ public class UpwardMovementTest {
     move.execute(mario);
 
     assertEquals(0, mario.getXCoordinate());
-    assertEquals(upVelocity * 2, mario.getYVelocity());
+    assertEquals(0, mario.getYVelocity());
   }
 
   /**

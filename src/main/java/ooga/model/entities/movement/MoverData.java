@@ -2,7 +2,6 @@ package ooga.model.entities.movement;
 
 import java.lang.reflect.Field;
 import java.util.ResourceBundle;
-import ooga.controller.exceptions.MiscellaneousPropertiesException;
 import ooga.controller.exceptions.MovementDataException;
 import ooga.model.entities.info.ImmutableInfo;
 import org.apache.logging.log4j.LogManager;
@@ -11,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 public class MoverData implements ImmutableMoverData {
 
   private static final Logger LOG = LogManager.getLogger(MoverData.class);
-  private final int SCREEN_SIZE;
   private double rightActionVelocity;
   private double leftActionVelocity;
   private double downwardActionVelocity;
@@ -29,15 +27,6 @@ public class MoverData implements ImmutableMoverData {
    * @param entityInfo
    */
   public MoverData(ImmutableInfo entityInfo){
-    int tempScreenSize;
-    try{
-      tempScreenSize = Integer.parseInt(
-          ResourceBundle.getBundle("properties/view").getString("screen_size"));
-    } catch(NumberFormatException exception){
-      throw new MiscellaneousPropertiesException("screen size from properties file formatted incorrectly", exception);
-    }
-
-    SCREEN_SIZE = tempScreenSize;
 
     try{
       RIGHT_VELOCITY_KEY = (ResourceBundle.getBundle("properties/movement").getString("right_velocity_key"));

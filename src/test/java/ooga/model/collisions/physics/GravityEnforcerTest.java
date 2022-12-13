@@ -34,7 +34,7 @@ public class GravityEnforcerTest {
     GravityEnforcer gravityEnforcer = new GravityEnforcer(container);
     gravityEnforcer.applyGravityToAllMovers();
 
-    assertEquals(10 + gravityVelocity, container.mainCharacter().getYVelocity());
+    assertEquals(10 + gravityVelocity * 2, container.mainCharacter().getYVelocity());
   }
 
   @Test
@@ -43,7 +43,7 @@ public class GravityEnforcerTest {
     gravityEnforcer.applyGravityToAllMovers();
     gravityEnforcer.applyGravityToAllMovers();
 
-    assertEquals(10 + gravityVelocity * 2, container.mainCharacter().getYVelocity());
+    assertEquals(10 + gravityVelocity * 4, container.mainCharacter().getYVelocity());
   }
 
   @Test
