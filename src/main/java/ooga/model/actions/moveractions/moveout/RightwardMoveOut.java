@@ -15,7 +15,7 @@ public class RightwardMoveOut implements MoverAction {
    */
   @Override
   public void execute(Mover entity){
-    entity.changeVelocities(0.5, 0);
+    entity.changeVelocities(entity.getMoverData().getLeftActionVelocity() * -2, 0);
   }
 
 }
