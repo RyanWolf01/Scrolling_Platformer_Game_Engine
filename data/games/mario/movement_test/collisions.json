@@ -91,7 +91,11 @@
         "OPPONENT_COLLIDABLE_TYPE": "game_ender",
         "COLLISION_DIRECTION": "*",
         "ACTIONS": [
-
+          {
+            "classname": "ooga.model.actions.maincharacteractions.SetEndPointHitAction",
+            "action_interface": "MainCharacterAction",
+            "params": []
+          }
         ]
       }
     ]

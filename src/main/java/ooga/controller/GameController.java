@@ -5,14 +5,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.controller.saveloadhandling.CheckpointDirectory;
+<<<<<<< HEAD
 import ooga.controller.saveloadhandling.LevelJSONRetriever;
+=======
+import ooga.model.GameState;
+>>>>>>> master
 import ooga.model.Model;
-import ooga.model.collisions.physics.PhysicsCalculator;
-import ooga.model.entities.entitymodels.CollidableEntity;
-import ooga.model.entities.entitymodels.Entity;
 import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
-import ooga.view.nodes.ScrollingNode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
@@ -31,13 +31,15 @@ public class GameController {
     private Model model;
     private Queue<KeyCode> keyCodeQueue;
     private String myLevel;
-    private String playerName;
+    private String playerName = "user";
     private String language;
     private boolean gameRunning = true;
 
     private JSONObject initialLevelJSON;
     private JSONObject initialCollisionJSON;
     private JSONObject initialControlsJSON;
+
+    private DatabaseAccess access;
 
     /**
      * The GameController needs to have a mapping of backend to frontend objects
@@ -55,14 +57,15 @@ public class GameController {
             initialControlsJSON = jsonDecoder.initialJSONInformation(controlsJSON);
             initialCollisionJSON = jsonDecoder.initialJSONInformation(collisionJSON);
             initialLevelJSON = jsonDecoder.initialJSONInformation(levelJSON);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
 
-        model = new Model(container.entities(), this::endGame);
+        access = new DatabaseAccess(jsonDecoder.game());
+
+        model = new Model(container.entities());
         keyCodeQueue = new LinkedList<>();
+
     }
 
     /**
@@ -70,12 +73,22 @@ public class GameController {
      * @return NodeContainer that the View can
      */
     public NodeContainer step(){
-        if (! gameRunning) return container.viewables();
+        if (!gameRunning) return container.viewables();
+        model.checkAndHandleGameState();
+        checkAndHandleModelState();
         model.checkForAndHandleCollisions();
         executeKeyInputActions();
         model.moveMovers();
         container.update();
         return container.viewables();
+    }
+
+    public void setHighScore(int score){
+        access.postHighScore(playerName, score);
+    }
+
+    public org.json.JSONObject getHighScores(){
+        return access.getHighScores();
     }
 
     public void handleKeyInput(KeyCode code){
@@ -106,6 +119,15 @@ public class GameController {
         saveDirectory.CreateDirectory();
     }
 
+    private void checkAndHandleModelState() {
+        if (model.getGameState().equals(GameState.USER_WON)) {
+            endGame(true);
+        }
+        else if (model.getGameState().equals(GameState.USER_LOST)) {
+            endGame(false);
+        }
+    }
+
     private void executeKeyInputActions() {
         while (! keyCodeQueue.isEmpty()) {
             KeyCode code = keyCodeQueue.poll();
@@ -118,48 +140,11 @@ public class GameController {
         }
     }
 
-    private void endGame() {
+    private void endGame(boolean userWon) {
         gameRunning = false;
-        LOG.info("The game is over (and you lost the game)!");
+        if (userWon) LOG.info("The user WON the game!");
+        else LOG.info("The user LOST the game!");
     }
-
-//    /**
-//     * Check for collisions in the View nodes
-//     */
-//    private void checkForCollisions(){
-//        model.preCollisionDetectionLoop();
-//        NodeContainer nodes = container.viewables();
-//        for(ScrollingNode collider: nodes){
-//            for(ScrollingNode collided: nodes){
-////                if(collider.getBoundsInParent().intersects(collided.getBoundsInParent()) && collided != collider && container.isCollidable(collider)){
-////                    model.handleCollision(container.getConnectedEntity(collider), container.getConnectedEntity(collided));
-////                }
-//                if(container.isCollidable(collider) && new PhysicsCalculator().areColliding((CollidableEntity) container.getConnectedEntity(collider), container.getConnectedEntity(collided)) && collided != collider){
-//                    model.handleCollision(container.getConnectedEntity(collider), container.getConnectedEntity(collided));
-//                }
-//                testStuff(collider, collided, container.getConnectedEntity(collider), container.getConnectedEntity(collided));
-//
-//                if(container.isCollidable(collider) && new PhysicsCalculator().areColliding(collider, collided) && collided != collider){
-//                    model.handleCollision(container.getConnectedEntity(collider), container.getConnectedEntity(collided));
-//                }
-//            }
-//        }
-//    }
-//
-//    private void testStuff(ScrollingNode scrollingNodeA, ScrollingNode scrollingNodeB, Entity entityA, Entity entityB) {
-//        boolean test1 = scrollingNodeA.getBoundsInParent().getMinX() == entityA.getXCoordinate();
-//        boolean test2 = scrollingNodeB.getBoundsInParent().getMinX() == entityB.getXCoordinate();
-//        boolean test3 = scrollingNodeA.getBoundsInParent().getMinY() == entityA.getYCoordinate();
-//        boolean test4 = scrollingNodeB.getBoundsInParent().getMinY() == entityB.getYCoordinate();
-//        boolean test5 = scrollingNodeA.getBoundsInParent().getHeight() == entityA.getHeight();
-//        boolean test6 = scrollingNodeB.getBoundsInParent().getHeight() == entityB.getHeight();
-//
-//        if (!test5 || !test6) System.out.println("yeeeeeeeee");
-//
-//        int i = 0;
-//        i += 1;
-//    }
-
 
     public String getLevelDirectory(){
         return myLevel.replace("level.json", "");

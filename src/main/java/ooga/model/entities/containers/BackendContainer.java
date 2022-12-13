@@ -112,6 +112,13 @@ public class BackendContainer {
     return newEntity;
   }
 
+  public void removeEntity(Entity entity){
+    livers.remove(entity);
+    movers.remove(entity);
+    collidables.remove(entity);
+    entities.remove(entity);
+  }
+
   public MoverContainer movers(){
     return movers;
   }

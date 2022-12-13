@@ -3,6 +3,7 @@ package ooga.model.entities.entitymodels;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.EndGameActionParser;
 import ooga.model.actionparsers.EntityActionParser;
+import ooga.model.actionparsers.MainCharacterActionParser;
 import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.actions.aliveactions.AliveAction;
 import ooga.model.actions.moveractions.MoverAction;
@@ -19,11 +20,11 @@ import org.apache.logging.log4j.Logger;
 /**
  * Maybe all main character entities
  */
-public class MainCharacter extends MovingCharacter implements UserControllable,
-    GameEnder {
+public class MainCharacter extends MovingCharacter implements UserControllable, GameEnder {
 
   private static final Logger LOG = LogManager.getLogger(MainCharacter.class);
   private EndGameCallable endGameMethod;
+  private boolean endPointHit = false;
 
   /**
    * MainCharacterEntity takes user input and is alive, collidable, and moveable
@@ -79,20 +80,29 @@ public class MainCharacter extends MovingCharacter implements UserControllable,
     count += new AliveActionParser(actionDataContainer).parseAndApplyActions(this);
     count += new EndGameActionParser(actionDataContainer).parseAndApplyActions(this);
     count += new EntityActionParser(actionDataContainer).parseAndApplyActions(this);
+    count += new MainCharacterActionParser(actionDataContainer).parseAndApplyActions(this);
 
     return count;
   }
 
   @Override
-  public void endGame() {
+  public void endGame(boolean userWon) {
     if (endGameMethod == null) throw new RuntimeException("The end game method for mario hasn't"
         + "been set!");
-    endGameMethod.execute();
+    endGameMethod.execute(userWon);
   }
 
   @Override
   public void setEndGameCallable(EndGameCallable endGameCallable) {
     this.endGameMethod = endGameCallable;
+  }
+
+  public boolean isEndPointHit() {
+    return endPointHit;
+  }
+
+  public void setEndPointHit(boolean endPointHit) {
+    this.endPointHit = endPointHit;
   }
 
   private boolean isEndGameMethodSet() {

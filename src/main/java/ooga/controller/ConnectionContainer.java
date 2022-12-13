@@ -3,6 +3,7 @@ package ooga.controller;
 import java.util.HashMap;
 import java.util.Map;
 import ooga.controller.exceptions.MalformedJSONException;
+import ooga.model.entities.alive.Alive;
 import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.containers.BackendContainer;
 import ooga.model.entities.info.EntityInfo;
@@ -19,11 +20,13 @@ public class ConnectionContainer {
   private JSONInformationDecoder decoder;
   private NodeContainer nodes;
   private Map<ScrollingNode, Entity> connectorMap;
+  private Map<Entity, ScrollingNode> reverseConnectorMap;
 
   public ConnectionContainer(JSONInformationDecoder decoder){
     entities = new BackendContainer(decoder);
     nodes = new NodeContainer();
     connectorMap = new HashMap<>();
+    reverseConnectorMap = new HashMap<>();
     decoder = this.decoder;
   }
 
@@ -55,6 +58,7 @@ public class ConnectionContainer {
     }
 
     connectorMap.put(newNode, newEntity);
+    reverseConnectorMap.put(newEntity, newNode);
   }
 
   /**
@@ -64,6 +68,10 @@ public class ConnectionContainer {
    */
   public Entity getConnectedEntity(ScrollingNode node){
     return connectorMap.get(node);
+  }
+
+  public ScrollingNode getConnectedNode(Entity entity){
+    return reverseConnectorMap.get(entity);
   }
 
   /**
@@ -81,6 +89,15 @@ public class ConnectionContainer {
     for(ScrollingNode node : connectorMap.keySet()){
       Entity entity = connectorMap.get(node);
       node.update(entity.getXCoordinate(), entity.getYCoordinate(), entity.getHeight(), entity.getWidth());
+    }
+
+    for(Alive liver : entities.livers()){
+      if(liver.getLives() <= 0){
+        Entity toRemove = (Entity) liver;
+        entities.removeEntity(toRemove);
+
+        nodes.remove(reverseConnectorMap.get(toRemove));
+      }
     }
   }
 

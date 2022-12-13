@@ -25,6 +25,10 @@ public class LivingContainer implements Iterable<Alive> {
     return livers.contains(liver);
   }
 
+  public void remove(Entity entity){
+    livers.remove(entity);
+  }
+
   @Override
   public Iterator<Alive> iterator() {
     return livers.iterator();

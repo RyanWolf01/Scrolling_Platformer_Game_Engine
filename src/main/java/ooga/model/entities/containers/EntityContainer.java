@@ -26,6 +26,10 @@ public class EntityContainer implements Iterable<Entity> {
     return entities.contains(entity);
   }
 
+  public void remove(Entity entity){
+    entities.remove(entity);
+  }
+
   @Override
   public Iterator<Entity> iterator() {
     return entities.iterator();

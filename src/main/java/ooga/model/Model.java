@@ -26,12 +26,13 @@ public class Model {
   private final GravityEnforcer gravityEnforcer;
   public static final ResourceBundle entityClassResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Entities");
   public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Containers");
+
+  private GameState gameState = GameState.RUNNING;
   BackendContainer entities;
 
-  public Model(BackendContainer entities, EndGameCallable endGameMethod){
+  public Model(BackendContainer entities){
     this.entities = entities;
     gravityEnforcer = new GravityEnforcer(entities);
-    setEndGameMethods(endGameMethod);
   }
 
   /**
@@ -63,6 +64,19 @@ public class Model {
     }
   }
 
+  public void checkAndHandleGameState() {
+    if (entities.mainCharacter().getLives() <= 0) {
+      gameState = GameState.USER_LOST;
+    }
+    else if (entities.mainCharacter().isEndPointHit()) {
+      gameState = GameState.USER_WON;
+    }
+  }
+
+  public GameState getGameState() {
+    return gameState;
+  }
+
   /**
    * Handles the collision with backend logic
    * @param colliderEntity first entity that collides
@@ -70,7 +84,7 @@ public class Model {
    */
   // for breakpoint:
   // collider.getImmutableEntityInfo().get(ImmutableInfo.TYPE_KEY).equals("goomba") && collided.getImmutableEntityInfo().get(ImmutableInfo.TYPE_KEY).equals("mario")
-  public void handleCollision(Entity colliderEntity, Entity collidedEntity) {
+  private void handleCollision(Entity colliderEntity, Entity collidedEntity) {
     if (!entities.isCollidable(colliderEntity)) return;
     CollidableEntity collider = getCollidableEntity(colliderEntity);
 
@@ -87,7 +101,7 @@ public class Model {
    * To be called in the GameController before every time the Collision detection loop is
    * executed
    */
-  public void preCollisionDetectionLoop() {
+  private void preCollisionDetectionLoop() {
     removeNonFreshEntities();
     for (CollidableEntity collidable : entities.collidables()) {
       CurrentCollisionContainer currCollisions = collidable.getMyCurrentCollisions();

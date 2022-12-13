@@ -37,8 +37,13 @@ public class JSONInformationDecoder {
   private String controlsJSON;
   private static final String ENTITY_JSON_KEY = "Entity";
   private List<JSONObject> entityJSONList;
+<<<<<<< HEAD
   protected Map<String, Object> generalInfoMap;
   public static final List<String> REQUIRED_ENTITY_PARAMETERS = List.of("type", "x", "y", "width", "height");
+=======
+  private Map<String, Object> generalInfoMap;
+  public static final List<String> REQUIRED_ENTITY_PARAMETERS = List.of("x", "y", "width", "height");
+>>>>>>> master
 
   public JSONInformationDecoder(String levelJSON, String collisionsJSON, String controlsJSON){
     this.levelJSON = levelJSON;
@@ -378,6 +383,21 @@ public class JSONInformationDecoder {
     info = new ViewInfo(name, backgroundURL, cameraHeight, cameraWidth, style, scrollingDirection);
 
     return info;
+  }
+
+  /**
+   * @return The name of the game (mario, doodle_jump, etc.)
+   */
+  public String game(){
+
+    JSONObject levelJSONObject = null;
+    try {
+      levelJSONObject = initialJSONInformation(levelJSON);
+    } catch (IOException | ParseException e) {
+      throw new MalformedJSONException("Level JSON unreadable");
+    }
+
+    return (String) levelJSONObject.get("game");
   }
 
 }
