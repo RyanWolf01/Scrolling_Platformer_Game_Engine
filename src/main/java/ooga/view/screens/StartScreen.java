@@ -90,9 +90,11 @@ public class StartScreen implements Screen{
     levelSelection = createLevelButton();
     gameChooser.add(levelSelection, 0, 2);
     levelSelection.setVisible(false);
+    levelSelection.setId("LevelSelector");
 
     gameSelector = new GameSelector(this);
     gameChooser.add(gameSelector, 0, 1);
+    gameSelector.setId("GameSelector");
   }
 
   public void changeBackground(String url){
