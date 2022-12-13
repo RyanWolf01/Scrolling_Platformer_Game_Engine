@@ -1,10 +1,12 @@
 package ooga.model.actions.moveractions.basicmovement;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.ResourceBundle;
 import ooga.model.actions.moveractions.StopXMovement;
 import ooga.model.entities.entitymodels.BasicMainCharacter;
+import ooga.model.entities.entitymodels.StaticEntity;
 import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +23,11 @@ public class UpwardMovementTest {
     move.execute(mario);
 
     assertEquals(0, mario.getXCoordinate());
+<<<<<<< HEAD
+    assertNotEquals(upVelocity, mario.getYCoordinate());
+=======
     assertEquals(0, mario.getYCoordinate());
+>>>>>>> master
   }
 
   /**
@@ -36,7 +42,11 @@ public class UpwardMovementTest {
     move.execute(mario);
 
     assertEquals(0, mario.getXCoordinate());
+<<<<<<< HEAD
+    assertNotEquals(upVelocity * 2, mario.getYVelocity());
+=======
     assertEquals(0, mario.getYVelocity());
+>>>>>>> master
   }
 
   /**

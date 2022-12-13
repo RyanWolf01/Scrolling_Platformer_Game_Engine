@@ -43,7 +43,7 @@ public abstract class CollidableEntity extends Entity implements Collidable {
       CollisionPhysicsData collisionPhysicsData) {
 
     if (!targetEntityInfo.hasKey(ImmutableInfo.COLLIDABLE_TYPE_KEY)) {
-      throw new CollisionChartParsingException("Target Entity's type isn't specified");
+      throw new CollisionChartParsingException();
     }
 
     CollisionData collisionData = new CollisionData(targetEntityInfo, otherEntityInfo,

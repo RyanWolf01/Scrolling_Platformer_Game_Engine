@@ -5,14 +5,15 @@ import org.apache.logging.log4j.Logger;
 
 public class EntitiesNotCollidingException extends RuntimeException {
   private static final Logger LOG = LogManager.getLogger(EntitiesNotCollidingException.class);
+  public static final String MESSAGE_KEY = "entities_not_colliding_exception";
 
-  public EntitiesNotCollidingException(String s) {
-    super(s);
-    LOG.error(s);
+  public EntitiesNotCollidingException() {
+    super(MESSAGE_KEY);
+    LOG.error(MESSAGE_KEY);
   }
 
-  public EntitiesNotCollidingException(String s, Exception e) {
-    super(s, e);
-    LOG.error(s, e);
+  public EntitiesNotCollidingException(Exception e) {
+    super(MESSAGE_KEY, e);
+    LOG.error(MESSAGE_KEY, e);
   }
 }

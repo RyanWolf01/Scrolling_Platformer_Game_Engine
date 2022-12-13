@@ -8,9 +8,10 @@ import org.apache.logging.log4j.Logger;
  */
 public class NoCollisionCriteriaMatchException extends RuntimeException {
   private static final Logger LOG = LogManager.getLogger(NoCollisionCriteriaMatchException.class);
+  public static final String MESSAGE_KEY = "no_collision_criteria_match_exception";
 
   public NoCollisionCriteriaMatchException(String message) {
-    super(message);
+    super(MESSAGE_KEY);
     LOG.error(message);
   }
 }

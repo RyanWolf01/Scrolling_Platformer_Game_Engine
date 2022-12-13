@@ -68,7 +68,7 @@ public class Model {
     mainCharacterState = entities.mainCharacter().getMainCharacterState();
   }
 
-  public MainCharacterState getGameState() {
+  public MainCharacterState getMainCharacterState() {
     return mainCharacterState;
   }
 

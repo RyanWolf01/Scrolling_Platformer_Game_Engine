@@ -22,8 +22,7 @@ public class DefaultCollisionChartGetter implements CollisionChartGetter {
     try {
       return decoder.makeCollisionDataFromJSONObject(entityType);
     } catch (RuntimeException e) {
-      throw new CollisionChartParsingException("An exception occurred while attempting to parse the"
-          + " collision chart for type " + entityType, e);
+      throw new CollisionChartParsingException(entityType, e);
     }
 
   }
