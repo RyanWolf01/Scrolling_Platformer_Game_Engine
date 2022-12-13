@@ -17,7 +17,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.*;
 import java.util.*;
 
-public class EndScreen {
+public class EndScreen implements Screen{
 
 
   public static final int MAX_SCORES = 10;
@@ -27,6 +27,7 @@ public class EndScreen {
   private StackPane levelPane;
   private FileReader myScores;
   private Map<String, Integer> scoresMap;
+  private String message;
   private static final Logger LOG = LogManager.getLogger(EndScreen.class);
   private ResourceBundle languageResources;
 
@@ -144,7 +145,6 @@ public class EndScreen {
       file.write(newScoresObject.toJSONString());
       file.close();
     } catch (IOException e) {
-      // TODO Actually implement Exception
       LOG.error("Could not save new Scores File");
     }
     FileReader newFile;
@@ -152,7 +152,6 @@ public class EndScreen {
       newFile = new FileReader(scoresPath);
     } catch (FileNotFoundException e) {
       newFile = null;
-      // TODO Actually implement Exception
       LOG.error("Could not load new Scores File");
     }
 
