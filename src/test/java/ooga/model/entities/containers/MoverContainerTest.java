@@ -74,11 +74,9 @@ public class MoverContainerTest {
 
     container.resetVelocities(true, false);
 
-    double gravityVelocity = Double.parseDouble(
-        ResourceBundle.getBundle("properties/movement").getString("gravity_velocity"));
 
     assertEquals(0 , mover1.getXVelocity());
-    assertEquals(gravityVelocity , mover1.getYVelocity());
+    assertEquals(0 , mover1.getYVelocity());
   }
 
   @Test
@@ -126,6 +124,5 @@ public class MoverContainerTest {
   }
 
 
-
-
 }
+

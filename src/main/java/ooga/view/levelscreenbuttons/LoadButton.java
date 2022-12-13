@@ -1,5 +1,7 @@
 package ooga.view.levelscreenbuttons;
 
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import java.io.File;
 import javafx.stage.DirectoryChooser;
@@ -8,7 +10,10 @@ import ooga.controller.GameController;
 import ooga.view.View;
 
 public class LoadButton extends GUIBasicButton {
-  public static final String SAVED_GAME_PATH = "savedgames/";
+  public static final String SLASH = System.getProperty("file.separator");
+  public static final String SAVED_GAME_PATH = System.getProperty("user.dir") + SLASH + "src" + SLASH + "main" + SLASH
+      + "resources" + SLASH + "savedgames";
+
   private DirectoryChooser directoryChooser;
   private Stage stage;
 
@@ -17,6 +22,7 @@ public class LoadButton extends GUIBasicButton {
    * Constructor
    * @param buttonText
    * @param iconString
+   * @param myView
    */
   public LoadButton(String buttonText, String iconString, View myView) {
     super(buttonText, iconString, myView);
@@ -32,9 +38,16 @@ public class LoadButton extends GUIBasicButton {
    * @param actionEvent
    */
   private void openDirectoryChooser(ActionEvent actionEvent) {
-    // TODO: need this method to perform opening with right stage (game stage)
     File levelDirectory = directoryChooser.showDialog(myView.getMyStage());
     System.out.println(levelDirectory);
-    //LOG.debug(this.levelDirectory);
+    // LOG.debug(this.levelDirectory);
+    String directoryName;
+    try {
+      directoryName = levelDirectory.getName();
+      new View(myView.getMyStage(), myView.getGameTitle(), levelDirectory, myView.getName(),
+          myView.getLanguage());
+    } catch (NullPointerException e) {
+      directoryName = null;
+    }
   }
 }

@@ -13,12 +13,12 @@ public class LeftMovementTest {
 
   @Test
   void testMovementPos1() {
-    MainCharacter mario = new MainCharacter(null, 0, 0, 2, 2, null, null);
+    MainCharacter mario = new MainCharacter(null, 100, 0, 2, 2, null, null);
 
     LeftMovement move = new LeftMovement();
     move.execute(mario);
 
-    assertEquals(100 + leftVelocity, mario.getXCoordinate());
+    assertEquals(leftVelocity, mario.getXVelocity());
     assertEquals(0, mario.getYCoordinate());
   }
 

@@ -19,6 +19,15 @@ public class NodeContainer implements Iterable<ScrollingNode> {
         mainCharacterNode = null;
     }
 
+    public NodeContainer(NodeContainer old){
+        this();
+
+        for(ScrollingNode node : old){
+            entities.add(node);
+        }
+        mainCharacterNode = old.mainCharacterNode;
+    }
+
     @Override
     public Iterator<ScrollingNode> iterator() {
         return entities.iterator();
