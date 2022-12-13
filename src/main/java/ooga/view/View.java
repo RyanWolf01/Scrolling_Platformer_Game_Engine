@@ -47,7 +47,6 @@ public class View {
     levelAnimation.play();
     myStage.getScene().setOnKeyPressed(e -> handleKeyInput(e.getCode()));
     gameTitle = GameTitle;
-    name = playerName;
   }
 
   private void step(double frameTime){
@@ -62,7 +61,7 @@ public class View {
     }
     level.step(nextNodes);
     level.setScore(myController.getPlayerScore());
-    level.setLiveCount(myController.getLives());
+    level.setLiveCount(myController.getMainCharacterLives());
   }
 
   public void finishLevel(){
@@ -121,7 +120,7 @@ public class View {
   }
 
   public String getName() {
-    return name;
+    return playerName;
   }
 
   public String getGameTitle() {

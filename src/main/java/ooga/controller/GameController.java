@@ -161,7 +161,9 @@ public class GameController {
     public int getPlayerScore() {
         return 0;
     }
-    public int getLives(){
-        return 0;
+
+    public int getMainCharacterLives(){
+        return container.entities().mainCharacter().getLives();
+
     }
 }
