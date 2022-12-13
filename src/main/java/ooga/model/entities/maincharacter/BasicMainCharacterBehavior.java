@@ -1,13 +1,12 @@
 package ooga.model.entities.maincharacter;
 
-import ooga.model.MainCharacterState;
 import ooga.model.entities.alive.ImmutableAliveBehavior;
 
 public class BasicMainCharacterBehavior implements MainCharacterBehavior{
 
   private ImmutableAliveBehavior aliveBehavior;
   private MainCharacterState mainCharacterState = MainCharacterState.RUNNING;
-  private double score;
+  private int score;
   public BasicMainCharacterBehavior(ImmutableAliveBehavior aliveBehavior){
     this.aliveBehavior = aliveBehavior;
     score = 0;
@@ -30,11 +29,11 @@ public class BasicMainCharacterBehavior implements MainCharacterBehavior{
   }
 
   @Override
-  public void updateScore(double addToScore) {
+  public void updateScore(int addToScore) {
     score += addToScore;
   }
   @Override
-  public double getScore() {
+  public int getScore() {
     return score;
   }
 

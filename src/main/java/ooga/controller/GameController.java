@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.controller.saveloadhandling.CheckpointDirectory;
-import ooga.model.MainCharacterState;
+import ooga.model.entities.maincharacter.MainCharacterState;
 import ooga.model.Model;
 import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
@@ -154,7 +154,6 @@ public class GameController {
     }
 
     public int getPlayerScore() {
-
-        return 0;
+        return model.getPlayerScore();
     }
 }

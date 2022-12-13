@@ -1,4 +1,4 @@
-package ooga.model;
+package ooga.model.entities.maincharacter;
 
 public enum MainCharacterState {
   NOT_STARTED,

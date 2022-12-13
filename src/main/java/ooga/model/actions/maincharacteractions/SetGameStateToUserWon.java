@@ -1,6 +1,6 @@
 package ooga.model.actions.maincharacteractions;
 
-import ooga.model.MainCharacterState;
+import ooga.model.entities.maincharacter.MainCharacterState;
 import ooga.model.entities.entitymodels.BasicMainCharacter;
 
 public class SetGameStateToUserWon implements MainCharacterAction {

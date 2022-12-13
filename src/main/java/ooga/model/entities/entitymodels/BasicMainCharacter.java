@@ -1,6 +1,6 @@
 package ooga.model.entities.entitymodels;
 
-import ooga.model.MainCharacterState;
+import ooga.model.entities.maincharacter.MainCharacterState;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.EntityActionParser;
 import ooga.model.actionparsers.MainCharacterActionParser;
@@ -103,12 +103,12 @@ public class BasicMainCharacter extends MovingCharacter implements UserControlla
   }
 
   @Override
-  public void updateScore(double addToScore) {
+  public void updateScore(int addToScore) {
     mainCharacterBehavior.updateScore(addToScore);
   }
 
   @Override
-  public double getScore() {
+  public int getScore() {
     return mainCharacterBehavior.getScore();
   }
 
