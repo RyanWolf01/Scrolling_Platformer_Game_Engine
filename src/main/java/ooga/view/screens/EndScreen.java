@@ -27,9 +27,7 @@ public class EndScreen {
   private final int titleHeight = 100;
   private GridPane levelPane;
   private FileReader myScores;
-  private int playerScore;
-  private String playerName;
-  private HashMap<Integer, String> scoresMap = new HashMap();
+  private Map<Integer, String> scoresMap;
   private static final Logger LOG = LogManager.getLogger(EndScreen.class);
   private ResourceBundle languageResources;
   private HBox titleBox;
@@ -37,20 +35,18 @@ public class EndScreen {
   /**
    * Creates an EndScreen To Display High Scores
    */
-  public EndScreen(String language, int score, String name){
-    playerScore = score;
-    playerName = name;
+  public EndScreen(String language, Map<Integer, String> scores){
+    scoresMap = scores;
     languageResources = ResourceBundle.getBundle(Main.DEFAULT_LANGUAGE_RESOURCE_PACKAGE + language);
   }
 
-  public Scene makeScene(String scoresPath){
+  public Scene makeScene(){
     levelPane = new GridPane();
 
     levelPane.setId("Pane");
     levelPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-    //initiateScoreFile(scoresPath);
     addTitleBox();
-    //createTexts();
+    createTexts();
 
     Scene scene = new Scene(levelPane, sceneWidth, sceneHeight);
     return scene;
@@ -67,6 +63,12 @@ public class EndScreen {
     }
   }
 
+/**
+* initiateScoreFile was from when the scores were stored locally.
+ * Deprecated because scores are now taken from database and the map does not need to be created in EndScreen
+ * @param scoresPath
+*/
+  @Deprecated
   private void initiateScoreFile(String scoresPath){
     LOG.debug(scoresPath);
     try{
@@ -86,7 +88,7 @@ public class EndScreen {
       throw new RuntimeException(e);
     }
     JSONArray scores = (JSONArray) scoresJson.get("scores");
-    scores.add(createPlayerScoreObject());
+    scores.add(createPlayerScoreObject("Player", 0));
     for (int i = 0; i < scores.size(); ++i) {
       JSONObject rec = (JSONObject) scores.get(i);
       String name = (String) rec.get("player");
@@ -95,15 +97,28 @@ public class EndScreen {
     }
   }
 
-  private JSONObject createPlayerScoreObject() {
+/**
+* playerScore Objects do not need to be created because it is now done on the database
+ * @param playerName
+ * @param playerScore
+ * @return
+*/
+  @Deprecated
+  private JSONObject createPlayerScoreObject(String playerName, int playerScore) {
     JSONObject singleScore = new JSONObject();
     singleScore.put("player", playerName);
     singleScore.put("score", playerScore);
     return singleScore;
   }
 
+/**
+* Deprecated because the ScoresFile is not created locally anymore
+ * @param scoresPath
+ * @return a new FileReader of the created JSON
+*/
+  @Deprecated
   private FileReader createNewScoresFile(String scoresPath){
-    JSONObject singleScore = createPlayerScoreObject();
+    JSONObject singleScore = createPlayerScoreObject("Player", 0);
     JSONArray arr = new JSONArray();
     arr.add(singleScore);
     JSONObject newScoresObject = new JSONObject();
