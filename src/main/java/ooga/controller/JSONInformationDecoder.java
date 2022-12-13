@@ -38,7 +38,7 @@ public class JSONInformationDecoder {
   private static final String ENTITY_JSON_KEY = "Entity";
   private List<JSONObject> entityJSONList;
   private Map<String, Object> generalInfoMap;
-  public static final List<String> REQUIRED_ENTITY_PARAMETERS = List.of("type", "x", "y", "width", "height");
+  public static final List<String> REQUIRED_ENTITY_PARAMETERS = List.of("x", "y", "width", "height");
 
   public JSONInformationDecoder(String levelJSON, String collisionsJSON, String controlsJSON){
     this.levelJSON = levelJSON;
