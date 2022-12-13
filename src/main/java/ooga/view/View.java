@@ -31,7 +31,6 @@ public class View {
   private static final Logger LOG = LogManager.getLogger(View.class);
   private String language;
   private String gameTitle;
-  private String name;
   private ExceptionAlerter alerter;
 
   public View(Stage mainStage, String GameTitle, File levelDirectory, String name, String myLanguage){
@@ -48,13 +47,14 @@ public class View {
       alerter.displayAlert(e);
     }
     myStage.setScene(level.makeScene(new File(levelDirectory + "/level.json")));
-    myStage.setTitle(GameTitle);
+    myStage.setTitle(myController.getViewInfo().name());
 
     levelAnimation = new Timeline();
     levelAnimation.setCycleCount(Timeline.INDEFINITE);
     levelAnimation.getKeyFrames().add(new KeyFrame(Duration.seconds(FRAME_DELAY), e -> this.step(FRAME_DELAY)));
     levelAnimation.play();
     myStage.getScene().setOnKeyPressed(e -> handleKeyInput(e.getCode()));
+    myStage.centerOnScreen();
     gameTitle = GameTitle;
   }
 
@@ -77,9 +77,6 @@ public class View {
     WaitingScreen waitingScreen = new WaitingScreen();
     myStage.setScene(waitingScreen.makeScene());
     myController.setHighScore(playerName, myController.getPlayerScore());
-    for(int score: myController.getHighScores().keySet()){
-      LOG.info(score);
-    }
     EndScreen endScreen = new EndScreen(language, myController.getHighScores());
     myStage.setScene(endScreen.makeScene());
     myStage.setTitle(languageResources.getString("game_over"));

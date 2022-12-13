@@ -26,14 +26,14 @@ public class EndScreen {
   private static final int titleHeight = 100;
   private StackPane levelPane;
   private FileReader myScores;
-  private Map<Integer, String> scoresMap;
+  private Map<String, Integer> scoresMap;
   private static final Logger LOG = LogManager.getLogger(EndScreen.class);
   private ResourceBundle languageResources;
 
   /**
    * Creates an EndScreen To Display High Scores
    */
-  public EndScreen(String language, Map<Integer, String> scores){
+  public EndScreen(String language, TreeMap<String, Integer> scores){
     scoresMap = scores;
     languageResources = ResourceBundle.getBundle(Main.DEFAULT_LANGUAGE_RESOURCE_PACKAGE + language);
   }
@@ -52,11 +52,11 @@ public class EndScreen {
 
 
   private void createTexts(){
-    ArrayList<Integer> scoreList = new ArrayList<>(scoresMap.keySet());
-    scoreList.sort(Comparator.reverseOrder());
+
+    ArrayList<String> nameList = new ArrayList<>(scoresMap.keySet());
     int boxHeight = (sceneHeight - titleHeight)/MAX_SCORES;
     for (int i = 0; i < Math.min(scoresMap.size(), MAX_SCORES); ++i) {
-      HighScore box = new HighScore(sceneWidth, boxHeight, scoreList.get(i), scoresMap.get(scoreList.get(i)));
+      HighScore box = new HighScore(sceneWidth, boxHeight, scoresMap.get(nameList.get(i)), nameList.get(i));
       levelPane.getChildren().add(box);
       box.setPrefWidth(sceneWidth);
       box.setPrefHeight(boxHeight);
@@ -94,7 +94,7 @@ public class EndScreen {
       JSONObject rec = (JSONObject) scores.get(i);
       String name = (String) rec.get("player");
       Integer score = Integer.parseInt((String) rec.get("score"));
-      scoresMap.put(score, name);
+      scoresMap.put(name, score);
     }
   }
 
