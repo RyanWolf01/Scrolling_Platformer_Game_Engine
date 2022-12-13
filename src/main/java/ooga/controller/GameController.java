@@ -61,6 +61,7 @@ public class GameController {
 
         model = new Model(container.entities(), this::endGame);
         keyCodeQueue = new LinkedList<>();
+
     }
 
     /**

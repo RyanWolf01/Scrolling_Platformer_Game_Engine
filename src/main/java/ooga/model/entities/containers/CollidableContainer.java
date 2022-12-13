@@ -16,6 +16,9 @@ public class CollidableContainer implements Iterable<CollidableEntity>{
     collidables = new ArrayList<>();
   }
 
+  public boolean contains(Entity entity){
+    return collidables.contains(entity);
+  }
 
   /**
    * Add CollidableEntity to the container
@@ -24,8 +27,8 @@ public class CollidableContainer implements Iterable<CollidableEntity>{
     collidables.add(entity);
   }
 
-  public boolean contains(Entity entity){
-    return collidables.contains(entity);
+  public void remove(Entity entity){
+    collidables.remove(entity);
   }
 
   @Override

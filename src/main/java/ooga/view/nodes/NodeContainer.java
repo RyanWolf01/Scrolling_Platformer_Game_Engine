@@ -39,6 +39,10 @@ public class NodeContainer implements Iterable<ScrollingNode> {
         }
     }
 
+    public void remove(ScrollingNode node){
+        entities.remove(node);
+    }
+
     public void setMainCharacter(ScrollingNode node){
         mainCharacterNode = node;
     }
