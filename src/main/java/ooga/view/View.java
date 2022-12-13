@@ -34,7 +34,7 @@ public class View {
     language = myLanguage;
     playerName = name;
     myController = new GameController(levelDirectory + "/level.json", levelDirectory + "/collisions.json", levelDirectory + "/controls.json");
-    level = new LevelScreen(myController);
+    level = new LevelScreen(myController, this);
     myStage.setScene(level.makeScene(new File(levelDirectory + "/level.json")));
     myStage.setTitle(GameTitle);
 
