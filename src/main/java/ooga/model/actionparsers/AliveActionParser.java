@@ -61,9 +61,7 @@ public class AliveActionParser {
     } catch (ClassNotFoundException | InvocationTargetException | InstantiationException |
              IllegalAccessException | NoSuchMethodException e) {
 
-      throw new ActionParsingException(
-          "Parsing of ActionData did not work properly. The ActionData attempted to be parsed: "
-              + actionData.toString(), e);
+      throw new ActionParsingException(actionData.toString(), e);
     }
 
   }
