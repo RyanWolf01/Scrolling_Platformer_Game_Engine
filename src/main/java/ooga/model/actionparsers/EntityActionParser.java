@@ -5,7 +5,6 @@ import ooga.model.actions.basicentityactions.BasicEntityAction;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.entities.entitymodels.Entity;
-import ooga.model.entities.entitymodels.MainCharacter;
 
 public class EntityActionParser {
   public static final String ACTION_INTERFACE_NAME = "BasicEntityAction";

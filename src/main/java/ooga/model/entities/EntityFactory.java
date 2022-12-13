@@ -8,7 +8,7 @@ import ooga.model.collisions.collisionhandling.DefaultCollisionChartGetter;
 import ooga.model.entities.containers.exceptions.InvalidTypeException;
 import ooga.model.entities.entitymodels.BasicStaticCharacter;
 import ooga.model.entities.entitymodels.CollidableEntity;
-import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.model.entities.entitymodels.BasicMainCharacter;
 import ooga.model.entities.entitymodels.MovingCharacter;
 import ooga.model.entities.movement.MovementQueue;
 import ooga.model.entities.info.EntityInfo;
@@ -46,14 +46,14 @@ public class EntityFactory {
         return newMover;
     }
 
-    public MainCharacter makeMainCharacter(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
+    public BasicMainCharacter makeMainCharacter(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
         CollisionChart chart = collisionChart(type);
 
         MovementQueue queue = decoder.getMovementQueue(type);
 
-        MainCharacter main;
+        BasicMainCharacter main;
         try {
-            main = (MainCharacter) Class.forName(Model.entityClassResources.getString(type)).
+            main = (BasicMainCharacter) Class.forName(Model.entityClassResources.getString(type)).
                     getConstructor(CollisionChart.class, int.class, int.class, double.class, double.class, Info.class, MovementQueue.class)
                     .newInstance(chart, xCoordinate,yCoordinate, height, width, info, queue);
         } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException |

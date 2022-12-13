@@ -1,6 +1,6 @@
 package ooga.model;
 
-public enum GameState {
+public enum MainCharacterState {
   NOT_STARTED,
   RUNNING,
   USER_WON,

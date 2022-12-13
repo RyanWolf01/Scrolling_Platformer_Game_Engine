@@ -1,12 +1,12 @@
 package ooga.model.actions.maincharacteractions;
 
-import ooga.model.GameState;
-import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.model.MainCharacterState;
+import ooga.model.entities.entitymodels.BasicMainCharacter;
 
 public class SetGameStateToUserLost implements MainCharacterAction {
 
   @Override
-  public void execute(MainCharacter mainCharacter) {
-    mainCharacter.setGameState(GameState.USER_LOST);
+  public void execute(BasicMainCharacter basicMainCharacter) {
+    basicMainCharacter.setGameState(MainCharacterState.USER_LOST);
   }
 }

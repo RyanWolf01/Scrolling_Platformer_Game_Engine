@@ -1,6 +1,6 @@
 package ooga.model.actions.maincharacteractions;
 
-import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.model.entities.entitymodels.BasicMainCharacter;
 
 /**
  * action that executes on the MainCharacter
@@ -9,8 +9,8 @@ public interface MainCharacterAction {
 
   /**
    * executes action on entity
-   * @param mainCharacter on which action is executing
+   * @param basicMainCharacter on which action is executing
    */
-  void execute(MainCharacter mainCharacter);
+  void execute(BasicMainCharacter basicMainCharacter);
 
 }

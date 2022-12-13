@@ -1,6 +1,6 @@
 package ooga.model.entities.entitymodels;
 
-import ooga.model.GameState;
+import ooga.model.MainCharacterState;
 import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.EntityActionParser;
 import ooga.model.actionparsers.MainCharacterActionParser;
@@ -10,6 +10,8 @@ import ooga.model.actions.moveractions.MoverAction;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.extrainterfaces.UserControllable;
+import ooga.model.entities.maincharacter.BasicMainCharacterBehavior;
+import ooga.model.entities.maincharacter.MainCharacterBehavior;
 import ooga.model.entities.movement.MovementQueue;
 import ooga.model.entities.info.Info;
 import org.apache.logging.log4j.LogManager;
@@ -18,10 +20,10 @@ import org.apache.logging.log4j.Logger;
 /**
  * Maybe all main character entities
  */
-public class MainCharacter extends MovingCharacter implements UserControllable {
+public class BasicMainCharacter extends MovingCharacter implements UserControllable {
 
-  private static final Logger LOG = LogManager.getLogger(MainCharacter.class);
-  private GameState gameState = GameState.RUNNING;
+  private static final Logger LOG = LogManager.getLogger(BasicMainCharacter.class);
+  private MainCharacterBehavior mainCharacterBehavior;
 
   /**
    * MainCharacterEntity takes user input and is alive, collidable, and moveable
@@ -32,9 +34,10 @@ public class MainCharacter extends MovingCharacter implements UserControllable {
    * @param width width
    * @param entityInfo entity info
    */
-  public MainCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height,
+  public BasicMainCharacter(CollisionChart chart, int initialXCoordinate, int initialYCoordinate, double height,
       double width, Info entityInfo, MovementQueue movementQueue) {
     super(chart, initialXCoordinate, initialYCoordinate, height, width, entityInfo, movementQueue);
+    mainCharacterBehavior = new BasicMainCharacterBehavior(getAliveBehavior());
   }
 
   /**
@@ -82,18 +85,18 @@ public class MainCharacter extends MovingCharacter implements UserControllable {
     return count;
   }
 
-  public GameState getGameState() {
-    return gameState;
+  public MainCharacterState getGameState() {
+    return mainCharacterState;
   }
 
   public void checkNumLivesAndUpdateMyGameState() {
     if (getLives() <= 0) {
-      gameState = GameState.USER_LOST;
+      mainCharacterState = MainCharacterState.USER_LOST;
     }
   }
 
-  public void setGameState(GameState gameState) {
-    this.gameState = gameState;
+  public void setGameState(MainCharacterState mainCharacterState) {
+    this.mainCharacterState = mainCharacterState;
   }
 
 }
