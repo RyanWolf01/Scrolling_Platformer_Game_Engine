@@ -9,6 +9,8 @@ import ooga.model.entities.containers.BackendContainer;
 import ooga.model.entities.info.EntityInfo;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * This container holds all the objects for the frontend and backend. There is a mapping between the frontend
@@ -27,7 +29,6 @@ public class ConnectionContainer {
     nodes = new NodeContainer();
     connectorMap = new HashMap<>();
     reverseConnectorMap = new HashMap<>();
-    decoder = this.decoder;
   }
 
   /**
