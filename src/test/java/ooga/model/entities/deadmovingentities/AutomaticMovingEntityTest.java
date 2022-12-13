@@ -41,7 +41,7 @@ public class AutomaticMovingEntityTest {
 
     movingEntity.changeVelocities(-100,0);
     movingEntity.move();
-    assertEquals(-100, movingEntity.getXCoordinate());
+    assertEquals(-95, movingEntity.getXCoordinate());
   }
 
   @Test
@@ -54,7 +54,7 @@ public class AutomaticMovingEntityTest {
 
     movingEntity.changeVelocities(0,0);
     movingEntity.move();
-    assertEquals(0, movingEntity.getXCoordinate());
+    assertEquals(5, movingEntity.getXCoordinate());
   }
 
   @Test
@@ -117,7 +117,7 @@ public class AutomaticMovingEntityTest {
     movingEntity.move();
     movingEntity.move();
     movingEntity.move();
-    assertEquals(10, movingEntity.getXCoordinate());
+    assertEquals(0, movingEntity.getXCoordinate());
     assertEquals(10, movingEntity.getYCoordinate());
   }
 
@@ -132,7 +132,7 @@ public class AutomaticMovingEntityTest {
     actionList.add(data);
     ActionDataContainer container = new ActionDataContainer(actionList);
 
-    assertEquals(5, character.getXCoordinate());
+    assertEquals(0, character.getXCoordinate());
   }
 
   @Test
@@ -146,7 +146,7 @@ public class AutomaticMovingEntityTest {
     actionList.add(data);
     ActionDataContainer container = new ActionDataContainer(actionList);
 
-    assertEquals(5, character.getYCoordinate());
+    assertEquals(0, character.getYCoordinate());
   }
 
 }

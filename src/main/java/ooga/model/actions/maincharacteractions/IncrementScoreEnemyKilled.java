@@ -1,7 +1,7 @@
 package ooga.model.actions.maincharacteractions;
 
 import java.util.ResourceBundle;
-import ooga.controller.exceptions.MiscellaneousPropertiesException;
+import ooga.controller.exceptions.MiscellaneousParsingException;
 import ooga.model.entities.entitymodels.BasicMainCharacter;
 
 public class IncrementScoreEnemyKilled implements MainCharacterAction {
@@ -18,7 +18,7 @@ public class IncrementScoreEnemyKilled implements MainCharacterAction {
           ResourceBundle.getBundle("properties/powerups").getString("increment_score_enemy_killed"));
     }
     catch(NumberFormatException exception){
-      throw new MiscellaneousPropertiesException("incorrect multiplier format", exception);
+      throw new MiscellaneousParsingException("incorrect multiplier format", exception);
     }
     AMOUNT_TO_INCREMENT_BY = tempAmount;
   }
