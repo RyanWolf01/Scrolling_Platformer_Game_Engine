@@ -164,5 +164,6 @@ public class GameController {
 
     public int getMainCharacterLives(){
         return container.entities().mainCharacter().getLives();
+
     }
 }
