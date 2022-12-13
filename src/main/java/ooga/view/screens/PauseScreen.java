@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class PauseScreen {
+public class PauseScreen implements Screen{
 
   private final int sceneWidth = 400;
   private final int sceneHeight = 400;
