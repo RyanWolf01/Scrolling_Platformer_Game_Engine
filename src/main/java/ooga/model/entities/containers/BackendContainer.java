@@ -10,7 +10,7 @@ import ooga.model.entities.entitymodels.StaticEntity;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.entitymodels.BasicStaticCharacter;
 import ooga.model.entities.entitymodels.MovingCharacter;
-import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.model.entities.entitymodels.BasicMainCharacter;
 
 
 /**
@@ -21,7 +21,7 @@ public class BackendContainer {
   private MoverContainer movers;
   private CollidableContainer collidables;
   private LivingContainer livers;
-  private MainCharacter mainCharacter;
+  private BasicMainCharacter basicMainCharacter;
   private JSONInformationDecoder decoder;
   private EntityFactory factory;
 
@@ -48,12 +48,12 @@ public class BackendContainer {
 
     if(isMainCharacterType(type)){ // if it's a main character type entity, overwrite the basic newEntity
 
-      mainCharacter = factory.makeMainCharacter(xCoordinate,yCoordinate, height, width, type, info);
+      basicMainCharacter = factory.makeMainCharacter(xCoordinate,yCoordinate, height, width, type, info);
 
-      livers.addLiver(mainCharacter);
-      newEntity = mainCharacter;
-      collidables.addCollidable(mainCharacter); // all main characters are collidable
-      movers.addMover(mainCharacter);
+      livers.addLiver(basicMainCharacter);
+      newEntity = basicMainCharacter;
+      collidables.addCollidable(basicMainCharacter); // all main characters are collidable
+      movers.addMover(basicMainCharacter);
     }
     else if(isMoverType(type)){
       MovingCharacter newMover = factory.makeMover(xCoordinate,yCoordinate, height, width, type, info);
@@ -113,8 +113,8 @@ public class BackendContainer {
     return movers;
   }
 
-  public MainCharacter mainCharacter(){
-    return mainCharacter;
+  public BasicMainCharacter mainCharacter(){
+    return basicMainCharacter;
   }
 
   public boolean isCollidable(Entity entity){

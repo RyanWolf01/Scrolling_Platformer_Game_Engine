@@ -8,8 +8,10 @@ import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.controller.saveloadhandling.CheckpointDirectory;
 
+import ooga.model.entities.maincharacter.MainCharacterState;
+
 import ooga.controller.saveloadhandling.LevelJSONRetriever;
-import ooga.model.GameState;
+
 import ooga.model.Model;
 import ooga.view.ViewInfo;
 import ooga.view.nodes.NodeContainer;
@@ -128,10 +130,10 @@ public class GameController {
     }
 
     private void checkAndHandleModelState() {
-        if (model.getGameState().equals(GameState.USER_WON)) {
+        if (model.getGameState().equals(MainCharacterState.USER_WON)) {
             endGame(true);
         }
-        else if (model.getGameState().equals(GameState.USER_LOST)) {
+        else if (model.getGameState().equals(MainCharacterState.USER_LOST)) {
             endGame(false);
         }
     }
@@ -159,7 +161,7 @@ public class GameController {
     }
 
     public int getPlayerScore() {
-        return 0;
+        return model.getPlayerScore();
     }
 
     public int getMainCharacterLives(){

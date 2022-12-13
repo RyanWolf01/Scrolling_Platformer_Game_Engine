@@ -1,6 +1,6 @@
 package ooga.model.entities.alive;
 
-public interface AliveBehavior {
+public interface AliveBehavior extends ImmutableAliveBehavior{
 
   /**
    * Returns number of lives of the current entity is alive.
