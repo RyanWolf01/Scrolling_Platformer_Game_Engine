@@ -6,6 +6,11 @@ package ooga.model.entities.movement;
 public interface Mover extends MoverBehavior {
 
     /**
+     * get original movement behavior
+     */
+    BasicMoverBehavior getOriginalMoverBehavior();
+
+    /**
      *
      * @return version of MoverData
      */
