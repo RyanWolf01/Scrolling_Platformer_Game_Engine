@@ -44,7 +44,7 @@ public class CheckpointDirectory {
       FileWriter controlFile = new FileWriter(SAVED_GAMES+savedDirectoryName+"/controls.json");
       controlFile.write(controlsJSON.toJSONString());
       controlFile.close();
-      FileWriter collisionFile = new FileWriter(SAVED_GAMES+savedDirectoryName+"/collision.json");
+      FileWriter collisionFile = new FileWriter(SAVED_GAMES+savedDirectoryName+"/collisions.json");
       collisionFile.write(collisionsJSON.toJSONString());
       collisionFile.close();
 
