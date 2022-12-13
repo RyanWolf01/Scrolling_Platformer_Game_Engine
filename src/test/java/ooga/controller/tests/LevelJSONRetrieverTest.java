@@ -54,4 +54,27 @@ public class LevelJSONRetrieverTest {
     assertEquals(retriever.currentLevelJSON.get("Entity"), actualEntityArray);
   }
 
+  @Test
+  void testGenerationAlive() {
+    Map<String, Object> infoMap = new HashMap<>();
+    infoMap.put("Melon", "Canteloupe");
+    infoMap.put("Fruit", "Kiwi");
+    EntityContainer entityContainer = new EntityContainer();
+    Info aliveInfo = new Info();
+    aliveInfo.set("lives", "3");
+    Alive sampleEntity = new BasicMainCharacter(new DefaultCollisionChart(),5, 5, 10, 10, aliveInfo, new MovementQueue());
+    LivingContainer livingContainer = new LivingContainer();
+    LevelJSONRetriever retriever = new LevelJSONRetriever(infoMap, entityContainer, livingContainer);
+    assertEquals(retriever.currentLevelJSON.get("Melon"), "Canteloupe");
+    JSONArray actualEntityArray = new JSONArray();
+    JSONObject entity1 = new JSONObject();
+    entity1.put("x", "5");
+    entity1.put("y", "5");
+    entity1.put("height", "10.0");
+    entity1.put("width", "10.0");
+    entity1.put("Lives", "3");
+    actualEntityArray.add(entity1);
+    assertEquals(retriever.currentLevelJSON.get("Entity"), actualEntityArray);
+  }
+
 }

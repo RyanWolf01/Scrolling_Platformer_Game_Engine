@@ -14,7 +14,6 @@ public class CheckpointDirectoryTest {
   JSONInformationDecoder decoder = new JSONInformationDecoder(TEST_SAMPLE + "level.json",
       TEST_SAMPLE + "collisions.json", TEST_SAMPLE + "controls.json");
 
-
   @Test
   void testDirectoryCreation() {
     JSONObject level = new JSONObject();
