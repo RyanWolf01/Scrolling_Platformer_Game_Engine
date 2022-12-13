@@ -38,11 +38,15 @@ public class CheckpointDirectory {
     new File(SAVED_GAMES+savedDirectoryName).mkdirs();
     try {
       FileWriter levelFile = new FileWriter(SAVED_GAMES+savedDirectoryName+"/level.json");
+      System.out.println(levelJSON.toJSONString());
       levelFile.write(levelJSON.toJSONString());
+      levelFile.close();
       FileWriter controlFile = new FileWriter(SAVED_GAMES+savedDirectoryName+"/controls.json");
       controlFile.write(controlsJSON.toJSONString());
+      controlFile.close();
       FileWriter collisionFile = new FileWriter(SAVED_GAMES+savedDirectoryName+"/collision.json");
       collisionFile.write(collisionsJSON.toJSONString());
+      collisionFile.close();
 
     } catch (IOException e) {
       // TODO: handle exception and log, custom error, add to properties and make new exception class
