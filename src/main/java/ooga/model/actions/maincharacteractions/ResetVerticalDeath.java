@@ -52,7 +52,7 @@ public class ResetVerticalDeath implements MainCharacterAction {
     mainCharacter.setHeight(mainCharacter.getInitialAttributes().height());
     mainCharacter.setWidth(mainCharacter.getInitialAttributes().width());
     mainCharacter.setAliveBehavior(new BasicAliveBehavior(mainCharacter.getAliveBehavior()));
-    mainCharacter.setMoverBehavior(new BasicMoverBehavior());
+    mainCharacter.setMoverBehavior(mainCharacter.getOriginalMoverBehavior());
     mainCharacter.resetMoverData();
     mainCharacter.setMainCharacterBehavior(new BasicMainCharacterBehavior(mainCharacter.getAliveBehavior()));
   }
