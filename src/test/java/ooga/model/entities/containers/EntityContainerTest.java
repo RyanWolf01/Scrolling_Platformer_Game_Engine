@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 import ooga.model.entities.entitymodels.Entity;
-import ooga.model.entities.entitymodels.MainCharacter;
 
 import ooga.model.entities.movement.MovementQueue;
 import org.junit.jupiter.api.BeforeEach;

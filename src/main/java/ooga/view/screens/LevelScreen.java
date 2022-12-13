@@ -4,14 +4,12 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import ooga.controller.GameController;
 import ooga.view.GameCamera;
 import ooga.view.Margin;
 import ooga.view.View;
+import ooga.view.ViewInfo;
 import ooga.view.nodes.GUIElement;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
@@ -66,13 +64,7 @@ public class LevelScreen {
     screenPane.getChildren().add(levelPane);
 
     levelPane.setId("Pane");
-    try {
-      setBackground(levelFile);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    } catch (ParseException e) {
-      throw new RuntimeException(e);
-    }
+    setBackground();
 
 
     levelScene = new Scene(screenPane, levelWidth, levelHeight);
@@ -115,9 +107,10 @@ public class LevelScreen {
  * This creates the camera with initial values
 */
   private void createCamera(){
-    double startX = 0;
-    double startY = 0;
-    Margin startingMargin = new Margin(100, 400, 100, 100);
+    ViewInfo info = myController.getViewInfo();
+    double startX = levelWidth;
+    double startY = -1 * levelHeight;
+    Margin startingMargin = new Margin(info.marginLeft(), info.marginRight(), info.marginTop(), info.marginBottom());
     myGameCamera = new GameCamera(startX, startY, startingMargin, levelHeight, levelWidth);
     myGameCamera.setPlayerLocation(100, 0);
   }
@@ -141,17 +134,12 @@ public class LevelScreen {
 
 /**
 * Looks inside the level file, finds the background image, and sets it to the level pane
- * @param levelFile
  * @throws IOException Will be handled later
  * @throws ParseException Will be handled later
 */
-  private void setBackground(File levelFile) throws IOException, ParseException {
+  private void setBackground(){
     Background newBackground;
-    FileReader infoFile = new FileReader(levelFile);
-    JSONObject levelJson = (JSONObject) new JSONParser().parse(infoFile);
-    String backgroundFile = (String) levelJson.get("background");
-    LOG.info("Background Image Loaded: " + backgroundFile);
-    Image backgroundImage = new Image(BACKGROUND_DIRECTORY + backgroundFile);
+    Image backgroundImage = new Image(BACKGROUND_DIRECTORY + myController.getViewInfo().backgroundURL());
 
     newBackground = new Background(new BackgroundImage(backgroundImage, null, null, null, null));
 
@@ -190,11 +178,15 @@ public class LevelScreen {
   }
 
   private void addGUIElements(){
+    AnchorPane anchorPane = new AnchorPane();
+    anchorPane.setMinWidth(levelWidth);
     guiMap = new HashMap<>();
     for (String name : GUI_NAMES) {
       guiMap.put(name, new GUIElement(name, 0));
-      screenPane.getChildren().add(guiMap.get(name));
+      anchorPane.getChildren().add(guiMap.get(name));
     }
-
+    AnchorPane.setLeftAnchor(guiMap.get("Lives"), 0.0);
+    AnchorPane.setRightAnchor(guiMap.get("Score"), 0.0);
+    screenPane.getChildren().add(anchorPane);
   }
 }
