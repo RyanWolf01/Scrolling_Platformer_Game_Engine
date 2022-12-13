@@ -22,6 +22,7 @@ public class LoadButton extends GUIBasicButton {
    * Constructor
    * @param buttonText
    * @param iconString
+   * @param myView
    */
   public LoadButton(String buttonText, String iconString, View myView) {
     super(buttonText, iconString, myView);
@@ -37,9 +38,16 @@ public class LoadButton extends GUIBasicButton {
    * @param actionEvent
    */
   private void openDirectoryChooser(ActionEvent actionEvent) {
-    // TODO: need this method to perform opening with right stage (game stage)
     File levelDirectory = directoryChooser.showDialog(myView.getMyStage());
     System.out.println(levelDirectory);
-    //LOG.debug(this.levelDirectory);
+    // LOG.debug(this.levelDirectory);
+    String directoryName;
+    try {
+      directoryName = levelDirectory.getName();
+      new View(myView.getMyStage(), myView.getGameTitle(), levelDirectory, myView.getName(),
+          myView.getLanguage());
+    } catch (NullPointerException e) {
+      directoryName = null;
+    }
   }
 }

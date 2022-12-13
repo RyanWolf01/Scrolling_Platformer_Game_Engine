@@ -12,6 +12,12 @@ public class SaveButton extends GUIBasicButton {
   private GameController myController;
 
 
+  /**
+   * Constructor for save button
+   * @param buttonText
+   * @param iconString
+   * @param myView
+   */
   public SaveButton(String buttonText, String iconString, View myView) {
     super(buttonText, iconString, myView);
     this.setOnClickEvent(this::openTextPopup);
