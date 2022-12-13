@@ -54,7 +54,7 @@ public class View {
     levelAnimation.stop();
     EndScreen endScreen = new EndScreen(language, myController.getPlayerScore(), playerName);
     myStage.setScene(endScreen.makeScene(myController.getLevelDirectory() + "scores.json"));
-    myStage.setTitle("You Won!");
+    myStage.setTitle("Game Over!");
   }
 
 

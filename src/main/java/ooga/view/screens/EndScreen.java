@@ -48,9 +48,9 @@ public class EndScreen {
 
     levelPane.setId("Pane");
     levelPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-    initiateScoreFile(scoresPath);
-    createTitleBox();
-    createTexts();
+    //initiateScoreFile(scoresPath);
+    addTitleBox();
+    //createTexts();
 
     Scene scene = new Scene(levelPane, sceneWidth, sceneHeight);
     return scene;
@@ -130,7 +130,7 @@ public class EndScreen {
     return newFile;
   }
 
-  private void createTitleBox(){
+  private void addTitleBox(){
     titleBox = new HBox();
     titleBox.setPrefWidth(sceneWidth);
     titleBox.setPrefHeight(titleHeight);
