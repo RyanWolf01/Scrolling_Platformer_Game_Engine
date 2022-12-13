@@ -36,6 +36,14 @@ public class LevelJSONRetriever {
     this.currentLevelJSON = generateLevelJSON(infoMap, entityContainer, livingContainer);
   }
 
+  /**
+   * Method to generate the level JSON and make it from the livers and all other entities in the game
+   * with their current information
+   * @param generalInfoMap
+   * @param entityContainer
+   * @param livingContainer
+   * @return JSONObject, of the current level JSON in the game
+   */
   public JSONObject generateLevelJSON(Map<String, Object> generalInfoMap, EntityContainer entityContainer, LivingContainer livingContainer) {
     currentLevelJSON = new JSONObject();
     seenEntities = new ArrayList<>();
@@ -48,28 +56,14 @@ public class LevelJSONRetriever {
       singleEntity.put("lives", String.valueOf(liver.getLives()));
       Entity entity = (Entity) liver;
       seenEntities.add(entity);
-      singleEntity.put("x", String.valueOf((int) entity.getXCoordinate()));
-      singleEntity.put("y", String.valueOf((int) entity.getYCoordinate()));
-      singleEntity.put("height", String.valueOf(entity.getHeight()));
-      singleEntity.put("width", String.valueOf(entity.getWidth()));
-      Info info = (Info) entity.getImmutableEntityInfo();
-      for (String key : info) {
-        singleEntity.put(key, String.valueOf(info.get(key)));
-      }
+      addEntityKeyValues(singleEntity, entity);
       entityJSONArray.add(singleEntity);
     }
 
     for (Entity entity : entityContainer) {
       if (!seenEntities.contains(entity)) {
         JSONObject singleEntity = new JSONObject();
-        singleEntity.put("x", String.valueOf((int) entity.getXCoordinate()));
-        singleEntity.put("y", String.valueOf((int) entity.getYCoordinate()));
-        singleEntity.put("height", String.valueOf(entity.getHeight()));
-        singleEntity.put("width", String.valueOf(entity.getWidth()));
-        Info info = (Info) entity.getImmutableEntityInfo();
-        for (String key : info) {
-          singleEntity.put(key, String.valueOf(info.get(key)));
-        }
+        addEntityKeyValues(singleEntity, entity);
         entityJSONArray.add(singleEntity);
       }
     }
@@ -77,6 +71,17 @@ public class LevelJSONRetriever {
     currentLevelJSON.put(ENTITY_KEY, entityJSONArray);
 
     return currentLevelJSON;
+  }
+
+  private void addEntityKeyValues(JSONObject singleEntity, Entity entity) {
+    singleEntity.put("x", String.valueOf((int) entity.getXCoordinate()));
+    singleEntity.put("y", String.valueOf((int) entity.getYCoordinate()));
+    singleEntity.put("height", String.valueOf(entity.getHeight()));
+    singleEntity.put("width", String.valueOf(entity.getWidth()));
+    Info info = (Info) entity.getImmutableEntityInfo();
+    for (String key : info) {
+      singleEntity.put(key, String.valueOf(info.get(key)));
+    }
   }
 
 }
