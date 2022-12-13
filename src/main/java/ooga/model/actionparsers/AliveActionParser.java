@@ -49,9 +49,7 @@ public class AliveActionParser {
   private AliveAction parseAction(ActionData actionData) {
     // Make sure the actionData has no params
     if (actionData.params().size() != 0) {
-      throw new ActionParsingException(
-          "AliveActions do not have any params. Invalid ActionData provided:"
-              + actionData.toString());
+      throw new ActionParsingException(actionData.toString());
     }
 
     // Parse the actionData and return the correct AliveAction instance, or throw exception
