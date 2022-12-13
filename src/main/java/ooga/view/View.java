@@ -31,7 +31,6 @@ public class View {
   private static final Logger LOG = LogManager.getLogger(View.class);
   private String language;
   private String gameTitle;
-  private String name;
   private ExceptionAlerter alerter;
 
   public View(Stage mainStage, String GameTitle, File levelDirectory, String name, String myLanguage){
@@ -48,13 +47,14 @@ public class View {
       alerter.displayAlert(e);
     }
     myStage.setScene(level.makeScene(new File(levelDirectory + "/level.json")));
-    myStage.setTitle(GameTitle);
+    myStage.setTitle(myController.getViewInfo().name());
 
     levelAnimation = new Timeline();
     levelAnimation.setCycleCount(Timeline.INDEFINITE);
     levelAnimation.getKeyFrames().add(new KeyFrame(Duration.seconds(FRAME_DELAY), e -> this.step(FRAME_DELAY)));
     levelAnimation.play();
     myStage.getScene().setOnKeyPressed(e -> handleKeyInput(e.getCode()));
+    myStage.centerOnScreen();
     gameTitle = GameTitle;
   }
 
