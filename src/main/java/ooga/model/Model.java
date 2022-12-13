@@ -30,10 +30,9 @@ public class Model {
   private GameState gameState = GameState.RUNNING;
   BackendContainer entities;
 
-  public Model(BackendContainer entities, EndGameCallable endGameMethod){
+  public Model(BackendContainer entities){
     this.entities = entities;
     gravityEnforcer = new GravityEnforcer(entities);
-    setEndGameMethods(endGameMethod);
   }
 
   /**

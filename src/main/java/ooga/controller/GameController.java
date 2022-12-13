@@ -59,7 +59,7 @@ public class GameController {
 
         access = new DatabaseAccess(jsonDecoder.game());
 
-        model = new Model(container.entities(), this::endGame);
+        model = new Model(container.entities());
         keyCodeQueue = new LinkedList<>();
 
     }
