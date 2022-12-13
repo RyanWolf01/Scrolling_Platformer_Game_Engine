@@ -20,18 +20,15 @@ public class LevelJSONRetriever {
 
   public static final String ENTITY_KEY = "Entity";
 
-  /**
-   * Format of the level JSON:
-   * General, information
-   * Information about the entity that will need to be updated is the
-   * location (x and y) along with whether or not its alive
-   * EntityInfo stuff like lives may also change, so update this
-   * Entity: [{entity}, {entity}, {entity}]
-   */
-
   public JSONObject currentLevelJSON;
   private List<Entity> seenEntities;
 
+  /**
+   * Constructor for levelJSONRetriever
+   * @param infoMap
+   * @param entityContainer
+   * @param livingContainer
+   */
   public LevelJSONRetriever(Map<String, Object> infoMap, EntityContainer entityContainer, LivingContainer livingContainer) {
     this.currentLevelJSON = generateLevelJSON(infoMap, entityContainer, livingContainer);
   }
