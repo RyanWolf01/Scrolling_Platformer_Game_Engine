@@ -11,6 +11,7 @@ import ooga.view.nodes.NodeContainer;
 import ooga.view.screens.EndScreen;
 import ooga.view.screens.LevelScreen;
 import ooga.view.screens.PauseScreen;
+import ooga.view.screens.WaitingScreen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -52,6 +53,8 @@ public class View {
 
   public void finishLevel(){
     levelAnimation.stop();
+    WaitingScreen waitingScreen = new WaitingScreen();
+    myStage.setScene(waitingScreen.makeScene());
     myController.setHighScore(myController.getPlayerScore());
     for(int score: myController.getHighScores().keySet()){
       LOG.info(score);
