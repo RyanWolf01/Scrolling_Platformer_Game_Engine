@@ -48,8 +48,8 @@ public class LevelJSONRetriever {
       singleEntity.put("lives", String.valueOf(liver.getLives()));
       Entity entity = (Entity) liver;
       seenEntities.add(entity);
-      singleEntity.put("x", String.valueOf(entity.getXCoordinate()));
-      singleEntity.put("y", String.valueOf(entity.getYCoordinate()));
+      singleEntity.put("x", String.valueOf((int) entity.getXCoordinate()));
+      singleEntity.put("y", String.valueOf((int) entity.getYCoordinate()));
       singleEntity.put("height", String.valueOf(entity.getHeight()));
       singleEntity.put("width", String.valueOf(entity.getWidth()));
       Info info = (Info) entity.getImmutableEntityInfo();
@@ -62,8 +62,8 @@ public class LevelJSONRetriever {
     for (Entity entity : entityContainer) {
       if (!seenEntities.contains(entity)) {
         JSONObject singleEntity = new JSONObject();
-        singleEntity.put("x", String.valueOf(entity.getXCoordinate()));
-        singleEntity.put("y", String.valueOf(entity.getYCoordinate()));
+        singleEntity.put("x", String.valueOf((int) entity.getXCoordinate()));
+        singleEntity.put("y", String.valueOf((int) entity.getYCoordinate()));
         singleEntity.put("height", String.valueOf(entity.getHeight()));
         singleEntity.put("width", String.valueOf(entity.getWidth()));
         Info info = (Info) entity.getImmutableEntityInfo();
