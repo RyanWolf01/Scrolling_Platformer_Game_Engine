@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LevelScreen {
+public class LevelScreen implements Screen{
 
 
 
@@ -58,7 +58,7 @@ public class LevelScreen {
     view = myView;
   }
 
-  public Scene makeScene(File levelFile){
+  public Scene makeScene(){
     screenPane = new StackPane();
     levelPane = new Pane();
     screenPane.getChildren().add(levelPane);
@@ -68,7 +68,6 @@ public class LevelScreen {
 
 
     levelScene = new Scene(screenPane, levelWidth, levelHeight);
-    levelScene.setOnKeyPressed(e -> handleKeyInput(e.getCode()));
     createCamera();
     addGUIElements();
     return levelScene;
@@ -144,16 +143,6 @@ public class LevelScreen {
     newBackground = new Background(new BackgroundImage(backgroundImage, null, null, null, null));
 
     levelPane.setBackground(newBackground);
-  }
-
-
-  private void handleKeyInput(KeyCode code){
-    if(code == KeyCode.P){
-      pause();
-    }
-    else {
-    myController.handleKeyInput(code);
-    }
   }
 
 

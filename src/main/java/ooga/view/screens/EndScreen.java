@@ -17,7 +17,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.*;
 import java.util.*;
 
-public class EndScreen {
+public class EndScreen implements Screen{
 
 
   public static final int MAX_SCORES = 10;

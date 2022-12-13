@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class StartScreen {
+public class StartScreen implements Screen{
 
   private final int sceneWidth = 400;
 

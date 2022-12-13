@@ -46,7 +46,7 @@ public class View {
     } catch (RuntimeException e){
       alerter.displayAlert(e);
     }
-    myStage.setScene(level.makeScene(new File(levelDirectory + "/level.json")));
+    myStage.setScene(level.makeScene());
     myStage.setTitle(myController.getViewInfo().name());
 
     levelAnimation = new Timeline();
@@ -88,7 +88,6 @@ public class View {
  * @param code
 */
   private void handleKeyInput(KeyCode code){
-    //TODO: Use a JSON in the controller that states the "view-oriented" controls instead of an if tree
     if(code == KeyCode.P){
       pause();
     } else if(code == KeyCode.O){
