@@ -2,11 +2,11 @@ package ooga.model.entities.maincharacter;
 
 import ooga.model.MainCharacterState;
 
-public interface MainCharacterBehavior {
+public interface MainCharacterBehavior extends ImmutableMainCharacterBehavior{
 
   MainCharacterState getMainCharacterState();
-  void checkNumLivesAndUpdateMyGameState();
-  void setGameState(MainCharacterState mainCharacterState);
+  void checkLivesAndUpdateMainCharacterState();
+  void setMainCharacterState(MainCharacterState mainCharacterState);
   void updateScore(double addToScore);
   int getScore();
 

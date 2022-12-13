@@ -11,6 +11,8 @@ import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
 import ooga.model.entities.extrainterfaces.UserControllable;
 import ooga.model.entities.maincharacter.BasicMainCharacterBehavior;
+import ooga.model.entities.maincharacter.ImmutableMainCharacterBehavior;
+import ooga.model.entities.maincharacter.MainCharacter;
 import ooga.model.entities.maincharacter.MainCharacterBehavior;
 import ooga.model.entities.movement.MovementQueue;
 import ooga.model.entities.info.Info;
@@ -20,7 +22,7 @@ import org.apache.logging.log4j.Logger;
 /**
  * Maybe all main character entities
  */
-public class BasicMainCharacter extends MovingCharacter implements UserControllable {
+public class BasicMainCharacter extends MovingCharacter implements UserControllable, MainCharacter {
 
   private static final Logger LOG = LogManager.getLogger(BasicMainCharacter.class);
   private MainCharacterBehavior mainCharacterBehavior;
@@ -62,7 +64,7 @@ public class BasicMainCharacter extends MovingCharacter implements UserControlla
   public void acceptAliveAction(AliveAction action) {
     try {
       action.execute(this);
-      checkNumLivesAndUpdateMyGameState();
+      checkLivesAndUpdateMainCharacterState();
     }catch(NullPointerException exception){
       LOG.error("AliveAction is null");
       throw exception;
@@ -86,17 +88,39 @@ public class BasicMainCharacter extends MovingCharacter implements UserControlla
   }
 
   public MainCharacterState getGameState() {
-    return mainCharacterState;
+    return mainCharacterBehavior.getMainCharacterState();
   }
 
-  public void checkNumLivesAndUpdateMyGameState() {
-    if (getLives() <= 0) {
-      mainCharacterState = MainCharacterState.USER_LOST;
-    }
+  @Override
+  public MainCharacterState getMainCharacterState() {
+    return null;
   }
 
-  public void setGameState(MainCharacterState mainCharacterState) {
-    this.mainCharacterState = mainCharacterState;
+  public void checkLivesAndUpdateMainCharacterState() {
+    mainCharacterBehavior.checkLivesAndUpdateMainCharacterState();
   }
 
+  public void setMainCharacterState(MainCharacterState mainCharacterState) {
+    mainCharacterBehavior.setMainCharacterState(mainCharacterState);
+  }
+
+  @Override
+  public void updateScore(double addToScore) {
+
+  }
+
+  @Override
+  public int getScore() {
+    return mainCharacterBehavior.getScore();
+  }
+
+  @Override
+  public void setMainCharacterBehavior(MainCharacterBehavior mainCharacterBehavior) {
+    this.mainCharacterBehavior = mainCharacterBehavior;
+  }
+
+  @Override
+  public ImmutableMainCharacterBehavior getMainCharacterBehavior() {
+    return mainCharacterBehavior;
+  }
 }

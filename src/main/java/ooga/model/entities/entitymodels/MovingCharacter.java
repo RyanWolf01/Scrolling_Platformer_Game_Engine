@@ -4,6 +4,7 @@ import ooga.model.actionparsers.AliveActionParser;
 import ooga.model.actionparsers.MoverActionParser;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.CollisionChart;
+import ooga.model.entities.alive.AliveBehavior;
 import ooga.model.entities.movement.MovementQueue;
 import ooga.model.entities.info.Info;
 import ooga.model.entities.alive.Alive;
@@ -15,7 +16,7 @@ import org.apache.logging.log4j.Logger;
 public class MovingCharacter extends MovingEntity implements Alive {
 
   private static final Logger LOG = LogManager.getLogger(MovingCharacter.class);
-  private BasicAliveBehavior basicAliveBehavior;
+  private AliveBehavior basicAliveBehavior;
 
   /**
    * Moving Character has lives and can move.

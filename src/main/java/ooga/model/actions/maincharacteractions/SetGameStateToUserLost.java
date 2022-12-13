@@ -7,6 +7,6 @@ public class SetGameStateToUserLost implements MainCharacterAction {
 
   @Override
   public void execute(BasicMainCharacter basicMainCharacter) {
-    basicMainCharacter.setGameState(MainCharacterState.USER_LOST);
+    basicMainCharacter.setMainCharacterState(MainCharacterState.USER_LOST);
   }
 }

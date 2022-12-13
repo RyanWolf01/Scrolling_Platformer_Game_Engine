@@ -7,6 +7,6 @@ public class SetGameStateToUserWon implements MainCharacterAction {
 
   @Override
   public void execute(BasicMainCharacter basicMainCharacter) {
-    basicMainCharacter.setGameState(MainCharacterState.USER_WON);
+    basicMainCharacter.setMainCharacterState(MainCharacterState.USER_WON);
   }
 }

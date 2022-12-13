@@ -6,29 +6,26 @@ import ooga.model.entities.alive.ImmutableAliveBehavior;
 public class BasicMainCharacterBehavior implements MainCharacterBehavior{
 
   private ImmutableAliveBehavior aliveBehavior;
+  private MainCharacterState mainCharacterState = MainCharacterState.RUNNING;
+  private double score;
   public BasicMainCharacterBehavior(ImmutableAliveBehavior aliveBehavior){
     this.aliveBehavior = aliveBehavior;
-  }
-
-  private MainCharacterState mainCharacterState = MainCharacterState.RUNNING;
-
-  public MainCharacterState getGameState() {
-    return mainCharacterState;
+    score = 0;
   }
 
   @Override
   public MainCharacterState getMainCharacterState() {
-    return null;
+    return mainCharacterState;
   }
 
   @Override
-  public void checkNumLivesAndUpdateMyGameState() {
+  public void checkLivesAndUpdateMainCharacterState() {
     if (aliveBehavior.getLives() <= 0) {
       mainCharacterState = MainCharacterState.USER_LOST;
     }
   }
   @Override
-  public void setGameState(MainCharacterState mainCharacterState) {
+  public void setMainCharacterState(MainCharacterState mainCharacterState) {
     this.mainCharacterState = mainCharacterState;
   }
 
@@ -36,7 +33,6 @@ public class BasicMainCharacterBehavior implements MainCharacterBehavior{
   public void updateScore(double addToScore) {
 
   }
-
   @Override
   public int getScore() {
     return 0;

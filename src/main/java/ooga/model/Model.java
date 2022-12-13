@@ -63,7 +63,7 @@ public class Model {
   }
 
   public void checkAndHandleGameState() {
-    entities.mainCharacter().checkNumLivesAndUpdateMyGameState();
+    entities.mainCharacter().checkLivesAndUpdateMainCharacterState();
     mainCharacterState = entities.mainCharacter().getGameState();
   }
 
