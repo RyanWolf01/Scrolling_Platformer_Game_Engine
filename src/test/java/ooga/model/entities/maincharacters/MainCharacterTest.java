@@ -7,7 +7,7 @@ import ooga.model.actions.aliveactions.IncreaseLife;
 import ooga.model.actions.aliveactions.Kill;
 import ooga.model.actions.moveractions.basicmovement.LeftMovement;
 import ooga.model.actions.moveractions.basicmovement.RightMovement;
-import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.model.entities.entitymodels.BasicMainCharacter;
 import ooga.model.entities.info.EntityInfo;
 import org.junit.jupiter.api.Test;
 
@@ -26,14 +26,14 @@ public class MainCharacterTest {
 
   @Test
   void testAcceptMoverActionPos1() {
-    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
+    BasicMainCharacter mario = new BasicMainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     mario.acceptMoveAction(new RightMovement());
     assertEquals(rightVelocity, mario.getXVelocity());
   }
   @Test
   void testAcceptMoverActionPos2() {
-    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
+    BasicMainCharacter mario = new BasicMainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     mario.acceptMoveAction(new RightMovement());
     mario.acceptMoveAction(new RightMovement());
@@ -43,7 +43,7 @@ public class MainCharacterTest {
 
   @Test
   void testAcceptAliveActionPos1() {
-    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
+    BasicMainCharacter mario = new BasicMainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     mario.acceptAliveAction(new IncreaseLife());
     assertEquals(2, mario.getLives());
@@ -51,7 +51,7 @@ public class MainCharacterTest {
 
   @Test
   void testAcceptAliveActionPos2() {
-    MainCharacter mario = new MainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
+    BasicMainCharacter mario = new BasicMainCharacter(null,0, 0, 2, 2, new EntityInfo("MARIO"), null);
 
     mario.acceptAliveAction(new IncreaseLife());
     mario.acceptAliveAction(new IncreaseLife());

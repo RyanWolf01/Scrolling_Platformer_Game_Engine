@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import ooga.model.actions.maincharacteractions.MainCharacterAction;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
-import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.model.entities.entitymodels.BasicMainCharacter;
 
 public class MainCharacterActionParser {
 
@@ -26,14 +26,14 @@ public class MainCharacterActionParser {
    * the GameEnder entity passed. Throws an ActionParsingException if an error occurs. Returns the
    * number of EndGameActions applied to the GameEnder specified.
    *
-   * @param mainCharacter GameEnder entity to be executed on
+   * @param basicMainCharacter GameEnder entity to be executed on
    * @return number of MoverActionsApplied.
    */
-  public int parseAndApplyActions(MainCharacter mainCharacter) {
+  public int parseAndApplyActions(BasicMainCharacter basicMainCharacter) {
     int numActionsExecuted = 0;
     for (ActionData actionData : myActionDataContainer) {
       if (actionData.interfaceName().equals(ACTION_INTERFACE_NAME)) {
-        parseAction(actionData).execute(mainCharacter);
+        parseAction(actionData).execute(basicMainCharacter);
         numActionsExecuted += 1;
       }
     }

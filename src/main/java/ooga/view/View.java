@@ -31,13 +31,20 @@ public class View {
   private String language;
   private String gameTitle;
   private String name;
+  private ExceptionAlerter alerter;
 
   public View(Stage mainStage, String GameTitle, File levelDirectory, String name, String myLanguage){
     myStage = mainStage;
     language = myLanguage;
+    alerter = new ExceptionAlerter(language);
     playerName = name;
-    myController = new GameController(levelDirectory + "/level.json", levelDirectory + "/collisions.json", levelDirectory + "/controls.json");
-    level = new LevelScreen(myController, this);
+
+    try {
+      myController = new GameController(levelDirectory + "/level.json", levelDirectory + "/collisions.json", levelDirectory + "/controls.json");
+      level = new LevelScreen(myController, this);
+    } catch (RuntimeException e){
+      alerter.displayAlert(e);
+    }
     myStage.setScene(level.makeScene(new File(levelDirectory + "/level.json")));
     myStage.setTitle(GameTitle);
 
@@ -51,14 +58,13 @@ public class View {
 
   private void step(double frameTime){
     NodeContainer nextNodes = null;
-    try{
+
+    try {
       nextNodes = myController.step();
+    } catch(RuntimeException e){
+      alerter.displayAlert(e);
     }
-    catch(RuntimeException e){
-      LOG.error(e.getMessage());
-      //ExceptionAlerter alerter = new ExceptionAlert(language);
-      //alerter.displayAlert(e);
-    }
+
     level.step(nextNodes);
     level.setScore(myController.getPlayerScore());
     level.setLiveCount(myController.getMainCharacterLives());

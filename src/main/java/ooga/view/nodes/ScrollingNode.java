@@ -3,6 +3,7 @@ package ooga.view.nodes;
 import java.util.Objects;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import ooga.controller.exceptions.BadImageException;
 
 /**
  * The ScrollingNode object extends the JavaFX ImageView object.
@@ -17,7 +18,11 @@ public class ScrollingNode extends ImageView {
     super();
     update(xCoordinate, yCoordinate, height, width);
 
-    this.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(url))));
+    try {
+      this.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(url))));
+    } catch(RuntimeException e){
+      throw new BadImageException("bad_url", e);
+    }
   }
 
   public void update(double xCoordinate, double yCoordinate, double height, double width){

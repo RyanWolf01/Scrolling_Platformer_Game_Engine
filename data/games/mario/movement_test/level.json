@@ -2,9 +2,10 @@
   "game": "mario",
   "name": "Test Level 1",
   "background": "bliss.jpg",
-  "style": "light",
-  "camera_width": "400",
-  "camera_height": "500",
+  "margin_left": "100",
+  "margin_right": "400",
+  "margin_bottom": "200",
+  "margin_top": "200",
   "scrolling_direction": "horizontal",
   "Entity": [
     {

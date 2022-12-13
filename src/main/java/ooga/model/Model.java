@@ -15,6 +15,7 @@ import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.containers.BackendContainer;
 
 import java.util.ResourceBundle;
+import ooga.model.entities.maincharacter.MainCharacterState;
 
 /**
  * Backend logic is performed in here,
@@ -25,7 +26,7 @@ public class Model {
   public static final ResourceBundle entityClassResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Entities");
   public static final ResourceBundle containerResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"Containers");
 
-  private GameState gameState = GameState.RUNNING;
+  private MainCharacterState mainCharacterState = MainCharacterState.RUNNING;
   BackendContainer entities;
 
   public Model(BackendContainer entities){
@@ -63,12 +64,16 @@ public class Model {
   }
 
   public void checkAndHandleGameState() {
-    entities.mainCharacter().checkNumLivesAndUpdateMyGameState();
-    gameState = entities.mainCharacter().getGameState();
+    entities.mainCharacter().checkLivesAndUpdateMainCharacterState();
+    mainCharacterState = entities.mainCharacter().getMainCharacterState();
   }
 
-  public GameState getGameState() {
-    return gameState;
+  public MainCharacterState getGameState() {
+    return mainCharacterState;
+  }
+
+  public int getPlayerScore(){
+    return entities.mainCharacter().getScore();
   }
 
   /**

@@ -6,7 +6,7 @@ import ooga.model.entities.info.ImmutableInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BasicAliveBehavior implements AliveBehavior, ImmutableAliveBehavior{
+public class BasicAliveBehavior implements AliveBehavior{
 
   private int lives;
   private String LIVES_KEY;

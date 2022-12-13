@@ -350,8 +350,6 @@ public class JSONInformationDecoder {
   }
 
   public ViewInfo viewInfo(){
-    ViewInfo info;
-
     JSONObject levelJSONObject = null;
     try {
       levelJSONObject = initialJSONInformation(levelJSON);
@@ -362,23 +360,23 @@ public class JSONInformationDecoder {
 
     String name;
     String backgroundURL;
-    int cameraHeight;
-    int cameraWidth;
-    String style;
-    String scrollingDirection;
+    int marginLeft;
+    int marginRight;
+    int marginTop;
+    int marginBottom;
     try{
       name = (String) levelJSONObject.get("name");
       backgroundURL = (String) levelJSONObject.get("background");
-      cameraHeight = Integer.parseInt((String) levelJSONObject.get("camera_height"));
-      cameraWidth = Integer.parseInt((String) levelJSONObject.get("camera_width"));
-      style = (String) levelJSONObject.get("style");
-      scrollingDirection = (String) levelJSONObject.get("scrolling_direction");
+      marginLeft = Integer.parseInt((String) levelJSONObject.get("margin_left"));
+      marginRight = Integer.parseInt((String) levelJSONObject.get("margin_right"));
+      marginTop = Integer.parseInt((String) levelJSONObject.get("margin_top"));
+      marginBottom = Integer.parseInt((String) levelJSONObject.get("margin_bottom"));
 
     } catch (RuntimeException e){
       throw new MalformedJSONException("level.json missing required key(s)", e);
     }
 
-    info = new ViewInfo(name, backgroundURL, cameraHeight, cameraWidth, style, scrollingDirection);
+    ViewInfo info = new ViewInfo(name, backgroundURL, marginRight, marginLeft, marginTop, marginBottom);
 
     return info;
   }

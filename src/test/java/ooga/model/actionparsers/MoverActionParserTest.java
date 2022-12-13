@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import ooga.model.collisions.actiondata.ActionData;
 import ooga.model.collisions.actiondata.ActionDataContainer;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChart;
-import ooga.model.entities.alive.Alive;
-import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.model.entities.entitymodels.BasicMainCharacter;
 import ooga.model.entities.info.EntityInfo;
 import ooga.model.entities.movement.Mover;
 import org.junit.jupiter.api.Test;
@@ -29,7 +28,7 @@ public class MoverActionParserTest {
     addActionData(acd, "StopXMovement");
     MoverActionParser moverActionParser = new MoverActionParser(acd);
 
-    Mover mover = new MainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
+    Mover mover = new BasicMainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
 
     int res = moverActionParser.parseAndApplyActions(mover);
     assertEquals(3, res);
@@ -40,7 +39,7 @@ public class MoverActionParserTest {
     ActionDataContainer acd = new ActionDataContainer();
     addActionData(acd, "yeet");
     MoverActionParser actionParser = new MoverActionParser(acd);
-    Mover mover = new MainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
+    Mover mover = new BasicMainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
 
     assertThrows(ActionParsingException.class, () -> actionParser.parseAndApplyActions(mover));
   }
@@ -53,7 +52,7 @@ public class MoverActionParserTest {
     acd.addActionData(
         new ActionData(ALIVE_ACTION_PATH + "Kill", ALIVE_ACTION, new ArrayList<>()));
 
-    Mover mover = new MainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
+    Mover mover = new BasicMainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
     MoverActionParser moverActionParser = new MoverActionParser(acd);
     int count = moverActionParser.parseAndApplyActions(mover);
 
@@ -64,7 +63,7 @@ public class MoverActionParserTest {
   void test_parseAndApplyActions_noActions() {
     ActionDataContainer acd = new ActionDataContainer();
 
-    Mover mover = new MainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
+    Mover mover = new BasicMainCharacter(new DefaultCollisionChart(), 0, 0, 10, 10, new EntityInfo("MARIO"), null);
     MoverActionParser moverActionParser = new MoverActionParser(acd);
     int count = moverActionParser.parseAndApplyActions(mover);
 

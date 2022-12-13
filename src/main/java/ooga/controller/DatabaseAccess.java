@@ -48,7 +48,7 @@ public class DatabaseAccess {
       }
 
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      throw new BadDatabaseAccessException("bad_access", e);
     }
 
     return result;
@@ -78,7 +78,7 @@ public class DatabaseAccess {
       con.getInputStream();
 
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      throw new BadDatabaseAccessException("bad_access", e);
     }
   }
 
