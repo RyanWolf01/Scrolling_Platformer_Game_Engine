@@ -68,7 +68,7 @@ public class View {
     }
 
     if(!myController.isGameRunning()){
-      this.finishLevel();
+      this.finishLevel("end_win");
     }
 
     level.step(nextNodes);
