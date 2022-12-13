@@ -4,10 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import ooga.controller.GameController;
 import ooga.view.GameCamera;
 import ooga.view.Margin;
@@ -190,11 +187,15 @@ public class LevelScreen {
   }
 
   private void addGUIElements(){
+    AnchorPane anchorPane = new AnchorPane();
+    anchorPane.setMinWidth(levelWidth);
     guiMap = new HashMap<>();
     for (String name : GUI_NAMES) {
       guiMap.put(name, new GUIElement(name, 0));
-      screenPane.getChildren().add(guiMap.get(name));
+      anchorPane.getChildren().add(guiMap.get(name));
     }
-
+    AnchorPane.setLeftAnchor(guiMap.get("Lives"), 0.0);
+    AnchorPane.setRightAnchor(guiMap.get("Score"), 0.0);
+    screenPane.getChildren().add(anchorPane);
   }
 }
