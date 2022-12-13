@@ -1,5 +1,6 @@
 package ooga.controller.saveloadhandling;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import ooga.model.entities.alive.Alive;
@@ -37,21 +38,23 @@ public class LevelJSONRetriever {
 
   public JSONObject generateLevelJSON(Map<String, Object> generalInfoMap, EntityContainer entityContainer, LivingContainer livingContainer) {
     currentLevelJSON = new JSONObject();
+    seenEntities = new ArrayList<>();
     for (String key : generalInfoMap.keySet()) {
       currentLevelJSON.put(key, generalInfoMap.get(key));
     }
     JSONArray entityJSONArray = new JSONArray();
     for (Alive liver : livingContainer) {
       JSONObject singleEntity = new JSONObject();
+      singleEntity.put("lives", String.valueOf(liver.getLives()));
       Entity entity = (Entity) liver;
-      // singleEntity.put("type", ???)
-      singleEntity.put("x", entity.getXCoordinate());
-      singleEntity.put("y", entity.getXCoordinate());
-      singleEntity.put("height", entity.getXCoordinate());
-      singleEntity.put("width", entity.getXCoordinate());
+      seenEntities.add(entity);
+      singleEntity.put("x", String.valueOf((int) entity.getXCoordinate()));
+      singleEntity.put("y", String.valueOf((int) entity.getYCoordinate()));
+      singleEntity.put("height", String.valueOf(entity.getHeight()));
+      singleEntity.put("width", String.valueOf(entity.getWidth()));
       Info info = (Info) entity.getImmutableEntityInfo();
       for (String key : info) {
-        singleEntity.put(key, info.get(key));
+        singleEntity.put(key, String.valueOf(info.get(key)));
       }
       entityJSONArray.add(singleEntity);
     }
@@ -59,14 +62,13 @@ public class LevelJSONRetriever {
     for (Entity entity : entityContainer) {
       if (!seenEntities.contains(entity)) {
         JSONObject singleEntity = new JSONObject();
-        // singleEntity.put("type", ???)
-        singleEntity.put("x", entity.getXCoordinate());
-        singleEntity.put("y", entity.getXCoordinate());
-        singleEntity.put("height", entity.getXCoordinate());
-        singleEntity.put("width", entity.getXCoordinate());
+        singleEntity.put("x", String.valueOf((int) entity.getXCoordinate()));
+        singleEntity.put("y", String.valueOf((int) entity.getYCoordinate()));
+        singleEntity.put("height", String.valueOf(entity.getHeight()));
+        singleEntity.put("width", String.valueOf(entity.getWidth()));
         Info info = (Info) entity.getImmutableEntityInfo();
         for (String key : info) {
-          singleEntity.put(key, info.get(key));
+          singleEntity.put(key, String.valueOf(info.get(key)));
         }
         entityJSONArray.add(singleEntity);
       }
@@ -76,7 +78,5 @@ public class LevelJSONRetriever {
 
     return currentLevelJSON;
   }
-
-
 
 }

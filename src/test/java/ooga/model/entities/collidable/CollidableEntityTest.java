@@ -8,6 +8,7 @@ import ooga.model.collisions.collisionhandling.CollisionChartGetter;
 import ooga.model.collisions.collisionhandling.DefaultCollisionChartGetter;
 import ooga.model.collisions.physics.CollisionPhysicsData;
 import ooga.model.collisions.physics.PhysicsCalculator;
+
 import ooga.model.entities.entitymodels.BasicStaticCharacter;
 import ooga.model.entities.entitymodels.MainCharacter;
 import ooga.model.entities.info.EntityInfo;
@@ -48,8 +49,8 @@ public class CollidableEntityTest {
     CollisionChartGetter ccg = new DefaultCollisionChartGetter();
     CollisionChart marioChart = ccg.getCollisionChart(decoder, "mario");
 
-    MainCharacter mario = new MainCharacter(marioChart, 0, 45, 50, 20, new EntityInfo("MARIO"), new MovementQueue());
 
+    MainCharacter mario = new MainCharacter(marioChart, 0, 45, 50, 20, new EntityInfo("MARIO"), new MovementQueue());
     BasicStaticCharacter goomba = new BasicStaticCharacter(null, 0, 0, 51, 22, new EntityInfo("GOOMBA"));
 
     PhysicsCalculator phyCalc = new PhysicsCalculator();

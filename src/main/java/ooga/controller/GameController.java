@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Queue;
 import javafx.scene.input.KeyCode;
 import ooga.controller.saveloadhandling.CheckpointDirectory;
+
+import ooga.controller.saveloadhandling.LevelJSONRetriever;
 import ooga.model.GameState;
 import ooga.model.Model;
 import ooga.view.ViewInfo;
@@ -115,10 +117,12 @@ public class GameController {
      * Method to be called on the button press in the frontend to save the game
      * at the current time by creating a checkpoint directory
      *
-     * @param directoryName
+     * @param directoryName, string that the directory will be named
      */
     public void saveGame(String directoryName) {
-        CheckpointDirectory saveDirectory = new CheckpointDirectory(directoryName, initialLevelJSON,
+        LevelJSONRetriever retriever = new LevelJSONRetriever(jsonDecoder.generalInfoMap, container.entities()
+            .entities(), container.entities().livers());
+        CheckpointDirectory saveDirectory = new CheckpointDirectory(directoryName, retriever.currentLevelJSON,
             initialControlsJSON, initialCollisionJSON);
         saveDirectory.CreateDirectory();
     }

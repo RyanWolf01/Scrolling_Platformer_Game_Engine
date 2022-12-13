@@ -28,6 +28,8 @@ public class View {
   public static final ResourceBundle languageResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"View");
   private static final Logger LOG = LogManager.getLogger(View.class);
   private String language;
+  private String gameTitle;
+  private String name;
 
   public View(Stage mainStage, String GameTitle, File levelDirectory, String name, String myLanguage){
     myStage = mainStage;
@@ -43,6 +45,8 @@ public class View {
     levelAnimation.getKeyFrames().add(new KeyFrame(Duration.seconds(FRAME_DELAY), e -> this.step(FRAME_DELAY)));
     levelAnimation.play();
     myStage.getScene().setOnKeyPressed(e -> handleKeyInput(e.getCode()));
+    gameTitle = GameTitle;
+    name = playerName;
   }
 
   private void step(double frameTime){
@@ -74,7 +78,6 @@ public class View {
     }
   }
 
-
   private void pause(){
     LOG.info("Pause Game");
     levelAnimation.pause();
@@ -96,4 +99,15 @@ public class View {
     myController.saveGame(directoryName);
   }
 
+  public String getLanguage() {
+    return language;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getGameTitle() {
+    return gameTitle;
+  }
 }
