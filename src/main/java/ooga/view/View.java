@@ -75,9 +75,6 @@ public class View {
     WaitingScreen waitingScreen = new WaitingScreen();
     myStage.setScene(waitingScreen.makeScene());
     myController.setHighScore(playerName, myController.getPlayerScore());
-    for(int score: myController.getHighScores().keySet()){
-      LOG.info(score);
-    }
     EndScreen endScreen = new EndScreen(language, myController.getHighScores());
     myStage.setScene(endScreen.makeScene());
     myStage.setTitle("Game Over!");

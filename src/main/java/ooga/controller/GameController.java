@@ -1,10 +1,8 @@
 package ooga.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
+
 import javafx.scene.input.KeyCode;
 import ooga.controller.saveloadhandling.CheckpointDirectory;
 
@@ -89,14 +87,13 @@ public class GameController {
         access.postHighScore(playerName, score);
     }
 
-    public Map<Integer, String> getHighScores(){
-        Map<Integer, String> scoreMap = new HashMap<>();
+    public TreeMap<String, Integer> getHighScores(){
+        TreeMap<String, Integer> scoreMap = new TreeMap<>();
         org.json.JSONObject json = access.getHighScores();
 
         for(String o : json.keySet()){
-            scoreMap.put((Integer) json.get(o), o);
+            scoreMap.put(o, (Integer) json.get(o));
         }
-
         return scoreMap;
     }
 
