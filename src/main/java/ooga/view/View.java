@@ -11,6 +11,7 @@ import ooga.view.nodes.NodeContainer;
 import ooga.view.screens.EndScreen;
 import ooga.view.screens.LevelScreen;
 import ooga.view.screens.PauseScreen;
+import ooga.view.screens.WaitingScreen;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,18 +26,27 @@ public class View {
   private LevelScreen level;
   private static final double FRAME_DELAY = 1.0/60.0;
   private Stage myStage;
-  public static final ResourceBundle languageResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"View");
+  public static final ResourceBundle viewResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"View");
+  private ResourceBundle languageResources;
   private static final Logger LOG = LogManager.getLogger(View.class);
   private String language;
   private String gameTitle;
   private String name;
+  private ExceptionAlerter alerter;
 
   public View(Stage mainStage, String GameTitle, File levelDirectory, String name, String myLanguage){
     myStage = mainStage;
     language = myLanguage;
+    languageResources = ResourceBundle.getBundle(Main.DEFAULT_LANGUAGE_RESOURCE_PACKAGE+language);
+    alerter = new ExceptionAlerter(language);
     playerName = name;
-    myController = new GameController(levelDirectory + "/level.json", levelDirectory + "/collisions.json", levelDirectory + "/controls.json");
-    level = new LevelScreen(myController, this);
+
+    try {
+      myController = new GameController(levelDirectory + "/level.json", levelDirectory + "/collisions.json", levelDirectory + "/controls.json");
+      level = new LevelScreen(myController, this);
+    } catch (RuntimeException e){
+      alerter.displayAlert(e);
+    }
     myStage.setScene(level.makeScene(new File(levelDirectory + "/level.json")));
     myStage.setTitle(GameTitle);
 
@@ -46,19 +56,33 @@ public class View {
     levelAnimation.play();
     myStage.getScene().setOnKeyPressed(e -> handleKeyInput(e.getCode()));
     gameTitle = GameTitle;
-    name = playerName;
   }
 
   private void step(double frameTime){
-    NodeContainer nextNodes = myController.step();
+    NodeContainer nextNodes = null;
+
+    try {
+      nextNodes = myController.step();
+    } catch(RuntimeException e){
+      alerter.displayAlert(e);
+    }
+
     level.step(nextNodes);
+    level.setScore(myController.getPlayerScore());
+    level.setLiveCount(myController.getMainCharacterLives());
   }
 
   public void finishLevel(){
     levelAnimation.stop();
-    EndScreen endScreen = new EndScreen(language, myController.getPlayerScore(), playerName);
-    myStage.setScene(endScreen.makeScene(myController.getLevelDirectory() + "scores.json"));
-    myStage.setTitle("Game Over!");
+    WaitingScreen waitingScreen = new WaitingScreen();
+    myStage.setScene(waitingScreen.makeScene());
+    myController.setHighScore(playerName, myController.getPlayerScore());
+    for(int score: myController.getHighScores().keySet()){
+      LOG.info(score);
+    }
+    EndScreen endScreen = new EndScreen(language, myController.getHighScores());
+    myStage.setScene(endScreen.makeScene());
+    myStage.setTitle(languageResources.getString("game_over"));
   }
 
 
@@ -79,14 +103,14 @@ public class View {
   }
 
   private void pause(){
-    LOG.info("Pause Game");
+    LOG.info(languageResources.getString("pause_game"));
     levelAnimation.pause();
     PauseScreen pause = new PauseScreen(this, myController, language);
     myStage.setScene(pause.makeScene());
   }
 
   public void play(){
-    LOG.info("Play Game");
+    LOG.info(languageResources.getString("play_game"));
     myStage.setScene(level.getScene());
     levelAnimation.play();
   }
@@ -104,7 +128,7 @@ public class View {
   }
 
   public String getName() {
-    return name;
+    return playerName;
   }
 
   public String getGameTitle() {

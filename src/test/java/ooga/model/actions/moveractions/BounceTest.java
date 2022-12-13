@@ -4,7 +4,7 @@ package ooga.model.actions.moveractions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ResourceBundle;
-import ooga.model.entities.entitymodels.MainCharacter;
+import ooga.model.entities.entitymodels.BasicMainCharacter;
 import org.junit.jupiter.api.Test;
 
 public class BounceTest {
@@ -14,7 +14,7 @@ public class BounceTest {
 
   @Test
   void testBouncePos1() {
-    MainCharacter mario = new MainCharacter(null, 0, 0, 2, 2, null, null);
+    BasicMainCharacter mario = new BasicMainCharacter(null, 0, 0, 2, 2, null, null);
 
     Bounce bounce = new Bounce();
     bounce.execute(mario);
@@ -28,7 +28,7 @@ public class BounceTest {
    */
   @Test
   void testBouncePos2() {
-    MainCharacter mario = new MainCharacter(null, 0, 0, 2, 2, null, null);
+    BasicMainCharacter mario = new BasicMainCharacter(null, 0, 0, 2, 2, null, null);
 
     Bounce bounce = new Bounce();
     bounce.execute(mario);
@@ -45,7 +45,7 @@ public class BounceTest {
    */
   @Test
   void testBounceNeg() {
-    MainCharacter mario = new MainCharacter(null, 0, 0, 2, 2, null, null);
+    BasicMainCharacter mario = new BasicMainCharacter(null, 0, 0, 2, 2, null, null);
 
     Bounce bounce = new Bounce();
 

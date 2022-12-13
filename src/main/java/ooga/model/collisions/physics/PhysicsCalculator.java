@@ -2,17 +2,15 @@ package ooga.model.collisions.physics;
 
 import java.util.ArrayList;
 import java.util.List;
-import javafx.geometry.Bounds;
 import ooga.model.entities.entitymodels.CollidableEntity;
 import ooga.model.entities.entitymodels.Entity;
-import ooga.model.entities.entitymodels.MainCharacter;
-import ooga.view.nodes.ScrollingNode;
+import ooga.model.entities.entitymodels.BasicMainCharacter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class PhysicsCalculator {
 
-  private static final Logger LOG = LogManager.getLogger(MainCharacter.class);
+  private static final Logger LOG = LogManager.getLogger(BasicMainCharacter.class);
 
   /**
    * This will enact the rules on the first entity, Entity a
