@@ -140,7 +140,7 @@ public class StartScreen {
     catch(Exception e){
       directoryChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
       LOG.error("Did not find Initial Directory Successfully.");
-      createWarning(languageResources.getString("no_game_directory"));
+      createWarning(viewResources.getString("no_game_directory"));
     }
     directoryChooser.setInitialDirectory(new File(fileDirectory));
     directoryChooser.getInitialDirectory();
