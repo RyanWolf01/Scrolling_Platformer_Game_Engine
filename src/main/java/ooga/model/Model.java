@@ -15,8 +15,6 @@ import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.containers.BackendContainer;
 
 import java.util.ResourceBundle;
-import ooga.model.entities.modelcallers.GameEnder;
-import ooga.model.entities.modelcallers.functionalinterfaces.EndGameCallable;
 
 /**
  * Backend logic is performed in here,
@@ -65,12 +63,8 @@ public class Model {
   }
 
   public void checkAndHandleGameState() {
-    if (entities.mainCharacter().getLives() <= 0) {
-      gameState = GameState.USER_LOST;
-    }
-    else if (entities.mainCharacter().isEndPointHit()) {
-      gameState = GameState.USER_WON;
-    }
+    entities.mainCharacter().checkNumLivesAndUpdateMyGameState();
+    gameState = entities.mainCharacter().getGameState();
   }
 
   public GameState getGameState() {
@@ -146,8 +140,4 @@ public class Model {
     collider.onCollision(collided, new PhysicsCalculator().updatePhysicsDataOfCurrentCollision(currCollisionPhysicsData));
   }
 
-  private void setEndGameMethods(EndGameCallable endGameMethod) {
-    entities.mainCharacter().setEndGameCallable(endGameMethod);
-    entities.gameEnders().forEach((GameEnder gameEnder) -> gameEnder.setEndGameCallable(endGameMethod));
-  }
 }
