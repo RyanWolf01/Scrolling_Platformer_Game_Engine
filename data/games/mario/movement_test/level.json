@@ -62,6 +62,15 @@
       "width": "1150"
     },
     {
+      "type": "static_entity",
+      "collidable_type": "flagpole",
+      "texture": "/games/mario/assets/flagpole.png",
+      "x": "1100",
+      "y": "-400",
+      "height": "500",
+      "width": "50"
+    },
+    {
       "type": "moving_character",
       "collidable_type": "powerup",
       "texture": "/games/mario/assets/powerupMushroom.png",

@@ -102,6 +102,17 @@
             "params": []
           }
         ]
+      },
+      {
+        "OPPONENT_COLLIDABLE_TYPE": "flagpole",
+        "COLLISION_DIRECTION": "*",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.maincharacteractions.SetGameStateToUserWon",
+            "action_interface": "MainCharacterAction",
+            "params": []
+          }
+        ]
       }
     ]
   },

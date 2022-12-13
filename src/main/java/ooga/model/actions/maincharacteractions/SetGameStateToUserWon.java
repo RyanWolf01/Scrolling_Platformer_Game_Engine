@@ -7,6 +7,6 @@ public class SetGameStateToUserWon implements MainCharacterAction {
 
   @Override
   public void execute(MainCharacter mainCharacter) {
-    mainCharacter.setGameState(GameState.USER_LOST);
+    mainCharacter.setGameState(GameState.USER_WON);
   }
 }
