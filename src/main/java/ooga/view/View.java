@@ -26,7 +26,8 @@ public class View {
   private LevelScreen level;
   private static final double FRAME_DELAY = 1.0/60.0;
   private Stage myStage;
-  public static final ResourceBundle languageResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"View");
+  public static final ResourceBundle viewResources = ResourceBundle.getBundle(Main.PROPERTIES_PACKAGE+"View");
+  private ResourceBundle languageResources;
   private static final Logger LOG = LogManager.getLogger(View.class);
   private String language;
   private String gameTitle;
@@ -36,6 +37,7 @@ public class View {
   public View(Stage mainStage, String GameTitle, File levelDirectory, String name, String myLanguage){
     myStage = mainStage;
     language = myLanguage;
+    languageResources = ResourceBundle.getBundle(Main.DEFAULT_LANGUAGE_RESOURCE_PACKAGE+language);
     alerter = new ExceptionAlerter(language);
     playerName = name;
 
@@ -79,7 +81,7 @@ public class View {
     }
     EndScreen endScreen = new EndScreen(language, myController.getHighScores());
     myStage.setScene(endScreen.makeScene());
-    myStage.setTitle("Game Over!");
+    myStage.setTitle(languageResources.getString("game_over"));
   }
 
 
@@ -100,14 +102,14 @@ public class View {
   }
 
   private void pause(){
-    LOG.info("Pause Game");
+    LOG.info(languageResources.getString("pause_game"));
     levelAnimation.pause();
     PauseScreen pause = new PauseScreen(this, myController, language);
     myStage.setScene(pause.makeScene());
   }
 
   public void play(){
-    LOG.info("Play Game");
+    LOG.info(languageResources.getString("play_game"));
     myStage.setScene(level.getScene());
     levelAnimation.play();
   }
