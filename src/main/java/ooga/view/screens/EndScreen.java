@@ -1,14 +1,13 @@
 package ooga.view.screens;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import ooga.Main;
-import ooga.view.nodes.HighScoreBox;
+import ooga.view.nodes.HighScore;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
@@ -25,12 +24,11 @@ public class EndScreen {
   private static final int sceneWidth = 400;
   private static final int sceneHeight = 500;
   private static final int titleHeight = 100;
-  private GridPane levelPane;
+  private StackPane levelPane;
   private FileReader myScores;
   private Map<Integer, String> scoresMap;
   private static final Logger LOG = LogManager.getLogger(EndScreen.class);
   private ResourceBundle languageResources;
-  private HBox titleBox;
 
   /**
    * Creates an EndScreen To Display High Scores
@@ -41,7 +39,7 @@ public class EndScreen {
   }
 
   public Scene makeScene(){
-    levelPane = new GridPane();
+    levelPane = new StackPane();
 
     levelPane.setId("Pane");
     levelPane.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
@@ -58,8 +56,11 @@ public class EndScreen {
     scoreList.sort(Comparator.reverseOrder());
     int boxHeight = (sceneHeight - titleHeight)/MAX_SCORES;
     for (int i = 0; i < Math.min(scoresMap.size(), MAX_SCORES); ++i) {
-      HighScoreBox box = new HighScoreBox(sceneWidth, boxHeight, scoreList.get(i), scoresMap.get(scoreList.get(i)));
-      levelPane.add(box, 0, i+1);
+      HighScore box = new HighScore(sceneWidth, boxHeight, scoreList.get(i), scoresMap.get(scoreList.get(i)));
+      levelPane.getChildren().add(box);
+      box.setPrefWidth(sceneWidth);
+      box.setPrefHeight(boxHeight);
+      box.setTranslateY(titleHeight + (boxHeight*i));
     }
   }
 
@@ -146,12 +147,11 @@ public class EndScreen {
   }
 
   private void addTitleBox(){
-    titleBox = new HBox();
-    titleBox.setPrefWidth(sceneWidth);
-    titleBox.setPrefHeight(titleHeight);
     Text highScoreTitle = new Text(languageResources.getString("high_scores"));
+    highScoreTitle.setFont(new Font(25));
     highScoreTitle.setFill(Color.SNOW);
-    titleBox.getChildren().add(highScoreTitle);
-    levelPane.add(titleBox, 0, 0);
+    levelPane.getChildren().add(highScoreTitle);
+    levelPane.setAlignment(highScoreTitle, Pos.TOP_CENTER);
+    highScoreTitle.setY(0);
   }
 }
