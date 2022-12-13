@@ -88,11 +88,27 @@
         ]
       },
       {
-        "OPPONENT_COLLIDABLE_TYPE": "game_ender",
+        "OPPONENT_COLLIDABLE_TYPE": "boundary",
         "COLLISION_DIRECTION": "*",
         "ACTIONS": [
           {
-            "classname": "ooga.model.actions.maincharacteractions.SetEndPointHitAction",
+            "classname": "ooga.model.actions.aliveactions.Kill",
+            "action_interface": "AliveAction",
+            "params": []
+          },
+          {
+            "classname": "ooga.model.actions.maincharacteractions.SetGameStateToUserLost",
+            "action_interface": "MainCharacterAction",
+            "params": []
+          }
+        ]
+      },
+      {
+        "OPPONENT_COLLIDABLE_TYPE": "flagpole",
+        "COLLISION_DIRECTION": "*",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.maincharacteractions.SetGameStateToUserWon",
             "action_interface": "MainCharacterAction",
             "params": []
           }
@@ -117,6 +133,7 @@
       }
     ]
   },
+
   "goomba": {
     "parent": "movingEntity",
     "collision_chart": [
@@ -150,23 +167,6 @@
           {
             "classname": "ooga.model.actions.aliveactions.Kill",
             "action_interface": "AliveAction",
-            "params": []
-          }
-        ]
-      }
-    ]
-  },
-
-  "game_ender": {
-    "parent": "entity",
-    "collision_chart": [
-      {
-        "OPPONENT_COLLIDABLE_TYPE": "mario",
-        "COLLISION_DIRECTION": "*",
-        "ACTIONS": [
-          {
-            "classname": "ooga.model.actions.modelactions.EndGameAction",
-            "action_interface": "EndGameAction",
             "params": []
           }
         ]

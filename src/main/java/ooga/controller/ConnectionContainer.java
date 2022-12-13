@@ -1,14 +1,19 @@
 package ooga.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import ooga.controller.exceptions.MalformedJSONException;
 import ooga.model.entities.alive.Alive;
+import ooga.model.entities.containers.LivingContainer;
 import ooga.model.entities.entitymodels.Entity;
 import ooga.model.entities.containers.BackendContainer;
 import ooga.model.entities.info.EntityInfo;
 import ooga.view.nodes.NodeContainer;
 import ooga.view.nodes.ScrollingNode;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * This container holds all the objects for the frontend and backend. There is a mapping between the frontend
@@ -27,7 +32,6 @@ public class ConnectionContainer {
     nodes = new NodeContainer();
     connectorMap = new HashMap<>();
     reverseConnectorMap = new HashMap<>();
-    decoder = this.decoder;
   }
 
   /**
@@ -91,7 +95,10 @@ public class ConnectionContainer {
       node.update(entity.getXCoordinate(), entity.getYCoordinate(), entity.getHeight(), entity.getWidth());
     }
 
-    for(Alive liver : entities.livers()){
+    List<Alive> liversList = new ArrayList<>();
+    entities.livers().forEach(liversList::add);
+
+    for(Alive liver : liversList){
       if(liver.getLives() <= 0){
         Entity toRemove = (Entity) liver;
         entities.removeEntity(toRemove);

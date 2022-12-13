@@ -14,7 +14,8 @@
       "y": "1",
       "height": "100",
       "width": "50",
-      "texture": "/games/mario/assets/mario.png"
+      "texture": "/games/mario/assets/mario.png",
+      "lives": "2"
     },
     {
       "type": "static_platform",
@@ -35,8 +36,8 @@
       "width": "200"
     },
     {
-      "type": "game_ender",
-      "collidable_type": "game_ender",
+      "type": "static_entity",
+      "collidable_type": "boundary",
       "texture": "/games/mario/assets/orangeSquare.png",
       "x": "1250",
       "y": "-50",
@@ -44,8 +45,8 @@
       "width": "50"
     },
     {
-      "type": "game_ender",
-      "collidable_type": "game_ender",
+      "type": "static_entity",
+      "collidable_type": "boundary",
       "texture": "/games/mario/assets/orangeSquare.png",
       "x": "100",
       "y": "-50",
@@ -53,13 +54,22 @@
       "width": "50"
     },
     {
-      "type": "game_ender",
-      "collidable_type": "game_ender",
+      "type": "static_entity",
+      "collidable_type": "boundary",
       "texture": "/games/mario/assets/orangeSquare.png",
       "x": "100",
       "y": "300",
       "height": "50",
       "width": "1150"
+    },
+    {
+      "type": "static_entity",
+      "collidable_type": "flagpole",
+      "texture": "/games/mario/assets/flagpole.png",
+      "x": "1100",
+      "y": "-400",
+      "height": "500",
+      "width": "50"
     },
     {
       "type": "moving_character",
@@ -70,7 +80,8 @@
       "leftActionVelocity": "-1",
       "movement_queue": "move_left",
       "height": "40",
-      "width": "40"
+      "width": "40",
+      "lives": "1"
     },
     {
       "type": "goomba",
@@ -83,7 +94,8 @@
       "automatic_movement_rate": "100",
       "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
       "height": "50",
-      "width": "40"
+      "width": "40",
+      "lives": "1"
     }
   ]
 }

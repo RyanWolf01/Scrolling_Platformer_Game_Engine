@@ -41,6 +41,9 @@ public class NodeContainer implements Iterable<ScrollingNode> {
 
     public void remove(ScrollingNode node){
         entities.remove(node);
+        if(node.equals(mainCharacterNode)){
+            mainCharacterNode = null;
+        }
     }
 
     public void setMainCharacter(ScrollingNode node){

@@ -80,7 +80,7 @@ public class MoverData implements ImmutableMoverData {
     boolean foundField = assignVelocityToField(key, velocity);
 
     if(!foundField){
-      throw new MovementDataException("couldn't find one of the velocities while parsing in MoverData");
+      throw new MovementDataException("velocity_parse_error");
     }
   }
 
@@ -104,7 +104,7 @@ public class MoverData implements ImmutableMoverData {
         }
       }
     } catch (IllegalAccessException e) {
-      throw new MovementDataException("error using reflection in MoverData", e);
+      throw new MovementDataException("reflection_error", e);
     }
     return foundField;
   }
@@ -126,7 +126,7 @@ public class MoverData implements ImmutableMoverData {
             ResourceBundle.getBundle("properties/movement").getString(key));
       }
       catch(NumberFormatException propertiesException){
-        throw new MovementDataException("incorrect velocity format in properties file", propertiesException);
+        throw new MovementDataException("velocity_parse_error", propertiesException);
       }
     }
     return velocity;
@@ -146,7 +146,7 @@ public class MoverData implements ImmutableMoverData {
    */
   public void setRightActionVelocity(double rightActionVelocity) {
     if(rightActionVelocity < 0){
-      throw new MovementDataException("tried to change right action velocity to negative value");
+      throw new MovementDataException("bad_set_velocity_error");
     }
     this.rightActionVelocity = rightActionVelocity;
   }
@@ -165,7 +165,7 @@ public class MoverData implements ImmutableMoverData {
    */
   public void setLeftActionVelocity(double leftActionVelocity) {
     if(leftActionVelocity > 0){
-      throw new MovementDataException("tried to change left action velocity to positive value");
+      throw new MovementDataException("bad_set_velocity_error");
     }
     this.leftActionVelocity = leftActionVelocity;
   }
@@ -184,7 +184,7 @@ public class MoverData implements ImmutableMoverData {
    */
   public void setDownwardActionVelocity(double downwardActionVelocity) {
     if(downwardActionVelocity < 0){
-      throw new MovementDataException("tried to change downward action velocity to negative value");
+      throw new MovementDataException("bad_set_velocity_error");
     }
     this.downwardActionVelocity = downwardActionVelocity;
   }
@@ -203,7 +203,7 @@ public class MoverData implements ImmutableMoverData {
    */
   public void setUpwardActionVelocity(double upwardActionVelocity) {
     if(upwardActionVelocity > 0){
-      throw new MovementDataException("tried to change upward action velocity to positive value");
+      throw new MovementDataException("bad_set_velocity_error");
     }
     this.upwardActionVelocity = upwardActionVelocity;
   }
@@ -222,7 +222,7 @@ public class MoverData implements ImmutableMoverData {
    */
   public void setGravityVelocity(double gravityVelocity) {
     if(gravityVelocity < 0){
-      throw new MovementDataException("tried to change gravity velocity to negative value");
+      throw new MovementDataException("bad_set_velocity_error");
     }
     this.gravityVelocity = gravityVelocity;
   }
