@@ -16,6 +16,7 @@ public abstract class Entity implements ImmutableEntity{
     private double height;
     private double width;
     private Info entityInfo;
+    private InitialAttributes initialAttributes;
 
     public Entity(int initialXCoordinate, int initialYCoordinate, double height, double width, Info entityInfo){
         this.xCoordinate = initialXCoordinate;
@@ -23,6 +24,15 @@ public abstract class Entity implements ImmutableEntity{
         this.height = height;
         this.width = width;
         this.entityInfo = entityInfo;
+        initialAttributes = new InitialAttributes(initialXCoordinate, initialYCoordinate, height, width);
+    }
+
+    /**
+     *
+     * @return initial attributes (height, width, x, y)
+     */
+    public InitialAttributes getInitialAttributes() {
+        return initialAttributes;
     }
 
     public double getXCoordinate(){

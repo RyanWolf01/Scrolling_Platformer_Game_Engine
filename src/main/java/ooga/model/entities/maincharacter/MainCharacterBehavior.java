@@ -31,4 +31,14 @@ public interface MainCharacterBehavior extends ImmutableMainCharacterBehavior{
    */
   int getScore();
 
+  /**
+   * @return if has power up
+   */
+  boolean hasPowerUp();
+
+  /**
+   * set has power up
+   */
+  void setHasPowerUp(boolean hasPowerUp);
+
 }

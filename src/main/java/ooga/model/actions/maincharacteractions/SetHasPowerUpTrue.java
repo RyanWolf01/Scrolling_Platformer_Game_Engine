@@ -1,18 +1,16 @@
 package ooga.model.actions.maincharacteractions;
 
-import java.util.ResourceBundle;
-import ooga.controller.exceptions.MiscellaneousPropertiesException;
 import ooga.model.entities.entitymodels.BasicMainCharacter;
 
-public class ResetVerticalPosition implements MainCharacterAction {
+public class SetHasPowerUpTrue implements MainCharacterAction{
 
   /**
-   * increment score of main character
+   * set has power up to true
    * @param mainCharacter on which action is executing
    */
   @Override
   public void execute(BasicMainCharacter mainCharacter){
-    mainCharacter.setYCoordinate(-200);
+    mainCharacter.setHasPowerUp(true);
   }
 
 }

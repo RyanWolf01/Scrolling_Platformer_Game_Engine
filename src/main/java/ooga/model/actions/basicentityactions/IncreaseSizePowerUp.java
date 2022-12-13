@@ -29,8 +29,18 @@ public class IncreaseSizePowerUp implements BasicEntityAction {
    */
   @Override
   public void execute(Entity entity){
+    double originalHeight = entity.getHeight();
+    double originalY = entity.getYCoordinate();
+    double originalWidth = entity.getWidth();
+    double originalX = entity.getXCoordinate();
+
     entity.setHeight(entity.getHeight() * SIZE_MULTIPLIER);
     entity.setWidth(entity.getWidth() * SIZE_MULTIPLIER);
+
+    double diffY = originalHeight - entity.getHeight();
+    double diffX = originalWidth - entity.getWidth();
+    entity.setYCoordinate(originalY + diffY);
+    entity.setXCoordinate(originalX + diffX);
   }
 
 }

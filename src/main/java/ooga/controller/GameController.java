@@ -1,10 +1,8 @@
 package ooga.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
+
 import javafx.scene.input.KeyCode;
 import ooga.controller.saveloadhandling.CheckpointDirectory;
 
@@ -85,19 +83,31 @@ public class GameController {
         return container.viewables();
     }
 
+    public boolean isGameRunning(){
+        return gameRunning;
+    }
+
     public void setHighScore(String playerName, int score){
         access.postHighScore(playerName, score);
     }
 
-    public Map<Integer, String> getHighScores(){
-        Map<Integer, String> scoreMap = new HashMap<>();
+    public Map<String, Integer> getHighScores(){
+        Map<String, Integer> scoreMap = new HashMap<>();
         org.json.JSONObject json = access.getHighScores();
 
         for(String o : json.keySet()){
-            scoreMap.put((Integer) json.get(o), o);
+            scoreMap.put(o, (Integer) json.get(o));
         }
 
-        return scoreMap;
+        LinkedHashMap<String, Integer> reverseSortedMap = new LinkedHashMap<>();
+        scoreMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .forEachOrdered(x -> reverseSortedMap.put(x.getKey(), x.getValue()));
+
+        // taken from https://howtodoinjava.com/java/sort/java-sort-map-by-values/
+
+        return reverseSortedMap;
     }
 
     public void handleKeyInput(KeyCode code){
