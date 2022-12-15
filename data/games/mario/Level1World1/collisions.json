@@ -39,11 +39,6 @@
             "classname": "ooga.model.actions.moveractions.StopYMovement",
             "action_interface": "MoverAction",
             "params": []
-          },
-          {
-            "classname": "ooga.model.actions.moveractions.UpwardMoveOut",
-            "action_interface": "MoverAction",
-            "params": []
           }
         ]
       }

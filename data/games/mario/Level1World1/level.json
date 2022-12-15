@@ -1,42 +1,730 @@
 {
   "game": "mario",
-  "name": "Test Level 1",
+  "name": "Classic 1-1",
   "background": "bliss.jpg",
-  "margin_left": "100",
-  "margin_right": "400",
-  "margin_bottom": "200",
-  "margin_top": "200",
+  "margin_left": "50",
+  "margin_right": "800",
+  "margin_bottom": "201",
+  "margin_top": "10",
   "scrolling_direction": "horizontal",
   "Entity": [
     {
       "type": "mario",
       "collidable_type": "mario",
       "x": "250",
-      "y": "-100",
+      "y": "-501",
       "height": "100",
       "width": "50",
       "texture": "/games/mario/assets/mario.png",
-      "lives": "2"
+      "lives": "3",
+      "upwardActionVelocity": "-30",
+      "rightActionVelocity": "20",
+      "leftActionVelocity": "-20"
     },
-
     {
       "type": "static_platform",
       "collidable_type": "static_platform",
-      "texture": "/games/mario/assets/ground.png",
-      "x": "0",
-      "y": "-50",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "200",
+      "y": "-350",
       "height": "50",
-      "width": "10000"
+      "width": "150"
     },
     {
       "type": "static_platform",
       "collidable_type": "static_platform",
-      "texture": "/games/mario/assets/ground.png",
+      "texture": "/games/mario/assets/redPlatform.png",
       "x": "0",
-      "y": "0",
+      "y": "-750",
+      "height": "800",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "800",
+      "y": "-250",
       "height": "50",
       "width": "50"
     },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "1000",
+      "y": "-250",
+      "height": "50",
+      "width": "250"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "1100",
+      "y": "-450",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_entity",
+      "collidable_type": "flagpole",
+      "texture": "/games/mario/assets/flagpole.png",
+      "x": "9950",
+      "y": "-450",
+      "height": "600",
+      "width": "150"
+    },
+    {
+      "type": "moving_character",
+      "collidable_type": "powerup",
+      "texture": "/games/mario/assets/powerup.png",
+      "x": "700",
+      "y": "-100",
+      "leftActionVelocity": "-1",
+      "movement_queue": "move_left",
+      "height": "40",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "1100",
+      "y": "-100",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "50",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/bluePlatform.png",
+      "x": "1400",
+      "y": "-150",
+      "height": "100",
+      "width": "100"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/bluePlatform.png",
+      "x": "1900",
+      "y": "-200",
+      "height": "150",
+      "width": "100"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "2000",
+      "y": "-100",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "50",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/bluePlatform.png",
+      "x": "2300",
+      "y": "-250",
+      "height": "200",
+      "width": "100"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "2550",
+      "y": "-100",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "50",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "2625",
+      "y": "-100",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "50",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/bluePlatform.png",
+      "x": "2850",
+      "y": "-250",
+      "height": "200",
+      "width": "100"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "3200",
+      "y": "-300",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "2000",
+      "y": "-100",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "50",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "3850",
+      "y": "-250",
+      "height": "50",
+      "width": "150"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "4000",
+      "y": "-450",
+      "height": "50",
+      "width": "400"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "4000",
+      "y": "-500",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "50",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "4100",
+      "y": "-500",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "50",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "4550",
+      "y": "-450",
+      "height": "50",
+      "width": "150"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "4700",
+      "y": "-250",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "4850",
+      "y": "-100",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "50",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "4950",
+      "y": "-100",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "50",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "5000",
+      "y": "-250",
+      "height": "50",
+      "width": "100"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "5300",
+      "y": "-250",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "5450",
+      "y": "-250",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "5450",
+      "y": "-450",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "5600",
+      "y": "-250",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/brainDamage.png",
+      "x": "5350",
+      "y": "-150",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "100",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "5700",
+      "y": "-100",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "50",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "5800",
+      "y": "-100",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "50",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "5950",
+      "y": "-250",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "6150",
+      "y": "-450",
+      "height": "50",
+      "width": "150"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "6400",
+      "y": "-450",
+      "height": "50",
+      "width": "200"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "6450",
+      "y": "-250",
+      "height": "50",
+      "width": "100"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "6700",
+      "y": "-100",
+      "height": "50",
+      "width": "200"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "6750",
+      "y": "-150",
+      "height": "50",
+      "width": "150"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "6800",
+      "y": "-200",
+      "height": "50",
+      "width": "100"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "6850",
+      "y": "-250",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "7000",
+      "y": "-100",
+      "height": "50",
+      "width": "200"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "7000",
+      "y": "-150",
+      "height": "50",
+      "width": "150"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "7000",
+      "y": "-200",
+      "height": "50",
+      "width": "100"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "7000",
+      "y": "-250",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "7450",
+      "y": "-100",
+      "height": "50",
+      "width": "250"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "7500",
+      "y": "-150",
+      "height": "50",
+      "width": "200"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "7550",
+      "y": "-200",
+      "height": "50",
+      "width": "150"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "7600",
+      "y": "-250",
+      "height": "50",
+      "width": "100"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "7800",
+      "y": "-100",
+      "height": "50",
+      "width": "200"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "7800",
+      "y": "-150",
+      "height": "50",
+      "width": "150"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "7800",
+      "y": "-200",
+      "height": "50",
+      "width": "100"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "7800",
+      "y": "-250",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/bluePlatform.png",
+      "x": "8150",
+      "y": "-150",
+      "height": "100",
+      "width": "100"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "8450",
+      "y": "-250",
+      "height": "50",
+      "width": "200"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "8700",
+      "y": "-100",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "50",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "8775",
+      "y": "-100",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "50",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/bluePlatform.png",
+      "x": "8950",
+      "y": "-150",
+      "height": "100",
+      "width": "100"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "9050",
+      "y": "-100",
+      "height": "50",
+      "width": "450"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "9100",
+      "y": "-150",
+      "height": "50",
+      "width": "400"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "9150",
+      "y": "-200",
+      "height": "50",
+      "width": "350"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "9200",
+      "y": "-250",
+      "height": "50",
+      "width": "300"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "9250",
+      "y": "-300",
+      "height": "50",
+      "width": "250"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "9300",
+      "y": "-350",
+      "height": "50",
+      "width": "200"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "9350",
+      "y": "-400",
+      "height": "50",
+      "width": "150"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/redPlatform.png",
+      "x": "9400",
+      "y": "-450",
+      "height": "50",
+      "width": "100"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "50",
+      "y": "-50",
+      "height": "50",
+      "width": "3450"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "3600",
+      "y": "-50",
+      "height": "50",
+      "width": "750"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "4500",
+      "y": "-50",
+      "height": "50",
+      "width": "3200"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "7800",
+      "y": "-50",
+      "height": "50",
+      "width": "3300"
+    },
+
     {
       "type": "static_platform",
       "collidable_type": "static_platform",
@@ -659,18 +1347,18 @@
       "width": "50"
     },
     {
-      "type": "static_platform",
-      "collidable_type": "static_platform",
-      "texture": "/games/mario/assets/ground.png",
+      "type": "static_entity",
+      "collidable_type": "boundary",
+      "texture": "/games/mario/assets/skull.png",
       "x": "3500",
       "y": "0",
       "height": "50",
       "width": "50"
     },
     {
-      "type": "static_platform",
-      "collidable_type": "static_platform",
-      "texture": "/games/mario/assets/ground.png",
+      "type": "static_entity",
+      "collidable_type": "boundary",
+      "texture": "/games/mario/assets/skull.png",
       "x": "3550",
       "y": "0",
       "height": "50",
@@ -812,27 +1500,27 @@
       "width": "50"
     },
     {
-      "type": "static_platform",
-      "collidable_type": "static_platform",
-      "texture": "/games/mario/assets/ground.png",
+      "type": "static_entity",
+      "collidable_type": "boundary",
+      "texture": "/games/mario/assets/skull.png",
       "x": "4350",
       "y": "0",
       "height": "50",
       "width": "50"
     },
     {
-      "type": "static_platform",
-      "collidable_type": "static_platform",
-      "texture": "/games/mario/assets/ground.png",
+      "type": "static_entity",
+      "collidable_type": "boundary",
+      "texture": "/games/mario/assets/skull.png",
       "x": "4400",
       "y": "0",
       "height": "50",
       "width": "50"
     },
     {
-      "type": "static_platform",
-      "collidable_type": "static_platform",
-      "texture": "/games/mario/assets/ground.png",
+      "type": "static_entity",
+      "collidable_type": "boundary",
+      "texture": "/games/mario/assets/skull.png",
       "x": "4450",
       "y": "0",
       "height": "50",
@@ -1415,18 +2103,18 @@
       "width": "50"
     },
     {
-      "type": "static_platform",
-      "collidable_type": "static_platform",
-      "texture": "/games/mario/assets/ground.png",
+      "type": "static_entity",
+      "collidable_type": "boundary",
+      "texture": "/games/mario/assets/skull.png",
       "x": "7700",
       "y": "0",
       "height": "50",
       "width": "50"
     },
     {
-      "type": "static_platform",
-      "collidable_type": "static_platform",
-      "texture": "/games/mario/assets/ground.png",
+      "type": "static_entity",
+      "collidable_type": "boundary",
+      "texture": "/games/mario/assets/skull.png",
       "x": "7750",
       "y": "0",
       "height": "50",
@@ -1832,8 +2520,8 @@
       "type": "static_platform",
       "collidable_type": "static_platform",
       "texture": "/games/mario/assets/ground.png",
-      "x": "200",
-      "y": "-100",
+      "x": "10000",
+      "y": "0",
       "height": "50",
       "width": "50"
     },
@@ -1841,45 +2529,181 @@
       "type": "static_platform",
       "collidable_type": "static_platform",
       "texture": "/games/mario/assets/ground.png",
-      "x": "250",
-      "y": "-100",
+      "x": "10050",
+      "y": "0",
       "height": "50",
       "width": "50"
     },
     {
-      "type": "static_entity",
-      "collidable_type": "flagpole",
-      "texture": "/games/mario/assets/flagpole.png",
-      "x": "9950",
-      "y": "-600",
-      "height": "500",
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10100",
+      "y": "0",
+      "height": "50",
       "width": "50"
     },
     {
-      "type": "moving_character",
-      "collidable_type": "powerup",
-      "texture": "/games/mario/assets/powerupMushroom.png",
-      "x": "700",
-      "y": "61",
-      "leftActionVelocity": "-1",
-      "movement_queue": "move_left",
-      "height": "40",
-      "width": "40",
-      "lives": "1"
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10150",
+      "y": "0",
+      "height": "50",
+      "width": "50"
     },
     {
-      "type": "goomba",
-      "collidable_type": "goomba",
-      "texture": "/games/mario/assets/goomba.png",
-      "x": "800",
-      "y": "50",
-      "rightActionVelocity": "1",
-      "leftActionVelocity": "-1",
-      "automatic_movement_rate": "100",
-      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10200",
+      "y": "0",
       "height": "50",
-      "width": "40",
-      "lives": "1"
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10250",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10300",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10350",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10400",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10450",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10500",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10550",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10600",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10650",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10700",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10750",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10800",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10850",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10900",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "10950",
+      "y": "0",
+      "height": "50",
+      "width": "50"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/mario/assets/ground.png",
+      "x": "11000",
+      "y": "0",
+      "height": "50",
+      "width": "50"
     }
   ]
 }
