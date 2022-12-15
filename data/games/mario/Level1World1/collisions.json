@@ -10,6 +10,7 @@
     ]
   },
 
+
   "movingEntity": {
     "parent": "entity",
     "collision_chart": [
@@ -24,10 +25,16 @@
           }
         ]
       },
+
       {
         "OPPONENT_COLLIDABLE_TYPE": "static_platform",
         "COLLISION_DIRECTION": "TOP",
         "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.moveractions.StopYMovement",
+            "action_interface": "MoverAction",
+            "params": []
+          }
         ]
       },
       {
@@ -44,10 +51,27 @@
       }
     ]
   },
+  "flypowerup": {
+    "parent": "powerup",
+    "collision_chart": [
+
+    ]
+  },
 
   "mario": {
     "parent": "movingEntity",
     "collision_chart": [
+      {
+        "OPPONENT_COLLIDABLE_TYPE": "flypowerup",
+        "COLLISION_DIRECTION": "*",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.moveractions.FlyPowerUp",
+            "action_interface": "MoverAction",
+            "params": []
+          }
+        ]
+      },
       {
         "OPPONENT_COLLIDABLE_TYPE": "goomba",
         "COLLISION_DIRECTION": "BOTTOM",
@@ -61,6 +85,11 @@
           {
             "classname": "ooga.model.actions.moveractions.moveout.UpwardMoveOut",
             "action_interface": "MoverAction",
+            "params": []
+          },
+          {
+            "classname": "ooga.model.actions.maincharacteractions.IncrementScoreEnemyKilled",
+            "action_interface": "MainCharacterAction",
             "params": []
           }
         ]
@@ -102,12 +131,7 @@
         "COLLISION_DIRECTION": "*",
         "ACTIONS": [
           {
-            "classname": "ooga.model.actions.aliveactions.Kill",
-            "action_interface": "AliveAction",
-            "params": []
-          },
-          {
-            "classname": "ooga.model.actions.maincharacteractions.SetGameStateToUserLost",
+            "classname": "ooga.model.actions.maincharacteractions.ResetVerticalDeath",
             "action_interface": "MainCharacterAction",
             "params": []
           }

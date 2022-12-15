@@ -65,6 +65,7 @@
           }
         ]
       },
+
       {
         "OPPONENT_COLLIDABLE_TYPE": "goomba",
         "COLLISION_DIRECTION": "LEFT||RIGHT",
