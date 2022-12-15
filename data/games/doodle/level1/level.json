@@ -1,5 +1,5 @@
 {
-  "game": "doodle",
+  "game": "doodle_jump",
   "name": "Level 1",
   "background": "graphpaper.jpg",
   "margin_left": "100",
@@ -47,24 +47,25 @@
       "width": "200"
     },
     {
-      "type": "doodle_floating_dynamic_enemy",
+      "type": "static_entity",
       "collidable_type": "enemy",
       "texture": "/games/doodle/assets/enemy.png",
       "x": "200",
       "y": "-220",
       "height": "50",
       "width": "50",
-      "rightActionVelocity": "1",
-      "leftActionVelocity": "-1",
-      "automatic_movement_rate": "100",
-      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
       "lives": "1"
     },
 
-
-
-
-
+    {
+      "type": "static_platform_gravity_on",
+      "collidable_type": "double_bounce_static_platform",
+      "texture": "/games/doodle/assets/bluePlatform.png",
+      "x": "600",
+      "y": "-200",
+      "height": "10",
+      "width": "200"
+    },
 
 
     {
@@ -97,9 +98,9 @@
     {
       "type": "static_entity",
       "collidable_type": "endpoint",
-      "texture": "/games/doodle/assets/orangeSquare.png",
+      "texture": "/games/doodle/assets/platform.png",
       "x": "0",
-      "y": "-5000",
+      "y": "-700",
       "height": "50",
       "width": "2000"
     }
