@@ -86,6 +86,11 @@
             "classname": "ooga.model.actions.maincharacteractions.SetGameStateToUserWon",
             "action_interface": "MainCharacterAction",
             "params": []
+          },
+          {
+            "classname": "ooga.model.actions.maincharacteractions.IncrementScoreStandard",
+            "action_interface": "MainCharacterAction",
+            "params": []
           }
         ]
       }
