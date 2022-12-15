@@ -47,7 +47,7 @@ public class EntityFactory {
     }
 
     public BasicMainCharacter makeMainCharacter(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
-        CollisionChart chart = collisionChart(type);
+        CollisionChart chart = collisionChart(info.get(ImmutableInfo.COLLIDABLE_TYPE_KEY));
 
         MovementQueue queue = decoder.getMovementQueue(type);
 
@@ -65,7 +65,7 @@ public class EntityFactory {
     }
 
     public BasicStaticCharacter makeLivingStaticCharacter(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info){
-        CollisionChart chart = collisionChart(type);
+        CollisionChart chart = collisionChart(info.get(ImmutableInfo.COLLIDABLE_TYPE_KEY));
 
         BasicStaticCharacter newStaticLiver;
         try {
@@ -83,7 +83,7 @@ public class EntityFactory {
 
 
     public CollidableEntity makeCollidable(int xCoordinate, int yCoordinate, double height, double width, String type, EntityInfo info) {
-        CollisionChart chart = collisionChart(type);
+        CollisionChart chart = collisionChart(info.get(ImmutableInfo.COLLIDABLE_TYPE_KEY));
 
         CollidableEntity newCollidable;
         try {
