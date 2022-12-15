@@ -17,9 +17,7 @@
       "width": "50",
       "texture": "/games/mario/assets/mario.png",
       "lives": "3",
-      "upwardActionVelocity": "-30",
-      "rightActionVelocity": "20",
-      "leftActionVelocity": "-20"
+      "upwardActionVelocity": "-15"
     },
     {
       "type": "static_platform",
@@ -71,7 +69,7 @@
       "collidable_type": "flagpole",
       "texture": "/games/mario/assets/flagpole.png",
       "x": "9950",
-      "y": "-450",
+      "y": "-650",
       "height": "600",
       "width": "150"
     },
