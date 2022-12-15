@@ -1,0 +1,296 @@
+{
+  "game": "dash",
+  "name": "Geometry Dash",
+  "background": "geometrydashbackground.jpg",
+  "margin_left": "100",
+  "margin_right": "400",
+  "margin_bottom": "200",
+  "margin_top": "200",
+  "scrolling_direction": "horizontal",
+  "Entity": [
+    {
+      "type": "geometrydashguy",
+      "collidable_type": "geometrydashguy",
+      "x": "0",
+      "y": "-60",
+      "height": "70",
+      "width": "50",
+      "texture": "/games/dash/assets/dash.png",
+      "lives": "3",
+      "movement_queue": "move_right",
+      "rightActionVelocity": "7"
+    },
+    {
+      "type": "goomba",
+      "collidable_type": "goomba",
+      "texture": "/games/mario/assets/goomba.png",
+      "x": "6000",
+      "y": "50",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "height": "50",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "spike",
+      "collidable_type": "spike",
+      "x": "5500",
+      "y": "50",
+      "height": "50",
+      "width": "50",
+      "texture": "/games/dash/assets/spike.png"
+    },
+    {
+      "type": "spike",
+      "collidable_type": "spike",
+      "x": "6600",
+      "y": "50",
+      "height": "50",
+      "width": "50",
+      "texture": "/games/dash/assets/spike.png"
+    },
+    {
+      "type": "static_character",
+      "collidable_type": "flypowerup",
+      "texture": "/games/mario/assets/flypowerup.png",
+      "x": "8500",
+      "y": "-40",
+      "height": "40",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "static_character",
+      "collidable_type": "powerup",
+      "texture": "/games/mario/assets/powerup.png",
+      "x": "6200",
+      "y": "-40",
+      "height": "40",
+      "width": "40",
+      "lives": "1"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/dash/assets/squareplatform.png",
+      "x": "0",
+      "y": "-300",
+      "height": "10",
+      "width": "10000"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/dash/assets/squareplatform.png",
+      "x": "0",
+      "y": "100",
+      "height": "10",
+      "width": "100000"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/dash/assets/squareplatform.png",
+      "x": "1000",
+      "y": "80",
+      "height": "20",
+      "width": "600"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/dash/assets/squareplatform.png",
+      "x": "1200",
+      "y": "60",
+      "height": "20",
+      "width": "400"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/dash/assets/squareplatform.png",
+      "x": "1400",
+      "y": "40",
+      "height": "20",
+      "width": "200"
+    },
+    {
+      "type": "spike",
+      "collidable_type": "spike",
+      "x": "1600",
+      "y": "50",
+      "height": "50",
+      "width": "50",
+      "texture": "/games/dash/assets/spike.png"
+    },
+    {
+      "type": "spike",
+      "collidable_type": "spike",
+      "x": "1650",
+      "y": "50",
+      "height": "50",
+      "width": "50",
+      "texture": "/games/dash/assets/spike.png"
+    },
+    {
+      "type": "coin",
+      "collidable_type": "coin",
+      "x": "1650",
+      "y": "-150",
+      "height": "50",
+      "width": "50",
+      "texture": "/games/mario/assets/blueCoin.png"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/dash/assets/squareplatform.png",
+      "x": "2200",
+      "y": "50",
+      "height": "20",
+      "width": "200"
+    },
+    {
+      "type": "spike",
+      "collidable_type": "spike",
+      "x": "2475",
+      "y": "50",
+      "height": "50",
+      "width": "50",
+      "texture": "/games/dash/assets/spike.png"
+    },
+    {
+      "type": "spike",
+      "collidable_type": "spike",
+      "x": "2525",
+      "y": "50",
+      "height": "50",
+      "width": "50",
+      "texture": "/games/dash/assets/spike.png"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/dash/assets/squareplatform.png",
+      "x": "2600",
+      "y": "50",
+      "height": "20",
+      "width": "200"
+    }
+    ,
+    {
+      "type": "spike",
+      "collidable_type": "spike",
+      "x": "2875",
+      "y": "50",
+      "height": "50",
+      "width": "50",
+      "texture": "/games/dash/assets/spike.png"
+    },
+    {
+      "type": "spike",
+      "collidable_type": "spike",
+      "x": "2925",
+      "y": "50",
+      "height": "50",
+      "width": "50",
+      "texture": "/games/dash/assets/spike.png"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/dash/assets/squareplatform.png",
+      "x": "3000",
+      "y": "50",
+      "height": "20",
+      "width": "200"
+    },
+    {
+      "type": "spike",
+      "collidable_type": "spike",
+      "x": "3275",
+      "y": "50",
+      "height": "50",
+      "width": "50",
+      "texture": "/games/dash/assets/spike.png"
+    },
+    {
+      "type": "spike",
+      "collidable_type": "spike",
+      "x": "3325",
+      "y": "50",
+      "height": "50",
+      "width": "50",
+      "texture": "/games/dash/assets/spike.png"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/dash/assets/squareplatform.png",
+      "x": "3400",
+      "y": "50",
+      "height": "20",
+      "width": "200"
+    }
+    ,
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/dash/assets/squareplatform.png",
+      "x": "3600",
+      "y": "-30",
+      "height": "20",
+      "width": "200"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/dash/assets/squareplatform.png",
+      "x": "3850",
+      "y": "-100",
+      "height": "20",
+      "width": "100"
+    },
+    {
+      "type": "spike",
+      "collidable_type": "spike",
+      "texture": "/games/dash/assets/invertedspike.png",
+      "x": "3950",
+      "y": "-325",
+      "height": "100",
+      "width": "50"
+    },
+    {
+      "type": "spike",
+      "collidable_type": "spike",
+      "texture": "/games/dash/assets/spike.png",
+      "x": "3950",
+      "y": "50",
+      "height": "50",
+      "width": "50"
+    }
+    ,
+    {
+      "type": "spike",
+      "collidable_type": "spike",
+      "texture": "/games/dash/assets/spike.png",
+      "x": "8500",
+      "y": "50",
+      "height": "50",
+      "width": "250"
+    }
+    ,
+    {
+      "type": "static_entity",
+      "collidable_type": "flagpole",
+      "texture": "/games/mario/assets/flagpole.png",
+      "x": "10000",
+      "y": "-100",
+      "height": "200",
+      "width": "50"
+    }
+  ]
+}
