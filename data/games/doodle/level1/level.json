@@ -1,54 +1,94 @@
 {
-  "game": "doodle_jump",
-  "name": "Test Level 1",
-  "background": "bliss.jpg",
+  "game": "doodle",
+  "name": "Level 1",
+  "background": "graphpaper.jpg",
   "margin_left": "100",
   "margin_right": "400",
   "margin_bottom": "200",
   "margin_top": "200",
-  "scrolling_direction": "horizontal",
+  "scrolling_direction": "vertical",
   "Entity": [
     {
-      "type": "mario",
-      "collidable_type": "mario",
-      "x": "250",
+      "type": "doodle_jumper",
+      "collidable_type": "jumper",
+      "x": "550",
       "y": "1",
       "height": "100",
       "width": "50",
-      "texture": "/games/mario/assets/mario.png",
-      "lives": "2"
+      "texture": "/games/doodle/assets/jump.png",
+      "lives": "2",
+      "upwardActionVelocity": "-20"
     },
     {
       "type": "static_platform",
       "collidable_type": "static_platform",
-      "texture": "/games/mario/assets/ground.png",
-      "x": "200",
+      "texture": "/games/doodle/assets/platform.png",
+      "x": "300",
       "y": "100",
       "height": "10",
-      "width": "1000"
+      "width": "500"
     },
     {
-      "type": "static_entity",
-      "collidable_type": "boundary",
-      "texture": "/games/mario/assets/orangeSquare.png",
-      "x": "1250",
-      "y": "-50",
-      "height": "500",
-      "width": "50"
-    },
-    {
-      "type": "static_entity",
-      "collidable_type": "boundary",
-      "texture": "/games/mario/assets/orangeSquare.png",
+      "type": "static_platform_gravity_on",
+      "collidable_type": "double_bounce_static_platform",
+      "texture": "/games/doodle/assets/bluePlatform.png",
       "x": "100",
-      "y": "-50",
-      "height": "500",
+      "y": "0",
+      "height": "10",
+      "width": "200"
+    },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/doodle/assets/platform.png",
+      "x": "300",
+      "y": "-300",
+      "height": "10",
+      "width": "200"
+    },
+    {
+      "type": "doodle_floating_dynamic_enemy",
+      "collidable_type": "enemy",
+      "texture": "/games/doodle/assets/enemy.png",
+      "x": "200",
+      "y": "-220",
+      "height": "50",
+      "width": "50",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "lives": "1"
+    },
+
+
+
+
+
+
+
+    {
+      "type": "static_entity",
+      "collidable_type": "boundary",
+      "texture": "/games/doodle/assets/orangeSquare.png",
+      "x": "1250",
+      "y": "-5000",
+      "height": "6000",
       "width": "50"
     },
     {
       "type": "static_entity",
       "collidable_type": "boundary",
-      "texture": "/games/mario/assets/orangeSquare.png",
+      "texture": "/games/doodle/assets/orangeSquare.png",
+      "x": "-50",
+      "y": "-5000",
+      "height": "6000",
+      "width": "50"
+    },
+    {
+      "type": "static_entity",
+      "collidable_type": "boundary",
+      "texture": "/games/doodle/assets/orangeSquare.png",
       "x": "100",
       "y": "300",
       "height": "50",
@@ -56,38 +96,12 @@
     },
     {
       "type": "static_entity",
-      "collidable_type": "flagpole",
-      "texture": "/games/mario/assets/flagpole.png",
-      "x": "1100",
-      "y": "-400",
-      "height": "500",
-      "width": "50"
-    },
-    {
-      "type": "moving_character",
-      "collidable_type": "powerup",
-      "texture": "/games/mario/assets/powerupMushroom.png",
-      "x": "700",
-      "y": "61",
-      "leftActionVelocity": "-1",
-      "movement_queue": "move_left",
-      "height": "40",
-      "width": "40",
-      "lives": "1"
-    },
-    {
-      "type": "goomba",
-      "collidable_type": "goomba",
-      "texture": "/games/mario/assets/goomba.png",
-      "x": "800",
-      "y": "50",
-      "rightActionVelocity": "1",
-      "leftActionVelocity": "-1",
-      "automatic_movement_rate": "100",
-      "movement_queue": "move_right,move_right,move_right,move_left,move_left,move_left,move_left,move_right",
+      "collidable_type": "endpoint",
+      "texture": "/games/doodle/assets/orangeSquare.png",
+      "x": "0",
+      "y": "-5000",
       "height": "50",
-      "width": "40",
-      "lives": "1"
+      "width": "2000"
     }
   ]
 }

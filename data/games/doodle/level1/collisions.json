@@ -15,28 +15,36 @@
     "collision_chart": [
       {
         "OPPONENT_COLLIDABLE_TYPE": "static_platform",
-        "COLLISION_DIRECTION": "LEFT||RIGHT",
+        "COLLISION_DIRECTION": "BOTTOM",
         "ACTIONS": [
           {
-            "classname": "ooga.model.actions.moveractions.StopXMovement",
+            "classname": "ooga.model.actions.moveractions.StopYMovement",
+            "action_interface": "MoverAction",
+            "params": []
+          },
+          {
+            "classname": "ooga.model.actions.moveractions.Bounce",
             "action_interface": "MoverAction",
             "params": []
           }
         ]
       },
       {
-        "OPPONENT_COLLIDABLE_TYPE": "static_platform",
-        "COLLISION_DIRECTION": "TOP",
-        "ACTIONS": [
-        ]
-      },
-      {
-        "OPPONENT_COLLIDABLE_TYPE": "static_platform",
+        "OPPONENT_COLLIDABLE_TYPE": "double_bounce_static_platform",
         "COLLISION_DIRECTION": "BOTTOM",
-        "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
         "ACTIONS": [
           {
             "classname": "ooga.model.actions.moveractions.StopYMovement",
+            "action_interface": "MoverAction",
+            "params": []
+          },
+          {
+            "classname": "ooga.model.actions.moveractions.Bounce",
+            "action_interface": "MoverAction",
+            "params": []
+          },
+          {
+            "classname": "ooga.model.actions.moveractions.Bounce",
             "action_interface": "MoverAction",
             "params": []
           }
@@ -45,53 +53,15 @@
     ]
   },
 
-  "mario": {
+  "jumper": {
     "parent": "movingEntity",
     "collision_chart": [
       {
-        "OPPONENT_COLLIDABLE_TYPE": "goomba",
-        "COLLISION_DIRECTION": "BOTTOM",
-        "COLLISION_NUM_CONSECUTIVE_COLLISIONS": "*",
-        "ACTIONS": [
-          {
-            "classname": "ooga.model.actions.moveractions.StopYMovement",
-            "action_interface": "MoverAction",
-            "params": []
-          },
-          {
-            "classname": "ooga.model.actions.moveractions.moveout.UpwardMoveOut",
-            "action_interface": "MoverAction",
-            "params": []
-          }
-        ]
-      },
-      {
-        "OPPONENT_COLLIDABLE_TYPE": "goomba",
-        "COLLISION_DIRECTION": "LEFT||RIGHT",
-        "ACTIONS": [
-          {
-            "classname": "ooga.model.actions.maincharacteractions.ResetVerticalDeath",
-            "action_interface": "MainCharacterAction",
-            "params": []
-          }
-        ]
-      },
-      {
-        "OPPONENT_COLLIDABLE_TYPE": "powerup",
+        "OPPONENT_COLLIDABLE_TYPE": "enemy",
         "COLLISION_DIRECTION": "*",
         "ACTIONS": [
           {
-            "classname": "ooga.model.actions.basicentityactions.IncreaseSizePowerUp",
-            "action_interface": "BasicEntityAction",
-            "params": []
-          },
-          {
-            "classname": "ooga.model.actions.maincharacteractions.IncrementScoreStandard",
-            "action_interface": "MainCharacterAction",
-            "params": []
-          },
-          {
-            "classname": "ooga.model.actions.maincharacteractions.SetHasPowerUpTrue",
+            "classname": "ooga.model.actions.maincharacteractions.ResetVerticalDeath",
             "action_interface": "MainCharacterAction",
             "params": []
           }
@@ -102,19 +72,14 @@
         "COLLISION_DIRECTION": "*",
         "ACTIONS": [
           {
-            "classname": "ooga.model.actions.aliveactions.Kill",
-            "action_interface": "AliveAction",
-            "params": []
-          },
-          {
-            "classname": "ooga.model.actions.maincharacteractions.SetGameStateToUserLost",
+            "classname": "ooga.model.actions.maincharacteractions.ResetStandardDeath",
             "action_interface": "MainCharacterAction",
             "params": []
           }
         ]
       },
       {
-        "OPPONENT_COLLIDABLE_TYPE": "flagpole",
+        "OPPONENT_COLLIDABLE_TYPE": "endpoint",
         "COLLISION_DIRECTION": "*",
         "ACTIONS": [
           {
@@ -127,60 +92,9 @@
     ]
   },
 
-  "end": {
-    "parent": "",
-    "collision_chart": [
-      {
-        "OPPONENT_TYPE": "mario",
-        "COLLISION_DIRECTION": "*",
-        "ACTIONS": [
-          {
-            "classname": "ooga.model.actions.aliveactions.Kill",
-            "action_interface": "AliveAction",
-            "params": []
-          }
-        ]
-      }
-    ]
-  },
-
-  "goomba": {
+  "enemy": {
     "parent": "movingEntity",
-    "collision_chart": [
-      {
-        "OPPONENT_COLLIDABLE_TYPE": "mario",
-        "COLLISION_DIRECTION": "TOP",
-        "ACTIONS": [
-          {
-            "classname": "ooga.model.actions.aliveactions.Kill",
-            "action_interface": "AliveAction",
-            "params": []
-          }
-        ]
-      },
-      {
-        "OPPONENT_COLLIDABLE_TYPE": "MARIO",
-        "COLLISION_DIRECTION": "LEFT||RIGHT",
-        "ACTIONS": [
-        ]
-      }
-    ]
-  },
-
-  "powerup": {
-    "parent": "movingEntity",
-    "collision_chart": [
-      {
-        "OPPONENT_COLLIDABLE_TYPE": "mario",
-        "COLLISION_DIRECTION": "*",
-        "ACTIONS": [
-          {
-            "classname": "ooga.model.actions.aliveactions.Kill",
-            "action_interface": "AliveAction",
-            "params": []
-          }
-        ]
-      }
-    ]
+    "collision_chart": []
   }
+
 }

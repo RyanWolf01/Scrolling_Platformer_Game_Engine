@@ -17,7 +17,7 @@
       "width": "50",
       "texture": "/games/doodle/assets/jump.png",
       "lives": "2",
-      "upwardActionVelocity": "-20"
+      "upwardActionVelocity": "-50"
     },
     {
       "type": "static_platform",
@@ -28,6 +28,16 @@
       "height": "10",
       "width": "500"
     },
+    {
+      "type": "static_platform",
+      "collidable_type": "static_platform",
+      "texture": "/games/doodle/assets/platform.png",
+      "x": "300",
+      "y": "50",
+      "height": "10",
+      "width": "500"
+    },
+
     {
       "type": "static_entity",
       "collidable_type": "boundary",
