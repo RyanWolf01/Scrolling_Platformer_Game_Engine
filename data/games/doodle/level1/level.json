@@ -46,6 +46,7 @@
       "height": "10",
       "width": "200"
     },
+
     {
       "type": "static_entity",
       "collidable_type": "enemy",
@@ -54,6 +55,21 @@
       "y": "-220",
       "height": "50",
       "width": "50",
+      "lives": "1"
+    },
+
+    {
+      "type": "goomba",
+      "collidable_type": "enemy",
+      "texture": "/games/doodle/assets/enemy.png",
+      "x": "650",
+      "y": "-220",
+      "height": "50",
+      "width": "50",
+      "rightActionVelocity": "1",
+      "leftActionVelocity": "-1",
+      "automatic_movement_rate": "100",
+      "movement_queue": "",
       "lives": "1"
     },
 
