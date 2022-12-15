@@ -18,13 +18,13 @@
       "texture": "/games/dash/assets/dash.png",
       "lives": "3",
       "movement_queue": "move_right",
-      "rightActionVelocity": "7"
+      "rightActionVelocity": "5"
     },
     {
       "type": "goomba",
       "collidable_type": "goomba",
       "texture": "/games/mario/assets/goomba.png",
-      "x": "6000",
+      "x": "500",
       "y": "50",
       "rightActionVelocity": "1",
       "leftActionVelocity": "-1",

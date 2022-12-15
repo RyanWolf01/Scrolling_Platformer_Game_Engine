@@ -114,6 +114,18 @@
         ]
       },
       {
+        "OPPONENT_COLLIDABLE_TYPE": "goomba",
+        "COLLISION_DIRECTION": "*",
+        "ACTIONS": [
+          {
+            "classname": "ooga.model.actions.maincharacteractions.IncrementScoreEnemyKilled",
+            "action_interface": "MainCharacterAction",
+            "params": []
+          }
+        ]
+      },
+
+      {
         "OPPONENT_COLLIDABLE_TYPE": "static_platform",
         "COLLISION_DIRECTION": "LEFT||RIGHT||TOP",
         "ACTIONS": [
@@ -154,11 +166,20 @@
             "action_interface": "AliveAction",
             "params": []
           }
+
         ]
       }
     ]
   },
-  "static_character": {
+  "powerup": {
+    "parent": "coin",
+    "collision_chart": []
+  },
+  "flypowerup": {
+    "parent": "coin",
+    "collision_chart": []
+  },
+  "coin": {
     "parent": "",
     "collision_chart": [
       {
