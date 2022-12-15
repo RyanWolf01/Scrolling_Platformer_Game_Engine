@@ -2,5 +2,8 @@
   "W": "move_up",
   "A": "move_left",
   "D": "move_right",
-  "S": "move_down"
+  "S": "move_down",
+  "L": "increase_life",
+  "K": "kill",
+  "M": "stop_both_directions"
 }

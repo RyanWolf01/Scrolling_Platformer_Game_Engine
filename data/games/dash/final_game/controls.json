@@ -1,3 +1,6 @@
 {
-  "W": "move_up"
+  "W": "move_up",
+  "L": "increase_life",
+  "K": "kill",
+  "M": "stop_both_directions"
 }
