@@ -1,7 +1,0 @@
-{
-  "W": "jump",
-  "A": "move_left",
-  "S": "duck",
-  "D": "move_right",
-  "SPACE": "use_powerup"
-}
