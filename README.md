@@ -1,7 +1,7 @@
 ooga
 ====
 
-This project implements a player for multiple related games.
+This project allows users to create new scrolling platformer games by changing configuration settings in JSON files. Classes can also be extended for game modification.
 
 Names: Andy Demma, Manith Luthria, Arman Shekarriz, Ryan Wolfram, Michael Habib
 
@@ -11,8 +11,6 @@ Names: Andy Demma, Manith Luthria, Arman Shekarriz, Ryan Wolfram, Michael Habib
 Start Date: 11/02/22
 
 Finish Date: 12/15/22
-
-Hours Spent: 1,752,000,000
 
 ### Primary Roles
 
@@ -43,7 +41,6 @@ Data files needed:
 * /levelfolder/controls.json - Describes how entities interact with other entities
 
 
-
 Features implemented:
 * Choose Language in Start Screen
 * Choose Level in Start Screen
@@ -72,10 +69,6 @@ Assumptions or Simplifications:
 * Users cannot create their own actions, collision types, or new controls without adding the related functionality to the code. The type of collision and collisions event, the type of entity created, and the game controls mapped to specific keys all need to be recognizable by the game program, or in other words capable of being handled in the java code. While adding the functionality to handle new actions, collisions, or controls is simple to implement in the code based on our design, and we feel we have accounted for all of the important controls, collisions, and actions, users will not be able to create new types of these purely in JSONs. We are also assuming the games cannot be multiplayers (there cannot be multiple Mario's, DoodleJumpers, etc.) and that we will never run two games at the same time (This is because the games are real time and need the keyboard to run. You cannot use a keyboard on two windows at once. The features affected by these assumptions is that we are not creating a list of heroes, and not accounting for reading in different files to start multiple games.
 
 
-Interesting data files:
-
-* The collisions.json file is very interesting. One can define the collision actions for every direction for any combination of entities. One can also set the parent entity for an entity so that it may inherit the collision properties of the parent.
-
 Known Bugs:
 
 * Main character sinks into the platform slightly, cannot walk straight from one platform to another level one, will collide with side of next platform
@@ -91,7 +84,6 @@ Challenge Features:
 * Collision-handling in the backend: this was hard to do from scratch, and it’s still not perfect
 * Gravity
 * Scrollable Camera: It took a lot of sketching and relative math to define how a camera would move the entities when the main character would move
-
 
 
 ### Impressions
