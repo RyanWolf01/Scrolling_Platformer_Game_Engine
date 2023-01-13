@@ -89,4 +89,3 @@ Challenge Features:
 ### Impressions
 
 We enjoyed working on this project overall, which was both a result of our love for Mario as well as our team chemistry. It was fun to see the final project evolve, and everyone was easy to work with which made it a great experience.
-
